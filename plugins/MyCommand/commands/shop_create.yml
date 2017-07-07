@@ -1,0 +1,79 @@
+##############################################################################
+#                                shop create                                 #
+##############################################################################
+shop_create:
+  command: /shop_create
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #           error messages            #
+  ####################################### 
+  # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  
+  # item count under 1
+  - '$Script$%elseif%$arg1<1'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  
+  # item count above 64
+  - '$Script$%elseif%$arg1>64'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 64"}]'
+  
+  # price under 1
+  - '$Script$%elseif%$arg2<1'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  
+  # prive above 65536
+  - '$Script$%elseif%$arg2>65536'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 65536"}]'
+  
+  # nothing in hand
+  - '$Script$%elseif%$iteminhand==AIR'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to have the item you want to create a shop for in your hand"}]'
+
+  # banned items
+  - '$Script$%elseif%$iteminhand==BOW<or>$iteminhand==CHAINMAIL_BOOTS<or>$iteminhand==CHAINMAIL_CHESTPLATE<or>$iteminhand==CHAINMAIL_HELMET<or>$iteminhand==CHAINMAIL_LEGGINGS<or>$iteminhand==DIAMOND_AXE<or>$iteminhand==DIAMOND_BOOTS<or>$iteminhand==DIAMOND_CHESTPLATE<or>$iteminhand==DIAMOND_HELMET<or>$iteminhand==DIAMOND_HOE<or>$iteminhand==DIAMOND_LEGGINGS<or>$iteminhand==DIAMOND_PICKAXE<or>$iteminhand==DIAMOND_SPADE<or>$iteminhand==DIAMOND_SWORD<or>$iteminhand==ENCHANTED_BOOK<or>$iteminhand==FISHING_ROD<or>$iteminhand==FLINT_AND_STEEL<or>$iteminhand==GOLD_AXE<or>$iteminhand==GOLD_BOOTS<or>$iteminhand==GOLD_CHESTPLATE<or>$iteminhand==GOLD_HELMET<or>$iteminhand==GOLD_HOE<or>$iteminhand==GOLD_LEGGINGS<or>$iteminhand==GOLD_PICKAXE<or>$iteminhand==GOLD_SPADE<or>$iteminhand==GOLD_SWORD<or>$iteminhand==IRON_AXE<or>$iteminhand==IRON_BOOTS<or>$iteminhand==IRON_CHESTPLATE<or>$iteminhand==IRON_HELMET<or>$iteminhand==IRON_HOE<or>$iteminhand==IRON_LEGGINGS<or>$iteminhand==IRON_PICKAXE<or>$iteminhand==IRON_SPADE<or>$iteminhand==IRON_SWORD<or>$iteminhand==LEATHER_BOOTS<or>$iteminhand==LEATHER_CHESTPLATE<or>$iteminhand==LEATHER_HELMET<or>$iteminhand==LEATHER_LEGGINGS<or>$iteminhand==LINGERING_POTION<or>$iteminhand==POTION<or>$iteminhand==SHEARS<or>$iteminhand==SHIELD<or>$iteminhand==MONSTER_EGG<or>$iteminhand==SPLASH_POTION<or>$iteminhand==STONE_AXE<or>$iteminhand==STONE_PICKAXE<or>$iteminhand==STONE_SPADE<or>$iteminhand==STONE_SWORD<or>$iteminhand==TIPPED_ARROW<or>$iteminhand==WOOD_AXE<or>$iteminhand==WOOD_HOE<or>$iteminhand==WOOD_PICKAXE<or>$iteminhand==WOOD_SPADE<or>$iteminhand==WOOD_SWORD'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The item you''re holding, cannot be used for a shop"}]'
+
+  #######################################
+  #           no item errors            #
+  ####################################### 
+  # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%elseif%$arg1>=1<and>$arg1<=64<and>$arg2>=1<and>$arg2<=65536<and>$iteminhand!=AIR'
+  
+  # check for sign
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
+  
+  # valid; init shop info
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_init $player $arg1 $arg2'
+  
+  # invalid; error message
+  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$player,tag=ssValid] remove ssValid'
+
+
+
+
+
+##############################################################################
+#                                 shop place                                 #
+##############################################################################
+shop_place:
+  command: /shop_place
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player
+  # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  
+  # "[Shop] Successfully created a shop which sells x x x for ßx"
+  - '/tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" created a shop which sells"},{"bold":"false","color":"dark_aqua","text":" $arg2 x $s.translation.$s.shop.init.item:$s.shop.init.damage"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  
+  # blockdata on sign
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.shop.init.item $s.shop.init.damage $arg2 $arg3 $arg1\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"color\":\"dark_gray\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$s.translation.$s.shop.init.item:$s.shop.init.damage\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg3\"}]"}'

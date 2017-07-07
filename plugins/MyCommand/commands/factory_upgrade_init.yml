@@ -1,0 +1,54 @@
+##############################################################################
+#                         factory upgrade init lack                          #
+############################################################################## 
+factory_upgrade_init_lack:
+  command: /factory_upgrade_init_lack
+  # note: run console
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $arg1 
+  # arg2 = $arg2 
+  # arg3 = $arg3 
+  # arg4 = $arg4 
+  # arg5 = $PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4% 
+  # arg6 = $s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4 
+  # arg7 = $PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%
+  
+#  # arg1 = $player
+#  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+#  # arg3 = acacia_boat / acacia_door / acacia_fence / ... / yellow_flower / yellow_glazed_terracacotta / yellow_shulker_box
+#  # arg4 = 0 / 1 / 2 / ... / 13 / 14 / 15
+#  # arg5 = $s.factory.level.$arg2.upgrade.lack.$arg1.$arg3:$arg4 
+#  # arg6 = $s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4 
+#  # arg7 = $s.factory.level.$arg2.upgrade.obtained.$arg1.$arg3:$arg4
+  
+  # set lack to requirement
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4=$arg6'
+  # remove obtained from lack
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4-$arg7'
+
+
+
+
+
+##############################################################################
+#                       factory upgrade init obtained                        #
+############################################################################## 
+factory_upgrade_init_obtained:
+  command: /factory_upgrade_init_obtained
+  # note: run console
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = acacia_boat / acacia_door / acacia_fence / ... / yellow_flower / yellow_glazed_terracacotta / yellow_shulker_box
+  # arg4 = 0 / 1 / 2 / ... / 13 / 14 / 15
+  # arg5 = 1 / 2 / 4 / ... / 512 / 1024 / 2048
+  
+  # add obtained
+  - '$Script$%PlayerDataFor%$arg1%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4+$arg5'
+  
+  # remove score
+  - '/minecraft:scoreboard players remove $arg1 sfItemCounter $arg5'

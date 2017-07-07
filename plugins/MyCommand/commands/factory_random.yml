@@ -1,0 +1,223 @@
+##############################################################################
+#                               factory random                               #
+##############################################################################
+factory_random:
+  command: /factory_random
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # set calculation to 1
+  - '$Script$%Variable%$s.factory.calculation=1'
+  
+  # set calculation to lowest (unused) factory
+  - '/mycommand:factory_random_calculation $s.factory.calculation'
+  
+  
+  
+  
+  
+##############################################################################
+#                         factory random calculation                         #
+##############################################################################
+factory_random_calculation:
+  command: /factory_random_calculation
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #          factory available          #
+  #######################################
+  # arg1 = $s.factory.calculation
+  
+  # check for status of 0 (which means the factory is unused)
+  - '$Script$%if%$s.factory.id.$arg1.status==0'
+  
+  # set status to integer of possible directions
+  - '/mycommand:factory_random_status_set $arg1'
+  
+  # choose direction for factory
+  - '/mycommand:factory_random_direction_choose $arg1 $s.factory.id.$arg1.status'
+  
+  # set sides to '-1' and used side to 'used'
+  - '/mycommand:factory_random_sides $arg1 $s.factory.id.$arg1.status'
+  
+  # teleport to factory location
+  - '/minecraft:tp $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z'
+  
+  # saves factory id and location to player
+  - '$Script$%Variable%$s.factory.init.player_factory_id=1'
+  - '/mycommand:factory_player_calculation $arg1 $player $s.factory.init.player_factory_id'
+  
+  #######################################
+  #         factory nonexistent         #
+  #######################################
+  # arg1 = $s.factory.calculation
+  
+  # check if status contains '.' (which means the factory doesn't exist)
+  - '$Script$%if%$s.factory.id.$arg1.status.contains=.'
+  
+  # create new intersection
+  - '/mycommand:road_new'
+  
+  # recur
+  - '/mycommand:factory_random_calculation $s.factory.calculation'
+  
+  #######################################
+  #            factory used             #
+  #######################################
+  # arg1 = $s.factory.calculation
+  - '$Script$%else%'
+  
+  # add '1' to calculation
+  - '$Script$%Variable%$s.factory.calculation+1'
+  
+  # recur
+  - '/mycommand:factory_random_calculation $s.factory.calculation'
+  
+
+
+
+
+##############################################################################
+#                         factory random status set                          #
+##############################################################################  
+factory_random_status_set:
+  command: /factory_random_status_set
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #                east                 #
+  #######################################
+  # arg1 = $s.factory.calculation
+  - '$Script$%if%$s.factory.id.$arg1.east==unused'
+  
+  # add x to status
+  - '$Script$%Variable%$s.factory.id.$arg1.status+1'
+  
+  #######################################
+  #                north                #
+  #######################################
+  # arg1 = $s.factory.calculation
+  - '$Script$%if%$s.factory.id.$arg1.north==unused'
+  
+  # add x to status
+  - '$Script$%Variable%$s.factory.id.$arg1.status+2'
+  
+  #######################################
+  #                south                #
+  #######################################
+  # arg1 = $s.factory.calculation
+  - '$Script$%if%$s.factory.id.$arg1.south==unused'
+  
+  # add x to status
+  - '$Script$%Variable%$s.factory.id.$arg1.status+4'
+  
+  #######################################
+  #                west                 #
+  #######################################
+  # arg1 = $s.factory.calculation
+  - '$Script$%if%$s.factory.id.$arg1.west==unused'
+  
+  # add x to status
+  - '$Script$%Variable%$s.factory.id.$arg1.status+8'
+  
+  
+  
+  
+  
+##############################################################################
+#                      factory random direction choose                       #
+############################################################################## 
+factory_random_direction_choose:
+  command: /factory_random_direction_choose
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $s.factory.calculation
+  # arg2 = $s.factory.id.$arg1.status
+  
+  # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Directions.xlsx)
+  - '$Script$%if%$arg2==15'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;north;south;west%'
+  
+  # 14
+  - '$Script$%if%$arg2==14'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;south;west%'
+  
+  # 13
+  - '$Script$%if%$arg2==13'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;south;west%'
+  
+  # 12
+  - '$Script$%if%$arg2==12'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;west%'
+  
+  # 11
+  - '$Script$%if%$arg2==11'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;north;west%'
+  
+  # 10
+  - '$Script$%if%$arg2==10'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;west%'
+  
+  # 9
+  - '$Script$%if%$arg2==9'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;west%'
+  
+  # 8
+  - '$Script$%if%$arg2==8'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%west%'
+  
+  # 7
+  - '$Script$%if%$arg2==7'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;north;south%'
+  
+  # 6
+  - '$Script$%if%$arg2==6'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;south%'
+  
+  # 5
+  - '$Script$%if%$arg2==5'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;south%'
+  
+  # 4
+  - '$Script$%if%$arg2==4'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%south%'
+  
+  # 3
+  - '$Script$%if%$arg2==3'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east;north%'
+  
+  # 2
+  - '$Script$%if%$arg2==2'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north%'
+  
+  # 1
+  - '$Script$%if%$arg2==1'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east%'
+  
+  # 0
+  - '$Script$%if%$arg2==0'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%none%'
+  
+  
+  
+  
+  
+##############################################################################
+#                            factory random sides                            #
+##############################################################################
+factory_random_sides:
+  command: /factory_random_sides
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # set all sides to '-1'
+  - '$Script$%Variable%$s.factory.id.$arg1.east=-1'
+  - '$Script$%Variable%$s.factory.id.$arg1.north=-1'
+  - '$Script$%Variable%$s.factory.id.$arg1.south=-1'
+  - '$Script$%Variable%$s.factory.id.$arg1.west=-1'
+  
+  # set used side to 'used'
+  - '$Script$%Variable%$s.factory.id.$arg1.$arg2=used'

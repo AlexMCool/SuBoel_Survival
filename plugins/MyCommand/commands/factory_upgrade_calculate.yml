@@ -1,0 +1,59 @@
+##############################################################################
+#                         factory upgrade calculate                          #
+############################################################################## 
+factory_upgrade_calculate:
+  command: /factory_upgrade_calculate
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = acacia_boat / acacia_door / acacia_fence / ... / yellow_flower / yellow_glazed_terracacotta / yellow_shulker_box
+  # arg4 = 0 / 1 / 2 / ... / 13 / 14 / 15
+  
+  # obtained doesn't exist
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==NoData'
+  # set obtained to 0
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4=0'
+
+  # init lack (to set lack to 0)
+  - '$Script$%if%always==always'
+  - '/mycommand:factory_upgrade_init_lack $arg1 $arg2 $arg3 $arg4 $PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4% $s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4 $PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%'
+
+  # lack bigger than 0 (still items needed)
+  # stat setup
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4%>0'
+  - '/minecraft:scoreboard players set @s sfItemCounter 0'
+  - '/minecraft:stats entity @s set AffectedItems $arg1 sfItemCounter'
+  - '/minecraft:clear @s minecraft:$arg3 $arg4 $PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4%'
+  - '/minecraft:stats entity @s clear AffectedItems'
+
+  # init obtained
+  - '/minecraft:execute @s[score_sfItemCounter_min=2048] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 2048'
+  - '/minecraft:execute @s[score_sfItemCounter_min=1024] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 1024'
+  - '/minecraft:execute @s[score_sfItemCounter_min=512] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 512'
+  - '/minecraft:execute @s[score_sfItemCounter_min=256] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 256'
+  - '/minecraft:execute @s[score_sfItemCounter_min=128] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 128'
+  - '/minecraft:execute @s[score_sfItemCounter_min=64] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 64'
+  - '/minecraft:execute @s[score_sfItemCounter_min=32] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 32'
+  - '/minecraft:execute @s[score_sfItemCounter_min=16] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 16'
+  - '/minecraft:execute @s[score_sfItemCounter_min=8] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 8'
+  - '/minecraft:execute @s[score_sfItemCounter_min=4] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 4'
+  - '/minecraft:execute @s[score_sfItemCounter_min=2] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 2'
+  - '/minecraft:execute @s[score_sfItemCounter_min=1] ~ ~ ~ /mycommand:factory_upgrade_init_obtained $arg1 $arg2 $arg3 $arg4 1'
+
+  # init lack
+  - '/mycommand:factory_upgrade_init_lack $arg1 $arg2 $arg3 $arg4 $PlayerData%$s.factory.level.$arg2.upgrade.lack.$arg3:$arg4% $s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4 $PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%'
+
+  #######################################
+  #              messages               #
+  ####################################### 
+  # exactly same obtained as requirement
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4'
+  # "> -------"
+  - '/minecraft:tellraw @s [{"bold":"true","color":"dark_aqua","text":"> "},{"bold":"false","color":"gray","strikethrough":"true","text":"$s.translation.$arg3:$arg4: "},{"bold":"false","color":"gray","strikethrough":"true","text":"$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%"},{"bold":"false","color":"gray","strikethrough":"true","text":" / "},{"bold":"false","color":"gray","strikethrough":"true","text":"$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4"}]'
+  
+  # obtained is not the same as requirement
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%!=$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4'
+  # ">        "
+  - '/minecraft:tellraw @s [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" $s.translation.$arg3:$arg4: "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%"},{"bold":"false","color":"gray","text":" / "},{"bold":"false","color":"dark_aqua","text":"$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4"}]'

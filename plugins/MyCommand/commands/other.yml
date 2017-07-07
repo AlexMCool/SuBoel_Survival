@@ -1,0 +1,19 @@
+cmd:
+  command: /cmd
+  type: RUN_AS_OPERATOR 
+  register: true
+  permission-node: false
+  runcmd:
+  - '/mycmd-reload all'
+nvon:
+  command: /nvon
+  type: RUN_COMMAND
+  register: true
+  runcmd:
+  - '/effect @p night_vision 999999 200 true'
+nvoff:
+  command: /nvoff
+  type: RUN_COMMAND
+  register: true
+  runcmd:
+  - '/effect @p night_vision 0 200 true'

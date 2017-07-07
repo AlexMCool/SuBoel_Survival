@@ -1,0 +1,12 @@
+##############################################################################
+#                             factory keepchunk                              #
+############################################################################## 
+factory_keepchunk:
+  command: /factory_keepchunk
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $PlayerData%$s.chunk.x% 
+  # arg2 = $PlayerData%$s.chunk.z% 
+  # arg3 = $world
+  - '/keepchunks:keepchunks keepchunk $arg1 $arg2 $arg3'

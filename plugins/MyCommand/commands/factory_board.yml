@@ -1,0 +1,1279 @@
+##############################################################################
+#                            factory board create                            #
+############################################################################## 
+factory_board_create:
+  command: /factory_board_create
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = east / north / south / west
+  # arg2 = big / small
+  
+  # initialize factory id
+  - '/mycommand:factory_board_id_init $arg1 $arg2 $s.factory.location.$locX,$locY,$locZ.id'
+  
+  
+  
+  
+  
+##############################################################################
+#                           factory board id init                            #
+############################################################################## 
+factory_board_id_init:
+  command: /factory_board_id_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = east / north / south / west
+  # arg2 = big / small
+  # arg3 = $s.factory.location.$locX,$locY,$locZ.id
+  - '/mycommand:factory_board_info_select $arg1 $arg2 $arg3'
+  
+  
+  
+  
+  
+##############################################################################
+#                         factory board info select                          #
+##############################################################################
+factory_board_info_select:
+  command: /factory_board_info_select
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:   
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = east
+  # arg2 = small / big
+  # arg3 = $s.factory.location.$locX,$locY,$locZ.id
+  #######################
+  #        small        #
+  #######################
+  - '$Script$%if%$arg1==east<and>$arg2==small'
+  
+  # tp to origin of board
+  - '/tp ~66 ~7 ~18'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-66 ~-7 ~-18'
+  
+  #######################
+  #         big         #
+  #######################
+  - '$Script$%if%$arg1==east<and>$arg2==big'
+  
+  # tp to origin of board
+  - '/tp ~52 ~19 ~33'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-52 ~-19 ~-33'
+  
+  #######################################
+  #                north                #
+  ####################################### 
+  # arg1 = north
+  # arg2 = small / big
+  # arg3 = $s.factory.location.$locX,$locY,$locZ.id
+  #######################
+  #        small        #
+  #######################
+  - '$Script$%if%$arg1==north<and>$arg2==small'
+  
+  # tp to origin of board
+  - '/tp ~18 ~7 ~-3'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-18 ~-7 ~3'
+  
+  #######################
+  #         big         #
+  #######################
+  - '$Script$%if%$arg1==north<and>$arg2==big'
+  
+  # tp to origin of board
+  - '/tp ~33 ~19 ~11'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-33 ~-19 ~-11'
+  
+  #######################################
+  #                south                #
+  ####################################### 
+  # arg1 = south
+  # arg2 = small / big
+  # arg3 = $s.factory.location.$locX,$locY,$locZ.id
+  #######################
+  #        small        #
+  #######################
+  - '$Script$%if%$arg1==south<and>$arg2==small'
+  
+  # tp to origin of board
+  - '/tp ~45 ~7 ~66'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-45 ~-7 ~-66'
+  
+  #######################
+  #         big         #
+  #######################
+  - '$Script$%if%$arg1==south<and>$arg2==big'
+  
+  # tp to origin of board
+  - '/tp ~30 ~19 ~52'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-30 ~-19 ~-52'
+  
+  #######################################
+  #                west                 #
+  ####################################### 
+  # arg1 = west
+  # arg2 = small / big
+  # arg3 = $s.factory.location.$locX,$locY,$locZ.id
+  #######################
+  #        small        #
+  #######################
+  - '$Script$%if%$arg1==west<and>$arg2==small'
+  
+  # tp to origin of board
+  - '/tp ~-3 ~7 ~45'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~3 ~-7 ~-45'
+  
+  #######################
+  #         big         #
+  #######################
+  - '$Script$%if%$arg1==west<and>$arg2==big'
+  
+  # tp to origin of board
+  - '/tp ~11 ~19 ~30'
+  
+  # print name and word
+  - '/mycommand:factory_board_print_init $arg1 $arg3'
+  
+  # tp back to factory origin
+  - '/tp ~-11 ~-19 ~-30'
+  
+  
+  
+  
+  
+##############################################################################
+#                          factory board print init                          #
+##############################################################################
+factory_board_print_init:
+  command: /factory_board_print_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = east / north / south / west
+  # arg2 = $s.factory.location.$locX,$locY,$locZ.id
+  
+  # print name
+  - '/mycommand:factory_board_name $arg1 $s.factory.id.$arg2.board.background $s.factory.id.$arg2.board.text'
+  
+  # print word ('NoReplace' because of variables)
+  - '$NoReplace/mycommand:factory_board_word $arg1 $s.factory.id.$arg2.board.background $s.factory.id.$arg2.board.text $s.factory.id.$arg2.board.word'
+  
+  
+ 
+ 
+ 
+##############################################################################
+#                             factory board word                             #
+############################################################################## 
+factory_board_word:
+  command: /factory_board_word
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = east
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  # arg4 = $s.factory.id.$arg2.board.word
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~2 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
+  # tp back to origin of board
+  - '/tp ~ ~-2 ~15'
+  
+  # 14
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>13'
+  - '/tp ~ ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
+  - '/tp ~ ~-2 ~14'
+  
+  # 13
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>12'
+  - '/tp ~ ~2 ~-1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
+  - '/tp ~ ~-2 ~14'
+  
+  # 12
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>11'
+  - '/tp ~ ~2 ~-1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
+  - '/tp ~ ~-2 ~13'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>10'
+  - '/tp ~ ~2 ~-2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
+  - '/tp ~ ~-2 ~13'
+  
+  # 10
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>9'
+  - '/tp ~ ~2 ~-2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
+  - '/tp ~ ~-2 ~12'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>8'
+  - '/tp ~ ~2 ~-3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
+  - '/tp ~ ~-2 ~12'
+  
+  # 8
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>7'
+  - '/tp ~ ~2 ~-3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
+  - '/tp ~ ~-2 ~11'
+  
+  # 7
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>6'
+  - '/tp ~ ~2 ~-4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
+  - '/tp ~ ~-2 ~11'
+  
+  # 6
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>5'
+  - '/tp ~ ~2 ~-4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
+  - '/tp ~ ~-2 ~10'
+  
+  # 5
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>4'
+  - '/tp ~ ~2 ~-5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
+  - '/tp ~ ~-2 ~10'
+  
+  # 4
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>3'
+  - '/tp ~ ~2 ~-5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~9'
+  
+  # 3
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>2'
+  - '/tp ~ ~2 ~-6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~9'
+  
+  # 2
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>1'
+  - '/tp ~ ~2 ~-6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~8'
+  
+  # 1
+  - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>0'
+  - '/tp ~ ~2 ~-7'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~8'
+  
+  #######################################
+  #                north                #
+  ####################################### 
+  # arg1 = north
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  # arg4 = $s.factory.id.$arg2.board.word
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~2 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
+  # tp back to origin of board
+  - '/tp ~15 ~-2 ~'
+  
+  # 14
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>13'
+  - '/tp ~ ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
+  - '/tp ~14 ~-2 ~'
+  
+  # 13
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>12'
+  - '/tp ~-1 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
+  - '/tp ~14 ~-2 ~'
+  
+  # 12
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>11'
+  - '/tp ~-1 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
+  - '/tp ~13 ~-2 ~'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>10'
+  - '/tp ~-2 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
+  - '/tp ~13 ~-2 ~'
+  
+  # 10
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>9'
+  - '/tp ~-2 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
+  - '/tp ~12 ~-2 ~'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>8'
+  - '/tp ~-3 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
+  - '/tp ~12 ~-2 ~'
+  
+  # 8
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>7'
+  - '/tp ~-3 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
+  - '/tp ~11 ~-2 ~'
+  
+  # 7
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>6'
+  - '/tp ~-4 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
+  - '/tp ~11 ~-2 ~'
+  
+  # 6
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>5'
+  - '/tp ~-4 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
+  - '/tp ~10 ~-2 ~'
+  
+  # 5
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>4'
+  - '/tp ~-5 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
+  - '/tp ~10 ~-2 ~'
+  
+  # 4
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>3'
+  - '/tp ~-5 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
+  - '/tp ~9 ~-2 ~'
+  
+  # 3
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>2'
+  - '/tp ~-6 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
+  - '/tp ~9 ~-2 ~'
+  
+  # 2
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>1'
+  - '/tp ~-6 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
+  - '/tp ~8 ~-2 ~'
+  
+  # 1
+  - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>0'
+  - '/tp ~-7 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
+  - '/tp ~8 ~-2 ~'
+  
+  #######################################
+  #                south                #
+  ####################################### 
+  # arg1 = south
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  # arg4 = $s.factory.id.$arg2.board.word
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~2 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
+  # tp back to origin of board
+  - '/tp ~-15 ~-2 ~'
+  
+  # 14
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>13'
+  - '/tp ~ ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
+  - '/tp ~-14 ~-2 ~'
+  
+  # 13
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>12'
+  - '/tp ~1 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
+  - '/tp ~-14 ~-2 ~'
+  
+  # 12
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>11'
+  - '/tp ~1 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
+  - '/tp ~-13 ~-2 ~'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>10'
+  - '/tp ~2 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
+  - '/tp ~-13 ~-2 ~'
+  
+  # 10
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>9'
+  - '/tp ~2 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
+  - '/tp ~-12 ~-2 ~'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>8'
+  - '/tp ~3 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
+  - '/tp ~-12 ~-2 ~'
+  
+  # 8
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>7'
+  - '/tp ~3 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
+  - '/tp ~-11 ~-2 ~'
+  
+  # 7
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>6'
+  - '/tp ~4 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
+  - '/tp ~-11 ~-2 ~'
+  
+  # 6
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>5'
+  - '/tp ~4 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
+  - '/tp ~-10 ~-2 ~'
+  
+  # 5
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>4'
+  - '/tp ~5 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
+  - '/tp ~-10 ~-2 ~'
+  
+  # 4
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>3'
+  - '/tp ~5 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
+  - '/tp ~-9 ~-2 ~'
+  
+  # 3
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>2'
+  - '/tp ~6 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
+  - '/tp ~-9 ~-2 ~'
+  
+  # 2
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>1'
+  - '/tp ~6 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
+  - '/tp ~-8 ~-2 ~'
+  
+  # 1
+  - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>0'
+  - '/tp ~7 ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
+  - '/tp ~-8 ~-2 ~'
+  
+  #######################################
+  #                west                 #
+  ####################################### 
+  # arg1 = west
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  # arg4 = $s.factory.id.$arg2.board.word
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~2 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
+  # tp back to origin of board
+  - '/tp ~ ~-2 ~-15'
+  
+  # 14
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>13'
+  - '/tp ~ ~2 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
+  - '/tp ~ ~-2 ~-14'
+  
+  # 13
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>12'
+  - '/tp ~ ~2 ~1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
+  - '/tp ~ ~-2 ~-14'
+  
+  # 12
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>11'
+  - '/tp ~ ~2 ~1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
+  - '/tp ~ ~-2 ~-13'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>10'
+  - '/tp ~ ~2 ~2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
+  - '/tp ~ ~-2 ~-13'
+  
+  # 10
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>9'
+  - '/tp ~ ~2 ~2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
+  - '/tp ~ ~-2 ~-12'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>8'
+  - '/tp ~ ~2 ~3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
+  - '/tp ~ ~-2 ~-12'
+  
+  # 8
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>7'
+  - '/tp ~ ~2 ~3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
+  - '/tp ~ ~-2 ~-11'
+  
+  # 7
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>6'
+  - '/tp ~ ~2 ~4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
+  - '/tp ~ ~-2 ~-11'
+  
+  # 6
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>5'
+  - '/tp ~ ~2 ~4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
+  - '/tp ~ ~-2 ~-10'
+  
+  # 5
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>4'
+  - '/tp ~ ~2 ~5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
+  - '/tp ~ ~-2 ~-10'
+  
+  # 4
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>3'
+  - '/tp ~ ~2 ~5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~-9'
+  
+  # 3
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>2'
+  - '/tp ~ ~2 ~6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~-9'
+  
+  # 2
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>1'
+  - '/tp ~ ~2 ~6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~-8'
+  
+  # 1
+  - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>0'
+  - '/tp ~ ~2 ~7'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
+  - '/tp ~ ~-2 ~-8'
+  
+  
+  
+  
+  
+##############################################################################
+#                             factory board name                             #
+##############################################################################
+factory_board_name:
+  command: /factory_board_name
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = east
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+    
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~4 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
+  # tp back to origin of board
+  - '/tp ~ ~-4 ~15'
+  
+  # 14
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>13'
+  - '/tp ~ ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
+  - '/tp ~ ~-4 ~14'
+  
+  # 13
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>12'
+  - '/tp ~ ~4 ~-1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
+  - '/tp ~ ~-4 ~14'
+  
+  # 12
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>11'
+  - '/tp ~ ~4 ~-1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
+  - '/tp ~ ~-4 ~13'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>10'
+  - '/tp ~ ~4 ~-2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
+  - '/tp ~ ~-4 ~13'
+  
+  # 10
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>9'
+  - '/tp ~ ~4 ~-2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
+  - '/tp ~ ~-4 ~12'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>8'
+  - '/tp ~ ~4 ~-3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
+  - '/tp ~ ~-4 ~12'
+  
+  # 8
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>7'
+  - '/tp ~ ~4 ~-3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
+  - '/tp ~ ~-4 ~11'
+  
+  # 7
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>6'
+  - '/tp ~ ~4 ~-4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
+  - '/tp ~ ~-4 ~11'
+  
+  # 6
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>5'
+  - '/tp ~ ~4 ~-4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
+  - '/tp ~ ~-4 ~10'
+  
+  # 5
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>4'
+  - '/tp ~ ~4 ~-5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
+  - '/tp ~ ~-4 ~10'
+  
+  # 4
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>3'
+  - '/tp ~ ~4 ~-5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~9'
+  
+  # 3
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>2'
+  - '/tp ~ ~4 ~-6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~9'
+  
+  # 2
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>1'
+  - '/tp ~ ~4 ~-6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~8'
+  
+  # 1
+  - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>0'
+  - '/tp ~ ~4 ~-7'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~8'
+  
+  #######################################
+  #                north                #
+  ####################################### 
+  # arg1 = north
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~4 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
+  # tp back to origin of board
+  - '/tp ~15 ~-4 ~'
+  
+  # 14
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>13'
+  - '/tp ~ ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
+  - '/tp ~14 ~-4 ~'
+  
+  # 13
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>12'
+  - '/tp ~-1 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
+  - '/tp ~14 ~-4 ~'
+  
+  # 12
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>11'
+  - '/tp ~-1 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
+  - '/tp ~13 ~-4 ~'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>10'
+  - '/tp ~-2 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
+  - '/tp ~13 ~-4 ~'
+  
+  # 10
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>9'
+  - '/tp ~-2 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
+  - '/tp ~12 ~-4 ~'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>8'
+  - '/tp ~-3 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
+  - '/tp ~12 ~-4 ~'
+  
+  # 8
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>7'
+  - '/tp ~-3 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
+  - '/tp ~11 ~-4 ~'
+  
+  # 7
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>6'
+  - '/tp ~-4 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
+  - '/tp ~11 ~-4 ~'
+  
+  # 6
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>5'
+  - '/tp ~-4 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
+  - '/tp ~10 ~-4 ~'
+  
+  # 5
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>4'
+  - '/tp ~-5 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
+  - '/tp ~10 ~-4 ~'
+  
+  # 4
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>3'
+  - '/tp ~-5 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
+  - '/tp ~9 ~-4 ~'
+  
+  # 3
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>2'
+  - '/tp ~-6 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
+  - '/tp ~9 ~-4 ~'
+  
+  # 2
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>1'
+  - '/tp ~-6 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
+  - '/tp ~8 ~-4 ~'
+  
+  # 1
+  - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>0'
+  - '/tp ~-7 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
+  - '/tp ~8 ~-4 ~'
+  
+  #######################################
+  #                south                #
+  ####################################### 
+  # arg1 = south
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~4 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
+  # tp back to origin of board
+  - '/tp ~-15 ~-4 ~'
+  
+  # 14
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>13'
+  - '/tp ~ ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
+  - '/tp ~-14 ~-4 ~'
+  
+  # 13
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>12'
+  - '/tp ~1 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
+  - '/tp ~-14 ~-4 ~'
+  
+  # 12
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>11'
+  - '/tp ~1 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
+  - '/tp ~-13 ~-4 ~'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>10'
+  - '/tp ~2 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
+  - '/tp ~-13 ~-4 ~'
+  
+  # 10
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>9'
+  - '/tp ~2 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
+  - '/tp ~-12 ~-4 ~'
+ 
+  # 9
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>8'
+  - '/tp ~3 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
+  - '/tp ~-12 ~-4 ~'
+  
+  # 8
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>7'
+  - '/tp ~3 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
+  - '/tp ~-11 ~-4 ~'
+  
+  # 7
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>6'
+  - '/tp ~4 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
+  - '/tp ~-11 ~-4 ~'
+  
+  # 6
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>5'
+  - '/tp ~4 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
+  - '/tp ~-10 ~-4 ~'
+  
+  # 5
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>4'
+  - '/tp ~5 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
+  - '/tp ~-10 ~-4 ~'
+  
+  # 4
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>3'
+  - '/tp ~5 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
+  - '/tp ~-9 ~-4 ~'
+  
+  # 3
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>2'
+  - '/tp ~6 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
+  - '/tp ~-9 ~-4 ~'
+  
+  # 2
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>1'
+  - '/tp ~6 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
+  - '/tp ~-8 ~-4 ~'
+  
+  # 1
+  - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>0'
+  - '/tp ~7 ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
+  - '/tp ~-8 ~-4 ~'
+  
+  #######################################
+  #                west                 #
+  ####################################### 
+  # arg1 = west
+  # arg2 = $s.factory.id.$arg2.board.background 
+  # arg3 = $s.factory.id.$arg2.board.text 
+  
+  # check length of word
+  # 15
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>14'
+  # tp to begin of text
+  - '/tp ~ ~4 ~'
+  # init text
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
+  # tp back to origin of board
+  - '/tp ~ ~-4 ~-15'
+  
+  # 14
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>13'
+  - '/tp ~ ~4 ~'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
+  - '/tp ~ ~-4 ~-14'
+  
+  # 13
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>12'
+  - '/tp ~ ~4 ~1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
+  - '/tp ~ ~-4 ~-14'
+  
+  # 12
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>11'
+  - '/tp ~ ~4 ~1'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
+  - '/tp ~ ~-4 ~-13'
+  
+  # 11 
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>10'
+  - '/tp ~ ~4 ~2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
+  - '/tp ~ ~-4 ~-13'
+  
+  # 10
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>9'
+  - '/tp ~ ~4 ~2'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
+  - '/tp ~ ~-4 ~-12'
+  
+  # 9
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>8'
+  - '/tp ~ ~4 ~3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
+  - '/tp ~ ~-4 ~-12'
+  
+  # 8
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>7'
+  - '/tp ~ ~4 ~3'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
+  - '/tp ~ ~-4 ~-11'
+  
+  # 7
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>6'
+  - '/tp ~ ~4 ~4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
+  - '/tp ~ ~-4 ~-11'
+  
+  # 6
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>5'
+  - '/tp ~ ~4 ~4'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
+  - '/tp ~ ~-4 ~-10'
+  
+  # 5
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>4'
+  - '/tp ~ ~4 ~5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
+  - '/tp ~ ~-4 ~-10'
+  
+  # 4
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>3'
+  - '/tp ~ ~4 ~5'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~-9'
+  
+  # 3
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>2'
+  - '/tp ~ ~4 ~6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~-9'
+  
+  # 2
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>1'
+  - '/tp ~ ~4 ~6'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~-8'
+  
+  # 1
+  - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>0'
+  - '/tp ~ ~4 ~7'
+  - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
+  - '/tp ~ ~-4 ~-8'
+  
+  
+  
+  
+  
+##############################################################################
+#                          factory board text init                           #
+##############################################################################
+factory_board_text_init:
+  command: /factory_board_text_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = east / north / south / west
+  # arg2 = 0 / 1 / 2 / ... / 13 / 14 / 15
+  # arg3 = 0 / 1 / 2 / ... / 13 / 14 / 15
+  # arg4 = a / b / c / ... / x / y / z
+  # arg5 = a / b / c / ... / x / y / z / none
+  # arg6 = a / b / c / ... / x / y / z / none
+  # arg7 = a / b / c / ... / x / y / z / none
+  # arg8 = a / b / c / ... / x / y / z / none
+  # arg9 = a / b / c / ... / x / y / z / none
+  # arg10 = a / b / c / ... / x / y / z / none
+  # arg11 = a / b / c / ... / x / y / z / none
+  # arg12 = a / b / c / ... / x / y / z / none
+  # arg13 = a / b / c / ... / x / y / z / none
+  # arg14 = a / b / c / ... / x / y / z / none
+  # arg15 = a / b / c / ... / x / y / z / none
+  # arg16 = a / b / c / ... / x / y / z / none
+  # arg17 = a / b / c / ... / x / y / z / none
+  # arg18 = a / b / c / ... / x / y / z / none
+  
+  # print letter
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg4'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg5'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg6'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg7'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg8'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg9'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg10'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg11'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg12'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg13'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg14'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg15'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg16'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg17'
+  - '/mycommand:factory_board_letter_print $arg1 $arg2 $arg3 $arg18'
+
+  
+  
+  
+  
+##############################################################################
+#                         factory board letter print                         #
+##############################################################################
+factory_board_letter_print:
+  command: /factory_board_letter_print
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #             directions              #
+  ####################################### 
+  # arg1 = east / north / south / west
+  # arg2 = $s.factory.id.$arg2.board.background
+  # arg3 = $s.factory.id.$arg2.board.text
+  # arg4 = a / b / c / ... / x / y / z / _ / . / 0 / 1 / 2 / ... / 7 / 8 / 9
+  
+  # east
+  - '$Script$%if%$arg1==east<and>$arg4!=none'
+  - '/minecraft:tp ~ ~ ~-1'
+  
+  # north
+  - '$Script$%if%$arg1==north<and>$arg4!=none'
+  - '/minecraft:tp ~-1 ~ ~'
+  
+  # south
+  - '$Script$%if%$arg1==south<and>$arg4!=none'
+  - '/minecraft:tp ~1 ~ ~'
+  
+  # west
+  - '$Script$%if%$arg1==west<and>$arg4!=none'
+  - '/minecraft:tp ~ ~ ~1'
+  
+  #######################################
+  #             print thing             #
+  #######################################  
+  # arg1 = east / north / south / west
+  # arg2 = $s.factory.id.$arg2.board.background
+  # arg3 = $s.factory.id.$arg2.board.text
+  # arg4 = a / b / c / ... / x / y / z / _ / . / 0 / 1 / 2 / ... / 7 / 8 / 9
+  
+  # a
+  - '$Script$%if%$arg4==a'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"hh",Color:$arg2},{Pattern:"bs",Color:$arg2},{Pattern:"rs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # b
+  - '$Script$%if%$arg4==b'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"cs",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"ms",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # c
+  - '$Script$%if%$arg4==c'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # d
+  - '$Script$%if%$arg4==d'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"rud",Color:$arg2},{Pattern:"drs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # e
+  - '$Script$%if%$arg4==e'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ms",Color:$arg3},{Pattern:"rs",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # f
+  - '$Script$%if%$arg4==f'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ms",Color:$arg3},{Pattern:"rs",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # g
+  - '$Script$%if%$arg4==g'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"rs",Color:$arg3},{Pattern:"hh",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # h
+  - '$Script$%if%$arg4==h'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ms",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # i
+  - '$Script$%if%$arg4==i'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"cs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # j
+  - '$Script$%if%$arg4==j'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"hh",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # k
+  - '$Script$%if%$arg4==k'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"ms",Color:$arg3},{Pattern:"vhr",Color:$arg2},{Pattern:"cr",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # l
+  - '$Script$%if%$arg4==l'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # m
+  - '$Script$%if%$arg4==m'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"tt",Color:$arg3},{Pattern:"tts",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # n
+  - '$Script$%if%$arg4==n'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"rud",Color:$arg2},{Pattern:"drs",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # o
+  - '$Script$%if%$arg4==o'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # p
+  - '$Script$%if%$arg4==p'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"hh",Color:$arg2},{Pattern:"rs",Color:$arg3},{Pattern:"bs",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # q
+  - '$Script$%if%$arg4==q'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2},{Pattern:"br",Color:$arg3}],Base:$arg2}'
+  
+  # r
+  - '$Script$%if%$arg4==r'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"cr",Color:$arg3},{Pattern:"vh",Color:$arg2},{Pattern:"hh",Color:$arg3},{Pattern:"ms",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # s
+  - '$Script$%if%$arg4==s'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"bs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"drs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # t
+  - '$Script$%if%$arg4==t'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"cs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # u
+  - '$Script$%if%$arg4==u'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # v
+  - '$Script$%if%$arg4==v'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ls",Color:$arg3},{Pattern:"bt",Color:$arg2},{Pattern:"dls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # w
+  - '$Script$%if%$arg4==w'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"bt",Color:$arg3},{Pattern:"bts",Color:$arg2},{Pattern:"rs",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # x
+  - '$Script$%if%$arg4==x'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"cs",Color:$arg2},{Pattern:"cr",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # y
+  - '$Script$%if%$arg4==y'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"cr",Color:$arg3},{Pattern:"vhr",Color:$arg2},{Pattern:"dls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # z
+  - '$Script$%if%$arg4==z'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"dls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # _
+  - '$Script$%if%$arg4==_'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # &
+  - '$Script$%if%$arg4==&'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"bs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"mr",Color:$arg2},{Pattern:"cr",Color:$arg3},{Pattern:"cbo",Color:$arg2},{Pattern:"br",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 0
+  - '$Script$%if%$arg4==0'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"dls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 1
+  - '$Script$%if%$arg4==1'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"tl",Color:$arg3},{Pattern:"cs",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 2
+  - '$Script$%if%$arg4==2'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"mr",Color:$arg2},{Pattern:"dls",Color:$arg3},{Pattern:"bs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 3
+  - '$Script$%if%$arg4==3'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ms",Color:$arg3},{Pattern:"ls",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 4
+  - '$Script$%if%$arg4==4'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"hh",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"bs",Color:$arg2},{Pattern:"rs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # 5
+  - '$Script$%if%$arg4==5'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"bs",Color:$arg3},{Pattern:"drs",Color:$arg3},{Pattern:"cbo",Color:$arg2},{Pattern:"bl",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 6
+  - '$Script$%if%$arg4==6'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"hhb",Color:$arg2},{Pattern:"rs",Color:$arg3},{Pattern:"ts",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"ls",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # 7
+  - '$Script$%if%$arg4==7'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"ts",Color:$arg3},{Pattern:"rd",Color:$arg2},{Pattern:"dls",Color:$arg3},{Pattern:"bl",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'
+  
+  # 8
+  - '$Script$%if%$arg4==8'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"cs",Color:$arg2},{Pattern:"bs",Color:$arg3},{Pattern:"ts",Color:$arg3},{Pattern:"ms",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg3}'
+  
+  # 9
+  - '$Script$%if%$arg4==9'
+  - '/minecraft:setblock ~ ~ ~ minecraft:wall_banner facing=$arg1 replace {Patterns:[{Pattern:"hh",Color:$arg2},{Pattern:"ls",Color:$arg3},{Pattern:"bs",Color:$arg2},{Pattern:"ts",Color:$arg3},{Pattern:"rs",Color:$arg3},{Pattern:"bo",Color:$arg2}],Base:$arg2}'

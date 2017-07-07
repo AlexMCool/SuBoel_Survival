@@ -1,0 +1,1806 @@
+variables:
+  $s:
+    intersection:
+      calculation: 15
+      option: 15
+      type: east_north_west
+      id:
+        now: 24
+        '1':
+          x: 4096
+          y: 64
+          z: 4096
+          type: east_north_west
+          direction: west
+        '2':
+          x: 4176
+          y: 64
+          z: 4096
+          direction: north
+          type: east_north_west
+        '3':
+          x: 4096
+          y: 64
+          z: 4016
+          direction: west
+          type: north_south_west
+        '4':
+          x: 4016
+          y: 64
+          z: 4096
+          direction: west
+          type: east_west
+        '5':
+          x: 4256
+          y: 64
+          z: 4096
+          direction: south
+          type: east_south_west
+        '6':
+          x: 4176
+          y: 64
+          z: 4016
+          direction: north
+          type: north_south
+        '7':
+          x: 4096
+          y: 64
+          z: 3936
+          direction: west
+          type: south_west
+        '8':
+          x: 4016
+          y: 64
+          z: 4016
+          direction: west
+          type: east_west
+        '9':
+          x: 3936
+          y: 64
+          z: 4096
+          direction: south
+          type: east_south_west
+        '10':
+          x: 4336
+          y: 64
+          z: 4096
+          direction: west
+          type: east_west
+        '11':
+          x: 4256
+          y: 64
+          z: 4176
+          direction: north
+          type: east_north_west
+        '12':
+          x: 4176
+          y: 64
+          z: 3936
+          direction: south
+          type: east_south
+        '13':
+          x: 4016
+          y: 64
+          z: 3936
+          direction: east
+          type: east_west
+        '14':
+          x: 3936
+          y: 64
+          z: 4016
+          direction: east
+          type: east_west
+        '15':
+          x: 3936
+          y: 64
+          z: 4176
+          direction: north
+          type: east_north_west
+        '16':
+          x: 3856
+          y: 64
+          z: 4096
+          direction: east
+        '17':
+          x: 4416
+          y: 64
+          z: 4096
+          direction: west
+        '18':
+          x: 4336
+          y: 64
+          z: 4176
+          direction: west
+        '19':
+          x: 4176
+          y: 64
+          z: 4176
+          direction: east
+        '20':
+          x: 4256
+          y: 64
+          z: 3936
+          direction: west
+        '21':
+          x: 3936
+          y: 64
+          z: 3936
+          direction: east
+        '22':
+          x: 3856
+          y: 64
+          z: 4016
+          direction: east
+        '23':
+          x: 4016
+          y: 64
+          z: 4176
+          direction: west
+        '24':
+          x: 3856
+          y: 64
+          z: 4176
+          direction: east
+      location:
+        4096,64,4096:
+          id: 1
+        4176,64,4096:
+          id: 2
+        4096,64,4016:
+          id: 3
+        4016,64,4096:
+          id: 4
+        4256,64,4096:
+          id: 5
+        4176,64,4016:
+          id: 6
+        4096,64,3936:
+          id: 7
+        4016,64,4016:
+          id: 8
+        3936,64,4096:
+          id: 9
+        4336,64,4096:
+          id: 10
+        4256,64,4176:
+          id: 11
+        4176,64,3936:
+          id: 12
+        4016,64,3936:
+          id: 13
+        3936,64,4016:
+          id: 14
+        3936,64,4176:
+          id: 15
+        3856,64,4096:
+          id: 16
+        4416,64,4096:
+          id: 17
+        4336,64,4176:
+          id: 18
+        4176,64,4176:
+          id: 19
+        4256,64,3936:
+          id: 20
+        3936,64,3936:
+          id: 21
+        3856,64,4016:
+          id: 22
+        4016,64,4176:
+          id: 23
+        3856,64,4176:
+          id: 24
+    factory:
+      init:
+        player_factory_id: 18
+        list: 19
+      calculation: 25
+      id:
+        now: 26
+        '1':
+          status: north
+          board:
+            background: 0
+            text: 7
+            word: d e s i g n s
+          x: 4112
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '2':
+          status: north
+          board:
+            background: 8
+            text: 7
+            word: c o m p a n i e s
+          x: 4112
+          y: 64
+          z: 4032
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '3':
+          status: south
+          board:
+            background: 15
+            text: 7
+            word: p r o p e r t i e s
+          x: 4032
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '4':
+          status: north
+          board:
+            background: 0
+            text: 7
+            word: e n t e r p r i s e
+          x: 4032
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '5':
+          status: north
+          board:
+            background: 0
+            text: 15
+            word: e n t e r p r i s e
+          x: 4192
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '6':
+          status: north
+          board:
+            background: 15
+            text: 8
+            word: p r o p e r t i e s
+          x: 4192
+          y: 64
+          z: 4032
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '7':
+          status: east
+          board:
+            background: 0
+            text: 15
+            word: e n t e r p r i s e
+          x: 4032
+          y: 64
+          z: 3952
+          east: used
+          north: -1
+          south: -1
+          west: -1
+        '8':
+          status: west
+          board:
+            background: 0
+            text: 7
+            word: c o m p a n i e s
+          x: 4112
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: -1
+          west: used
+        '9':
+          status: south
+          board:
+            background: 8
+            text: 7
+            word: s e r v i c e s
+          x: 3952
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '10':
+          status: north
+          board:
+            background: 8
+            text: 7
+            word: s c i e n t i f i c
+          x: 3952
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '11':
+          status: west
+          board:
+            background: 8
+            text: 7
+            word: b u s i n e s s
+          x: 4272
+          y: 64
+          z: 4112
+          east: -1
+          north: -1
+          south: -1
+          west: used
+        '12':
+          status: south
+          board:
+            background: 15
+            text: 8
+            word: u n l i m i t e d
+          x: 4272
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '13':
+          status: west
+          board:
+            background: 0
+            text: 7
+            word: c o m p a n i e s
+          x: 4192
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: -1
+          west: used
+        '14':
+          status: south
+          board:
+            background: 15
+            text: 8
+            word: c o m p a n i e s
+          x: 4032
+          y: 64
+          z: 3872
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '15':
+          status: south
+          board:
+            background: 7
+            text: 15
+            word: s y s t e m s
+          x: 3952
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '16':
+          status: east
+          board:
+            background: 15
+            text: 8
+            word: u n l i m i t e d
+          x: 3872
+          y: 64
+          z: 4112
+          east: used
+          north: -1
+          south: -1
+          west: -1
+        '17':
+          status: south
+          board:
+            background: 7
+            text: 0
+            word: u n l i m i t e d
+          x: 3872
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '18':
+          status: north
+          board:
+            background: 7
+            text: 15
+            word: p r o d u c t i o n s
+          x: 4352
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '19':
+          status: south
+          board:
+            background: 0
+            text: 7
+            word: l a b s
+          x: 4352
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '20':
+          status: north
+          board:
+            background: 7
+            text: 15
+            word: c o m p a n i e s
+          x: 4272
+          y: 64
+          z: 4192
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '21':
+          status: north
+          board:
+            background: 0
+            text: 7
+            word: d e s i g n s
+          x: 4192
+          y: 64
+          z: 4192
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '22':
+          status: south
+          board:
+            background: 15
+            text: 0
+            word: w o r l d w i d e
+          x: 4192
+          y: 64
+          z: 3872
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '23':
+          status: south
+          board:
+            background: 0
+            text: 7
+            word: b u s i n e s s
+          x: 3952
+          y: 64
+          z: 3872
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '24':
+          status: south
+          board:
+            background: 8
+            text: 15
+            word: d e v e l o p m e n t
+          x: 3872
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: used
+          west: -1
+        '25':
+          status: north
+          board:
+            background: 7
+            text: 15
+            word: u n l i m i t e d
+          x: 3952
+          y: 64
+          z: 4192
+          east: -1
+          north: used
+          south: -1
+          west: -1
+        '26':
+          status: 0
+          board:
+            background: 7
+            text: 0
+            word: d e v e l o p m e n t
+          x: 3872
+          y: 64
+          z: 4192
+          east: unavailable
+          north: unused
+          south: unavailable
+          west: unavailable
+      location:
+        4112,64,4112:
+          id: 1
+        4112,64,4032:
+          id: 2
+        4032,64,4032:
+          id: 3
+        4032,64,4112:
+          id: 4
+        4192,64,4112:
+          id: 5
+        4192,64,4032:
+          id: 6
+        4032,64,3952:
+          id: 7
+        4112,64,3952:
+          id: 8
+        3952,64,4032:
+          id: 9
+        3952,64,4112:
+          id: 10
+        4272,64,4112:
+          id: 11
+        4272,64,4032:
+          id: 12
+        4192,64,3952:
+          id: 13
+        4032,64,3872:
+          id: 14
+        3952,64,3952:
+          id: 15
+        3872,64,4112:
+          id: 16
+        3872,64,4032:
+          id: 17
+        4352,64,4112:
+          id: 18
+        4352,64,4032:
+          id: 19
+        4272,64,4192:
+          id: 20
+        4192,64,4192:
+          id: 21
+        4192,64,3872:
+          id: 22
+        3952,64,3872:
+          id: 23
+        3872,64,3952:
+          id: 24
+        3952,64,4192:
+          id: 25
+        3872,64,4192:
+          id: 26
+      level:
+        '1':
+          upgrade:
+            requirement:
+              brick_block:0: 122
+              chest:0: 16
+              cobblestone:0: 2
+              cobblestone_wall:0: 3
+              concrete:7: 85
+              detector_rail:0: 1
+              golden_rail:0: 5
+              hopper:0: 21
+              iron_bars:0: 1
+              iron_door:0: 1
+              rail:0: 18
+              redstone_torch:0: 2
+              stained_glass:8: 8
+              stone:6: 108
+              stone_brick_stairs:0: 215
+              stone_slab:0: 66
+              stone_slab:5: 73
+              stone_stairs:0: 2
+              stonebrick:0: 114
+              trapped_chest:0: 12
+              wooden_button:0: 4
+        '2':
+          upgrade:
+            requirement:
+              lever:0: 1
+              redstone:0: 23
+              redstone_lamp:0: 21
+              repeater:0: 10
+              stonebrick:0: 6
+        '3':
+          upgrade:
+            requirement:
+              brick_block:0: 88
+              cobblestone_wall:0: 19
+              iron_bars:0: 58
+              stone_brick_stairs:0: 38
+              stone_slab:5: 15
+              stonebrick:0: 73
+        '4':
+          upgrade:
+            requirement:
+              daylight_detector:0: 5
+              quartz_block:1: 60
+              redstone_lamp:0: 5
+              stone:6: 50
+              stone_slab:3: 10
+              stone_stairs:0: 5
+        '5':
+          upgrade:
+            requirement:
+              brick_block:0: 75
+              cobblestone_wall:0: 12
+              iron_bars:0: 51
+              stone_brick_stairs:0: 104
+              stone_slab:0: 33
+              stone_slab:3: 75
+              stone_slab:4: 67
+              stonebrick:0: 63
+        '6':
+          upgrade:
+            requirement:
+              brick_block:0: 371
+              stained_glass:8: 10
+              stone_brick_stairs:0: 10
+              stone_slab:5: 259
+              stone_slab:0: 362
+              stonebrick:0: 340
+        '7':
+          upgrade:
+            requirement:
+              redstone:0: 28
+              redstone_block:0: 1
+              redstone_lamp:0: 14
+              redstone_torch:0: 2
+              repeater:0: 6
+              sticky_piston:0: 2
+              stonebrick:0: 7
+              wooden_button:0: 1
+        '8':
+          upgrade:
+            requirement:
+              comparator:0: 6
+              dropper:0: 2
+              gravel:0: 90
+              hopper:0: 2
+              piston:0: 10
+              redstone:0: 126
+              redstone_block:0: 4
+              redstone_torch:0: 4
+              repeater:0: 30
+              sticky_piston:0: 40
+              stone_slab:5: 8
+              stonebrick:0: 170
+              wooden_button:0: 4
+        '9':
+          upgrade:
+            requirement:
+              brick_block:0: 594
+              brick_stairs:0: 2
+              cobblestone_wall:0: 71
+              quartz_block:2: 140
+              stained_glass_pane:8: 78
+              stone:6: 761
+              stone_brick_stairs:0: 184
+              stone_slab:0: 1268
+              stone_slab:5: 131
+              stonebrick:0: 283
+        '10':
+          upgrade:
+            requirement:
+              brick_block:0: 576
+              coal_block:0: 6
+              cobblestone_wall:0: 10
+              glowstone:0: 1
+              iron_block:0: 178
+              quartz_block:2: 112
+              stained_glass_pane:8: 264
+              stone_brick_stairs:0: 250
+              stone_slab:0: 2006
+              stone_slab:5: 164
+              stonebrick:0: 48
+        '11':
+          upgrade:
+            requirement:
+              iron_bars:0: 72
+              redstone_lamp:0: 24
+              stone:6: 16
+              wooden_button:0: 25
+        '12':
+          upgrade:
+            requirement:
+              cobblestone:0: 7
+              cobblestone_wall:0: 12
+              detector_rail:0: 1
+              golden_rail:0: 9
+              iron_bars:0: 14
+              rail:0: 27
+              redstone_torch:0: 2
+              stone:6: 5
+              stone_brick_stairs:0: 8
+              stone_slab:0: 244
+              stone_stairs:0: 24
+        '13':
+          upgrade:
+            requirement:
+              cobblestone:0: 4
+              cobblestone_wall:0: 4
+              detector_rail:0: 1
+              golden_rail:0: 5
+              iron_bars:0: 4
+              rail:0: 25
+              redstone_block:0: 15
+              redstone_ore:0: 4
+              redstone_torch:0: 2
+              stone:6: 1
+              stone_brick_stairs:0: 8
+              stone_slab:0: 74
+              stone_stairs:0: 6
+        '14':
+          upgrade:
+            requirement:
+              cobblestone:0: 4
+              cobblestone_wall:0: 8
+              detector_rail:0: 1
+              diamond_block:0: 7
+              diamond_ore:0: 3
+              golden_rail:0: 5
+              iron_bars:0: 18
+              rail:0: 17
+              redstone_block:0: 18
+              redstone_ore:0: 5
+              redstone_torch:0: 2
+              stone:6: 5
+              stone_brick_stairs:0: 8
+              stone_slab:0: 278
+              stone_stairs:0: 23
+        '15':
+          upgrade:
+            requirement:
+              brick_block:0: 161
+              cobblestone_wall:0: 121
+              diamond_block:0: 5
+              diamond_ore:0: 9
+              emerald_block:0: 7
+              emerald_ore:0: 10
+              iron_bars:0: 243
+              iron_trapdoor:0: 81
+              quartz_stairs:0: 42
+              redstone_block:0: 9
+              redstone_ore:0: 4
+              stone:6: 27
+              stone_brick_stairs:0: 46
+              stone_slab:5: 23
+              stone_slab:0: 2
+              stonebrick:0: 138
+        '16':
+          upgrade:
+            requirement:
+              brick_block:0: 144
+              brick_stairs:0: 8
+              coal_block:0: 26
+              cobblestone_wall:0: 60
+              diamond_block:0: 7
+              diamond_ore:0: 5
+              emerald_block:0: 12
+              emerald_ore:0: 12
+              iron_block:0: 7
+              iron_trapdoor:0: 9
+              redstone_block:0: 9
+              redstone_ore:0: 4
+              stone_slab:4: 8
+              web:0: 31
+        '17':
+          upgrade:
+            requirement:
+              brick_block:0: 288
+              coal_block:0: 83
+              coal_ore:0: 9
+              cobblestone:0: 51
+              cobblestone_wall:0: 120
+              diamond_block:0: 2
+              emerald_block:0: 2
+              ender_chest:0: 3
+              iron_block:0: 14
+              iron_trapdoor:0: 18
+              redstone_block:0: 4
+              stone_slab:4: 16
+              web:0: 58
+        '18':
+          upgrade:
+            requirement:
+              brick_block:0: 461
+              coal_block:0: 102
+              coal_ore:0: 42
+              cobblestone:0: 133
+              cobblestone_wall:0: 55
+              end_stone:0: 8
+              iron_bars:0: 62
+              iron_trapdoor:0: 10
+              quartz_block:2: 100
+              quartz_stairs:0: 23
+              stained_glass:8: 96
+              stone:6: 8
+              stone_brick_stairs:0: 182
+              stone_slab:0: 1175
+              stone_slab:5: 132
+              stonebrick:0: 46
+        '19':
+          upgrade:
+            requirement:
+              brick_block:0: 432
+              coal_block:0: 41
+              coal_ore:0: 22
+              cobblestone:0: 27
+              purpur_block:0: 9
+              quartz_block:2: 100
+              stained_glass:8: 96
+              stone_brick_stairs:0: 204
+              stone_slab:5: 132
+              stone_slab:0: 1178
+              stonebrick:0: 40
+        '20':
+          upgrade:
+            requirement:
+              chest:0: 9
+              detector_rail:0: 5
+              golden_rail:0: 10
+              hopper:0: 25
+              rail:0: 36
+              redstone_torch:0: 2
+              slime:0: 8
+              stone:6: 27
+              stone_brick_stairs:0: 38
+              stone_slab:0: 29
+              trapped_chest:0: 6
+        '21':
+          upgrade:
+            requirement:
+              brick_block:0: 167
+              coal_block:0: 17
+              coal_ore:0: 9
+              cobblestone_wall:0: 33
+              concrete:0: 176
+              concrete:7: 784
+              iron_bars:0: 120
+              stone_brick_stairs:0: 96
+              stone_slab:5: 62
+              stone_slab:3: 45
+              stonebrick:0: 143
+        '22':
+          upgrade:
+            requirement:
+              chest:0: 9
+              hopper:0: 30
+              prismarine:0: 6
+              rail:0: 6
+              slime:0: 4
+              stone:6: 17
+              stone_brick_stairs:0: 40
+              trapped_chest:0: 9
+        '23':
+          upgrade:
+            requirement:
+              cobblestone_wall:0: 92
+              iron_bars:0: 48
+              iron_trapdoor:0: 12
+              packed_ice:0: 10
+              prismarine:0: 7
+              redstone_lamp:0: 30
+              stone:0: 121
+              stone:6: 62
+              stone_slab:0: 3
+              wooden_button:0: 31
+        '24':
+          upgrade:
+            requirement:
+              chest:0: 9
+              hopper:0: 25
+              rail:0: 6
+              slime:0: 6
+              sponge:0: 6
+              stone:6: 43
+              stone_brick_stairs:0: 22
+              trapped_chest:0: 6
+        '25':
+          upgrade:
+            requirement:
+              chest:0: 9
+              heavy_weighted_pressure_plate:0: 2
+              hopper:0: 30
+              iron_door:0: 1
+              iron_trapdoor:0: 115
+              prismarine:0: 9
+              quartz_block:2: 24
+              quartz_stairs:0: 14
+              rail:0: 6
+              sponge:0: 7
+              stone:6: 41
+              stone_brick_stairs:0: 34
+              stone_slab:0: 18
+              stonebrick:0: 7
+              trapped_chest:0: 9
+        '26':
+          upgrade:
+            requirement:
+              activator_rail:0: 1
+              brick_block:0: 874
+              cake:0: 2
+              cauldron:0: 2
+              cobblestone_wall:0: 1
+              comparator:0: 6
+              concrete:8: 4
+              dropper:0: 4
+              golden_rail:0: 5
+              gray_glazed_terracotta:0: 208
+              iron_door:0: 14
+              iron_trapdoor:0: 7
+              magenta_glazed_terracotta:0: 4
+              observer:0: 81
+              obsidian:0: 2
+              packed_ice:0: 4
+              piston:0: 6
+              prismarine:0: 5
+              redstone:0: 74
+              redstone_block:0: 6
+              redstone_lamp:0: 6
+              redstone_torch:0: 2
+              repeater:0: 31
+              slime:0: 2
+              sticky_piston:0: 22
+              stone:6: 211
+              stone_brick_stairs:0: 46
+              stone_button:0: 7
+              stone_slab:0: 72
+              stone_slab:5: 13
+              stonebrick:0: 118
+        '27':
+          upgrade:
+            requirement:
+              chest:0: 9
+              hopper:0: 25
+              packed_ice:0: 5
+              rail:0: 15
+              sponge:1: 5
+              stone:6: 27
+              stone_brick_stairs:0: 38
+              trapped_chest:0: 6
+        '28':
+          upgrade:
+            requirement:
+              brick_block:0: 104
+              chest:0: 9
+              cobblestone_wall:0: 105
+              hopper:0: 30
+              iron_bars:0: 420
+              packed_ice:0: 7
+              rail:0: 6
+              red_shulker_box:0: 7
+              stone:6: 17
+              stone_brick_stairs:0: 95
+              stone_button:0: 190
+              stone_slab:5: 49
+              stonebrick:0: 4
+              trapped_chest:0: 9
+        '29':
+          upgrade:
+            requirement:
+              beacon:0: 4
+              iron_trapdoor:0: 73
+              purpur_block:0: 6
+              quartz_stairs:0: 12
+              stone:6: 4
+              stone_brick_stairs:0: 3
+              stonebrick:0: 1
+        '30':
+          upgrade:
+            requirement:
+              beacon:0: 3
+              chest:0: 9
+              hopper:0: 25
+              packed_ice:0: 3
+              prismarine:0: 7
+              rail:0: 7
+              stone:6: 43
+              stone_brick_stairs:0: 22
+              trapped_chest:0: 6
+        '31':
+          upgrade:
+            requirement:
+              beacon:0: 2
+              chest:0: 9
+              cobblestone_wall:0: 180
+              hopper:0: 30
+              iron_trapdoor:0: 16
+              rail:0: 6
+              slime:0: 5
+              sponge:0: 4
+              sponge:1: 4
+              stone:0: 258
+              stone:6: 123
+              stone_brick_stairs:0: 20
+              stone_slab:0: 4
+              trapped_chest:0: 9
+        '32':
+          upgrade:
+            requirement:
+              beacon:0: 5
+              black_shulker_box:0: 1
+              blue_shulker_box:0: 1
+              brick_block:0: 36
+              brown_shulker_box:0: 1
+              cyan_shulker_box:0: 1
+              daylight_detector:0: 5
+              gray_shulker_box:0: 1
+              green_shulker_box:0: 1
+              light_blue_shulker_box:0: 1
+              lime_shulker_box:0: 1
+              magenta_shulker_box:0: 1
+              orange_shulker_box:0: 1
+              pink_shulker_box:0: 1
+              purple_shulker_box:0: 1
+              quartz_block:1: 60
+              red_shulker_box:0: 1
+              silver_shulker_box:0: 1
+              stone:6: 42
+              stone_slab:3: 10
+              white_shulker_box:0: 1
+              yellow_shulker_box:0: 1
+    shop:
+      init:
+        damage: 0
+        item: sign
+        stock: 0
+    paypal:
+      AlexMCool:
+        tan: 144114
+        receiver: D33tj3
+        amount: 10
+    message:
+      AlexMCool: AlexMCool test \n hi
+    translation:
+      acacia_boat:0: Acacia Boat
+      acacia_door:0: Acacia Door
+      acacia_fence:0: Acacia Fence
+      acacia_fence_gate:0: Acacia Gate
+      acacia_stairs:0: Acacia Stairs
+      activator_rail:0: Activator Rail
+      air:0: Air
+      anvil:0: Anvil
+      apple:0: Apple
+      armor_stand:0: Armor Stand
+      arrow:0: Arrow
+      baked_potato:0: Baked Potato
+      banner:15: White Banner
+      banner:14: Orange Banner
+      banner:13: Magenta Banner
+      banner:12: Light Blue Banner
+      banner:11: Yellow Banner
+      banner:10: Lime Banner
+      banner:9: Pink Banner
+      banner:8: Gray Banner
+      banner:7: Silver Banner
+      banner:6: Cyan Banner
+      banner:5: Purple Banner
+      banner:4: Blue Banner
+      banner:3: Brown Banner
+      banner:2: Green Banner
+      banner:1: Red Banner
+      banner:0: Black Banner
+      barrier:0: Barrier
+      beacon:0: Beacon
+      bed:15: Black Bed
+      bed:14: Red Bed
+      bed:13: Green Bed
+      bed:12: Brown Bed
+      bed:11: Blue Bed
+      bed:10: Purple Bed
+      bed:9: Cyan Bed
+      bed:8: Light Gray Bed
+      bed:7: Gray Bed
+      bed:6: Pink Bed
+      bed:5: Lime Bed
+      bed:4: Yellow Bed
+      bed:3: Light Blue Bed
+      bed:2: Magenta Bed
+      bed:1: Orange Bed
+      bed:0: White Bed
+      bedrock:0: Bedrock
+      beef:0: Raw Beef
+      beetroot:0: Beetroot
+      beetroot_seeds:0: Beetroot Seeds
+      beetroot_soup:0: Beetroot Soup
+      beetroots:0: Beetroot Block
+      birch_boat:0: Birch Boat
+      birch_door:0: Birch Door
+      birch_fence:0: Birch Fence
+      birch_fence_gate:0: Bricht Gate
+      birch_stairs:0: Brich Stairs
+      black_glazed_terracotta:0: Black TCotta
+      black_shulker_box:0: Black Box
+      blaze_powder:0: Blaze Powder
+      blaze_rod:0: Blaze Rod
+      blue_glazed_terracotta:0: Blue TCotta
+      blue_shulker_box:0: Blue Box
+      boat:0: Oak Boat
+      bone:0: Bone
+      bone_block:0: Bone Block
+      book:0: Book
+      bookshelf:0: Bookshelf
+      bow:0: Bow
+      bowl:0: Bowl
+      bread:0: Bread
+      brewing_stand:0: Brewing Stand
+      brick:0: Brick
+      brick_block:0: Bricks
+      brick_stairs:0: Brick Stairs
+      brown_glazed_terracotta:0: Brown TCotta
+      brown_mushroom:0: Brown Mushroom
+      brown_mushroom_block:0: Brown Mushroom!
+      brown_shulker_box:0: Brown Box
+      bucket:0: Bucket
+      cactus:0: Cactus
+      cake:0: Cake
+      carpet:15: Black Carpet
+      carpet:14: Red Carpet
+      carpet:13: Green Carpet
+      carpet:12: Brown Carpet
+      carpet:11: Blue Carpet
+      carpet:10: Purple Carpet
+      carpet:9: Cyan Carpet
+      carpet:8: Light Gray Carpet
+      carpet:7: Gray Carpet
+      carpet:6: Pink Carpet
+      carpet:5: Lime Carpet
+      carpet:4: Yellow Carpet
+      carpet:3: Light Blue Carpet
+      carpet:2: Magenta Carpet
+      carpet:1: Orange Carpet
+      carpet:0: White Carpet
+      carrot:0: Carrot
+      carrot_on_a_stick:0: Carrot on a Stick
+      carrots:0: Carrots
+      cauldron:0: Cauldron
+      chain_command_block:0: Chain Block
+      chainmail_boots:0: Chain Boots
+      chainmail_chestplate:0: Chain Chestplate
+      chainmail_helmet:0: Chain Helmet
+      chainmail_leggings:0: Chain Leggings
+      chest:0: Chest
+      chest_minecart:0: Chest Minecart
+      chicken:0: Raw Chicken
+      chorus_flower:0: Chorus Flower
+      chorus_fruit:0: Chorus Fruit
+      chorus_plant:0: Chorus Plant
+      clay:0: Clay
+      clay_ball:0: Clay
+      clock:0: Clock
+      coal:1: Charcoal
+      coal:0: Coal
+      coal_block:0: Block of Coal
+      coal_ore:0: Coal Ore
+      cobblestone:0: Cobblestone
+      cobblestone_wall:1: Mossy Wall
+      cobblestone_wall:0: Cobblestone Wall
+      cocoa:0: Cocoa
+      command_block:0: Command Block
+      command_block_minecart:0: Command Minecart
+      comparator:0: Comparator
+      compass:0: Compass
+      concrete:15: Black Concrete
+      concrete:14: Red Concrete
+      concrete:13: Green Concrete
+      concrete:12: Brown Concrete
+      concrete:11: Blue Concrete
+      concrete:10: Purple Concrete
+      concrete:9: Cyan Concrete
+      concrete:8: LGray Concrete
+      concrete:7: Gray Concrete
+      concrete:6: Pink Concrete
+      concrete:5: Lime Concrete
+      concrete:4: Yellow Concrete
+      concrete:3: LBlue Concrete
+      concrete:2: Magenta Concrete
+      concrete:1: Orange Concrete
+      concrete:0: White Concrete
+      concrete_powder:15: Black CPowder
+      concrete_powder:14: Red CPowder
+      concrete_powder:13: Green CPowder
+      concrete_powder:12: Brown CPowder
+      concrete_powder:11: Blue CPowder
+      concrete_powder:10: Purple CPowder
+      concrete_powder:9: Cyan CPowder
+      concrete_powder:8: LGRay CPowder
+      concrete_powder:7: Gray CPowder
+      concrete_powder:6: Pink CPowder
+      concrete_powder:5: Lime CPowder
+      concrete_powder:4: Yellow CPowder
+      concrete_powder:3: LBlue CPowder
+      concrete_powder:2: Magenta CPowder
+      concrete_powder:1: Orange CPowder
+      concrete_powder:0: White CPowder
+      cooked_beef:0: Steak
+      cooked_chicken:0: Cooked Chicken
+      cooked_fish:1: Cooked Salmon
+      cooked_fish:0: Cooked Fish
+      cooked_mutton:0: Cooked Mutton
+      cooked_porkchop:0: Cooked Porkchop
+      cooked_rabbit:0: Cooked Rabbit
+      cookie:0: Cookie
+      crafting_table:0: Crafting Table
+      cyan_glazed_terracotta:0: Cyan TCotta
+      cyan_shulker_box:0: Cyan Box
+      dark_oak_boat:0: Dark Oak Boat
+      dark_oak_door:0: Dark Oak Door
+      dark_oak_fence:0: Dark Oak Fence
+      dark_oak_fence_gate:0: Dark Oak Gate
+      dark_oak_stairs:0: Dark Oak Stairs
+      daylight_detector:0: Daylight Sensor
+      daylight_detector_inverted:0: Night Sensor
+      deadbush:0: Dead Bush
+      detector_rail:0: Detector Rail
+      diamond:0: Diamond
+      diamond_axe:0: Diamond Axe
+      diamond_block:0: Diamond Block
+      diamond_boots:0: Diamond Boots
+      diamond_chestplate:0: Diamond Tunic
+      diamond_helmet:0: Diamond Helmet
+      diamond_hoe:0: Diamond Hoe
+      diamond_horse_armor:0: Diamond Armor
+      diamond_leggings:0: Diamond Leggings
+      diamond_ore:0: Diamond Ore
+      diamond_pickaxe:0: Diamond Pickaxe
+      diamond_shovel:0: Diamond Shovel
+      diamond_sword:0: Diamond Sword
+      dirt:2: Podzol
+      dirt:1: Coarse Dirt
+      dirt:0: Dirt
+      dispenser:0: Dispenser
+      double_plant:5: Peony
+      double_plant:4: Rose Bush
+      double_plant:3: Large Fern
+      double_plant:2: Double Tallgrass
+      double_plant:1: Lilac
+      double_plant:0: Sunflower
+      double_stone_slab:7: Quartz Slab!
+      double_stone_slab:6: Nether Brick Slab!
+      double_stone_slab:5: Stone Brick Slab!
+      double_stone_slab:4: Brick Slab!
+      double_stone_slab:3: Cobblestone Slab!
+      double_stone_slab:2: Wooden Slab!
+      double_stone_slab:1: Sandstone Slab!
+      double_stone_slab:0: Stone Slab!
+      double_stone_slab2:0: Redsand Slab!
+      double_wooden_slab:5: Dark Oak Slab!
+      double_wooden_slab:4: Acacia Slab!
+      double_wooden_slab:3: Jungle Slab!
+      double_wooden_slab:2: Brich Slab!
+      double_wooden_slab:1: Spruce Slab!
+      double_wooden_slab:0: Oak Slab!
+      dragon_breath:0: Dragon's Breath
+      dragon_egg:0: Dragon Egg
+      dropper:0: Dropper
+      dye:15: Bone Meal
+      dye:14: Orange Dye
+      dye:13: Magenta Dye
+      dye:12: Light Blue Dye
+      dye:11: Dandelion Yellow
+      dye:10: Lime Dye
+      dye:9: Pink Dye
+      dye:8: Gray Dye
+      dye:7: Light Gray Dye
+      dye:6: Cyan Dye
+      dye:5: Purple Dye
+      dye:4: Lapis Lazuli
+      dye:3: Coco Beans
+      dye:2: Cactus Green
+      dye:1: Rose Red
+      dye:0: Ink Sack
+      egg:0: Egg
+      elytra:0: Elytra
+      emerald:0: Emerald
+      emerald_block:0: Emerald Block
+      emerald_ore:0: Emerald Ore
+      enchanted_book:0: Enchanted Book
+      enchanting_table:0: Magic Table
+      end_bricks:0: End Stone Bricks
+      end_crystal:0: End Crystal
+      end_gateway:0: End Gateway
+      end_portal:0: End Portal
+      end_portal_frame:0: End Portal Frame
+      end_rod:0: End Rod
+      end_stone:0: End Stone
+      ender_chest:0: Ender Chest
+      ender_eye:0: Eye of Ender
+      ender_pearl:0: Ender Pearl
+      experience_bottle:0: Enchanting Bottle
+      farmland:0: Farmland
+      feather:0: Feather
+      fence:0: Oak Fence
+      fence_gate:0: Oak Fence Gate
+      fermented_spider_eye:0: Fermented Eye
+      filled_map:0: Map
+      fire:0: Fire
+      fire_charge:0: Fire Charge
+      firework_charge:0: Firework Star
+      fireworks:0: Firework Rocket
+      fish:3: Pufferfish
+      fish:2: Clownfish
+      fish:1: Raw Salmon
+      fish:0: Raw Fish
+      fishing_rod:0: Fishing Rod
+      flint:0: Flint
+      flint_and_steel:0: Flint and Steel
+      flower_pot:0: Flower Pot
+      flowing_lava:0: Flowing Lava
+      flowing_water:0: Flowing Water
+      frosted_ice:0: Frosted Ice
+      furnace:0: Furnace
+      furnace_minecart:0: Furnace Minecart
+      ghast_tear:0: Ghast Tear
+      glass:0: Glass
+      glass_bottle:0: Glass Bottle
+      glass_pane:0: Glass Pane
+      glowstone:0: Glowstone
+      glowstone_dust:0: Glowstone Dust
+      gold_block:0: Gold Block
+      gold_ingot:0: Gold Ingot
+      gold_nugget:0: Gold Nugget
+      gold_ore:0: Gold Ore
+      golden_apple:1: Notch Apple
+      golden_apple:0: Golden Apple
+      golden_axe:0: Golden Axe
+      golden_boots:0: Golden Boots
+      golden_carrot:0: Golden Carrot
+      golden_chestplate:0: Golden Chestplate
+      golden_helmet:0: Golden Helmet
+      golden_hoe:0: Golden Hoe
+      golden_horse_armor:0: Golden Armor
+      golden_leggings:0: Golden Leggings
+      golden_pickaxe:0: Golden Pickaxe
+      golden_rail:0: Powered Rail
+      golden_shovel:0: Golden Shovel
+      golden_sword:0: Golden Sword
+      grass:0: Grass
+      grass_path:0: Grass Path
+      gravel:0: Gravel
+      gray_glazed_terracotta:0: Gray TCotta
+      gray_shulker_box:0: Gray Box
+      green_glazed_terracotta:0: Green TCotta
+      green_shulker_box:0: Green Box
+      gunpowder:0: Gunpowder
+      hardened_clay:0: Hardened Clay
+      hay_block:0: Hay Bale
+      heavy_weighted_pressure_plate:0: Iron Plate
+      hopper:0: Hopper
+      hopper_minecart:0: Hopper Minecart
+      ice:0: Ice
+      iron_axe:0: Iron Axe
+      iron_bars:0: Iron Bars
+      iron_block:0: Iron Block
+      iron_boots:0: Iron Boots
+      iron_chestplate:0: Iron Chestplate
+      iron_door:0: Iron Door
+      iron_helmet:0: Iron Helmet
+      iron_hoe:0: Iron Hoe
+      iron_horse_armor:0: Iron Armor
+      iron_ingot:0: Iron Ingot
+      iron_leggings:0: Iron Leggings
+      iron_nugget:0: Iron Nugget
+      iron_ore:0: Iron Ore
+      iron_pickaxe:0: Iron Pickaxe
+      iron_shovel:0: Iron Shovel
+      iron_sword:0: Iron Sword
+      iron_trapdoor:0: Iron Trapdoor
+      item_frame:0: Item Frame
+      jukebox:0: Jukebox
+      jungle_boat:0: Jungle Boat
+      jungle_door:0: Jungle Door
+      jungle_fence:0: Jungle Fence
+      jungle_fence_gate:0: Jungle Gate
+      jungle_stairs:0: Jungle Stairs
+      ladder:0: Ladder
+      lapis_block:0: Lapis Lazuli Block
+      lapis_ore:0: Lapis Lazuli Ore
+      lava:0: Still Lava
+      lava_bucket:0: Lava Bucket
+      lead:0: Lead
+      leather:0: Leather
+      leather_boots:0: Leather Boots
+      leather_chestplate:0: Leather Tunic
+      leather_helmet:0: Leather Helmet
+      leather_leggings:0: Leather Pants
+      leaves:3: Jungle Leaves
+      leaves:2: Birch Leaves
+      leaves:1: Spruce Leaves
+      leaves:0: Oak Leaves
+      leaves2:1: Dark Oak Leaves
+      leaves2:0: Acacia Leaves
+      lever:0: Lever
+      light_blue_glazed_terracotta:0: Light Blue TCotta
+      light_blue_shulker_box:0: Light Blue Box
+      light_gray_glazed_terracotta:0: Light Gray TCotta
+      light_weighted_pressure_plate:0: Golden Plate
+      lime_glazed_terracotta:0: Lime TCotta
+      lime_shulker_box:0: Lime Box
+      lingering_potion:0: Lingering Potion
+      lit_furnace:0: Burning Furnace
+      lit_pumpkin:0: Jack o'Lantern
+      lit_redstone_lamp:0: Redstone Lamp +
+      lit_redstone_ore:0: Lit Redstone Ore
+      log:3: Jungle Wood
+      log:2: Birch Wood
+      log:1: Spruce Wood
+      log:0: Oak Wood
+      log2:1: Dark Oak Wood
+      log2:0: Acacia Wood
+      magenta_glazed_terracotta:0: Magenta TCotta
+      magenta_shulker_box:0: Magenta Box
+      magma:0: Magma Block
+      magma_cream:0: Magma Cream
+      map:0: Empty Map
+      melon:0: Melon
+      melon_block:0: Melon Block
+      melon_seeds:0: Melon Seeds
+      melon_stem:0: Melon Stem
+      milk_bucket:0: Milk Bucket
+      minecart:0: Minecart
+      mob_spawner:0: Monster Spawner
+      monster_egg:5: Curved Stone Egg
+      monster_egg:4: Crack Stone Egg
+      monster_egg:3: Moss Stone Egg
+      monster_egg:2: Stone Brick Egg
+      monster_egg:1: Cobblestone Egg
+      monster_egg:0: Stone Egg
+      mossy_cobblestone:0: Moss Stone
+      mushroom_stew:0: Mushroom Stew
+      mutton:0: Raw Mutton
+      mycelium:0: Mycelium
+      name_tag:0: Name Tag
+      nether_brick:0: Nether Brick
+      nether_brick_fence:0: Nether Fence
+      nether_brick_stairs:0: Nether Stairs
+      nether_star:0: Nether Star
+      nether_wart:0: Nether Wart
+      nether_wart_block:0: Nether Wart Block
+      netherbrick:0: Nether Brick
+      netherrack:0: Netherrack
+      noteblock:0: Note Block
+      oak_stairs:0: Oak Wood Stairs
+      observer:0: Observer
+      obsidian:0: Obsidian
+      orange_glazed_terracotta:0: Orange TCotta
+      orange_shulker_box:0: Orange Box
+      packed_ice:0: Packed Ice
+      painting:0: Painting
+      paper:0: Paper
+      pink_glazed_terracotta:0: Pink TCotta
+      pink_shulker_box:0: Pink Box
+      piston:0: Piston
+      piston_head:0: Piston Head
+      planks:5: Dark Oak Planks
+      planks:4: Acacia Planks
+      planks:3: Jungle Planks
+      planks:2: Birch Planks
+      planks:1: Spruce Planks
+      planks:0: Oak Planks
+      poisonous_potato:0: Poisonous Potato
+      popped_chorus_fruit:0: Popped Fruit
+      porkchop:0: Raw Porkchop
+      portal:0: Nether Portal
+      potato:0: Potato
+      potatoes:0: Potatoes
+      potion:0: Potion
+      powered_comparator:0: Comparator +
+      powered_repeater:0: Repeater Block +
+      prismarine:2: Dark Prismarine
+      prismarine:1: Prismarine Bricks
+      prismarine:0: Prismarine
+      prismarine_crystals:0: Prismarine Gem
+      prismarine_shard:0: Prismarine Shard
+      pumpkin:0: Pumpkin
+      pumpkin_pie:0: Pumpkin Pie
+      pumpkin_seeds:0: Pumpkin Seeds
+      pumpkin_stem:0: Pumpkin Stem
+      purple_glazed_terracotta:0: Purple TCotta
+      purple_shulker_box:0: Purple Box
+      purpur_block:0: Purpur Block
+      purpur_double_slab:0: Purpur Slab!
+      purpur_pillar:0: Purpur Pillar
+      purpur_slab:0: Purpur Slab
+      purpur_stairs:0: Purpur Stairs
+      quartz:0: Nether Quartz
+      quartz_block:2: Pillar Quartz
+      quartz_block:1: Curved Quartz
+      quartz_block:0: Quartz Block
+      quartz_ore:0: Quartz Ore
+      quartz_stairs:0: Quartz Stairs
+      rabbit:0: Raw Rabbit
+      rabbit_foot:0: Rabbit's Foot
+      rabbit_hide:0: Rabbit Hide
+      rabbit_stew:0: Rabbit Stew
+      rail:0: Rail
+      record_11:0: 11 Disc
+      record_13:0: 13 Disc
+      record_blocks:0: Blocks Disc
+      record_cat:0: Cat Disc
+      record_chirp:0: Chirp Disc
+      record_far:0: Far Disc
+      record_mall:0: Mall Disc
+      record_mellohi:0: Mellohi Disc
+      record_stal:0: Stal Disc
+      record_strad:0: Strad Disc
+      record_wait:0: Wait Disc
+      record_ward:0: Ward Disc
+      red_flower:8: Oxeye Daisy
+      red_flower:7: Pink Tulip
+      red_flower:6: White Tulip
+      red_flower:5: Orange Tulip
+      red_flower:4: Red Tulip
+      red_flower:3: Azure Bluet
+      red_flower:2: Allium
+      red_flower:1: Blue Orchid
+      red_flower:0: Poppy
+      red_glazed_terracotta:0: Red TCotta
+      red_mushroom:0: Red Mushroom
+      red_mushroom_block:0: Red Mushroom!
+      red_nether_brick:0: Red Nether Brick
+      red_sandstone:2: Smooth Redsand
+      red_sandstone:1: Curved Redsand
+      red_sandstone:0: Red Sandstone
+      red_sandstone_stairs:0: Redsand Stairs
+      red_shulker_box:0: Red box
+      redstone:0: Redstone
+      redstone_block:0: Redstone Block
+      redstone_lamp:0: Redstone Lamp
+      redstone_ore:0: Redstone Ore
+      redstone_torch:0: Redstone Torch
+      redstone_wire:0: Redstone Wire
+      reeds:0: Sugar Canes
+      repeater:0: Repeater
+      repeating_command_block:0: Repeating Block
+      rotten_flesh:0: Rotten Flesh
+      saddle:0: Saddle
+      sand:1: Red Sand
+      sand:0: Sand
+      sandstone:2: Smooth Sandstone
+      sandstone:1: Carved Sandstone
+      sandstone:0: Sandstone
+      sandstone_stairs:0: Sandstone Stairs
+      sapling:5: Dark Oak Sapling
+      sapling:4: Acacia Sapling
+      sapling:3: Jungle Sapling
+      sapling:2: Birch Sapling
+      sapling:1: Spruce Sapling
+      sapling:0: Oak Sapling
+      sea_lantern:0: Sea Lantern
+      shears:0: Shears
+      shield:0: Shield
+      shulker_shell:0: Shulker Shell
+      sign:0: Sign
+      silver_shulker_box:0: Light Gray Box
+      skull:5: Dragon Head
+      skull:4: Creeper Head
+      skull:3: Head
+      skull:2: Zombie Head
+      skull:1: Wither Skull
+      skull:0: Skeleton Skull
+      slime:0: Slime Block
+      slime_ball:0: Slimeball
+      snow:0: Snow Block
+      snow_layer:0: Snow
+      snowball:0: Snowball
+      soul_sand:0: Soul Sand
+      spawn_egg:120: Villager Egg
+      spawn_egg:103: Llama Egg
+      spawn_egg:102: Polar Bear Egg
+      spawn_egg:101: Rabbit Egg
+      spawn_egg:100: Horse Egg
+      spawn_egg:98: Ocelot Egg
+      spawn_egg:96: Mooshroom Egg
+      spawn_egg:95: Wolf Egg
+      spawn_egg:94: Squid Egg
+      spawn_egg:93: Chicken Egg
+      spawn_egg:92: Cow Egg
+      spawn_egg:91: Sheep Egg
+      spawn_egg:90: Pig Egg
+      spawn_egg:69: Shulker Egg
+      spawn_egg:68: Guardian Egg
+      spawn_egg:67: Endermite Egg
+      spawn_egg:66: Witch Egg
+      spawn_egg:65: Bat Egg
+      spawn_egg:62: Magma Cube Egg
+      spawn_egg:61: Blaze Egg
+      spawn_egg:60: Silverfish Egg
+      spawn_egg:59: Cave Spider Egg
+      spawn_egg:58: Enderman Egg
+      spawn_egg:57: Zombie Pigman Egg
+      spawn_egg:56: Ghast Egg
+      spawn_egg:55: Slime Egg
+      spawn_egg:54: Zombie Egg
+      spawn_egg:52: Spider Egg
+      spawn_egg:51: Skeleton Egg
+      spawn_egg:50: Creeper Egg
+      spawn_egg:36: Vindicator Egg
+      spawn_egg:35: Vex Egg
+      spawn_egg:34: Evoker Egg
+      spawn_egg:32: Mule Egg
+      spawn_egg:31: Donkey Egg
+      spawn_egg:29: Zombie Horse Egg
+      spawn_egg:28: Skelet Hore Egg
+      spawn_egg:27: ZVillager Egg
+      spawn_egg:23: Husk Egg
+      spawn_egg:6: Stray Egg
+      spawn_egg:5: WSkeleton Egg
+      spawn_egg:4: EGuardian Egg
+      spawn_egg:0: Spawn Egg
+      speckled_melon:0: Glistering Melon
+      spectral_arrow:0: Spectral Arrow
+      spider_eye:0: Spider Eye
+      splash_potion:0: Splash Potion
+      sponge:1: Wet Sponge
+      sponge:0: Sponge
+      spruce_boat:0: Spruce Boat
+      spruce_door:0: Spruce Door
+      spruce_fence:0: Spruce Fence
+      spruce_fence_gate:0: Spruce Gate
+      spruce_stairs:0: Spruce Stairs
+      stained_glass:15: Black Glass
+      stained_glass:14: Red Glass
+      stained_glass:13: Green Glass
+      stained_glass:12: Brown Glass
+      stained_glass:11: Blue Glass
+      stained_glass:10: Purple Glass
+      stained_glass:9: Cyan Glass
+      stained_glass:8: Light Gray Glass
+      stained_glass:7: Gray Glass
+      stained_glass:6: Pink Glass
+      stained_glass:5: Lime Glass
+      stained_glass:4: Yellow Glass
+      stained_glass:3: Light Blue Glass
+      stained_glass:2: Magenta Glass
+      stained_glass:1: Orange Glass
+      stained_glass:0: White Glass
+      stained_glass_pane:15: Black Pane
+      stained_glass_pane:14: Red Pane
+      stained_glass_pane:13: Green Pane
+      stained_glass_pane:12: Brown Pane
+      stained_glass_pane:11: Blue Pane
+      stained_glass_pane:10: Purple Pane
+      stained_glass_pane:9: Cyan Pane
+      stained_glass_pane:8: Light Gray Pane
+      stained_glass_pane:7: Gray Pane
+      stained_glass_pane:6: Pink Pane
+      stained_glass_pane:5: Lime Pane
+      stained_glass_pane:4: Yellow Pane
+      stained_glass_pane:3: Light Blue Pane
+      stained_glass_pane:2: Magenta Pane
+      stained_glass_pane:1: Orange Pane
+      stained_glass_pane:0: White Pane
+      stained_hardened_clay:15: Black Clay
+      stained_hardened_clay:14: Red Clay
+      stained_hardened_clay:13: Green Clay
+      stained_hardened_clay:12: Brown Clay
+      stained_hardened_clay:11: Blue Clay
+      stained_hardened_clay:10: Purple Clay
+      stained_hardened_clay:9: Cyan Clay
+      stained_hardened_clay:8: Light Gray Clay
+      stained_hardened_clay:7: Gray Clay
+      stained_hardened_clay:6: Pink Clay
+      stained_hardened_clay:5: Lime Clay
+      stained_hardened_clay:4: Yellow Clay
+      stained_hardened_clay:3: Light Blue Clay
+      stained_hardened_clay:2: Magenta Clay
+      stained_hardened_clay:1: Orange Clay
+      stained_hardened_clay:0: White Clay
+      standing_banner:0: Standing Banner
+      standing_sign:0: Standing Sign
+      stick:0: Stick
+      sticky_piston:0: Sticky Piston
+      stone:6: Polished Andesite
+      stone:5: Andesite
+      stone:4: Polished Diorite
+      stone:3: Diorite
+      stone:2: Polished Granite
+      stone:1: Granite
+      stone:0: Stone
+      stone_axe:0: Stone Axe
+      stone_brick_stairs:0: Stone Stairs
+      stone_button:0: Stone Button
+      stone_hoe:0: Stone Hoe
+      stone_pickaxe:0: Stone Pickaxe
+      stone_pressure_plate:0: Stone Plate
+      stone_shovel:0: Stone Shovel
+      stone_slab:7: Quartz Slab
+      stone_slab:6: Nether Brick Slab
+      stone_slab:5: Stone Brick Slab
+      stone_slab:4: Brick Slab
+      stone_slab:3: Cobblestone Slab
+      stone_slab:2: Wooden Slab
+      stone_slab:1: Sandstone Slab
+      stone_slab:0: Stone Slab
+      stone_slab2:0: Redsand Slab
+      stone_stairs:0: Cobble Stairs
+      stone_sword:0: Stone Sword
+      stonebrick:3: Chiseled Bricks
+      stonebrick:2: Cracked Bricks
+      stonebrick:1: Moss Bricks
+      stonebrick:0: Stone Bricks
+      string:0: String
+      structure_block:0: Structure Block
+      structure_void:0: Structure Void
+      sugar:0: Sugar
+      tallgrass:2: Fern
+      tallgrass:1: Grass
+      tallgrass:0: Dead Shrub
+      tipped_arrow:0: Tipped Arrow
+      tnt:0: TNT
+      tnt_minecart:0: TNT Minecart
+      torch:0: Torch
+      totem_of_undying:0: Totem of Undying
+      trapdoor:0: Wooden Trapdoor
+      trapped_chest:0: Trapped Chest
+      tripwire_hook:0: Tripwire
+      unlit_redstone_torch:0: Redstone Torch -
+      unpowered_comparator:0: Comparator -
+      unpowered_repeater:0: Repeater Block -
+      vine:0: Vines
+      wall_banner:0: Wall-mounted Banner
+      wall_sign:0: Wall Sign
+      water:0: Still Water
+      water_bucket:0: Water Bucket
+      waterlily:0: Lily Pad
+      web:0: Cobweb
+      wheat:0: Wheat
+      wheat_seeds:0: Wheat Seeds
+      white_glazed_terracotta:0: White TCotta
+      white_shulker_box:0: White Box
+      wooden_axe:0: Wooden Axe
+      wooden_button:0: Wooden Button
+      wooden_door:0: Oak Door
+      wooden_hoe:0: Wooden Hoe
+      wooden_pickaxe:0: Wooden Pickaxe
+      wooden_pressure_plate:0: Wooden Plate
+      wooden_shovel:0: Wooden Shovel
+      wooden_slab:5: Dark Oak Slab
+      wooden_slab:4: Acacia Slab
+      wooden_slab:3: Jungle Slab
+      wooden_slab:2: Brich Slab
+      wooden_slab:1: Spruce Slab
+      wooden_slab:0: Oak Slab
+      wooden_sword:0: Wooden Sword
+      wool:15: Black Wool
+      wool:14: Red Wool
+      wool:13: Green Wool
+      wool:12: Brown Wool
+      wool:11: Blue Wool
+      wool:10: Purple Wool
+      wool:9: Cyan Wool
+      wool:8: Light Gray Wool
+      wool:7: Gray Wool
+      wool:6: Pink Wool
+      wool:5: Lime Wool
+      wool:4: Yellow Wool
+      wool:3: Light Blue Wool
+      wool:2: Magenta Wool
+      wool:1: Orange Wool
+      wool:0: White Wool
+      writable_book:0: Book and Quill
+      written_book:0: Written Book
+      yellow_flower:0: Dandelion
+      yellow_glazed_terracotta:0: Yellow TCotta
+      yellow_shulker_box:0: Yellow Box

@@ -1,0 +1,61 @@
+paypal:
+  command: /paypal
+  type: RUN_CONSOLE
+#  execute_mode: NORMAL
+  register: true
+  permission-required: false
+  runcmd:
+  - '$Script$%if%$arg1==send'
+  - '/mycommand:paypal_send $arg2 $arg3 $player'
+  - '$Script$%if%$arg1==confirm'
+  - '/mycommand:paypal_confirm $s.paypal.$player.receiver $s.paypal.$player.amount $player $s.paypal.$player.tan $arg2'
+
+
+
+paypal_send:
+  command: /paypal_send
+  type: RUN_CONSOLE
+#  execute_mode: NORMAL
+  register: true
+  permission-required: false
+  runcmd:
+  - '$Script$%Variable%$s.paypal.$arg3.receiver=$arg1'
+  - '$Script$%Variable%$s.paypal.$arg3.amount=$arg2'
+  - '$Script$%Variable%$s.paypal.$arg3.tan=$randomnumber%999999%'
+  - '/tell $arg3 $s.paypal.$arg3.tan'
+
+
+
+paypal_sure:
+  command: /paypal_sure
+  type: RUN_CONSOLE
+#  execute_mode: NORMAL
+  register: true
+  permission-required: false
+  runcmd:
+  - '/tell $arg1 $s.paypal.$arg1.tan'
+
+
+
+paypal_confirm:
+  command: /paypal_confirm
+  type: RUN_CONSOLE
+#  execute_mode: NORMAL
+  register: true
+  permission-required: false
+  runcmd:
+  - '/mycommand:paypal_confirm2 $arg1 $arg2 $arg3 $arg4 $arg5'
+
+
+
+paypal_confirm2:
+  command: /paypal_confirm2
+  type: RUN_CONSOLE
+#  execute_mode: NORMAL
+  register: true
+  permission-required: false
+  runcmd:
+  - '$Script$%if%$arg4==$arg5'
+  - '/minecraft:scoreboard players add $arg1 ssCoins $arg2'
+  - '/minecraft:scoreboard players remove $arg3 ssCoins $arg2'
+  - '$Script$%Variable%$s.paypal.$arg3.tan=$randomnumber%9999999%'

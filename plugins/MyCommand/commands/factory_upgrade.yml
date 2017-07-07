@@ -1,0 +1,1062 @@
+factory_upgrade:
+  command: /factory_upgrade
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '/tp 4032 64 4112'
+  
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = east
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  
+  # 1
+  - '$Script$%if%$arg1==east<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/1",posX:20,posY:-20,posZ:-7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~48 ~ ~16'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-48 ~ ~-16'
+  - '/minecraft:say done'
+ 
+  # 2
+  - '$Script$%if%$arg1==east<and>$arg2==2'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:23,posY:-17,posZ:-10,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 3
+  - '$Script$%if%$arg1==east<and>$arg2==3'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:19,posY:-19,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 4
+  - '$Script$%if%$arg1==east<and>$arg2==4'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/4",posX:32,posY:-16,posZ:-16,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  - '/minecraft:say done'
+  
+  # 5
+  - '$Script$%if%$arg1==east<and>$arg2==5'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:19,posY:-19,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 6
+  - '$Script$%if%$arg1==east<and>$arg2==6'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:-5,posY:-20,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 7
+  - '$Script$%if%$arg1==east<and>$arg2==7'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:-1,posY:-19,posZ:-22,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 8
+  - '$Script$%if%$arg1==east<and>$arg2==8'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:-5,posY:-32,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 9
+  - '$Script$%if%$arg1==east<and>$arg2==9'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-13,posY:-19,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 10
+  - '$Script$%if%$arg1==east<and>$arg2==10'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:-13,posY:-17,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 11
+  - '$Script$%if%$arg1==east<and>$arg2==11'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/11",posX:-9,posY:-18,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~49 ~1 ~34 {Command:"minecraft:function suboel:factory/lights/bottom/east_on"}'
+  - '/minecraft:say done'
+ 
+  # 12
+  - '$Script$%if%$arg1==east<and>$arg2==12'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:-7,posY:-17,posZ:9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 13
+  - '$Script$%if%$arg1==east<and>$arg2==13'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:-7,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 14
+  - '$Script$%if%$arg1==east<and>$arg2==14'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:-8,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 15
+  - '$Script$%if%$arg1==east<and>$arg2==15'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 16
+  - '$Script$%if%$arg1==east<and>$arg2==16'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-9,posY:-19,posZ:25,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 17
+  - '$Script$%if%$arg1==east<and>$arg2==17'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-28,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 18
+  - '$Script$%if%$arg1==east<and>$arg2==18'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/18",posX:-30,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:say done'
+  
+  # 19
+  - '$Script$%if%$arg1==east<and>$arg2==19'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:-30,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 20
+  - '$Script$%if%$arg1==east<and>$arg2==20'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/20",posX:0,posY:-17,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~16'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-16'
+  - '/minecraft:say done'
+ 
+  # 21
+  - '$Script$%if%$arg1==east<and>$arg2==21'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:-32,posY:-20,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 22
+  - '$Script$%if%$arg1==east<and>$arg2==22'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 23
+  - '$Script$%if%$arg1==east<and>$arg2==23'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/23",posX:-12,posY:-15,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~17 ~13 ~28 {Command:"minecraft:function suboel:factory/lights/top/east_on"}'
+  - '/minecraft:say done'
+ 
+  # 24
+  - '$Script$%if%$arg1==east<and>$arg2==24'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 25
+  - '$Script$%if%$arg1==east<and>$arg2==25'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:-15,posY:-19,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 26
+  - '$Script$%if%$arg1==east<and>$arg2==26'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_first",posX:-12,posY:-22,posZ:-7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_second",posX:-6,posY:-6,posZ:-14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:-7,posY:-10,posZ:-11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 27
+  - '$Script$%if%$arg1==east<and>$arg2==27'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:4,posY:-13,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 28
+  - '$Script$%if%$arg1==east<and>$arg2==28'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 29
+  - '$Script$%if%$arg1==east<and>$arg2==29'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:-15,posY:-13,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 30
+  - '$Script$%if%$arg1==east<and>$arg2==30'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:4,posY:-13,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 31
+  - '$Script$%if%$arg1==east<and>$arg2==31'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:-10,posY:-13,posZ:-2,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 32
+  - '$Script$%if%$arg1==east<and>$arg2==32'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/32",posX:5,posY:-13,posZ:-1,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  - '/minecraft:say done'
+  
+  #######################################
+  #                north                #
+  ####################################### 
+  # arg1 = north
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  
+  # 1
+  - '$Script$%if%$arg1==north<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/1",posX:-7,posY:-20,posZ:-20,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~'
+  - '/minecraft:say done'
+ 
+  # 2
+  - '$Script$%if%$arg1==north<and>$arg2==2'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:-10,posY:-17,posZ:-23,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 3
+  - '$Script$%if%$arg1==north<and>$arg2==3'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:-5,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 4
+  - '$Script$%if%$arg1==north<and>$arg2==4'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/4",posX:-16,posY:-16,posZ:-32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  - '/minecraft:say done'
+  
+  # 5
+  - '$Script$%if%$arg1==north<and>$arg2==5'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:13,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 6
+  - '$Script$%if%$arg1==north<and>$arg2==6'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:-18,posY:-20,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 7
+  - '$Script$%if%$arg1==north<and>$arg2==7'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:-22,posY:-19,posZ:1,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 8
+  - '$Script$%if%$arg1==north<and>$arg2==8'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:-18,posY:-32,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 9
+  - '$Script$%if%$arg1==north<and>$arg2==9'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:14,posY:-19,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 10
+  - '$Script$%if%$arg1==north<and>$arg2==10'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:14,posY:-17,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 11
+  - '$Script$%if%$arg1==north<and>$arg2==11'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/11",posX:7,posY:-18,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~34 ~1 ~14 {Command:"minecraft:function suboel:factory/lights/bottom/north_on"}'
+  - '/minecraft:say done'
+ 
+  # 12
+  - '$Script$%if%$arg1==north<and>$arg2==12'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:9,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 13
+  - '$Script$%if%$arg1==north<and>$arg2==13'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:11,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 14
+  - '$Script$%if%$arg1==north<and>$arg2==14'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:11,posY:-17,posZ:8,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 15
+  - '$Script$%if%$arg1==north<and>$arg2==15'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 16
+  - '$Script$%if%$arg1==north<and>$arg2==16'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:25,posY:-19,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 17
+  - '$Script$%if%$arg1==north<and>$arg2==17'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:30,posY:-20,posZ:28,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 18
+  - '$Script$%if%$arg1==north<and>$arg2==18'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/18",posX:30,posY:-20,posZ:30,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:say done'
+  
+  # 19
+  - '$Script$%if%$arg1==north<and>$arg2==19'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:30,posY:-20,posZ:30,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 20
+  - '$Script$%if%$arg1==north<and>$arg2==20'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/20",posX:-9,posY:-17,posZ:0,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~16'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~-16'
+  - '/minecraft:say done'
+ 
+  # 21
+  - '$Script$%if%$arg1==north<and>$arg2==21'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:13,posY:-20,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 22
+  - '$Script$%if%$arg1==north<and>$arg2==22'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 23
+  - '$Script$%if%$arg1==north<and>$arg2==23'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/23",posX:11,posY:-15,posZ:12,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~28 ~13 ~46 {Command:"minecraft:function suboel:factory/lights/top/north_on"}'
+  - '/minecraft:say done'
+ 
+  # 24
+  - '$Script$%if%$arg1==north<and>$arg2==24'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 25
+  - '$Script$%if%$arg1==north<and>$arg2==25'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:7,posY:-19,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 26
+  - '$Script$%if%$arg1==north<and>$arg2==26'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_first",posX:-7,posY:-22,posZ:12,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_second",posX:-14,posY:-6,posZ:6,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:-11,posY:-10,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 27
+  - '$Script$%if%$arg1==north<and>$arg2==27'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-9,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 28
+  - '$Script$%if%$arg1==north<and>$arg2==28'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 29
+  - '$Script$%if%$arg1==north<and>$arg2==29'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:-5,posY:-13,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 30
+  - '$Script$%if%$arg1==north<and>$arg2==30'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:-3,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 31
+  - '$Script$%if%$arg1==north<and>$arg2==31'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:-2,posY:-13,posZ:10,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 32
+  - '$Script$%if%$arg1==north<and>$arg2==32'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/32",posX:-1,posY:-13,posZ:-5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  - '/minecraft:say done'
+  
+  #######################################
+  #                south                #
+  ####################################### 
+  # arg1 = south
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  
+  # 1
+  - '$Script$%if%$arg1==south<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/1",posX:7,posY:-20,posZ:20,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~48'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-48'
+  - '/minecraft:say done'
+ 
+  # 2
+  - '$Script$%if%$arg1==south<and>$arg2==2'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:10,posY:-17,posZ:23,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 3
+  - '$Script$%if%$arg1==south<and>$arg2==3'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:5,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 4
+  - '$Script$%if%$arg1==south<and>$arg2==4'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/4",posX:16,posY:-16,posZ:32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  - '/minecraft:say done'
+  
+  # 5
+  - '$Script$%if%$arg1==south<and>$arg2==5'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:-13,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 6
+  - '$Script$%if%$arg1==south<and>$arg2==6'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:18,posY:-20,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 7
+  - '$Script$%if%$arg1==south<and>$arg2==7'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:22,posY:-19,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 8
+  - '$Script$%if%$arg1==south<and>$arg2==8'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:18,posY:-32,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 9
+  - '$Script$%if%$arg1==south<and>$arg2==9'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-14,posY:-19,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 10
+  - '$Script$%if%$arg1==south<and>$arg2==10'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:-14,posY:-17,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 11
+  - '$Script$%if%$arg1==south<and>$arg2==11'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/11",posX:-7,posY:-18,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~29 ~1 ~49 {Command:"minecraft:function suboel:factory/lights/bottom/south_on"}'
+  - '/minecraft:say done'
+ 
+  # 12
+  - '$Script$%if%$arg1==south<and>$arg2==12'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:-9,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 13
+  - '$Script$%if%$arg1==south<and>$arg2==13'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:-11,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 14
+  - '$Script$%if%$arg1==south<and>$arg2==14'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:-11,posY:-17,posZ:-8,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 15
+  - '$Script$%if%$arg1==south<and>$arg2==15'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 16
+  - '$Script$%if%$arg1==south<and>$arg2==16'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-25,posY:-19,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 17
+  - '$Script$%if%$arg1==south<and>$arg2==17'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-30,posY:-20,posZ:-28,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 18
+  - '$Script$%if%$arg1==south<and>$arg2==18'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/18",posX:-30,posY:-20,posZ:-30,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:say done'
+  
+  # 19
+  - '$Script$%if%$arg1==south<and>$arg2==19'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:-30,posY:-20,posZ:-30,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 20
+  - '$Script$%if%$arg1==south<and>$arg2==20'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/20",posX:9,posY:-17,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~32'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-32'
+  - '/minecraft:say done'
+ 
+  # 21
+  - '$Script$%if%$arg1==south<and>$arg2==21'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:-13,posY:-20,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 22
+  - '$Script$%if%$arg1==south<and>$arg2==22'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 23
+  - '$Script$%if%$arg1==south<and>$arg2==23'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/23",posX:-11,posY:-15,posZ:-12,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~35 ~13 ~17 {Command:"minecraft:function suboel:factory/lights/top/south_on"}'
+  - '/minecraft:say done'
+ 
+  # 24
+  - '$Script$%if%$arg1==south<and>$arg2==24'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 25
+  - '$Script$%if%$arg1==south<and>$arg2==25'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:-7,posY:-19,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 26
+  - '$Script$%if%$arg1==south<and>$arg2==26'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_first",posX:7,posY:-22,posZ:-12,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_second",posX:14,posY:-6,posZ:-6,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:11,posY:-10,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 27
+  - '$Script$%if%$arg1==south<and>$arg2==27'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:9,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 28
+  - '$Script$%if%$arg1==south<and>$arg2==28'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 29
+  - '$Script$%if%$arg1==south<and>$arg2==29'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:5,posY:-13,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 30
+  - '$Script$%if%$arg1==south<and>$arg2==30'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:3,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 31
+  - '$Script$%if%$arg1==south<and>$arg2==31'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:2,posY:-13,posZ:-10,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 32
+  - '$Script$%if%$arg1==south<and>$arg2==32'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/32",posX:1,posY:-13,posZ:5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  - '/minecraft:say done'
+  
+  #######################################
+  #                west                 #
+  ####################################### 
+  # arg1 = west
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  
+  # 1
+  - '$Script$%if%$arg1==west<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/1",posX:-20,posY:-20,posZ:7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~ ~ ~32'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~ ~ ~-32'
+  - '/minecraft:say done'
+ 
+  # 2
+  - '$Script$%if%$arg1==west<and>$arg2==2'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:-23,posY:-17,posZ:10,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 3
+  - '$Script$%if%$arg1==west<and>$arg2==3'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:-19,posY:-19,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 4
+  - '$Script$%if%$arg1==west<and>$arg2==4'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/4",posX:-32,posY:-16,posZ:16,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  - '/minecraft:say done'
+  
+  # 5
+  - '$Script$%if%$arg1==west<and>$arg2==5'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:-19,posY:-19,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 6
+  - '$Script$%if%$arg1==west<and>$arg2==6'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:5,posY:-20,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+  
+  # 7
+  - '$Script$%if%$arg1==west<and>$arg2==7'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:1,posY:-19,posZ:22,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 8
+  - '$Script$%if%$arg1==west<and>$arg2==8'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:5,posY:-32,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 9
+  - '$Script$%if%$arg1==west<and>$arg2==9'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:13,posY:-19,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 10
+  - '$Script$%if%$arg1==west<and>$arg2==10'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:13,posY:-17,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 11
+  - '$Script$%if%$arg1==west<and>$arg2==11'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/11",posX:9,posY:-18,posZ:-7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~14 ~1 ~29 {Command:"minecraft:function suboel:factory/lights/bottom/west_on"}'
+  - '/minecraft:say done'
+ 
+  # 12
+  - '$Script$%if%$arg1==west<and>$arg2==12'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:7,posY:-17,posZ:-9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 13
+  - '$Script$%if%$arg1==west<and>$arg2==13'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:7,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 14
+  - '$Script$%if%$arg1==west<and>$arg2==14'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:8,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 15
+  - '$Script$%if%$arg1==west<and>$arg2==15'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 16
+  - '$Script$%if%$arg1==west<and>$arg2==16'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:9,posY:-19,posZ:-25,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 17
+  - '$Script$%if%$arg1==west<and>$arg2==17'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:28,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 18
+  - '$Script$%if%$arg1==west<and>$arg2==18'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/18",posX:30,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:say done'
+  
+  # 19
+  - '$Script$%if%$arg1==west<and>$arg2==19'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:30,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 20
+  - '$Script$%if%$arg1==west<and>$arg2==20'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/20",posX:0,posY:-17,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~32'
+  - '$Script$%PlayerData%$s.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.chunk.x/16'  
+  - '$Script$%PlayerData%$s.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~-32'
+  - '/minecraft:say done'
+ 
+  # 21
+  - '$Script$%if%$arg1==west<and>$arg2==21'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:32,posY:-20,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 22
+  - '$Script$%if%$arg1==west<and>$arg2==22'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 23
+  - '$Script$%if%$arg1==west<and>$arg2==23'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/23",posX:12,posY:-15,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~46 ~13 ~35 {Command:"minecraft:function suboel:factory/lights/top/west_on"}'
+  - '/minecraft:say done'
+ 
+  # 24
+  - '$Script$%if%$arg1==west<and>$arg2==24'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 25
+  - '$Script$%if%$arg1==west<and>$arg2==25'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:15,posY:-19,posZ:-7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 26
+  - '$Script$%if%$arg1==west<and>$arg2==26'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_first",posX:12,posY:-22,posZ:7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_second",posX:6,posY:-6,posZ:14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '$delay$<20>/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:7,posY:-10,posZ:11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 27
+  - '$Script$%if%$arg1==west<and>$arg2==27'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-4,posY:-13,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 28
+  - '$Script$%if%$arg1==west<and>$arg2==28'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 29
+  - '$Script$%if%$arg1==west<and>$arg2==29'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:15,posY:-13,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 30
+  - '$Script$%if%$arg1==west<and>$arg2==30'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:-4,posY:-13,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 31
+  - '$Script$%if%$arg1==west<and>$arg2==31'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:10,posY:-13,posZ:2,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  - '/minecraft:say done'
+ 
+  # 32
+  - '$Script$%if%$arg1==west<and>$arg2==32'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/32",posX:-5,posY:-13,posZ:1,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  - '/minecraft:say done'

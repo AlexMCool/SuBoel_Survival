@@ -1,0 +1,51 @@
+##############################################################################
+#                                  road new                                  #
+##############################################################################
+road_new:
+  command: /road_new
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # set calculation to 1
+  - '$Script$%Variable%$s.intersection.calculation=1'
+  
+  # set calculation to lowest, unused, intersection id
+  - '/mycommand:road_new_calculation $s.intersection.calculation'
+  
+  
+  
+  
+  
+##############################################################################
+#                            road new calculation                            #
+##############################################################################
+road_new_calculation:
+  command: /road_new_calculation
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #          no type variable           #
+  #######################################
+  # arg1 = 1 / 2 / 3 / ... / n-2 / n-1 / n
+  # check if the type of the id contains a '.' (which means the type doesn't exist)
+  - '$Script$%if%$s.intersection.id.$arg1.type.contains=.'
+  
+  # create new intersection
+  # tp to location of new intersection
+  - '/minecraft:tp $s.intersection.id.$arg1.x $s.intersection.id.$arg1.y $s.intersection.id.$arg1.z'
+  
+  # create new intersection
+  - '/mycommand:road_intersection_create $s.intersection.id.$arg1.direction'
+  
+  #######################################
+  #            type variable            #
+  #######################################
+  # if type of id does exists (else)
+  - '$Script$%else%'
+  
+  # add 1 to calculation
+  - '$Script$%Variable%$s.intersection.calculation+1'
+  
+  # try again
+  - '/mycommand:road_new_calculation $s.intersection.calculation'

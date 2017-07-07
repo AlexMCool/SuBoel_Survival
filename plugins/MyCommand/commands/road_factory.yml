@@ -1,0 +1,192 @@
+##############################################################################
+#                           road factory check id                            #
+##############################################################################
+road_factory_check_id:
+  command: /road_factory_check_id
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $locX
+  # arg2 = $locY
+  # arg3 = $locZ
+  # arg4 = east / north / south / west
+  # checks if the location has an ID
+  - '$Script$%if%$s.factory.location.$arg1,$arg2,$arg3.id.contains=.'
+  
+  # adds 1 to total and now
+#  - '$Script$%Variable%$s.factory.id.total+1'
+  - '$Script$%Variable%$s.factory.id.now+1'
+  
+  # initialize the id and location
+  - '/mycommand:road_factory_init id $s.factory.id.now $locX $locY $locZ'
+  
+  
+  
+  
+  
+##############################################################################
+#                             road factory init                              #
+##############################################################################
+road_factory_init:
+  command: /road_factory_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #               unused                #
+  ####################################### 
+  # arg1 = unused
+  # arg2 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg3 = east / north / south / west
+  - '$Script$%if%$arg1==unused'
+  
+  # sets the rotation status to unused
+  - '/mycommand:road_factory_info_unused $arg2 $arg3'
+  
+  #######################################
+  #                info                 #
+  ####################################### 
+  # arg1 = info
+  # arg2 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg3 = $locX
+  # arg4 = $locY
+  # arg5 = $locZ
+  - '$Script$%if%$arg1==info'
+  
+  # resets factory information if necessary
+  - '/mycommand:road_factory_info_init $arg2 $arg3 $arg4 $arg5 $GetRandomStringFromList%0;7;8;15% $GetRandomStringFromList%15;8;7;0% $GetRandomStringFromList%$s.board.word.1;$s.board.word.2;$s.board.word.3;$s.board.word.4;$s.board.word.5;$s.board.word.6%'
+  
+  #######################################
+  #                 id                  #
+  ####################################### 
+  # arg1 = id
+  # arg2 = $s.factory.id.now
+  # arg3 = $locX
+  # arg4 = $locY
+  # arg5 = $locZ
+  - '$Script$%if%$arg1==id'
+  
+  # sets factory id
+  - '$Script$%Variable%$s.factory.location.$arg3,$arg4,$arg5.id=$arg2'
+  
+  
+  
+  
+  
+##############################################################################
+#                         road factory info unused                           #
+##############################################################################
+road_factory_info_unused:
+  command: /road_factory_info_unused
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg2 = east / north / south / west
+  
+  # if status is unavailable
+  - '$Script$%if%$s.factory.id.$arg1.$arg2==unavailable'
+  
+  # sets status to unused
+  - '$Script$%Variable%$s.factory.id.$arg1.$arg2=unused'
+  
+  
+  
+  
+  
+##############################################################################
+#                          road factory info init                            #
+##############################################################################
+road_factory_info_init:
+  command: /road_factory_info_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = $GetRandomStringFromList%0;7;8;15% 
+  # arg6 = $GetRandomStringFromList%15;8;7;0% 
+  # arg7 = $GetRandomStringFromList%$s.board.word.1;$s.board.word.2;$s.board.word.3;$s.board.word.4;$s.board.word.5;$s.board.word.6%'
+  
+  # checks if the variable contains a '.' (which means there's nothing stored)
+  - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
+  
+  #######################
+  #   always (setup)    #
+  #######################
+  # sets status to 0
+  - '$Script$%Variable%$s.factory.id.$arg1.status=0'
+  
+  # choose background color and letter color
+  - '$Script$%Variable%$s.factory.id.$arg1.board.background=$GetRandomStringFromList%0;7;8;15%'
+  
+  - '$Script$%if%$s.factory.id.$arg1.board.background==0'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.text=$GetRandomStringFromList%7;15%'
+  
+  - '$Script$%if%$s.factory.id.$arg1.board.background==7'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.text=$GetRandomStringFromList%0;8;15%'
+  
+  - '$Script$%if%$s.factory.id.$arg1.board.background==8'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.text=$GetRandomStringFromList%7;15%'
+  
+  - '$Script$%if%$s.factory.id.$arg1.board.background==15'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.text=$GetRandomStringFromList%0;7;8%'
+  
+  # choose word (again testing for '.' because of the 'if' statements before)  
+  - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.word=$GetRandomStringFromList%b r a n d s;b u s i n e s s;c o m p a n i e s;c o r p o r a t i o n s;c r e a t i v e;d e s i g n s;d e v e l o p m e n t;d i g i t a l;d y n a m i c s;e n t e r p r i s e;i n d u s t r i a l;i n d u s t r i e s;i n n o v a t i o n s;i n t e r n a t i o n a l;l a b s;l o g i s t i c s;o r g a n i s a t i o n s;p r o d u c t i o n s;p r o p e r t i e s;s e r v i c e s;s c i e n t i f i c;s o l u t i o n s;s t u d i o s;s y s t e m s;t e c h;t e c h n o l o g i e s;u n l i m i t e d;w o r l d w i d e;& . c o%'
+  
+  # save location
+  - '$Script$%Variable%$s.factory.id.$arg1.x=$arg2'
+  - '$Script$%Variable%$s.factory.id.$arg1.y=$arg3'
+  - '$Script$%Variable%$s.factory.id.$arg1.z=$arg4'
+  
+  # sets rotation to unavailable (to reset)
+  - '$Script$%Variable%$s.factory.id.$arg1.east=unavailable'
+  
+  #######################################
+  #               north                 #
+  #######################################  
+  # arg1 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  
+  # checks if the variable contains a '.' (which means there's nothing stored)
+  - '$Script$%if%$s.factory.id.$arg1.north.contains=.'
+  
+  # sets rotation to unavailable (to reset)
+  - '$Script$%Variable%$s.factory.id.$arg1.north=unavailable'
+  
+  #######################################
+  #               south                 #
+  #######################################  
+  # arg1 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  
+  # checks if the variable contains a '.' (which means there's nothing stored)
+  - '$Script$%if%$s.factory.id.$arg1.south.contains=.'
+  
+  # sets rotation to unavailable (to reset)
+  - '$Script$%Variable%$s.factory.id.$arg1.south=unavailable'
+  
+  #######################################
+  #                west                 #
+  #######################################  
+  # arg1 = $s.factory.location.$locX,$locY,$locZ.id
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  
+  # checks if the variable contains a '.' (which means there's nothing stored)
+  - '$Script$%if%$s.factory.id.$arg1.west.contains=.'
+  
+  # sets rotation to unavailable (to reset)
+  - '$Script$%Variable%$s.factory.id.$arg1.west=unavailable'

@@ -1,0 +1,10 @@
+entities:
+  '1':
+    customname: '&aMyCmd &eNPC 1'
+    loc: spawn;13.0;135.0;12.0;0;0
+    commands: []
+    AI: false
+  '2':
+    customname: '&aMyCmd &eNPC 2'
+    loc: spawn;10.0;131.0;7.0;0;0
+    commands: []

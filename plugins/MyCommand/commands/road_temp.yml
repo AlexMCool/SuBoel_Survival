@@ -1,0 +1,51 @@
+##############################################################################
+#                                 road temp                                  #
+##############################################################################
+  #######################################
+  #              road temp              #
+  ####################################### 
+  #######################
+  #      road temp      #
+  #######################
+road_temp:
+  command: /road_temp
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '$Script$%if%$arg1==tp'
+  - '/tp $s.intersection.id.$arg2.x $s.intersection.id.$arg2.y $s.intersection.id.$arg2.z'
+  - '$Script$%if%$arg1==reset'
+  # temp to reset
+  - '/sudo c /keepchunks releaseall'
+  - '/sudo $player //pos1 3096,63,3096'
+  - '/sudo $player //pos2 5096,64,5096'
+  - '/sudo $player //replace air'
+  - '$Script$%Variable%$s.factory.id=nothing'
+  - '$Script$%Variable%$s.factory.id.now=0'
+  - '$Script$%Variable%$s.factory.location=nothing'
+  - '$Script$%Variable%$s.intersection=nothing'
+  - '$Script$%Variable%$s.intersection.calculation=0'
+  - '$Script$%Variable%$s.intersection.option=0'
+  - '$Script$%Variable%$s.intersection.type=0'
+  - '$Script$%Variable%$s.intersection.id=nothing'
+  - '$Script$%Variable%$s.intersection.id.now=0'
+  - '$Script$%Variable%$s.intersection.location=nothing'
+  - '/tp 4096 ~ 4096'
+  
+  
+  
+
+  
+  
+test:
+  command: /test
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '/say $PlayerData%$s.factory.level.1.upgrade.obtained.wooden_button:0%'
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==NoData'
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4=0'
+  - '/say yes'
+  
+  - '$Script$%else%'
+  - '/say no'
