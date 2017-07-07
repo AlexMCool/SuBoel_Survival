@@ -1,0 +1,18 @@
+##############################################################################
+#                             name change check                              #
+##############################################################################
+name_change_check:
+  command: /name_change_check
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # check if players' playerdata name is different then players' name
+  - '$Script$%if%$PlayerData%$s.name%!=$player'
+  # reset score
+  - '/minecraft:scoreboard players reset $player ssCoins'
+  # operation
+  - '/minecraft:scoreboard players operation $player ssCoins = $PlayerData%$s.name% ssCoins'
+  # reset old players' score
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% ssCoins'
+  # update players' playerdata name
+  - '$Script$%PlayerData%$s.name=$player'
