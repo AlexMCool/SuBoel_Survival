@@ -6,10 +6,9 @@
 #-----------------------------------------------------------------------------------------------------------#
 
 PlayerJoin:
-  active: true
+  active: false
   execute:
-  - '$delay$<1>/mycommand:paypal_received_check'
-  - '/mycommand:name_change_check'
+  - '/joincommand'
 
 PlayerKick:
   active: false
