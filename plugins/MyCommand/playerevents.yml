@@ -9,7 +9,7 @@ PlayerJoin:
   active: true
   execute:
   - '/mycommand:paypal_received_check'
-  - '/mycommand:name_change_check'
+  - '/mycommand:name_change_check $uuid'
 
 PlayerKick:
   active: false
