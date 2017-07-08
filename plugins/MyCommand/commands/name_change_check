@@ -6,6 +6,8 @@ name_change_check:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
+  # arg1 = $uuid
+  
   # check if players' playerdata name is different then players' name
   - '$Script$%if%$PlayerData%$s.name%!=$player'
   
@@ -191,3 +193,9 @@ name_change_check:
   
   # update players' playerdata name
   - '$Script$%PlayerData%$s.name=$player'
+  
+  # check if players' uuid.name is different then players' name
+  - '$Script$%if%$s.uuid.$arg1.name!=$player'
+  
+  # set new name
+  - '$Script$%Variable%$s.uuid.$arg1.name=$player'
