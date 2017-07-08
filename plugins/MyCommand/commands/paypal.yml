@@ -12,7 +12,14 @@ paypal:
   ####################################### 
   # arg1 = send
   # arg2 = (receiver)
-  - '$Script$%if%$arg1==send'
+  
+  # trying to send money to yourself
+  - '$Script$%if%$arg1==send<and>$arg2==$player'
+  # "<PayPal> You can't send money to yourself"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t send money to yourself"}]'
+  
+  # sending is ok
+  - '$Script$%if%$arg1==send<and>$arg2!=$player'
   
   # paypal send command
   - '/mycommand:paypal_send $arg2 $arg3'
