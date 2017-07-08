@@ -17,7 +17,7 @@ shop_redstone_create:
   
   
 ##############################################################################
-#                            shop redstone create                            #
+#                            shop redstone click                             #
 ##############################################################################
 shop_redstone_click:
   command: /shop_redstone_click
@@ -52,7 +52,7 @@ shop_redstone_click_sneakcheck:
   # arg4 = $locZ
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg7 = $s.uuid.$arg5.name
+  # arg7 = $s.uuid.(seller_uuid).name
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
@@ -90,7 +90,7 @@ shop_redstone_click_action:
   # arg4 = $locZ
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg7 = $s.uuid.$arg5.name
+  # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
   - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
@@ -131,7 +131,7 @@ shop_redstone_click_action:
   # arg4 = $locZ
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg7 = $s.uuid.$arg5.name
+  # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
   - '$Script$%elseif%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
@@ -183,7 +183,7 @@ shop_redstone_click_action:
   # arg4 = $locZ
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg7 = $s.uuid.$arg5.name
+  # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
   - '$Script$%elseif%$arg8==sneak'
