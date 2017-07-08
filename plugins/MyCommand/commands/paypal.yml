@@ -6,7 +6,7 @@ paypal:
   type: RUN_AS_OPERATOR
   require_all_arguments: false
   register: true
-  runcmd: 
+  runcmd:
   #######################################
   #                send                 #
   ####################################### 
