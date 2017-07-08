@@ -9,8 +9,8 @@ name_change_check:
   # check if players' playerdata name is different then players' name
   - '$Script$%if%$PlayerData%$s.name%!=$player'
   
-  # reset score
-  - '/minecraft:scoreboard players reset $player ssCoins'
+  # reset score (delay because of playerevent happening before join message)
+  - '$delay$<1>/minecraft:scoreboard players reset $player ssCoins'
   
   - '/minecraft:scoreboard players reset $player sstAnimalsBred'
   - '/minecraft:scoreboard players reset $player sstArmorCleaned'

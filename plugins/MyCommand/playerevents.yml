@@ -8,7 +8,7 @@
 PlayerJoin:
   active: true
   execute:
-  - '$delay$<1>/mycommand:paypal_received_check'
+  - '/mycommand:paypal_received_check'
   - '/mycommand:name_change_check'
 
 PlayerKick:
