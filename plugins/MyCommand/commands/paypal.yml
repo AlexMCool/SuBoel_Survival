@@ -231,8 +231,8 @@ paypal_received_check:
   # if player has received money
   - '$Script$%if%$PlayerData%$s.paypal.received%!=NoData<and>$PlayerData%$s.paypal.received%>0'
   
-  # "[PayPal] You have received ßx while you were offline"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You have received "},{"bold":"false","color":"dark_aqua","text":"ß$PlayerData%$s.paypal.received%"},{"bold":"false","color":"gray","text":" while you were offline"}]'
+  # "[PayPal] You have received ßx while you were offline (delay because of playerevent happening before join message)"
+  - '$delay$<1>/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You have received "},{"bold":"false","color":"dark_aqua","text":"ß$PlayerData%$s.paypal.received%"},{"bold":"false","color":"gray","text":" while you were offline"}]'
   
   # add coins
   - '/scoreboard players add $player ssCoins $PlayerData%$s.paypal.received%'
