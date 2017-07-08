@@ -11,10 +11,10 @@ shop_click:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $uuid
   
   # check if clicker sneaks
-  - '/mycommand:shop_click_sneakcheck $player $arg2 $arg3 $arg4 $arg5 $arg6'
+  - '/mycommand:shop_click_sneakcheck $player $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name'
 
 
 
@@ -33,22 +33,22 @@ shop_click_sneakcheck:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $s.uuid.(seller_uuid).name
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
   
   # add tag if enough coins
-  - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg5] add enough'
+  - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg5] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=enough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal enough'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak=0,tag=!enough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal shortage'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=enough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak enough'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=!enough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak shortage'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal enough'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal shortage'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak enough'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak shortage'
   
   # remove tag
-  - '/minecraft:scoreboard players tag @a[name=$arg1,tag=enough] remove enough'
+  - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
 
 
 
@@ -70,7 +70,7 @@ shop_click_action:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $s.uuid.(seller_uuid).name
   # arg7 = normal / sneak
   # arg8 = enough / shortage
   
@@ -144,7 +144,7 @@ shop_click_action:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $s.uuid.(seller_uuid).name
   # arg7 = normal / sneak
   # arg8 = enough / shortage
   
@@ -190,7 +190,7 @@ shop_click_action:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $s.uuid.(seller_uuid).name
   # arg7 = normal / sneak
   # arg8 = enough / shortage
   
@@ -263,7 +263,7 @@ shop_stock:
   # arg3 = $s.shop.init.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg6 = $player (seller)
+  # arg6 = $s.uuid.(seller_uuid).name
   # arg7 = 1 / 2 / 4 / ... / 512 / 1024 / 2048
   
   # set stock to 0 (if necessary)
