@@ -1,0 +1,204 @@
+##############################################################################
+#                            shop redstone create                            #
+##############################################################################
+shop_redstone_create:
+  command: /shop_redstone_create
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = (what to sell)
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  
+  # set shop sign 
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  
+  
+  
+  
+  
+##############################################################################
+#                            shop redstone create                            #
+##############################################################################
+shop_redstone_click:
+  command: /shop_redstone_click
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $locX
+  # arg2 = $locY
+  # arg3 = $locZ
+  # arg4 = (what to sell)
+  # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg6 = $uuid
+  
+  # check if clicker sneaks
+  - '/mycommand:shop_redstone_click_sneakcheck $player $arg1 $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name'
+  
+  
+  
+  
+  
+##############################################################################
+#                       shop redstone click sneakcheck                       #
+##############################################################################
+shop_redstone_click_sneakcheck:
+  command: /shop_redstone_click_sneakcheck
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = (what to sell)
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.$arg5.name
+  
+  # reset sneak score
+  - '/minecraft:scoreboard players set $arg1 ssSneak 0'
+  
+  # add tag if enough coins
+  - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg6] add ssEnough'
+  
+  # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
+  
+  
+  
+  
+  
+##############################################################################
+#                         shop redstone click action                         #
+##############################################################################
+shop_redstone_click_action:
+  command: /shop_redstone_click_action
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #              own shop               #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = (what to sell)
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.$arg5.name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
+  
+  # store shop's location
+  - '$Script$%Variable%$s.shop.init.redstone.x=$arg2'
+  - '$Script$%Variable%$s.shop.init.redstone.y=$arg3'
+  - '$Script$%Variable%$s.shop.init.redstone.z=$arg4'
+  # get the y value of the redstone dust
+  - '$Script$%Variable%$s.shop.init.redstone.y-2'
+   
+  # setup stat and check for redstone dust
+  - '/minecraft:scoreboard players set $arg1 ssRedstone 0'
+  - '/minecraft:stats entity $arg1 set SuccessCount $arg1 ssRedstone'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire *'
+  - '/minecraft:stats entity $arg1 clear SuccessCount'
+  
+  # "[Shop] You didn't have to pay, because you're the owner of this shop"
+  - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone_min=1] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You didn''t have to pay, because you''re the owner of this shop"}]'
+  
+  # "[Shop] This shop isn't active yet. There needs to be a redstone dust 2 blocks below the sign"
+  - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone=0] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" This shop isn''t active yet. There needs to be a redstone dust "},{"bold":"false","color":"dark_aqua","text":"2"},{"bold":"false","color":"gray","text":" blocks below the sign"}]'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @a ssRedstone'
+ 
+  # set active redstone_dust (it replaces redstone_dust, so the score doesn't matter)
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
+  # wait so the redstone_dust is 1 redstone tick active, then turns the dust off
+  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
+
+  #######################################
+  #                 buy                 #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = (what to sell)
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.$arg5.name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  - '$Script$%elseif%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
+  
+  # store shop's location
+  - '$Script$%Variable%$s.shop.init.redstone.x=$arg2'
+  - '$Script$%Variable%$s.shop.init.redstone.y=$arg3'
+  - '$Script$%Variable%$s.shop.init.redstone.z=$arg4'
+  # get the y value of the redstone dust
+  - '$Script$%Variable%$s.shop.init.redstone.y-2'
+   
+  # setup stat and check for redstone dust
+  - '/minecraft:scoreboard players set $arg1 ssRedstone 0'
+  - '/minecraft:stats entity $arg1 set SuccessCount $arg1 ssRedstone'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire *'
+  - '/minecraft:stats entity $arg1 clear SuccessCount'
+  
+  # "[Shop] Your purchase of ßx was successful"
+  - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone_min=1] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Your purchase of "},{"bold":"false","color":"dark_aqua","text":"ß$arg6"},{"bold":"false","color":"gray","text":" was "},{"bold":"false","color":"dark_aqua","text":"successful"}]'
+  # add and remove coins
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players add $arg7 ssCoins $arg6'
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players remove @s ssCoins $arg6'
+  
+  # "[Shop] This shop isn't active yet. There needs to be a redstone dust 2 blocks below the sign"
+  - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone=0] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" This shop isn''t active yet. There needs to be a redstone dust "},{"bold":"false","color":"dark_aqua","text":"2"},{"bold":"false","color":"gray","text":" blocks below the sign"}]'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @a ssRedstone'
+ 
+  # set active redstone_dust (it replaces redstone_dust, so the score doesn't matter)
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
+  # wait so the redstone_dust is 1 redstone tick active, then turns the dust off
+  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
+  
+  #######################
+  #      no coins       #
+  #######################
+  - '$Script$%elseif%$arg1!=$arg7<and>$arg8==normal<and>$arg9==shortage'
+  
+  # "[Shop] You don't have enough coins"
+  - '/minecraft:tellraw $arg1 [[{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You don''t have enough coins"}]]'
+
+  #######################################
+  #                info                 #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = (what to sell)
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.$arg5.name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  - '$Script$%elseif%$arg8==sneak'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg7"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" $arg5"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
