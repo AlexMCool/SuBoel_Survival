@@ -1,593 +1,27 @@
 variables:
   $s:
+    char:
+      colon: ':'
+    uuid:
+      af42555d-a7bf-4499-a194-2f319638fbd2:
+        name: AlexMCool
+      ba089104-9d21-4bec-b2db-ca1971afe7d8:
+        name: just_a_jenna
     intersection:
-      calculation: 15
-      option: 15
-      type: east_north_west
+      calculation: 0
+      option: 0
+      type: none
       id:
-        now: 24
-        '1':
-          x: 4096
-          y: 64
-          z: 4096
-          type: east_north_west
-          direction: west
-        '2':
-          x: 4176
-          y: 64
-          z: 4096
-          direction: north
-          type: east_north_west
-        '3':
-          x: 4096
-          y: 64
-          z: 4016
-          direction: west
-          type: north_south_west
-        '4':
-          x: 4016
-          y: 64
-          z: 4096
-          direction: west
-          type: east_west
-        '5':
-          x: 4256
-          y: 64
-          z: 4096
-          direction: south
-          type: east_south_west
-        '6':
-          x: 4176
-          y: 64
-          z: 4016
-          direction: north
-          type: north_south
-        '7':
-          x: 4096
-          y: 64
-          z: 3936
-          direction: west
-          type: south_west
-        '8':
-          x: 4016
-          y: 64
-          z: 4016
-          direction: west
-          type: east_west
-        '9':
-          x: 3936
-          y: 64
-          z: 4096
-          direction: south
-          type: east_south_west
-        '10':
-          x: 4336
-          y: 64
-          z: 4096
-          direction: west
-          type: east_west
-        '11':
-          x: 4256
-          y: 64
-          z: 4176
-          direction: north
-          type: east_north_west
-        '12':
-          x: 4176
-          y: 64
-          z: 3936
-          direction: south
-          type: east_south
-        '13':
-          x: 4016
-          y: 64
-          z: 3936
-          direction: east
-          type: east_west
-        '14':
-          x: 3936
-          y: 64
-          z: 4016
-          direction: east
-          type: east_west
-        '15':
-          x: 3936
-          y: 64
-          z: 4176
-          direction: north
-          type: east_north_west
-        '16':
-          x: 3856
-          y: 64
-          z: 4096
-          direction: east
-        '17':
-          x: 4416
-          y: 64
-          z: 4096
-          direction: west
-        '18':
-          x: 4336
-          y: 64
-          z: 4176
-          direction: west
-        '19':
-          x: 4176
-          y: 64
-          z: 4176
-          direction: east
-        '20':
-          x: 4256
-          y: 64
-          z: 3936
-          direction: west
-        '21':
-          x: 3936
-          y: 64
-          z: 3936
-          direction: east
-        '22':
-          x: 3856
-          y: 64
-          z: 4016
-          direction: east
-        '23':
-          x: 4016
-          y: 64
-          z: 4176
-          direction: west
-        '24':
-          x: 3856
-          y: 64
-          z: 4176
-          direction: east
-      location:
-        4096,64,4096:
-          id: 1
-        4176,64,4096:
-          id: 2
-        4096,64,4016:
-          id: 3
-        4016,64,4096:
-          id: 4
-        4256,64,4096:
-          id: 5
-        4176,64,4016:
-          id: 6
-        4096,64,3936:
-          id: 7
-        4016,64,4016:
-          id: 8
-        3936,64,4096:
-          id: 9
-        4336,64,4096:
-          id: 10
-        4256,64,4176:
-          id: 11
-        4176,64,3936:
-          id: 12
-        4016,64,3936:
-          id: 13
-        3936,64,4016:
-          id: 14
-        3936,64,4176:
-          id: 15
-        3856,64,4096:
-          id: 16
-        4416,64,4096:
-          id: 17
-        4336,64,4176:
-          id: 18
-        4176,64,4176:
-          id: 19
-        4256,64,3936:
-          id: 20
-        3936,64,3936:
-          id: 21
-        3856,64,4016:
-          id: 22
-        4016,64,4176:
-          id: 23
-        3856,64,4176:
-          id: 24
+        now: 0
+      location: nothing
     factory:
       init:
-        player_factory_id: 18
-        list: 19
-      calculation: 25
+        player_factory_id: 0
+        list: 0
+      calculation: 0
       id:
-        now: 26
-        '1':
-          status: north
-          board:
-            background: 0
-            text: 7
-            word: d e s i g n s
-          x: 4112
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '2':
-          status: north
-          board:
-            background: 8
-            text: 7
-            word: c o m p a n i e s
-          x: 4112
-          y: 64
-          z: 4032
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '3':
-          status: south
-          board:
-            background: 15
-            text: 7
-            word: p r o p e r t i e s
-          x: 4032
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '4':
-          status: north
-          board:
-            background: 0
-            text: 7
-            word: e n t e r p r i s e
-          x: 4032
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '5':
-          status: north
-          board:
-            background: 0
-            text: 15
-            word: e n t e r p r i s e
-          x: 4192
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '6':
-          status: north
-          board:
-            background: 15
-            text: 8
-            word: p r o p e r t i e s
-          x: 4192
-          y: 64
-          z: 4032
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '7':
-          status: east
-          board:
-            background: 0
-            text: 15
-            word: e n t e r p r i s e
-          x: 4032
-          y: 64
-          z: 3952
-          east: used
-          north: -1
-          south: -1
-          west: -1
-        '8':
-          status: west
-          board:
-            background: 0
-            text: 7
-            word: c o m p a n i e s
-          x: 4112
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: -1
-          west: used
-        '9':
-          status: south
-          board:
-            background: 8
-            text: 7
-            word: s e r v i c e s
-          x: 3952
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '10':
-          status: north
-          board:
-            background: 8
-            text: 7
-            word: s c i e n t i f i c
-          x: 3952
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '11':
-          status: west
-          board:
-            background: 8
-            text: 7
-            word: b u s i n e s s
-          x: 4272
-          y: 64
-          z: 4112
-          east: -1
-          north: -1
-          south: -1
-          west: used
-        '12':
-          status: south
-          board:
-            background: 15
-            text: 8
-            word: u n l i m i t e d
-          x: 4272
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '13':
-          status: west
-          board:
-            background: 0
-            text: 7
-            word: c o m p a n i e s
-          x: 4192
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: -1
-          west: used
-        '14':
-          status: south
-          board:
-            background: 15
-            text: 8
-            word: c o m p a n i e s
-          x: 4032
-          y: 64
-          z: 3872
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '15':
-          status: south
-          board:
-            background: 7
-            text: 15
-            word: s y s t e m s
-          x: 3952
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '16':
-          status: east
-          board:
-            background: 15
-            text: 8
-            word: u n l i m i t e d
-          x: 3872
-          y: 64
-          z: 4112
-          east: used
-          north: -1
-          south: -1
-          west: -1
-        '17':
-          status: south
-          board:
-            background: 7
-            text: 0
-            word: u n l i m i t e d
-          x: 3872
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '18':
-          status: north
-          board:
-            background: 7
-            text: 15
-            word: p r o d u c t i o n s
-          x: 4352
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '19':
-          status: south
-          board:
-            background: 0
-            text: 7
-            word: l a b s
-          x: 4352
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '20':
-          status: north
-          board:
-            background: 7
-            text: 15
-            word: c o m p a n i e s
-          x: 4272
-          y: 64
-          z: 4192
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '21':
-          status: north
-          board:
-            background: 0
-            text: 7
-            word: d e s i g n s
-          x: 4192
-          y: 64
-          z: 4192
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '22':
-          status: south
-          board:
-            background: 15
-            text: 0
-            word: w o r l d w i d e
-          x: 4192
-          y: 64
-          z: 3872
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '23':
-          status: south
-          board:
-            background: 0
-            text: 7
-            word: b u s i n e s s
-          x: 3952
-          y: 64
-          z: 3872
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '24':
-          status: south
-          board:
-            background: 8
-            text: 15
-            word: d e v e l o p m e n t
-          x: 3872
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: used
-          west: -1
-        '25':
-          status: north
-          board:
-            background: 7
-            text: 15
-            word: u n l i m i t e d
-          x: 3952
-          y: 64
-          z: 4192
-          east: -1
-          north: used
-          south: -1
-          west: -1
-        '26':
-          status: 0
-          board:
-            background: 7
-            text: 0
-            word: d e v e l o p m e n t
-          x: 3872
-          y: 64
-          z: 4192
-          east: unavailable
-          north: unused
-          south: unavailable
-          west: unavailable
-      location:
-        4112,64,4112:
-          id: 1
-        4112,64,4032:
-          id: 2
-        4032,64,4032:
-          id: 3
-        4032,64,4112:
-          id: 4
-        4192,64,4112:
-          id: 5
-        4192,64,4032:
-          id: 6
-        4032,64,3952:
-          id: 7
-        4112,64,3952:
-          id: 8
-        3952,64,4032:
-          id: 9
-        3952,64,4112:
-          id: 10
-        4272,64,4112:
-          id: 11
-        4272,64,4032:
-          id: 12
-        4192,64,3952:
-          id: 13
-        4032,64,3872:
-          id: 14
-        3952,64,3952:
-          id: 15
-        3872,64,4112:
-          id: 16
-        3872,64,4032:
-          id: 17
-        4352,64,4112:
-          id: 18
-        4352,64,4032:
-          id: 19
-        4272,64,4192:
-          id: 20
-        4192,64,4192:
-          id: 21
-        4192,64,3872:
-          id: 22
-        3952,64,3872:
-          id: 23
-        3872,64,3952:
-          id: 24
-        3952,64,4192:
-          id: 25
-        3872,64,4192:
-          id: 26
+        now: 0
+      location: nothing
       level:
         '1':
           upgrade:
@@ -1063,16 +497,77 @@ variables:
     shop:
       init:
         damage: 0
-        item: sign
+        item: none
         stock: 0
-    paypal:
-      AlexMCool:
-        tan: 144114
-        receiver: D33tj3
-        amount: 10
+        redstone:
+          x: 0
+          y: 0
+          z: 0
     message:
       AlexMCool: AlexMCool test \n hi
     translation:
+      word:
+        brands: b r a n d s
+        business: b u s i n e s s
+        companies: c o m p a n i e s
+        corporations: c o r p o r a t i o n s
+        creative: c r e a t i v e
+        designs: d e s i g n s
+        development: d e v e l o p m e n t
+        digital: d i g i t a l
+        dynamics: d y n a m i c s
+        enterprise: e n t e r p r i s e
+        industrial: i n d u s t r i a l
+        industries: i n d u s t r i e s
+        innovations: i n n o v a t i o n s
+        international: i n t e r n a t i o n a l
+        labs: l a b s
+        logistics: l o g i s t i c s
+        organisations: o r g a n i s a t i o n s
+        productions: p r o d u c t i o n s
+        properties: p r o p e r t i e s
+        services: s e r v i c e s
+        scientific: s c i e n t i f i c
+        solutions: s o l u t i o n s
+        studios: s t u d i o s
+        systems: s y s t e m s
+        tech: t e c h
+        technologies: t e c h n o l o g i e s
+        unlimited: u n l i m i t e d
+        worldwide: w o r l d w i d e
+        '&co': '& . c o'
+      brands: Brands
+      business: Business
+      companies: Companies
+      corporations: Corporations
+      creative: Creative
+      designs: Designs
+      development: Development
+      digital: Digital
+      enterprise: Enterprise
+      industrial: Industrial
+      industries: Industries
+      innovations: Innovations
+      international: International
+      labs: Labs
+      logistics: Logistics
+      organisations: Organisations
+      productions: Productions
+      properties: Properties
+      services: Services
+      scientific: Scientific
+      solutions: Solutions
+      studios: Studios
+      systems: Systems
+      tech: Tech
+      technologies: Technologies
+      unlimited: Unlimited
+      worldwide: Worldwide
+      '&co': '& co'
+      east: East
+      north: North
+      south: South
+      west: West
       acacia_boat:0: Acacia Boat
       acacia_door:0: Acacia Door
       acacia_fence:0: Acacia Fence
