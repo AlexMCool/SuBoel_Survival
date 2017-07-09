@@ -6,7 +6,7 @@ factory_upgrade:
   # tp to factory (upgrade) location
   - '/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
   
-  # add 1 to next_level
+  # add 1 to variables
   - '$Script$%Variable%$s.factory.id.$arg6.next_level+1'
   - '$Script$%Variable%$s.factory.id.$arg6.level+1'
   
