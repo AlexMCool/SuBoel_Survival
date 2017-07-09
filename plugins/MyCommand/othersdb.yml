@@ -1,5 +1,6 @@
 variables:
   $s:
+    world: temp_world
     char:
       colon: ':'
     uuid:
@@ -108,8 +109,8 @@ variables:
           upgrade:
             requirement:
               comparator:0: 6
+              concrete_powder:8: 90
               dropper:0: 2
-              gravel:0: 90
               hopper:0: 2
               piston:0: 10
               redstone:0: 126
@@ -506,6 +507,39 @@ variables:
     message:
       AlexMCool: AlexMCool test \n hi
     translation:
+      next_level:
+        '1': '1'
+        '2': '2'
+        '3': '3'
+        '4': '4'
+        '5': '5'
+        '6': '6'
+        '7': '7'
+        '8': '8'
+        '9': '9'
+        '10': '10'
+        '11': '11'
+        '12': '12'
+        '13': '13'
+        '14': '14'
+        '15': '15'
+        '16': '16'
+        '17': '17'
+        '18': '18'
+        '19': '19'
+        '20': '20'
+        '21': '21'
+        '22': '22'
+        '23': '23'
+        '24': '24'
+        '25': '25'
+        '26': '26'
+        '27': '27'
+        '28': '28'
+        '29': '29'
+        '30': '31'
+        '32': '32'
+        '33': No Upgrades Available
       word:
         brands: b r a n d s
         business: b u s i n e s s
@@ -564,6 +598,7 @@ variables:
       unlimited: Unlimited
       worldwide: Worldwide
       '&co': '& co'
+      none: None
       east: East
       north: North
       south: South
@@ -712,22 +747,22 @@ variables:
       concrete:2: Magenta Concrete
       concrete:1: Orange Concrete
       concrete:0: White Concrete
-      concrete_powder:15: Black CPowder
-      concrete_powder:14: Red CPowder
-      concrete_powder:13: Green CPowder
-      concrete_powder:12: Brown CPowder
-      concrete_powder:11: Blue CPowder
-      concrete_powder:10: Purple CPowder
-      concrete_powder:9: Cyan CPowder
-      concrete_powder:8: LGRay CPowder
-      concrete_powder:7: Gray CPowder
-      concrete_powder:6: Pink CPowder
-      concrete_powder:5: Lime CPowder
-      concrete_powder:4: Yellow CPowder
-      concrete_powder:3: LBlue CPowder
-      concrete_powder:2: Magenta CPowder
-      concrete_powder:1: Orange CPowder
-      concrete_powder:0: White CPowder
+      concrete_powder:15: Black Powder
+      concrete_powder:14: Red Powder
+      concrete_powder:13: Green Powder
+      concrete_powder:12: Brown Powder
+      concrete_powder:11: Blue Powder
+      concrete_powder:10: Purple Powder
+      concrete_powder:9: Cyan Powder
+      concrete_powder:8: Silver Powder
+      concrete_powder:7: Gray Powder
+      concrete_powder:6: Pink Powder
+      concrete_powder:5: Lime Powder
+      concrete_powder:4: Yellow Powder
+      concrete_powder:3: LBlue Powder
+      concrete_powder:2: Magenta Powder
+      concrete_powder:1: Orange Powder
+      concrete_powder:0: White Powder
       cooked_beef:0: Steak
       cooked_chicken:0: Cooked Chicken
       cooked_fish:1: Cooked Salmon
