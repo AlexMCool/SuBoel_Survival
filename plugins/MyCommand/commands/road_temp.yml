@@ -20,16 +20,25 @@ road_temp:
   - '/sudo $player //pos1 3096,63,3096'
   - '/sudo $player //pos2 5096,64,5096'
   - '/sudo $player //replace air'
-  - '$Script$%Variable%$s.factory.id=nothing'
-  - '$Script$%Variable%$s.factory.id.now=0'
-  - '$Script$%Variable%$s.factory.location=nothing'
   - '$Script$%Variable%$s.intersection=nothing'
   - '$Script$%Variable%$s.intersection.calculation=0'
   - '$Script$%Variable%$s.intersection.option=0'
-  - '$Script$%Variable%$s.intersection.type=0'
+  - '$Script$%Variable%$s.intersection.type=none'
   - '$Script$%Variable%$s.intersection.id=nothing'
   - '$Script$%Variable%$s.intersection.id.now=0'
   - '$Script$%Variable%$s.intersection.location=nothing'
+  - '$Script$%Variable%$s.factory.init.player_factory_id=0'
+  - '$Script$%Variable%$s.factory.init.list=0'
+  - '$Script$%Variable%$s.factory.calculation=0'
+  - '$Script$%Variable%$s.factory.id=nothing'
+  - '$Script$%Variable%$s.factory.id.now=0'
+  - '$Script$%Variable%$s.factory.location=nothing'
+  - '$Script$%Variable%$s.shop.init.damage=0'
+  - '$Script$%Variable%$s.shop.init.item=none'
+  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.shop.init.redstone.x=0'
+  - '$Script$%Variable%$s.shop.init.redstone.y=0'
+  - '$Script$%Variable%$s.shop.init.redstone.z=0'
   - '/tp 4096 ~ 4096'
   
   
@@ -39,13 +48,32 @@ road_temp:
   
 test:
   command: /test
+  type: ICONMENU
+  register: true
+  iconmenu_title: 'hi'
+  iconmenu_type: CHEST
+  iconmenu_commands:
+  - '/say $PlayerDataFor%$player%$s.paypal.attempts_left%:DIAMOND_HOE:0:%openiconmenu%/iconmenupage2:&2$iteminhand:&aChange page'
+  
+  
+test2:
+  command: /test2
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
-  - '/say $PlayerData%$s.factory.level.1.upgrade.obtained.wooden_button:0%'
-  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==NoData'
-  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4=0'
-  - '/say yes'
+  - '/say $s.translation.word.$s.factory.id.$arg1.board.word'
   
-  - '$Script$%else%'
-  - '/say no'
+'example':
+  command: /iconmenu
+  type: ICON_MENU
+  text:
+  - 'POSITION:ITEM_NAME:ITEMDATA:COMMAND/MESSAGE:TITLE:DESCRIPTION;MULTILINES'
+  iconmenu_title: '&cMyCommand &4ItemMenu'
+  iconmenu_size: 27
+  iconmenu_commands:
+  - '0:GOLDEN_APPLE:0:/help:&2Help:&aOpen the help menu'
+  - '1:COMPASS:0:/mycmd:Menu:MyCommand menu'
+  - '9:EMERALD:0:/list:Player List:&bShow online players'
+  - '10:WATCH:0:/time set 0:Day:Turn day'
+  - '$Script$%if%$arg1==hoi'
+  - '26:WOOL:11:%openiconmenu%/iconmenu2:Next Page:&cChange IconMenu Page;&a--------->'

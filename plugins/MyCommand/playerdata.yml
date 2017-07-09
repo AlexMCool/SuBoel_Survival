@@ -3,113 +3,11 @@
 
 af42555d-a7bf-4499-a194-2f319638fbd2:
   $s:
+    name: AlexMCool
     board:
       letters: a l e x m c o o l
-    factory:
-      factory_id:
-        '1':
-          id: 1
-        '2':
-          id: 2
-        '3':
-          id: 3
-        '4':
-          id: 4
-        '5':
-          id: 5
-        '6':
-          id: 10
-        '7':
-          id: 13
-        '8':
-          id: 14
-        '9':
-          id: 16
-        '10':
-          id: 17
-        '11':
-          id: 18
-        '12':
-          id: 19
-        '13':
-          id: 20
-        '14':
-          id: 21
-        '15':
-          id: 22
-        '16':
-          id: 23
-        '17':
-          id: 24
-        '18':
-          id: 25
-      level:
-        '1':
-          upgrade:
-            obtained:
-              brick_block:0: 0
-              chest:0: 0
-              cobblestone:0: 0
-              cobblestone_wall:0: 0
-              concrete:7: 0
-              detector_rail:0: 0
-              golden_rail:0: 0
-              hopper:0: 0
-              iron_bars:0: 0
-              iron_door:0: 0
-              rail:0: 0
-              redstone_torch:0: 0
-              stained_glass:8: 0
-              stone:6: 0
-              stone_brick_stairs:0: 0
-              stone_slab:0: 0
-              stone_slab:5: 0
-              stone_stairs:0: 0
-              stonebrick:0: 0
-              trapped_chest:0: 0
-              wooden_button:0: 0
-            lack:
-              brick_block:0: 122
-              chest:0: 16
-              cobblestone:0: 2
-              cobblestone_wall:0: 3
-              concrete:7: 85
-              detector_rail:0: 1
-              golden_rail:0: 5
-              hopper:0: 21
-              iron_bars:0: 1
-              iron_door:0: 1
-              rail:0: 18
-              redstone_torch:0: 2
-              stained_glass:8: 8
-              stone:6: 108
-              stone_brick_stairs:0: 215
-              stone_slab:0: 66
-              stone_slab:5: 73
-              stone_stairs:0: 2
-              stonebrick:0: 114
-              trapped_chest:0: 12
-              wooden_button:0: 4
-    shop:
-      stock:
-        sign:0: 1
 450094ff-b6c7-4932-ba24-4ce06389dd56:
   $s:
+    name: D33tj3
     board:
       letters: d 3 3 t j 3
-    factory:
-      factory_id:
-        '1':
-          id: 6
-        '2':
-          id: 7
-        '3':
-          id: 8
-        '4':
-          id: 9
-        '5':
-          id: 11
-        '6':
-          id: 12
-        '7':
-          id: 15
