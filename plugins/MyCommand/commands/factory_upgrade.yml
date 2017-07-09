@@ -3,7 +3,12 @@ factory_upgrade:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
-  - '/tp 4032 64 4112'
+  # tp to factory (upgrade) location
+  - '/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  
+  # add 1 to variables
+  - '$Script$%Variable%$s.factory.id.$arg6.next_level+1'
+  - '$Script$%Variable%$s.factory.id.$arg6.level+1'
   
   #######################################
   #                east                 #
