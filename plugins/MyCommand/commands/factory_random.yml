@@ -35,14 +35,14 @@ factory_random_calculation:
   # set status to integer of possible directions
   - '/mycommand:factory_random_status_set $arg1'
   
-  # choose direction for factory
+  # teleport to factory location
+  - '/minecraft:tp $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z'
+  
+  # choose direction for factory, save tp location, set item to none, set level to 0, and set next_level to 1
   - '/mycommand:factory_random_direction_choose $arg1 $s.factory.id.$arg1.status'
   
   # set sides to '-1' and used side to 'used'
   - '/mycommand:factory_random_sides $arg1 $s.factory.id.$arg1.status'
-  
-  # teleport to factory location
-  - '/minecraft:tp $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z'
   
   # saves factory id and location to player
   - '$Script$%Variable%$s.factory.init.player_factory_id=1'
@@ -201,6 +201,43 @@ factory_random_direction_choose:
   - '$Script$%if%$arg2==0'
   - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%none%'
   
+  # save tp location
+  - '$Script$%if%$s.factory.id.$arg1.status==east'
+  - '/minecraft:tp ~66 ~ ~10'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '/minecraft:tp ~-66 ~ ~-10'
+  
+  # save tp location
+  - '$Script$%if%$s.factory.id.$arg1.status==north'
+  - '/minecraft:tp ~10 ~ ~-3'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '/minecraft:tp ~-10 ~ ~3'
+  
+  # save tp location
+  - '$Script$%if%$s.factory.id.$arg1.status==south'
+  - '/minecraft:tp ~53 ~ ~66'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '/minecraft:tp ~-53 ~ ~-66'
+  
+  # save tp location
+  - '$Script$%if%$s.factory.id.$arg1.status==west'
+  - '/minecraft:tp ~-3 ~ ~53'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '/minecraft:tp ~3 ~ ~-53'
+  
+  # set item to none and level to 0
+  - '$Script$%if%$s.factory.id.$arg1.status==east<or>$s.factory.id.$arg1.status==north<or>$s.factory.id.$arg1.status==south<or>$s.factory.id.$arg1.status==west'
+  - '$Script$%Variable%$s.factory.id.$arg1.item=none'
+  - '$Script$%Variable%$s.factory.id.$arg1.level=0'
+  - '$Script$%Variable%$s.factory.id.$arg1.next_level=1'
   
   
   
