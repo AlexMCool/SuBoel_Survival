@@ -54,7 +54,7 @@ road_factory_init:
   - '$Script$%if%$arg1==info'
   
   # resets factory information if necessary
-  - '/mycommand:road_factory_info_init $arg2 $arg3 $arg4 $arg5 $GetRandomStringFromList%0;7;8;15% $GetRandomStringFromList%15;8;7;0% $GetRandomStringFromList%$s.board.word.1;$s.board.word.2;$s.board.word.3;$s.board.word.4;$s.board.word.5;$s.board.word.6%'
+  - '/mycommand:road_factory_info_init $arg2 $arg3 $arg4 $arg5 $GetRandomStringFromList%0;7;8;15% $GetRandomStringFromList%15;8;7;0%'
   
   #######################################
   #                 id                  #
@@ -111,7 +111,6 @@ road_factory_info_init:
   # arg4 = $locZ
   # arg5 = $GetRandomStringFromList%0;7;8;15% 
   # arg6 = $GetRandomStringFromList%15;8;7;0% 
-  # arg7 = $GetRandomStringFromList%$s.board.word.1;$s.board.word.2;$s.board.word.3;$s.board.word.4;$s.board.word.5;$s.board.word.6%'
   
   # checks if the variable contains a '.' (which means there's nothing stored)
   - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
@@ -139,7 +138,7 @@ road_factory_info_init:
   
   # choose word (again testing for '.' because of the 'if' statements before)  
   - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
-  - '$Script$%Variable%$s.factory.id.$arg1.board.word=$GetRandomStringFromList%b r a n d s;b u s i n e s s;c o m p a n i e s;c o r p o r a t i o n s;c r e a t i v e;d e s i g n s;d e v e l o p m e n t;d i g i t a l;d y n a m i c s;e n t e r p r i s e;i n d u s t r i a l;i n d u s t r i e s;i n n o v a t i o n s;i n t e r n a t i o n a l;l a b s;l o g i s t i c s;o r g a n i s a t i o n s;p r o d u c t i o n s;p r o p e r t i e s;s e r v i c e s;s c i e n t i f i c;s o l u t i o n s;s t u d i o s;s y s t e m s;t e c h;t e c h n o l o g i e s;u n l i m i t e d;w o r l d w i d e;& . c o%'
+  - '$Script$%Variable%$s.factory.id.$arg1.board.word=$GetRandomStringFromList%brands;business;companies;corporations;creative;designs;development;digital;dynamics;enterprise;industrial;industries;innovations;international;labs;logistics;organisations;productions;properties;services;scientific;solutions;studios;systems;tech;technologies;unlimited;worldwide;&co%'
   
   # save location
   - '$Script$%Variable%$s.factory.id.$arg1.x=$arg2'
