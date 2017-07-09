@@ -1,0 +1,30 @@
+##############################################################################
+#                        factory upgrade list message                        #
+############################################################################## 
+factory_upgrade_list_message:
+  command: /factory_upgrade_list_message
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = acacia_boat / acacia_door / acacia_fence / ... / yellow_flower / yellow_glazed_terracacotta / yellow_shulker_box
+  # arg4 = 0 / 1 / 2 / ... / 13 / 14 / 15
+  
+  # obtained doesn't exist
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==NoData'
+  # set obtained to 0
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4=0'
+
+  #######################################
+  #               message               #
+  ####################################### 
+  # exactly same obtained as requirement
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%==$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4'
+  # "> -------"
+  - '/minecraft:tellraw @s [{"bold":"true","color":"dark_aqua","text":"> "},{"bold":"false","color":"gray","strikethrough":"true","text":"$s.translation.$arg3:$arg4: "},{"bold":"false","color":"gray","strikethrough":"true","text":"$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%"},{"bold":"false","color":"gray","strikethrough":"true","text":" / "},{"bold":"false","color":"gray","strikethrough":"true","text":"$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4"}]'
+  
+  # obtained is not the same as requirement
+  - '$Script$%if%$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%!=$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4'
+  # ">        "
+  - '/minecraft:tellraw @s [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" $s.translation.$arg3:$arg4: "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.factory.level.$arg2.upgrade.obtained.$arg3:$arg4%"},{"bold":"false","color":"gray","text":" / "},{"bold":"false","color":"dark_aqua","text":"$s.factory.level.$arg2.upgrade.requirement.$arg3:$arg4"}]'
