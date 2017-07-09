@@ -6,11 +6,39 @@ shop_redstone_create:
   type: RUN_CONSOLE
   register: true
   runcmd:
+  #######################################
+  #           error messages            #
+  ####################################### 
   # arg1 = (what to sell)
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   
-  # set shop sign 
-  - '/minecraft:execute $player ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  # price under 1
+  - '$Script$%elseif%$arg2<1'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  
+  # prive above 65536
+  - '$Script$%elseif%$arg2>65536'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 65536"}]'
+  
+  #######################################
+  #           no price error            #
+  ####################################### 
+  # arg1 = (what to sell)
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%elseif%$arg2>=1<and>$arg2<=65536'
+  
+  # check for sign
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
+  
+  # valid; blockdata sign
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  
+  # invalid; error message
+  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$player,tag=ssValid] remove ssValid'
   
   
   
