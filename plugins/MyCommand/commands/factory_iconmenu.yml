@@ -1,0 +1,87 @@
+##############################################################################
+#                          factory iconmenu init id                          #
+##############################################################################
+factory_iconmenu_init_id:
+  command: /factory_iconmenu_init_id
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # init id
+  - '/mycommand:factory_iconmenu $PlayerData%$s.factory.factory_id.1.id%'
+  
+  
+  
+  
+  
+##############################################################################
+#                              factory iconmenu                              #
+##############################################################################
+factory_iconmenu:
+  command: /factory_iconmenu
+  type: ICON_MENU
+  register: true
+  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_size: 56
+  iconmenu_commands:
+  # arg1 = $PlayerData%$s.factory.factory_id.1.id%
+  
+  # {Command:"/mycommand:factory_iconmenu_checktype $s.factory.id.$arg1.tp.x $s.factory.id.$arg1.tp.y $s.factory.id.$arg1.tp.z $s.factory.id.$arg1.next_level $s.factory.id.$arg1.status $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z $arg1"}
+  - '0:BRICK:0:/mycommand$s.char.colonfactory_iconmenu_checktype $s.factory.id.$arg1.tp.x $s.factory.id.$arg1.tp.y $s.factory.id.$arg1.tp.z $s.factory.id.$arg1.next_level $s.factory.id.$arg1.status $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z $arg1:&3&l<&b&m---&3&l[&f1&3&l]&b&m---&3&l>:&3> &7Facing$s.char.colon &3$s.translation.$s.factory.id.$arg1.status;&3> &7Location$s.char.colon &3$s.factory.id.$arg1.tp.x $s.factory.id.$arg1.tp.y $s.factory.id.$arg1.tp.z;&3> &7Name$s.char.colon &3$player $s.translation.$s.factory.id.$arg1.board.word;&3> &7Item$s.char.colon &3$s.translation.$s.factory.id.$arg1.item;&3> &7Level$s.char.colon &3$s.factory.id.$arg1.level'
+  
+  
+  
+  
+  
+##############################################################################
+#                         factory iconmenu checktype                         #
+##############################################################################
+factory_iconmenu_checktype:
+  command: /factory_iconmenu_checktype
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:  
+  #######################################
+  #               create                #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  - '$Script$%if%$arg4==1'
+  - '$delay$<2>/mycommand:factory_iconmenu_create_actions $multiargs'
+  
+  #######################################
+  #               upgrade               #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  - '$Script$%if%$arg4>1<and>$arg4<32'
+  - '$delay$<2>/mycommand:factory_iconmenu_upgrade_actions $multiargs'
+  
+  
+  #######################################
+  #             no upgrade              #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  - '$Script$%if%$arg4==32'
+  - '$delay$<2>/mycommand:factory_iconmenu_noupgrade_actions $multiargs'
