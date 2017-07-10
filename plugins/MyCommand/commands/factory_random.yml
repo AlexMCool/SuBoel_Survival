@@ -8,14 +8,16 @@ factory_random:
   runcmd:
   # latest factory is still at level 0
   - '$Script$%if%$s.factory.id.$arg1.level==0'
+  # "[Factory] You can't claim a new factory plot, because you already have an empty plot"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t claim a new factory plot, because you already have an empty plot"}]'
   
   - '$Script$%else%'
   # set calculation to 1
   - '$Script$%Variable%$s.factory.calculation=1'
-  
   # set calculation to lowest (unused) factory
   - '/mycommand:factory_random_calculation $s.factory.calculation'
+  # "[Factory] You can't claim a new factory plot, because you already have an empty plot"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" claimed a new factory plot"}]'
   
   
   
