@@ -16,10 +16,11 @@ factory_iconmenu_create_actions:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
-  # {Command:"/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5"}
-  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
+  # {Command:"/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10"}
+  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
   # {Command:"%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_create $multiargs"}
   - '7:DIAMOND:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_create $multiargs:&3&l<&b&m---&3&l[&fCreate&3&l]&b&m---&3&l>:&3> &7Show creating options;  &7for this factory'
   
@@ -43,7 +44,8 @@ factory_iconmenu_check_create:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # check if player has obtained everything for this level
   - '$Script$%if%$arg4==1<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.brick_block:0%==$s.factory.level.$arg4.upgrade.requirement.brick_block:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.chest:0%==$s.factory.level.$arg4.upgrade.requirement.chest:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.cobblestone:0%==$s.factory.level.$arg4.upgrade.requirement.cobblestone:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.cobblestone_wall:0%==$s.factory.level.$arg4.upgrade.requirement.cobblestone_wall:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.concrete:7%==$s.factory.level.$arg4.upgrade.requirement.concrete:7<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.detector_rail:0%==$s.factory.level.$arg4.upgrade.requirement.detector_rail:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.golden_rail:0%==$s.factory.level.$arg4.upgrade.requirement.golden_rail:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.hopper:0%==$s.factory.level.$arg4.upgrade.requirement.hopper:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.iron_bars:0%==$s.factory.level.$arg4.upgrade.requirement.iron_bars:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.iron_door:0%==$s.factory.level.$arg4.upgrade.requirement.iron_door:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.rail:0%==$s.factory.level.$arg4.upgrade.requirement.rail:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.redstone_torch:0%==$s.factory.level.$arg4.upgrade.requirement.redstone_torch:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stained_glass:8%==$s.factory.level.$arg4.upgrade.requirement.stained_glass:8<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stone:6%==$s.factory.level.$arg4.upgrade.requirement.stone:6<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stone_brick_stairs:0%==$s.factory.level.$arg4.upgrade.requirement.stone_brick_stairs:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stone_slab:0%==$s.factory.level.$arg4.upgrade.requirement.stone_slab:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stone_slab:5%==$s.factory.level.$arg4.upgrade.requirement.stone_slab:5<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stone_stairs:0%==$s.factory.level.$arg4.upgrade.requirement.stone_stairs:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stonebrick:0%==$s.factory.level.$arg4.upgrade.requirement.stonebrick:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.trapped_chest:0%==$s.factory.level.$arg4.upgrade.requirement.trapped_chest:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.wooden_button:0%==$s.factory.level.$arg4.upgrade.requirement.wooden_button:0'
@@ -76,7 +78,8 @@ factory_iconmenu_create_without:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
   - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
@@ -105,7 +108,8 @@ factory_iconmenu_create_with:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
   - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
