@@ -6,6 +6,11 @@ factory_random:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
+  # latest factory is still at level 0
+  - '$Script$%if%$s.factory.id.$arg1.level==0'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t claim a new factory plot, because you already have an empty plot"}]'
+  
+  - '$Script$%else%'
   # set calculation to 1
   - '$Script$%Variable%$s.factory.calculation=1'
   
