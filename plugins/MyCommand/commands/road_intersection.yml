@@ -930,12 +930,6 @@ road_intersection_create:
   
   
   
-  # if the type is impossible, go to next intersection
-  - '$Script$%if%$s.intersection.type==impossible'
-  - '/mycommand:new0'
-  
-  
-  
   
   
 ##############################################################################
