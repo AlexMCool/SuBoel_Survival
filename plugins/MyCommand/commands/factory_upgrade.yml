@@ -6,6 +6,14 @@ factory_upgrade:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
+  # store origin
+  - '$Script$%PlayerData%$s.init.location.x=$locX'
+  - '$Script$%PlayerData%$s.init.location.y=$locY'
+  - '$Script$%PlayerData%$s.init.location.z=$locZ'
+  - '$Script$%PlayerData%$s.init.location.rotation.yaw=$loc_yaw'
+  - '$Script$%PlayerData%$s.init.location.rotation.pitch=$loc_pitch'
+  - '$Script$%PlayerData%$s.init.location.world=$world'
+  
   # tp to factory (upgrade) location
   - '/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
   
@@ -33,11 +41,11 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~48 ~ ~16'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-48 ~ ~-16'
   # "[Factory] The factory was successfully created"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
@@ -200,11 +208,11 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~32 ~ ~16'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-16'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
@@ -335,11 +343,11 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~16 ~ ~'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~'
   # "[Factory] The factory was successfully created"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
@@ -502,11 +510,11 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~16 ~ ~16'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~-16'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
@@ -637,11 +645,11 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~32 ~ ~48'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-48'
   # "[Factory] The factory was successfully created"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
@@ -804,11 +812,11 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~32 ~ ~32'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-32'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
@@ -939,11 +947,11 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~ ~ ~32'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~ ~ ~-32'
   # "[Factory] The factory was successfully created"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
@@ -1106,11 +1114,11 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # keep chunk
   - '/minecraft:tp ~16 ~ ~32'
-  - '$Script$%PlayerData%$s.chunk.x=$locX'
-  - '$Script$%PlayerData%$s.chunk.x/16'  
-  - '$Script$%PlayerData%$s.chunk.z=$locZ'
-  - '$Script$%PlayerData%$s.chunk.z/16'
-  - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~-32'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
@@ -1222,7 +1230,7 @@ factory_upgrade:
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   #######################################
-  #     reset obtained requirements     #
+  #               always                #
   ####################################### 
   # arg1 = east / north / south / west
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
@@ -1232,3 +1240,6 @@ factory_upgrade:
   # arg6 = $PlayerData%$s.factory.factory_id.x.id
   - '$Script$%if%always==always'
   - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade=NoData'
+  
+  # tp back to origin
+  - '/multiverse-core:mvtp $player e:$PlayerData%$s.init.location.world%:$PlayerData%$s.init.location.x%,$PlayerData%$s.init.location.y%,$PlayerData%$s.init.location.z%:$PlayerData%$s.init.location.rotation.pitch%:$PlayerData%$s.init.location.rotation.yaw%'
