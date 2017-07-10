@@ -16,10 +16,11 @@ factory_iconmenu_upgrade_actions:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/multiverse-core:mvtp e:$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5"}
-  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
+  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
   # {Command:"%openiconmenu%/mycommand:factory_iconmenu_check_upgrade $multiargs"}
   - '7:EMERALD:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_upgrade $multiargs:&3&l<&b&m---&3&l[&fUpgrade&3&l]&b&m---&3&l>:&3> &7Show options about upgrading;  &7this factory to level &3$s.translation.next_level.$arg4'
   
@@ -43,7 +44,8 @@ factory_iconmenu_check_upgrade:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # check if player has all requirements
   - '$Script$%if%$arg4==2<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.lever:0%==$s.factory.level.$arg4.upgrade.requirement.lever:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.redstone:0%==$s.factory.level.$arg4.upgrade.requirement.redstone:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.redstone_lamp:0%==$s.factory.level.$arg4.upgrade.requirement.redstone_lamp:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.repeater:0%==$s.factory.level.$arg4.upgrade.requirement.repeater:0<and>$PlayerData%$s.factory.level.$arg4.upgrade.obtained.stonebrick:0%==$s.factory.level.$arg4.upgrade.requirement.stonebrick:0'
@@ -165,7 +167,8 @@ factory_iconmenu_upgrade_without:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
   - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
@@ -194,7 +197,8 @@ factory_iconmenu_upgrade_with:
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
   # arg8 = $s.factory.id.$arg1.z 
-  # arg9 = $PlayerData%$s.factory.factory_id.1.id%
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
   - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
