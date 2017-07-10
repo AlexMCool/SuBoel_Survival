@@ -1,0 +1,291 @@
+##############################################################################
+#                               shop xp create                               #
+##############################################################################
+shop_xp_create:
+  command: /shop_xp_create
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #           error messages            #
+  ####################################### 
+  # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  
+  # level count under 1
+  - '$Script$%elseif%$arg1<1'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  
+  # level count above 64
+  - '$Script$%elseif%$arg1>64'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 64"}]'
+  
+  # price under 1
+  - '$Script$%elseif%$arg2<1'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  
+  # prive above 65536
+  - '$Script$%elseif%$arg2>65536'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 65536"}]'
+
+  #######################################
+  #              no errors              #
+  ####################################### 
+  # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%elseif%$arg1>=1<and>$arg1<=64<and>$arg2>=1<and>$arg2<=65536'
+  
+  # check for sign
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
+  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
+  
+  # valid; init shop info
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $locX $locY $locZ $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"dark_gray\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  
+  # invalid; error message
+  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$player,tag=ssValid] remove ssValid'
+
+
+
+
+
+##############################################################################
+#                            shop redstone click                             #
+##############################################################################
+shop_xp_click:
+  command: /shop_xp_click
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $locX
+  # arg2 = $locY
+  # arg3 = $locZ
+  # arg5 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg6 = $uuid
+  
+  # check if clicker sneaks
+  - '/mycommand:shop_xp_click_sneakcheck $player $arg1 $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name'
+  
+  
+  
+  
+  
+##############################################################################
+#                       shop redstone click sneakcheck                       #
+##############################################################################
+shop_xp_click_sneakcheck:
+  command: /shop_xp_click_sneakcheck
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.(seller_uuid).name
+  
+  # reset sneak score
+  - '/minecraft:scoreboard players set $arg1 ssSneak 0'
+  
+  # add tag if enough coins
+  - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg6] add ssEnough'
+  
+  # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
+  
+  
+  
+  
+  
+##############################################################################
+#                         shop redstone click action                         #
+##############################################################################
+shop_xp_click_action:
+  command: /shop_xp_click_action
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #              add stock              #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.(seller_uuid).name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
+
+  # set stock to 0 (if necessary)
+  - '$Script$%if%$PlayerDataFor%$arg7%$s.shop.stock.xp==NoData'
+  - '$Script$%PlayerDataFor%$arg7%$s.shop.stock.xp=0'
+  
+  # add stock
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
+  # add to added variable
+  - '$Script$%Variable%$s.shop.init.stock+$level'
+  # add to stock variable
+  - '$Script$%PlayerDataFor%$arg7%$s.shop.stock.xp+$level'
+  # remove xp
+  - '/minecraft:xp -$levell $arg7'
+  
+  #######################
+  #      no levels      #
+  #######################
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal<and>$s.shop.init.stock==0'
+
+  # "[Shop] No experience levels to add to the stock"
+  - '/minecraft:tellraw $arg7 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" No experience levels to add to the stock"}]'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.shop.init.stock=0'
+  
+  #######################
+  #       1 level       #
+  #######################
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal<and>$s.shop.init.stock==1'
+  
+  # "[Shop] Added x experience level to the stock"
+  - '/minecraft:tellraw $arg7 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Added"},{"bold":"false","color":"dark_aqua","text":" $s.shop.init.stock"},{"bold":"false","color":"gray","text":" experience level to the stock"}]'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.shop.init.stock=0'
+  
+  #######################
+  #      >1 levels      #
+  #######################
+  - '$Script$%if%$arg1==$arg7<and>$arg8==normal<and>$s.shop.init.stock>1'
+  
+  # "[Shop] Added x experience levels to the stock"
+  - '/minecraft:tellraw $arg7 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Added"},{"bold":"false","color":"dark_aqua","text":" $s.shop.init.stock"},{"bold":"false","color":"gray","text":" experience levels to the stock"}]'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.shop.init.stock=0'
+
+  #######################################
+  #                 buy                 #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.(seller_uuid).name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  
+  # check if there's enough stock and the buyer is not sneaking and has enough money
+  - '$Script$%elseif%$PlayerDataFor%$arg7%$s.shop.stock.xp%>=$arg5<and>$arg8==normal<and>$arg9==enough'
+  
+  # "[Shop] You successfully bought x x Experience Level for ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You successfully bought"},{"bold":"false","color":"dark_aqua","text":" $arg5 x Experience Level"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # give xp
+  - '/minecraft:xp $arg5l $arg1'
+  
+  # add coins to seller
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:scoreboard players add $arg7 ssCoins $arg6'
+  
+  # remove coins from buyer
+  - '/minecraft:scoreboard players remove $arg1 ssCoins $arg6'
+  
+  # remove bought xp level number from stock
+  - '$Script$%PlayerDataFor%$arg7%$s.shop.stock.xp-$arg5'
+
+  #######################
+  #      no stock       #
+  #######################
+  - '$Script$%elseif%$PlayerDataFor%$arg7%$s.shop.stock.xp%<$arg5<and>$arg8==normal'
+  
+  # "[Shop] The shop doesn't have enough experience levels in stock"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The shop doesn''t have enough experience levels in stock"}]'
+
+  #######################
+  #      no coins       #
+  #######################
+  - '$Script$%elseif%$arg8==normal<and>$arg9==shortage'
+  
+  # "[Shop] You don't have enough coins"
+  - '/minecraft:tellraw $arg1 [[{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You don''t have enough coins"}]]'
+
+  #######################################
+  #                info                 #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.(seller_uuid).name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  
+  #######################
+  #     with stock      #
+  #######################
+  - '$Script$%elseif%$arg8==sneak<and>$PlayerDataFor%$arg7%$s.shop.stock.xp%>0'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Amount: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg5"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg7"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # "> Stock: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg7%$s.shop.stock.xp%"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  #######################
+  #       no stock      #
+  #######################
+  - '$Script$%elseif%$arg8==sneak<and>$PlayerDataFor%$arg7%$s.shop.stock.xp%<1'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Amount: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg5"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg7"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # "> Stock: 0"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" 0"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
