@@ -165,6 +165,8 @@ factory:
   - '$Script$%elseif%$PlayerData%$s.factory.factory_id.1.id%!=NoData'
   - '/mycommand:factory_iconmenu_init_id 1'
   
+  - '$Script$%else%'
+  - '/mycommand:factory_iconmenu_init_id 0'
   
   
   
@@ -178,14 +180,11 @@ factory_iconmenu_init_id:
   register: true
   runcmd:
   - '/mycommand:factory_iconmenu_$arg1 $PlayerData%$s.factory.factory_id.1.id% $PlayerData%$s.factory.factory_id.2.id% $PlayerData%$s.factory.factory_id.3.id% $PlayerData%$s.factory.factory_id.4.id% $PlayerData%$s.factory.factory_id.5.id% $PlayerData%$s.factory.factory_id.6.id% $PlayerData%$s.factory.factory_id.7.id% $PlayerData%$s.factory.factory_id.8.id% $PlayerData%$s.factory.factory_id.9.id% $PlayerData%$s.factory.factory_id.10.id% $PlayerData%$s.factory.factory_id.11.id% $PlayerData%$s.factory.factory_id.12.id% $PlayerData%$s.factory.factory_id.13.id% $PlayerData%$s.factory.factory_id.14.id% $PlayerData%$s.factory.factory_id.15.id% $PlayerData%$s.factory.factory_id.16.id% $PlayerData%$s.factory.factory_id.17.id% $PlayerData%$s.factory.factory_id.18.id% $PlayerData%$s.factory.factory_id.19.id% $PlayerData%$s.factory.factory_id.20.id% $PlayerData%$s.factory.factory_id.21.id% $PlayerData%$s.factory.factory_id.22.id% $PlayerData%$s.factory.factory_id.23.id% $PlayerData%$s.factory.factory_id.24.id% $PlayerData%$s.factory.factory_id.25.id% $PlayerData%$s.factory.factory_id.26.id% $PlayerData%$s.factory.factory_id.27.id% $PlayerData%$s.factory.factory_id.28.id% $PlayerData%$s.factory.factory_id.29.id% $PlayerData%$s.factory.factory_id.30.id% $PlayerData%$s.factory.factory_id.31.id% $PlayerData%$s.factory.factory_id.32.id% $PlayerData%$s.factory.factory_id.33.id% $PlayerData%$s.factory.factory_id.34.id% $PlayerData%$s.factory.factory_id.35.id% $PlayerData%$s.factory.factory_id.36.id% $PlayerData%$s.factory.factory_id.37.id% $PlayerData%$s.factory.factory_id.38.id% $PlayerData%$s.factory.factory_id.39.id% $PlayerData%$s.factory.factory_id.40.id% $PlayerData%$s.factory.factory_id.41.id% $PlayerData%$s.factory.factory_id.42.id% $PlayerData%$s.factory.factory_id.43.id% $PlayerData%$s.factory.factory_id.44.id% $PlayerData%$s.factory.factory_id.45.id% $PlayerData%$s.factory.factory_id.46.id% $PlayerData%$s.factory.factory_id.47.id% $PlayerData%$s.factory.factory_id.48.id% $PlayerData%$s.factory.factory_id.49.id% $PlayerData%$s.factory.factory_id.50.id% $PlayerData%$s.factory.factory_id.51.id% $PlayerData%$s.factory.factory_id.51.id% $PlayerData%$s.factory.factory_id.53.id% $PlayerData%$s.factory.factory_id.54.id% $PlayerData%$s.factory.factory_id.55.id%'
-  
-  - '$Script$%else%'
-  - '/say else'
+
   
   
   
-  
-  
+    
 ##############################################################################
 #                         factory iconmenu checktype                         #
 ##############################################################################
