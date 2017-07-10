@@ -160,7 +160,7 @@ shop_click_action:
   # add coins to seller
   - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:scoreboard players add $arg6 ssCoins $arg5'
   
-  # remove conins from buyer
+  # remove coins from buyer
   - '/minecraft:scoreboard players remove $arg1 ssCoins $arg5'
   
   # remove bought item number from stock
@@ -240,7 +240,7 @@ shop_click_action:
   # "> Price: ßx"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg5"}]'
   
-  # "> Stock: x"
+  # "> Stock: 0"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" 0"}]'
   
   # "---------------"
