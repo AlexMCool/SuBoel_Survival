@@ -18,6 +18,10 @@ factory_upgrade:
   ####################################### 
   # arg1 = east
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
   
   # 1
   - '$Script$%if%$arg1==east<and>$arg2==1'
@@ -316,6 +320,10 @@ factory_upgrade:
   ####################################### 
   # arg1 = north
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
   
   # 1
   - '$Script$%if%$arg1==north<and>$arg2==1'
@@ -614,6 +622,10 @@ factory_upgrade:
   ####################################### 
   # arg1 = south
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
   
   # 1
   - '$Script$%if%$arg1==south<and>$arg2==1'
@@ -912,6 +924,10 @@ factory_upgrade:
   ####################################### 
   # arg1 = west
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
   
   # 1
   - '$Script$%if%$arg1==west<and>$arg2==1'
@@ -1204,3 +1220,15 @@ factory_upgrade:
   - '/mycommand:factory_board_create $arg1 big'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  #######################################
+  #     reset obtained requirements     #
+  ####################################### 
+  # arg1 = east / north / south / west
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade=NoData'
