@@ -2,7 +2,7 @@ factory_iconmenu_0:
   command: /factory_iconmenu_0
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -24,7 +24,7 @@ factory_iconmenu_1:
   command: /factory_iconmenu_1
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factory&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -47,7 +47,7 @@ factory_iconmenu_2:
   command: /factory_iconmenu_2
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -71,7 +71,7 @@ factory_iconmenu_3:
   command: /factory_iconmenu_3
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -96,7 +96,7 @@ factory_iconmenu_4:
   command: /factory_iconmenu_4
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -122,7 +122,7 @@ factory_iconmenu_5:
   command: /factory_iconmenu_5
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -149,7 +149,7 @@ factory_iconmenu_6:
   command: /factory_iconmenu_6
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -177,7 +177,7 @@ factory_iconmenu_7:
   command: /factory_iconmenu_7
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -206,7 +206,7 @@ factory_iconmenu_8:
   command: /factory_iconmenu_8
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -236,7 +236,7 @@ factory_iconmenu_9:
   command: /factory_iconmenu_9
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -267,7 +267,7 @@ factory_iconmenu_10:
   command: /factory_iconmenu_10
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -299,7 +299,7 @@ factory_iconmenu_11:
   command: /factory_iconmenu_11
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -332,7 +332,7 @@ factory_iconmenu_12:
   command: /factory_iconmenu_12
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -366,7 +366,7 @@ factory_iconmenu_13:
   command: /factory_iconmenu_13
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -401,7 +401,7 @@ factory_iconmenu_14:
   command: /factory_iconmenu_14
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -437,7 +437,7 @@ factory_iconmenu_15:
   command: /factory_iconmenu_15
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -474,7 +474,7 @@ factory_iconmenu_16:
   command: /factory_iconmenu_16
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -512,7 +512,7 @@ factory_iconmenu_17:
   command: /factory_iconmenu_17
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 18
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -551,7 +551,7 @@ factory_iconmenu_18:
   command: /factory_iconmenu_18
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -591,7 +591,7 @@ factory_iconmenu_19:
   command: /factory_iconmenu_19
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -632,7 +632,7 @@ factory_iconmenu_20:
   command: /factory_iconmenu_20
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -674,7 +674,7 @@ factory_iconmenu_21:
   command: /factory_iconmenu_21
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -717,7 +717,7 @@ factory_iconmenu_22:
   command: /factory_iconmenu_22
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -761,7 +761,7 @@ factory_iconmenu_23:
   command: /factory_iconmenu_23
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -806,7 +806,7 @@ factory_iconmenu_24:
   command: /factory_iconmenu_24
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -852,7 +852,7 @@ factory_iconmenu_25:
   command: /factory_iconmenu_25
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -899,7 +899,7 @@ factory_iconmenu_26:
   command: /factory_iconmenu_26
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 27
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -947,7 +947,7 @@ factory_iconmenu_27:
   command: /factory_iconmenu_27
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -996,7 +996,7 @@ factory_iconmenu_28:
   command: /factory_iconmenu_28
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1046,7 +1046,7 @@ factory_iconmenu_29:
   command: /factory_iconmenu_29
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1097,7 +1097,7 @@ factory_iconmenu_30:
   command: /factory_iconmenu_30
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1149,7 +1149,7 @@ factory_iconmenu_31:
   command: /factory_iconmenu_31
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1202,7 +1202,7 @@ factory_iconmenu_32:
   command: /factory_iconmenu_32
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1256,7 +1256,7 @@ factory_iconmenu_33:
   command: /factory_iconmenu_33
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1311,7 +1311,7 @@ factory_iconmenu_34:
   command: /factory_iconmenu_34
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1367,7 +1367,7 @@ factory_iconmenu_35:
   command: /factory_iconmenu_35
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 36
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1424,7 +1424,7 @@ factory_iconmenu_36:
   command: /factory_iconmenu_36
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1482,7 +1482,7 @@ factory_iconmenu_37:
   command: /factory_iconmenu_37
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1541,7 +1541,7 @@ factory_iconmenu_38:
   command: /factory_iconmenu_38
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1601,7 +1601,7 @@ factory_iconmenu_39:
   command: /factory_iconmenu_39
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1662,7 +1662,7 @@ factory_iconmenu_40:
   command: /factory_iconmenu_40
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1724,7 +1724,7 @@ factory_iconmenu_41:
   command: /factory_iconmenu_41
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1787,7 +1787,7 @@ factory_iconmenu_42:
   command: /factory_iconmenu_42
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1851,7 +1851,7 @@ factory_iconmenu_43:
   command: /factory_iconmenu_43
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1916,7 +1916,7 @@ factory_iconmenu_44:
   command: /factory_iconmenu_44
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 45
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -1982,7 +1982,7 @@ factory_iconmenu_45:
   command: /factory_iconmenu_45
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2049,7 +2049,7 @@ factory_iconmenu_46:
   command: /factory_iconmenu_46
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2117,7 +2117,7 @@ factory_iconmenu_47:
   command: /factory_iconmenu_47
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2186,7 +2186,7 @@ factory_iconmenu_48:
   command: /factory_iconmenu_48
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2256,7 +2256,7 @@ factory_iconmenu_49:
   command: /factory_iconmenu_49
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2327,7 +2327,7 @@ factory_iconmenu_50:
   command: /factory_iconmenu_50
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2399,7 +2399,7 @@ factory_iconmenu_51:
   command: /factory_iconmenu_51
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2472,7 +2472,7 @@ factory_iconmenu_52:
   command: /factory_iconmenu_52
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
@@ -2546,7 +2546,7 @@ factory_iconmenu_53:
   command: /factory_iconmenu_53
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fFactories&3&l]'
+  iconmenu_title: '&3&l[&fYour Factories&3&l]'
   iconmenu_size: 54
   iconmenu_commands:
   # arg1 = $PlayerData%$s.factory.factory_id.1.id%
