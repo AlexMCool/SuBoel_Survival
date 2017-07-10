@@ -214,6 +214,7 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.rot=-90'
   - '/minecraft:tp ~-66 ~ ~-10'
   
   # save tp location
@@ -222,6 +223,7 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.rot=180'
   - '/minecraft:tp ~-10 ~ ~3'
   
   # save tp location
@@ -230,6 +232,7 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.rot=0'
   - '/minecraft:tp ~-53 ~ ~-66'
   
   # save tp location
@@ -238,6 +241,7 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.tp.x=$locX'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.y=$locY'
   - '$Script$%Variable%$s.factory.id.$arg1.tp.z=$locZ'
+  - '$Script$%Variable%$s.factory.id.$arg1.tp.rot=90'
   - '/minecraft:tp ~3 ~ ~-53'
   
   # set item to none and level to 0
