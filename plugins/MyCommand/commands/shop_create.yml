@@ -13,7 +13,7 @@ shop_create:
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   
   # item count under 1
-  - '$Script$%elseif%$arg1<1'
+  - '$Script$%elseif%$arg1<1<or>$arg1.contains=.<or>$arg1.contains=e'
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
   
   # item count above 64
@@ -21,7 +21,7 @@ shop_create:
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 64"}]'
   
   # price under 1
-  - '$Script$%elseif%$arg2<1'
+  - '$Script$%elseif%$arg2<1<or>$arg2.contains=.<or>$arg2.contains=e'
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
   
   # prive above 65536
