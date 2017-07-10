@@ -101,6 +101,8 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-13,posY:-19,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.z+27'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -405,6 +407,8 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:14,posY:-17,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.x+27'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -693,6 +697,8 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-14,posY:-19,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.x-27'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -989,6 +995,8 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:13,posY:-19,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.z-27'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
