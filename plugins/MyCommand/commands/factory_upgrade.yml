@@ -35,21 +35,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-48 ~ ~-16'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
  
   # 2
   - '$Script$%if%$arg1==east<and>$arg2==2'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:23,posY:-17,posZ:-10,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 3
   - '$Script$%if%$arg1==east<and>$arg2==3'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:19,posY:-19,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 4
   - '$Script$%if%$arg1==east<and>$arg2==4'
@@ -58,49 +61,56 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 small'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 5
   - '$Script$%if%$arg1==east<and>$arg2==5'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:19,posY:-19,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 6
   - '$Script$%if%$arg1==east<and>$arg2==6'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:-5,posY:-20,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 7
   - '$Script$%if%$arg1==east<and>$arg2==7'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:-1,posY:-19,posZ:-22,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 8
   - '$Script$%if%$arg1==east<and>$arg2==8'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:-5,posY:-32,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 9
   - '$Script$%if%$arg1==east<and>$arg2==9'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-13,posY:-19,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 10
   - '$Script$%if%$arg1==east<and>$arg2==10'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:-13,posY:-17,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 11
   - '$Script$%if%$arg1==east<and>$arg2==11'
@@ -109,49 +119,56 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # lights
   - '/minecraft:blockdata ~49 ~1 ~34 {Command:"minecraft:function suboel:factory/lights/bottom/east_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 12
   - '$Script$%if%$arg1==east<and>$arg2==12'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:-7,posY:-17,posZ:9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 13
   - '$Script$%if%$arg1==east<and>$arg2==13'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:-7,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 14
   - '$Script$%if%$arg1==east<and>$arg2==14'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:-8,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 15
   - '$Script$%if%$arg1==east<and>$arg2==15'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 16
   - '$Script$%if%$arg1==east<and>$arg2==16'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-9,posY:-19,posZ:25,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 17
   - '$Script$%if%$arg1==east<and>$arg2==17'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-28,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 18
   - '$Script$%if%$arg1==east<and>$arg2==18'
@@ -159,14 +176,16 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   # only replace redstone_block
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 19
   - '$Script$%if%$arg1==east<and>$arg2==19'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:-30,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 20
   - '$Script$%if%$arg1==east<and>$arg2==20'
@@ -181,21 +200,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-16'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 21
   - '$Script$%if%$arg1==east<and>$arg2==21'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:-32,posY:-20,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 22
   - '$Script$%if%$arg1==east<and>$arg2==22'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 23
   - '$Script$%if%$arg1==east<and>$arg2==23'
@@ -204,21 +226,24 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # lights
   - '/minecraft:blockdata ~17 ~13 ~28 {Command:"minecraft:function suboel:factory/lights/top/east_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 24
   - '$Script$%if%$arg1==east<and>$arg2==24'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 25
   - '$Script$%if%$arg1==east<and>$arg2==25'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:-15,posY:-19,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 26
   - '$Script$%if%$arg1==east<and>$arg2==26'
@@ -231,42 +256,48 @@ factory_upgrade:
   - '$delay$<20>/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:-7,posY:-10,posZ:-11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 27
   - '$Script$%if%$arg1==east<and>$arg2==27'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:4,posY:-13,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 28
   - '$Script$%if%$arg1==east<and>$arg2==28'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 29
   - '$Script$%if%$arg1==east<and>$arg2==29'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:-15,posY:-13,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 30
   - '$Script$%if%$arg1==east<and>$arg2==30'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:4,posY:-13,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 31
   - '$Script$%if%$arg1==east<and>$arg2==31'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:-10,posY:-13,posZ:-2,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 32
   - '$Script$%if%$arg1==east<and>$arg2==32'
@@ -275,7 +306,8 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 big'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   #######################################
   #                north                #
@@ -299,21 +331,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
  
   # 2
   - '$Script$%if%$arg1==north<and>$arg2==2'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:-10,posY:-17,posZ:-23,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 3
   - '$Script$%if%$arg1==north<and>$arg2==3'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:-5,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 4
   - '$Script$%if%$arg1==north<and>$arg2==4'
@@ -322,49 +357,56 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 small'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 5
   - '$Script$%if%$arg1==north<and>$arg2==5'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:13,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 6
   - '$Script$%if%$arg1==north<and>$arg2==6'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:-18,posY:-20,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 7
   - '$Script$%if%$arg1==north<and>$arg2==7'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:-22,posY:-19,posZ:1,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 8
   - '$Script$%if%$arg1==north<and>$arg2==8'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:-18,posY:-32,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 9
   - '$Script$%if%$arg1==north<and>$arg2==9'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:14,posY:-19,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 10
   - '$Script$%if%$arg1==north<and>$arg2==10'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:14,posY:-17,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 11
   - '$Script$%if%$arg1==north<and>$arg2==11'
@@ -373,49 +415,56 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # lights
   - '/minecraft:blockdata ~34 ~1 ~14 {Command:"minecraft:function suboel:factory/lights/bottom/north_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 12
   - '$Script$%if%$arg1==north<and>$arg2==12'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:9,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 13
   - '$Script$%if%$arg1==north<and>$arg2==13'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:11,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 14
   - '$Script$%if%$arg1==north<and>$arg2==14'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:11,posY:-17,posZ:8,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 15
   - '$Script$%if%$arg1==north<and>$arg2==15'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 16
   - '$Script$%if%$arg1==north<and>$arg2==16'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:25,posY:-19,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 17
   - '$Script$%if%$arg1==north<and>$arg2==17'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:30,posY:-20,posZ:28,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 18
   - '$Script$%if%$arg1==north<and>$arg2==18'
@@ -423,14 +472,16 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   # only replace redstone_block
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 19
   - '$Script$%if%$arg1==north<and>$arg2==19'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:30,posY:-20,posZ:30,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 20
   - '$Script$%if%$arg1==north<and>$arg2==20'
@@ -445,21 +496,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~-16'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 21
   - '$Script$%if%$arg1==north<and>$arg2==21'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:13,posY:-20,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 22
   - '$Script$%if%$arg1==north<and>$arg2==22'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 23
   - '$Script$%if%$arg1==north<and>$arg2==23'
@@ -468,21 +522,24 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # lights
   - '/minecraft:blockdata ~28 ~13 ~46 {Command:"minecraft:function suboel:factory/lights/top/north_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 24
   - '$Script$%if%$arg1==north<and>$arg2==24'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 25
   - '$Script$%if%$arg1==north<and>$arg2==25'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:7,posY:-19,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 26
   - '$Script$%if%$arg1==north<and>$arg2==26'
@@ -495,42 +552,48 @@ factory_upgrade:
   - '$delay$<20>/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:-11,posY:-10,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 27
   - '$Script$%if%$arg1==north<and>$arg2==27'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-9,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 28
   - '$Script$%if%$arg1==north<and>$arg2==28'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 29
   - '$Script$%if%$arg1==north<and>$arg2==29'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:-5,posY:-13,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 30
   - '$Script$%if%$arg1==north<and>$arg2==30'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:-3,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 31
   - '$Script$%if%$arg1==north<and>$arg2==31'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:-2,posY:-13,posZ:10,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 32
   - '$Script$%if%$arg1==north<and>$arg2==32'
@@ -539,7 +602,8 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 big'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   #######################################
   #                south                #
@@ -563,21 +627,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-48'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
  
   # 2
   - '$Script$%if%$arg1==south<and>$arg2==2'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:10,posY:-17,posZ:23,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 3
   - '$Script$%if%$arg1==south<and>$arg2==3'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:5,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 4
   - '$Script$%if%$arg1==south<and>$arg2==4'
@@ -586,49 +653,56 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 small'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 5
   - '$Script$%if%$arg1==south<and>$arg2==5'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:-13,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 6
   - '$Script$%if%$arg1==south<and>$arg2==6'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:18,posY:-20,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 7
   - '$Script$%if%$arg1==south<and>$arg2==7'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:22,posY:-19,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 8
   - '$Script$%if%$arg1==south<and>$arg2==8'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:18,posY:-32,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 9
   - '$Script$%if%$arg1==south<and>$arg2==9'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:-14,posY:-19,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 10
   - '$Script$%if%$arg1==south<and>$arg2==10'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:-14,posY:-17,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 11
   - '$Script$%if%$arg1==south<and>$arg2==11'
@@ -637,49 +711,56 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # lights
   - '/minecraft:blockdata ~29 ~1 ~49 {Command:"minecraft:function suboel:factory/lights/bottom/south_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 12
   - '$Script$%if%$arg1==south<and>$arg2==12'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:-9,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 13
   - '$Script$%if%$arg1==south<and>$arg2==13'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:-11,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 14
   - '$Script$%if%$arg1==south<and>$arg2==14'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:-11,posY:-17,posZ:-8,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 15
   - '$Script$%if%$arg1==south<and>$arg2==15'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 16
   - '$Script$%if%$arg1==south<and>$arg2==16'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-25,posY:-19,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 17
   - '$Script$%if%$arg1==south<and>$arg2==17'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-30,posY:-20,posZ:-28,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 18
   - '$Script$%if%$arg1==south<and>$arg2==18'
@@ -687,14 +768,16 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   # only replace redstone_block
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 19
   - '$Script$%if%$arg1==south<and>$arg2==19'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:-30,posY:-20,posZ:-30,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 20
   - '$Script$%if%$arg1==south<and>$arg2==20'
@@ -709,21 +792,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-32'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 21
   - '$Script$%if%$arg1==south<and>$arg2==21'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:-13,posY:-20,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 22
   - '$Script$%if%$arg1==south<and>$arg2==22'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 23
   - '$Script$%if%$arg1==south<and>$arg2==23'
@@ -732,21 +818,24 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # lights
   - '/minecraft:blockdata ~35 ~13 ~17 {Command:"minecraft:function suboel:factory/lights/top/south_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 24
   - '$Script$%if%$arg1==south<and>$arg2==24'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 25
   - '$Script$%if%$arg1==south<and>$arg2==25'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:-7,posY:-19,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 26
   - '$Script$%if%$arg1==south<and>$arg2==26'
@@ -759,42 +848,48 @@ factory_upgrade:
   - '$delay$<20>/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:11,posY:-10,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 27
   - '$Script$%if%$arg1==south<and>$arg2==27'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:9,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 28
   - '$Script$%if%$arg1==south<and>$arg2==28'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 29
   - '$Script$%if%$arg1==south<and>$arg2==29'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:5,posY:-13,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 30
   - '$Script$%if%$arg1==south<and>$arg2==30'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:3,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 31
   - '$Script$%if%$arg1==south<and>$arg2==31'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:2,posY:-13,posZ:-10,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 32
   - '$Script$%if%$arg1==south<and>$arg2==32'
@@ -803,7 +898,8 @@ factory_upgrade:
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 big'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   #######################################
   #                west                 #
@@ -827,21 +923,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~ ~ ~-32'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
  
   # 2
   - '$Script$%if%$arg1==west<and>$arg2==2'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/2",posX:-23,posY:-17,posZ:10,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 3
   - '$Script$%if%$arg1==west<and>$arg2==3'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/3",posX:-19,posY:-19,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 4
   - '$Script$%if%$arg1==west<and>$arg2==4'
@@ -850,49 +949,56 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 small'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 5
   - '$Script$%if%$arg1==west<and>$arg2==5'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/5",posX:-19,posY:-19,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 6
   - '$Script$%if%$arg1==west<and>$arg2==6'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/6",posX:5,posY:-20,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 7
   - '$Script$%if%$arg1==west<and>$arg2==7'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/7",posX:1,posY:-19,posZ:22,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 8
   - '$Script$%if%$arg1==west<and>$arg2==8'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/8",posX:5,posY:-32,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 9
   - '$Script$%if%$arg1==west<and>$arg2==9'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/9",posX:13,posY:-19,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 10
   - '$Script$%if%$arg1==west<and>$arg2==10'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/10",posX:13,posY:-17,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 11
   - '$Script$%if%$arg1==west<and>$arg2==11'
@@ -901,49 +1007,56 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # lights
   - '/minecraft:blockdata ~14 ~1 ~29 {Command:"minecraft:function suboel:factory/lights/bottom/west_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 12
   - '$Script$%if%$arg1==west<and>$arg2==12'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/12",posX:7,posY:-17,posZ:-9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 13
   - '$Script$%if%$arg1==west<and>$arg2==13'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/13",posX:7,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 14
   - '$Script$%if%$arg1==west<and>$arg2==14'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/14",posX:8,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 15
   - '$Script$%if%$arg1==west<and>$arg2==15'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/15",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 16
   - '$Script$%if%$arg1==west<and>$arg2==16'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:9,posY:-19,posZ:-25,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 17
   - '$Script$%if%$arg1==west<and>$arg2==17'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:28,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 18
   - '$Script$%if%$arg1==west<and>$arg2==18'
@@ -951,14 +1064,16 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   # only replace redstone_block
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
   
   # 19
   - '$Script$%if%$arg1==west<and>$arg2==19'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/19",posX:30,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 20
   - '$Script$%if%$arg1==west<and>$arg2==20'
@@ -973,21 +1088,24 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.chunk.x% $PlayerData%$s.chunk.z% $world'
   - '/minecraft:tp ~-16 ~ ~-32'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 21
   - '$Script$%if%$arg1==west<and>$arg2==21'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/21",posX:32,posY:-20,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 22
   - '$Script$%if%$arg1==west<and>$arg2==22'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 23
   - '$Script$%if%$arg1==west<and>$arg2==23'
@@ -996,21 +1114,24 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # lights
   - '/minecraft:blockdata ~46 ~13 ~35 {Command:"minecraft:function suboel:factory/lights/top/west_on"}'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 24
   - '$Script$%if%$arg1==west<and>$arg2==24'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 25
   - '$Script$%if%$arg1==west<and>$arg2==25'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:15,posY:-19,posZ:-7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 26
   - '$Script$%if%$arg1==west<and>$arg2==26'
@@ -1023,42 +1144,48 @@ factory_upgrade:
   - '$delay$<20>/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:7,posY:-10,posZ:11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 27
   - '$Script$%if%$arg1==west<and>$arg2==27'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-4,posY:-13,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 28
   - '$Script$%if%$arg1==west<and>$arg2==28'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 29
   - '$Script$%if%$arg1==west<and>$arg2==29'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/29",posX:15,posY:-13,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 30
   - '$Script$%if%$arg1==west<and>$arg2==30'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:-4,posY:-13,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 31
   - '$Script$%if%$arg1==west<and>$arg2==31'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:10,posY:-13,posZ:2,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 32
   - '$Script$%if%$arg1==west<and>$arg2==32'
@@ -1067,4 +1194,5 @@ factory_upgrade:
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # board
   - '/mycommand:factory_board_create $arg1 big'
-  - '/minecraft:say done'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
