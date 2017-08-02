@@ -12,11 +12,25 @@ factory_random:
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t claim a new factory plot, because you already have an empty plot"}]'
   
   - '$Script$%else%'
+  # store origin
+  - '$Script$%PlayerData%$s.init.location.x=$locX'
+  - '$Script$%PlayerData%$s.init.location.y=$locY'
+  - '$Script$%PlayerData%$s.init.location.z=$locZ'
+  - '$Script$%PlayerData%$s.init.location.rotation.yaw=$loc_yaw'
+  - '$Script$%PlayerData%$s.init.location.rotation.pitch=$loc_pitch'
+  - '$Script$%PlayerData%$s.init.location.world=$world'
+  # restistance for falling down
+  - '/minecraft:effect $player minecraft:resistance 1000000 255 true'
   # set calculation to 1
   - '$Script$%Variable%$s.factory.calculation=1'
   # set calculation to lowest (unused) factory
   - '/mycommand:factory_random_calculation $s.factory.calculation'
-  # "[Factory] You can't claim a new factory plot, because you already have an empty plot"
+  # remove resistance effect
+  - '/minecraft:effect $player minecraft:resistance 0'
+  - '/minecraft:effect $player minecraft:resistance 1 255 true'
+  # tp back to origin
+  - '/multiverse-core:mvtp $player e:$PlayerData%$s.init.location.world%:$PlayerData%$s.init.location.x%.5,$PlayerData%$s.init.location.y%.5,$PlayerData%$s.init.location.z%.5:$PlayerData%$s.init.location.rotation.pitch%:$PlayerData%$s.init.location.rotation.yaw%'
+  # "[Factory] Successfully claimed a new factory plot"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" claimed a new factory plot"}]'
   
   
