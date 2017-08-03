@@ -31,8 +31,15 @@ shop_redstone_create:
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
   
+  # "[Shop] Successfully created a shop which will activate the redstone dust for ßx"
+  - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" created a shop which will activate the redstone dust for "},{"bold":"false","color":"dark_aqua","text":"ß$arg2"}]'
+  
+  # get id for shop
+  - '$Script$%Variable%$s.shop.init.new_id=0'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.shop.init.new_id'
+  
   # valid; blockdata sign
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
@@ -58,9 +65,10 @@ shop_redstone_click:
   # arg4 = (what to sell)
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $uuid
+  # arg7 = $s.shop.init.new_id
   
   # check if clicker sneaks
-  - '/mycommand:shop_redstone_click_sneakcheck $player $arg1 $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name'
+  - '/mycommand:shop_redstone_click_sneakcheck $player $arg1 $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name $arg7'
   
   
   
@@ -81,6 +89,7 @@ shop_redstone_click_sneakcheck:
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
+  # arg8 = $s.shop.init.new_id
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
@@ -89,10 +98,10 @@ shop_redstone_click_sneakcheck:
   - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg6] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough'
-  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough $s.shop.init.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage $s.shop.init.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough $s.shop.init.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage $s.shop.init.new_id'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
@@ -121,6 +130,7 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
+  # arg10 = $s.shop.init.new_id
   - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
   
   # store shop's location
@@ -162,6 +172,7 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
+  # arg10 = $s.shop.init.new_id
   - '$Script$%elseif%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
   
   # store shop's location
@@ -179,8 +190,13 @@ shop_redstone_click_action:
   
   # "[Shop] Your purchase of ßx was successful"
   - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone_min=1] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Your purchase of "},{"bold":"false","color":"dark_aqua","text":"ß$arg6"},{"bold":"false","color":"gray","text":" was "},{"bold":"false","color":"dark_aqua","text":"successful"}]'
-  # add and remove coins
+  # add coins to seller
+  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.translation.auto_claim_profit==True'
   - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players add $arg7 ssCoins $arg6'
+  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.translation.auto_claim_profit==False'
+  - '$Script$%Variable%$s.shop.id.$arg10.profit+$arg6'
+  # remove coins from buyer
+  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
   - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players remove @s ssCoins $arg6'
   
   # "[Shop] This shop isn't active yet. There needs to be a redstone dust 2 blocks below the sign"
@@ -214,7 +230,70 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
-  - '$Script$%elseif%$arg8==sneak'
+  # arg10 = $s.shop.init.new_id
+  
+  #######################
+  #  auto claim owner   #
+  #######################
+  - '$Script$%elseif%$arg8==sneak<and>$arg1==$arg7<and>$s.shop.id.$arg10.translation.auto_claim_profit==True'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg7"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" $arg5"}]'
+  
+  # "> Profit: x [Claim]"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"> "},{"bold":"false","color":"gray","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"All the profit gets claimed automatically"}},"strikethrough":"true","text":"Profit: 0 [Claim]"}]'
+  
+  # "> Settings:"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  
+  # "   > Auto Claim Profit: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_redstone_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg10.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  #######################
+  #  self claim owner   #
+  #######################
+  - '$Script$%elseif%$arg8==sneak<and>$arg1==$arg7<and>$s.shop.id.$arg10.translation.auto_claim_profit==False'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg7"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg6"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" $arg5"}]'
+  
+  # "> Profit: x [Claim]"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Profit:"},{"bold":"false","color":"dark_aqua","text":" $s.shop.id.$arg10.profit"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_setting_claim $arg1 $arg10"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to claim profit"}},"text":"Claim"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "> Settings:"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  
+  # "   > Auto Claim Profit: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_redstone_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg10.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  #######################
+  #       player        #
+  #######################
+  - '$Script$%elseif%$arg8==sneak<and>$arg1!=$arg7'
   
   # "<-----[Shop]----->"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
@@ -230,3 +309,48 @@ shop_redstone_click_action:
   
   # "---------------"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  
+  
+  
+  
+##############################################################################
+#                   shop redstone setting autoclaimprofit                    #
+##############################################################################
+shop_redstone_setting_autoclaimprofit:
+  command: /shop_redstone_setting_autoclaimprofit
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = $locX
+  # arg3 = $locY
+  # arg4 = $locZ
+  # arg5 = (what to sell)
+  # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg7 = $s.uuid.(seller_uuid).name
+  # arg8 = normal / sneak
+  # arg9 = enough / shortage
+  # arg10 = $s.shop.init.new_id
+  
+  # if setting is false
+  - '$Script$%elseif%$s.shop.id.$arg10.translation.auto_claim_profit==False'
+  # set to true
+  - '$Script$%Variable%$s.shop.id.$arg10.translation.auto_claim_profit=True'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10'
+  # if profit is greater than 0, give the money
+  - '$Script$%if%$s.shop.id.$arg10.profit>0'
+  # give profit
+  - '/mycommand:shop_setting_claim $arg1 $arg10'
+  
+  # if setting is true
+  - '$Script$%elseif%$s.shop.id.$arg10.translation.auto_claim_profit==True'
+  # set to false
+  - '$Script$%Variable%$s.shop.id.$arg10.translation.auto_claim_profit=False'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10'

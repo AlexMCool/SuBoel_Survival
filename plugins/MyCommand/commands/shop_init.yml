@@ -46,7 +46,7 @@ shop_init:
   - '/mycommand:shop_init_z $arg1'
   
   # place shop
-  - '/mycommand:shop_place $arg1 $arg2 $arg3'
+  - '/mycommand:shop_place $arg1 $arg2 $arg3 $s.shop.init.item $s.shop.init.damage'
 
   
   
