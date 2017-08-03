@@ -50,7 +50,7 @@ shop_create:
   # valid; init shop info
   - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_init $player $arg1 $arg2'
   
-  # invalid; error message
+  # "[Shop] You need to stand in the same block as a sign to create a shop"
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
   
   # remove tag
@@ -71,9 +71,47 @@ shop_place:
   # arg1 = $player
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg4 = $s.shop.init.item
+  # arg5 = $s.shop.init.damage
   
   # "[Shop] Successfully created a shop which sells x x x for ßx"
   - '/tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" created a shop which sells"},{"bold":"false","color":"dark_aqua","text":" $arg2 x $s.translation.$s.shop.init.item:$s.shop.init.damage"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
   
+  # get id for shop
+  - '$Script$%Variable%$s.shop.init.new_id=0'
+  - '/sudo $arg1 /mycommand:shop_place_newid $s.shop.init.new_id'
+  
+  # set stock to 0 if neccessary
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.shop.stock.$arg4:$arg5%==NoData'
+  - '$Script$%PlayerDataFor%$arg1%$s.shop.stock.$arg4:$arg5=0'
+  
   # blockdata on sign
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.shop.init.item $s.shop.init.damage $arg2 $arg3 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"color\":\"dark_gray\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$s.translation.$s.shop.init.item:$s.shop.init.damage\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg3\"}]"}'
+  - '$Script$%if%always==always'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.shop.init.item $s.shop.init.damage $arg2 $arg3 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"color\":\"dark_gray\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"$s.translation.$s.shop.init.item:$s.shop.init.damage\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg3\"}]"}'
+  
+  
+  
+  
+  
+##############################################################################
+#                              shop place newid                              #
+##############################################################################
+shop_place_newid:
+  command: /shop_place_newid
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $s.shop.init.new_id
+  
+  # if id contains '.' which means the id doesn't exist
+  - '$Script$%if%$s.shop.id.$arg1.x.contains=.'
+  - '$Script$%Variable%$s.shop.id.$arg1.x=$locX'
+  - '$Script$%Variable%$s.shop.id.$arg1.y=$locY'
+  - '$Script$%Variable%$s.shop.id.$arg1.z=$locZ'
+  - '$Script$%Variable%$s.shop.id.$arg1.profit=0'
+  - '$Script$%Variable%$s.shop.id.$arg1.translation.auto_claim_profit=True'
+  
+  # try again
+  - '$Script$%else%'
+  - '$Script$%Variable%$s.shop.init.new_id+1'
+  - '/mycommand:shop_place_newid $s.shop.init.new_id'
