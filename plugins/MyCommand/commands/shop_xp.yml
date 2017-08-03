@@ -14,19 +14,19 @@ shop_xp_create:
   
   # level count under 1
   - '$Script$%elseif%$arg1<1<or>$arg2.contains=.<or>$arg2.contains=e'
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"$s.style.color.mark","text":" 1"}]'
   
   # level count above 64
   - '$Script$%elseif%$arg1>64'
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 64"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"$s.style.color.mark","text":" 64"}]'
   
   # price under 1
   - '$Script$%elseif%$arg2<1<or>$arg2.contains=.<or>$arg2.contains=e'
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <price>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"$s.style.color.mark","text":" 1"}]'
   
   # prive above 65536
   - '$Script$%elseif%$arg2>65536'
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <price>"},{"bold":"false","color":"gray","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"dark_aqua","text":" 65536"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <price>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too big, it must be at most"},{"bold":"false","color":"$s.style.color.mark","text":" 65536"}]'
 
   #######################################
   #              no errors              #
@@ -40,7 +40,7 @@ shop_xp_create:
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
   
   # "[Shop] Successfully created a shop which sells x x Experience Level for ßx"
-  - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" created a shop which sells"},{"bold":"false","color":"dark_aqua","text":" $arg1 x Experience Level"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg2"}]'
+  - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1 x Experience Level"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg2"}]'
   
   # get id for shop
   - '$Script$%Variable%$s.shop.init.new_id=0'
@@ -55,7 +55,7 @@ shop_xp_create:
   - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"dark_gray\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
-  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
+  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as a sign to create a shop"}]'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$player,tag=ssValid] remove ssValid'
@@ -157,7 +157,7 @@ shop_xp_click_action:
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock==0'
 
   # "[Shop] No experience levels to add to the stock"
-  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" No experience levels to add to the stock"}]'
+  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No experience levels to add to the stock"}]'
   
   # reset stock variable
   - '$Script$%Variable%$s.shop.init.stock=0'
@@ -168,7 +168,7 @@ shop_xp_click_action:
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock==1'
   
   # "[Shop] Added x experience level to the stock"
-  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Added"},{"bold":"false","color":"dark_aqua","text":" $s.shop.init.stock"},{"bold":"false","color":"gray","text":" experience level to the stock"}]'
+  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience level to the stock"}]'
   
   # reset stock variable
   - '$Script$%Variable%$s.shop.init.stock=0'
@@ -179,7 +179,7 @@ shop_xp_click_action:
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock>1'
   
   # "[Shop] Added x experience levels to the stock"
-  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Added"},{"bold":"false","color":"dark_aqua","text":" $s.shop.init.stock"},{"bold":"false","color":"gray","text":" experience levels to the stock"}]'
+  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience levels to the stock"}]'
   
   # reset stock variable
   - '$Script$%Variable%$s.shop.init.stock=0'
@@ -199,7 +199,7 @@ shop_xp_click_action:
   - '$Script$%elseif%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough'
   
   # "[Shop] You successfully bought x x Experience Level for ßx"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You successfully bought"},{"bold":"false","color":"dark_aqua","text":" $arg2 x Experience Level"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You successfully bought"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x Experience Level"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # give xp
   - '/minecraft:xp $arg2l $arg1'
@@ -223,7 +223,7 @@ shop_xp_click_action:
   - '$Script$%elseif%$PlayerDataFor%$arg4%$s.shop.stock.xp%<$arg2<and>$arg5==normal'
   
   # "[Shop] The shop doesn't have enough experience levels in stock"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The shop doesn''t have enough experience levels in stock"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The shop doesn''t have enough experience levels in stock"}]'
 
   #######################
   #      no coins       #
@@ -231,7 +231,7 @@ shop_xp_click_action:
   - '$Script$%elseif%$arg5==normal<and>$arg6==shortage'
   
   # "[Shop] You don't have enough coins"
-  - '/minecraft:tellraw $arg1 [[{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You don''t have enough coins"}]]'
+  - '/minecraft:tellraw $arg1 [[{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t have enough coins"}]]'
 
   #######################################
   #                info                 #
@@ -247,72 +247,72 @@ shop_xp_click_action:
   #######################
   #  auto claim owner   #
   #######################
-  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.translation.auto_claim_profit==True'
+  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.setting.auto_claim_profit==true'
   
   # "<-----[Shop]----->"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   # "> Amount: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2"}]'
   
   # "> Reward: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Reward:"},{"bold":"false","color":"$s.style.color.mark","text":" Experience Levels"}]'
   
   # "> Owner: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
   # "> Price: ßx"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Price:"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # "> Stock: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Stock:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
   
   # "> Profit: x [Claim]"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"> "},{"bold":"false","color":"gray","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"All the profit gets claimed automatically"}},"strikethrough":"true","text":"Profit: 0 [Claim]"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"$s.style.color.normal","text":"All the profit gets claimed automatically"}},"strikethrough":"true","text":"Profit: 0 [Claim]"}]'
   
   # "> Settings:"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Settings:"}]'
   
   # "   > Auto Claim Profit: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg7.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"   >"},{"bold":"false","color":"$s.style.color.normal","text":" Auto Claim Profit:"},{"bold":"false","color":"$s.style.color.accent","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"$s.style.color.$s.shop.id.$arg7.setting.auto_claim_profit","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"$s.style.color.normal","text":"Click to toggle"}},"text":"$s.translation.boolean.$s.shop.id.$arg7.setting.auto_claim_profit"},{"bold":"false","color":"$s.style.color.accent","text":"]"}]'
   
   # "---------------"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   #######################
   #  self claim owner   #
   #######################
-  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.setting.auto_claim_profit==false'
   
   # "<-----[Shop]----->"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   # "> Amount: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2"}]'
   
   # "> Reward: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Reward:"},{"bold":"false","color":"$s.style.color.mark","text":" Experience Levels"}]'
   
   # "> Owner: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
   # "> Price: ßx"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Price:"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # "> Stock: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Stock:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
   
   # "> Profit: x [Claim]"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Profit:"},{"bold":"false","color":"dark_aqua","text":" $s.shop.id.$arg7.profit"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_setting_claim $arg1 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to claim profit"}},"text":"Claim"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Profit:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.id.$arg7.profit"},{"bold":"false","color":"$s.style.color.accent","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_setting_claim $arg1 $arg7"},"color":"$s.style.color.light_mark","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"$s.style.color.normal","text":"Click to claim profit"}},"text":"Claim"},{"bold":"false","color":"$s.style.color.accent","text":"]"}]'
   
   # "> Settings:"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Settings:"}]'
   
   # "   > Auto Claim Profit: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg7.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"   >"},{"bold":"false","color":"$s.style.color.normal","text":" Auto Claim Profit:"},{"bold":"false","color":"$s.style.color.accent","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"$s.style.color.$s.shop.id.$arg7.setting.auto_claim_profit","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"$s.style.color.normal","text":"Click to toggle"}},"text":"$s.translation.boolean.$s.shop.id.$arg7.setting.auto_claim_profit"},{"bold":"false","color":"$s.style.color.accent","text":"]"}]'
   
   # "---------------"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   #######################
   #       player        #
@@ -320,25 +320,25 @@ shop_xp_click_action:
   - '$Script$%elseif%$arg5==sneak<and>$arg1!=$arg4'
   
   # "<-----[Shop]----->"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   # "> Amount: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2"}]'
   
   # "> Reward: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Reward:"},{"bold":"false","color":"$s.style.color.mark","text":" Experience Levels"}]'
   
   # "> Owner: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
   # "> Price: ßx"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Price:"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # "> Stock: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Stock:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
   
   # "---------------"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
   
   
   
@@ -361,9 +361,9 @@ shop_xp_setting_autoclaimprofit:
   # arg7 = (shop_id)
   
   # if setting is false
-  - '$Script$%elseif%$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  - '$Script$%elseif%$s.shop.id.$arg7.setting.auto_claim_profit==false'
   # set to true
-  - '$Script$%Variable%$s.shop.id.$arg7.translation.auto_claim_profit=True'
+  - '$Script$%Variable%$s.shop.id.$arg7.setting.auto_claim_profit=true'
   # clear chat
   - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
   # reclick the sign (make the same menu show again)
@@ -374,9 +374,9 @@ shop_xp_setting_autoclaimprofit:
   - '/mycommand:shop_setting_claim $arg1 $arg7'
   
   # if setting is true
-  - '$Script$%elseif%$s.shop.id.$arg7.translation.auto_claim_profit==True'
+  - '$Script$%elseif%$s.shop.id.$arg7.setting.auto_claim_profit==true'
   # set to false
-  - '$Script$%Variable%$s.shop.id.$arg7.translation.auto_claim_profit=False'
+  - '$Script$%Variable%$s.shop.id.$arg7.setting.auto_claim_profit=false'
   # clear chat
   - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
   # reclick the sign (make the same menu show again)
