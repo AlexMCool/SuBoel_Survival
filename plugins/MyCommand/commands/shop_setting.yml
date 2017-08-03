@@ -1,0 +1,68 @@
+##############################################################################
+#                        shop setting autoclaimprofit                        #
+##############################################################################
+shop_setting_autoclaimprofit:
+  command: /shop_setting_autoclaimprofit
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = $s.shop.init.item
+  # arg3 = $s.shop.init.damage
+  # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg6 = $s.uuid.(seller_uuid).name
+  # arg7 = normal / sneak
+  # arg8 = enough / shortage
+  # arg9 = (shop_id)
+  
+  # if setting is false
+  - '$Script$%elseif%$s.shop.id.$arg9.translation.auto_claim_profit==False'
+  # set to true
+  - '$Script$%Variable%$s.shop.id.$arg9.translation.auto_claim_profit=True'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
+  # if profit is greater than 0, give the money
+  - '$Script$%if%$s.shop.id.$arg9.profit>0'
+  # give profit
+  - '/mycommand:shop_setting_claim $arg1 $arg9'
+  
+  # if setting is true
+  - '$Script$%elseif%$s.shop.id.$arg9.translation.auto_claim_profit==True'
+  # set to false
+  - '$Script$%Variable%$s.shop.id.$arg9.translation.auto_claim_profit=False'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
+  
+  
+  
+  
+  
+##############################################################################
+#                             shop setting claim                             #
+##############################################################################
+shop_setting_claim:
+  command: /shop_setting_claim
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = (shop_id)
+  
+  # no profit
+  - '$Script$%if%$s.shop.id.$arg2.profit==0'
+  # "[Shop] This shop doesn't have any profit to claim"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" This shop doesn''t have any profit to claim"}]'
+  
+  # profit
+  - '$Script$%else%'
+  # add coins
+  - '/minecraft:scoreboard players add $arg1 ssCoins $s.shop.id.$arg2.profit'
+  # "[Shop] You successfully claimed ßx profit"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You successfully claimed"},{"bold":"false","color":"dark_aqua","text":" ß$s.shop.id.$arg2.profit"},{"bold":"false","color":"gray","text":" profit"}]'
+  # reset profit variable
+  - '$Script$%Variable%$s.shop.id.$arg2.profit=0'
