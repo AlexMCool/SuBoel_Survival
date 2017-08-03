@@ -1,5 +1,43 @@
 variables:
   $s:
+    shop:
+      init:
+        damage: 0
+        item: sign
+        stock: 0
+        redstone:
+          x: 4072
+          y: 62
+          z: 4103
+        new_id: 2
+      id:
+        '0':
+          x: 4072
+          y: 64
+          z: 4103
+          world: temp_world
+          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
+          profit: 0
+          setting:
+            auto_claim_profit: 'false'
+        '1':
+          x: 4072
+          y: 64
+          z: 4102
+          world: temp_world
+          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
+          profit: 0
+          setting:
+            auto_claim_profit: 'true'
+        '2':
+          x: 4072
+          y: 64
+          z: 4101
+          world: temp_world
+          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
+          profit: 0
+          setting:
+            auto_claim_profit: 'true'
     world: temp_world
     char:
       colon: ':'
@@ -8,21 +46,625 @@ variables:
         name: AlexMCool
       ba089104-9d21-4bec-b2db-ca1971afe7d8:
         name: just_a_jenna
+      450094ff-b6c7-4932-ba24-4ce06389dd56:
+        name: D33tj3
     intersection:
-      calculation: 0
-      option: 0
-      type: none
+      calculation: 10
+      option: 15
+      type: east_south_west
       id:
-        now: 0
-      location: nothing
+        now: 20
+        '1':
+          x: 4096
+          y: 64
+          z: 4096
+          type: east_north_west
+          direction: west
+        '2':
+          x: 4176
+          y: 64
+          z: 4096
+          direction: south
+          type: east_north_south_west
+        '3':
+          x: 4096
+          y: 64
+          z: 4016
+          direction: west
+          type: south_west
+        '4':
+          x: 4016
+          y: 64
+          z: 4096
+          direction: south
+          type: east_south
+        '5':
+          x: 4256
+          y: 64
+          z: 4096
+          direction: east
+          type: east_north_west
+        '6':
+          x: 4176
+          y: 64
+          z: 4016
+          direction: south
+          type: north_south
+        '7':
+          x: 4176
+          y: 64
+          z: 4176
+          direction: north
+          type: east_north_south_west
+        '8':
+          x: 4016
+          y: 64
+          z: 4016
+          direction: east
+          type: east_west
+        '9':
+          x: 4016
+          y: 64
+          z: 4176
+          direction: north
+          type: north_south_west
+        '10':
+          x: 4336
+          y: 64
+          z: 4096
+          direction: west
+          type: east_south_west
+        '11':
+          x: 4256
+          y: 64
+          z: 4016
+          direction: south
+        '12':
+          x: 4176
+          y: 64
+          z: 3936
+          direction: south
+        '13':
+          x: 4256
+          y: 64
+          z: 4176
+          direction: west
+        '14':
+          x: 4176
+          y: 64
+          z: 4256
+          direction: north
+        '15':
+          x: 4096
+          y: 64
+          z: 4176
+          direction: east
+        '16':
+          x: 3936
+          y: 64
+          z: 4016
+          direction: east
+        '17':
+          x: 4016
+          y: 64
+          z: 4256
+          direction: north
+        '18':
+          x: 3936
+          y: 64
+          z: 4176
+          direction: east
+        '19':
+          x: 4416
+          y: 64
+          z: 4096
+          direction: west
+        '20':
+          x: 4336
+          y: 64
+          z: 4176
+          direction: north
+      location:
+        4096,64,4096:
+          id: 1
+        4176,64,4096:
+          id: 2
+        4096,64,4016:
+          id: 3
+        4016,64,4096:
+          id: 4
+        4256,64,4096:
+          id: 5
+        4176,64,4016:
+          id: 6
+        4176,64,4176:
+          id: 7
+        4016,64,4016:
+          id: 8
+        4016,64,4176:
+          id: 9
+        4336,64,4096:
+          id: 10
+        4256,64,4016:
+          id: 11
+        4176,64,3936:
+          id: 12
+        4256,64,4176:
+          id: 13
+        4176,64,4256:
+          id: 14
+        4096,64,4176:
+          id: 15
+        3936,64,4016:
+          id: 16
+        4016,64,4256:
+          id: 17
+        3936,64,4176:
+          id: 18
+        4416,64,4096:
+          id: 19
+        4336,64,4176:
+          id: 20
     factory:
       init:
-        player_factory_id: 0
+        player_factory_id: 1
         list: 0
-      calculation: 0
+      calculation: 19
       id:
-        now: 0
-      location: nothing
+        now: 20
+        '1':
+          status: north
+          board:
+            background: 15
+            text: 7
+            word: services
+          x: 4112
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4122
+            y: 64
+            z: 4325
+            rot: 0
+          item: none
+          level: 42
+          next_level: 43
+        '2':
+          status: west
+          board:
+            background: 7
+            text: 0
+            word: creative
+          x: 4112
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4109
+            y: 64
+            z: 4085
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '3':
+          status: south
+          board:
+            background: 7
+            text: 0
+            word: technologies
+          x: 4032
+          y: 64
+          z: 4032
+          east: -1
+          north: -1
+          south: used
+          west: -1
+          tp:
+            x: 4085
+            y: 64
+            z: 4098
+            rot: 180
+          item: none
+          level: 0
+          next_level: 1
+        '4':
+          status: north
+          board:
+            background: 15
+            text: 0
+            word: innovations
+          x: 4032
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4042
+            y: 64
+            z: 4109
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '5':
+          status: west
+          board:
+            background: 7
+            text: 8
+            word: labs
+          x: 4192
+          y: 64
+          z: 4112
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4189
+            y: 64
+            z: 4165
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '6':
+          status: north
+          board:
+            background: 8
+            text: 7
+            word: brands
+          x: 4192
+          y: 64
+          z: 4032
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4202
+            y: 64
+            z: 4029
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '7':
+          status: south
+          board:
+            background: 7
+            text: 15
+            word: digital
+          x: 4032
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: used
+          west: -1
+          tp:
+            x: 4085
+            y: 64
+            z: 4018
+            rot: 180
+          item: none
+          level: 0
+          next_level: 1
+        '8':
+          status: east
+          board:
+            background: 15
+            text: 8
+            word: properties
+          x: 3952
+          y: 64
+          z: 4112
+          east: used
+          north: -1
+          south: -1
+          west: -1
+          tp:
+            x: 4018
+            y: 64
+            z: 4122
+            rot: 90
+          item: none
+          level: 0
+          next_level: 1
+        '9':
+          status: north
+          board:
+            background: 7
+            text: 8
+            word: designs
+          x: 4272
+          y: 64
+          z: 4112
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4282
+            y: 64
+            z: 4109
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '10':
+          status: north
+          board:
+            background: 0
+            text: 7
+            word: worldwide
+          x: 4272
+          y: 64
+          z: 4032
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4282
+            y: 64
+            z: 4029
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '11':
+          status: east
+          board:
+            background: 15
+            text: 8
+            word: innovations
+          x: 4112
+          y: 64
+          z: 3952
+          east: used
+          north: -1
+          south: -1
+          west: -1
+          tp:
+            x: 4178
+            y: 64
+            z: 3962
+            rot: 90
+          item: none
+          level: 0
+          next_level: 1
+        '12':
+          status: west
+          board:
+            background: 8
+            text: 15
+            word: tech
+          x: 4192
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4189
+            y: 64
+            z: 4005
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '13':
+          status: west
+          board:
+            background: 15
+            text: 0
+            word: productions
+          x: 4192
+          y: 64
+          z: 4192
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4189
+            y: 64
+            z: 4245
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '14':
+          status: north
+          board:
+            background: 7
+            text: 15
+            word: creative
+          x: 4112
+          y: 64
+          z: 4192
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 4122
+            y: 64
+            z: 4189
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '15':
+          status: south
+          board:
+            background: 0
+            text: 7
+            word: labs
+          x: 3952
+          y: 64
+          z: 3952
+          east: -1
+          north: -1
+          south: used
+          west: -1
+          tp:
+            x: 4005
+            y: 64
+            z: 4018
+            rot: 180
+          item: none
+          level: 0
+          next_level: 1
+        '16':
+          status: north
+          board:
+            background: 15
+            text: 7
+            word: tech
+          x: 3952
+          y: 64
+          z: 4032
+          east: -1
+          north: used
+          south: -1
+          west: -1
+          tp:
+            x: 3962
+            y: 64
+            z: 4029
+            rot: 0
+          item: none
+          level: 0
+          next_level: 1
+        '17':
+          status: west
+          board:
+            background: 7
+            text: 8
+            word: studios
+          x: 4032
+          y: 64
+          z: 4192
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4029
+            y: 64
+            z: 4245
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '18':
+          status: east
+          board:
+            background: 15
+            text: 8
+            word: services
+          x: 3952
+          y: 64
+          z: 4192
+          east: used
+          north: -1
+          south: -1
+          west: -1
+          tp:
+            x: 4018
+            y: 64
+            z: 4202
+            rot: 90
+          item: none
+          level: 0
+          next_level: 1
+        '19':
+          status: west
+          board:
+            background: 8
+            text: 7
+            word: international
+          x: 4352
+          y: 64
+          z: 4112
+          east: -1
+          north: -1
+          south: -1
+          west: used
+          tp:
+            x: 4349
+            y: 64
+            z: 4165
+            rot: -90
+          item: none
+          level: 0
+          next_level: 1
+        '20':
+          status: 0
+          board:
+            background: 0
+            text: 15
+            word: productions
+          x: 4352
+          y: 64
+          z: 4032
+          east: unavailable
+          north: unavailable
+          south: unused
+          west: unavailable
+      location:
+        4112,64,4112:
+          id: 1
+        4112,64,4032:
+          id: 2
+        4032,64,4032:
+          id: 3
+        4032,64,4112:
+          id: 4
+        4192,64,4112:
+          id: 5
+        4192,64,4032:
+          id: 6
+        4032,64,3952:
+          id: 7
+        3952,64,4112:
+          id: 8
+        4272,64,4112:
+          id: 9
+        4272,64,4032:
+          id: 10
+        4112,64,3952:
+          id: 11
+        4192,64,3952:
+          id: 12
+        4192,64,4192:
+          id: 13
+        4112,64,4192:
+          id: 14
+        3952,64,3952:
+          id: 15
+        3952,64,4032:
+          id: 16
+        4032,64,4192:
+          id: 17
+        3952,64,4192:
+          id: 18
+        4352,64,4112:
+          id: 19
+        4352,64,4032:
+          id: 20
       level:
         '1':
           upgrade:
@@ -495,18 +1137,23 @@ variables:
               stone_slab:3: 10
               white_shulker_box:0: 1
               yellow_shulker_box:0: 1
-    shop:
-      init:
-        damage: 0
-        item: none
-        stock: 0
-        redstone:
-          x: 0
-          y: 0
-          z: 0
     message:
       AlexMCool: AlexMCool test \n hi
+    style:
+      color:
+        'false': red
+        'true': green
+        'mark': dark_aqua
+        'normal': gray
+        'accent': dark_gray
+        'title': white
+        'light_mark': aqua
     translation:
+      boolean:
+        'false': 'False'
+        'true': 'True'
+      world:
+        temp_world: Temporary World
       next_level:
         '1': '1'
         '2': '2'
@@ -578,6 +1225,7 @@ variables:
       designs: Designs
       development: Development
       digital: Digital
+      dynamics: Dynamics
       enterprise: Enterprise
       industrial: Industrial
       industries: Industries
