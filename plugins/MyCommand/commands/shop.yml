@@ -1,0 +1,50 @@
+shop:
+  command: /shop
+  type: RUN_AS_OPERATOR
+  require_all_arguments: false
+  register: true
+  runcmd:
+  #######################################
+  #               create                #
+  #######################################
+  #######################
+  #       normal        #
+  #######################
+  # arg1 = create
+  # arg2 = normal
+  # arg3 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg4 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%if%$arg1==create<and>$arg2==normal'
+  - '/mycommand:shop_create $arg3 $arg4'
+  
+  #######################
+  #         xp          #
+  #######################
+  # arg1 = create
+  # arg2 = xp
+  # arg3 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg4 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%if%$arg1==create<and>$arg2==xp'
+  - '/mycommand:shop_xp_create $arg3 $arg4'
+  
+  #######################
+  #      redstone       #
+  #######################
+  # arg1 = create
+  # arg2 = redstone
+  # arg3 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg4 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%if%$arg1==create<and>$arg2==redstone'
+  - '/mycommand:shop_redstone_create $arg3 $arg4'
+  
+  #######################################
+  #                usage                #
+  ####################################### 
+  # arg1 = create
+  # arg2 = normal / xp / redstone
+  # arg3 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg4 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  - '$Script$%if%$arg1!=create<or>$arg2!=normal<and>$arg2!=xp<and>$arg2!=redstone'
+  
+  # "Usage: /shop create normal <amount> <price> OR /shop create xp <amount> <price> OR /shop create redstone <reward> <price>"
+  - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /shop create normal <amount> <price> OR /shop create xp <amount> <price> OR /shop create redstone <reward> <price>"}]'
