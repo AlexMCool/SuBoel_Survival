@@ -16,7 +16,7 @@ paypal:
   # trying to send money to yourself
   - '$Script$%if%$arg1==send<and>$arg2==$player'
   # "<PayPal> You can't send money to yourself"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t send money to yourself"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You can''t send money to yourself"}]'
   
   # sending is ok
   - '$Script$%if%$arg1==send<and>$arg2!=$player'
@@ -35,13 +35,27 @@ paypal:
   - '/mycommand:paypal_confirm $arg2'
   
   #######################################
+  #                share                #
+  ####################################### 
+  # arg1 = share
+  # arg2 = 1 / 2 / 3 / ... (amount)
+  # arg3 = (reciever)
+  # arg4 = (reciever)
+  # arg5 = (reciever)
+  # arg3 = ...
+  - '$Script$%if%$arg1==share'
+  
+  # paypal share command
+  - '/mycommand:paypal_share $multiargs'
+  
+  #######################################
   #                usage                #
   ####################################### 
   # arg1 = !confirm / !send
-  - '$Script$%if%$arg1!=confirm<and>$arg1!=send'
+  - '$Script$%if%$arg1!=confirm<and>$arg1!=send<and>$arg1!=share'
   
   # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code>"
-  - '/minecraft:tellraw $player [{"color":"red","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code>"}]'
+  - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>"}]'
   
   
   
@@ -61,7 +75,7 @@ paypal_send:
   # money count under 1
   - '$Script$%if%$arg2<1'
   # "[PayPal] The number for <amount> you have entered is too small, it must be at least 1"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The number for"},{"bold":"false","color":"dark_aqua","text":" <amount>"},{"bold":"false","color":"gray","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"dark_aqua","text":" 1"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"$s.style.color.mark","text":" 1"}]'
   
   # tan code
   - '$Script$%if%$PlayerDataFor%$arg1%$s.name%==$arg1<and>$arg2>0'
@@ -77,13 +91,13 @@ paypal_send:
   # enough money
   - '/minecraft:scoreboard players tag @s[score_ssCoins_min=$arg2] add sppEnough'
   # "[PayPal] To confirm that you want to send x ßx, type /paypal confirm <tan-code>"
-  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" To confirm that you want to send "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.paypal.receiver% ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"gray","text":", type "},{"bold":"false","color":"dark_aqua","text":"/paypal confirm <tan-code>"}]'
+  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" To confirm that you want to send "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver% ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":", type "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal confirm <tan-code>"}]'
   # "[PayPal] Your TAN-code is: xxxxxx"
-  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" Your TAN-code is: "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.paypal.tan%"}]'
+  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Your TAN-code is: "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.tan%"}]'
   
   # not enough money
   # "[PayPal] You don't have enough money to send"
-  - '/minecraft:execute @s[tag=!sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You don''t have enough money to send"}]'
+  - '/minecraft:execute @s[tag=!sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t have enough money to send"}]'
   # reset tan-code
   - '/minecraft:execute @s[tag=!sppEnough] ~ ~ ~ /mycommand:paypal_reset_tan $player'
   # remove tag
@@ -92,7 +106,7 @@ paypal_send:
   # invalid name
   - '$Script$%else%'
   # "[PayPal] x is not a valid name"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" $arg1"},{"bold":"false","color":"gray","text":" is not a valid name"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1"},{"bold":"false","color":"$s.style.color.normal","text":" is not a valid name"}]'
   
   
   
@@ -121,7 +135,7 @@ paypal_reset_tan:
 paypal_confirm:
   command: /paypal_confirm
   type: RUN_AS_OPERATOR
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code>'
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
@@ -129,7 +143,7 @@ paypal_confirm:
   # tan correct, tan has data, receiver is online ($arg1!=NoData, otherwise NoData would be a correct tan)
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData<and>$ponline.contains=$PlayerData%$s.paypal.receiver%'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The TAN-code is correct. "},{"bold":"false","color":"dark_aqua","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"gray","text":" has been sent to "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.paypal.receiver%"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
   # send amount to online player
   - '/mycommand:paypal_amount online $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
   # reset tan
@@ -138,7 +152,7 @@ paypal_confirm:
   # tan correct, tan has data, player is not online ($arg1!=NoData, otherwise NoData would be a correct tan)
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The TAN-code is correct. "},{"bold":"false","color":"dark_aqua","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"gray","text":" has been sent to "},{"bold":"false","color":"dark_aqua","text":"$PlayerData%$s.paypal.receiver%"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
   # store amount to offline player's playerdata
   - '/mycommand:paypal_amount offline $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
   # reset tan
@@ -147,21 +161,21 @@ paypal_confirm:
   # tan has no data
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==NoData'
   # "[PayPal] You don't have a TAN-code to confirm. Use /paypal send <receiver> <amount>"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You don''t have a TAN-code to confirm. Use "},{"bold":"false","color":"dark_aqua","text":"/paypal send <receiver> <amount>"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t have a TAN-code to confirm. Use "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal send <receiver> <amount>"}]'
   
   # incorrect tan with 2 attempts left (and you can't type NoData)  
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%!=$arg1<and>$PlayerData%$s.paypal.attempts_left%!=NoData<and>$PlayerData%$s.paypal.attempts_left%==3'
   # remove 1 from attempts
   - '$Script$%PlayerData%$s.paypal.attempts_left-1'
   # "[PayPal] The TAN-code is incorrect. You have 2 attempts left"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"dark_aqua","text":"2"},{"bold":"false","color":"gray","text":" attempts left"}]'  
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"$s.style.color.mark","text":"2"},{"bold":"false","color":"$s.style.color.normal","text":" attempts left"}]'  
   
   # incorrect tan with 1 attempt left (and you can't type NoData)
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%!=$arg1<and>$PlayerData%$s.paypal.attempts_left%!=NoData<and>$PlayerData%$s.paypal.attempts_left%==2'
   # remove 1 from attempts
   - '$Script$%PlayerData%$s.paypal.attempts_left-1'
   # "[PayPal] The TAN-code is incorrect. You have 1 attempt left"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"dark_aqua","text":"1"},{"bold":"false","color":"gray","text":" attempt left"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"$s.style.color.mark","text":"1"},{"bold":"false","color":"$s.style.color.normal","text":" attempt left"}]'
   
   # incorrect tan with 0 attempts left (and you can't type NoData)
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%!=$arg2<and>$PlayerData%$s.paypal.attempts_left%!=NoData<and>$PlayerData%$s.paypal.attempts_left%==1'
@@ -170,7 +184,7 @@ paypal_confirm:
   # reset tan
   - '$Script$%PlayerData%$s.paypal.tan=NoData'
   # "[PayPal] The TAN-code is incorrect. You have 0 attempts left"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"dark_aqua","text":"0"},{"bold":"false","color":"gray","text":" attempts left. You need to retry to send the money"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is incorrect. You have "},{"bold":"false","color":"$s.style.color.mark","text":"0"},{"bold":"false","color":"$s.style.color.normal","text":" attempts left. You need to retry to send the money"}]'
   
   
   
@@ -209,7 +223,7 @@ paypal_amount:
   - '$Script$%if%$arg1==online'
   
   # "[PayPal] You have received ßx from x"
-  - '/minecraft:tellraw $arg3 [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You have received "},{"bold":"false","color":"dark_aqua","text":"ß$arg4"},{"bold":"false","color":"gray","text":" from "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  - '/minecraft:tellraw $arg3 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You have received "},{"bold":"false","color":"$s.style.color.mark","text":"ß$arg4"},{"bold":"false","color":"$s.style.color.normal","text":" from "},{"bold":"false","color":"$s.style.color.mark","text":"$arg2"}]'
   # remove coins
   - '/minecraft:scoreboard players remove $arg2 ssCoins $arg4'
   
@@ -232,7 +246,7 @@ paypal_received_check:
   - '$Script$%if%$PlayerData%$s.paypal.received%!=NoData<and>$PlayerData%$s.paypal.received%>0'
   
   # "[PayPal] You have received ßx while you were offline (delay because of playerevent happening before join message)"
-  - '$delay$<1>/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"PayPal"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You have received "},{"bold":"false","color":"dark_aqua","text":"ß$PlayerData%$s.paypal.received%"},{"bold":"false","color":"gray","text":" while you were offline"}]'
+  - '$delay$<1>/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You have received "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.received%"},{"bold":"false","color":"$s.style.color.normal","text":" while you were offline"}]'
   
   # add coins
   - '/scoreboard players add $player ssCoins $PlayerData%$s.paypal.received%'
