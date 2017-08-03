@@ -39,8 +39,20 @@ shop_xp_create:
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
   
+  # "[Shop] Successfully created a shop which sells x x Experience Level for ßx"
+  - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" created a shop which sells"},{"bold":"false","color":"dark_aqua","text":" $arg1 x Experience Level"},{"bold":"false","color":"gray","text":" for"},{"bold":"false","color":"dark_aqua","text":" ß$arg2"}]'
+  
+  # get id for shop
+  - '$Script$%Variable%$s.shop.init.new_id=0'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.shop.init.new_id'
+  
+  # set stock to 0 if neccessary
+  - '$Script$%if%$PlayerData%$s.shop.stock.xp%==NoData'
+  - '$Script$%PlayerData%$s.shop.stock.xp=0'
+  
   # valid; init shop info
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"dark_gray\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
+  - '$Script$%if%always==always'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"dark_aqua\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"black\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"aqua\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"dark_aqua\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"dark_gray\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"dark_gray\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"aqua\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to stand in the same block as a sign to create a shop"}]'
@@ -63,9 +75,10 @@ shop_xp_click:
   # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg3 = $uuid
+  # arg4 = $s.shop.init.new_id
   
   # check if clicker sneaks
-  - '/mycommand:shop_xp_click_sneakcheck $player $arg1 $arg2 $s.uuid.$arg3.name'
+  - '/mycommand:shop_xp_click_sneakcheck $player $arg1 $arg2 $s.uuid.$arg3.name $arg4'
   
   
   
@@ -83,6 +96,7 @@ shop_xp_click_sneakcheck:
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg4 = $s.uuid.(seller_uuid).name
+  # arg5 = $s.shop.init.new_id
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
@@ -91,10 +105,10 @@ shop_xp_click_sneakcheck:
   - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg3] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 normal enough'
-  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 normal shortage'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 sneak enough'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 sneak shortage'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 normal enough $arg5'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 normal shortage $arg5'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 sneak enough $arg5'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 sneak shortage $arg5'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
@@ -120,6 +134,7 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
+  # arg7 = $s.shop.init.new_id
   
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal'
 
@@ -178,6 +193,7 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
+  # arg7 = $s.shop.init.new_id
   
   # check if there's enough stock and the buyer is not sneaking and has enough money
   - '$Script$%elseif%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough'
@@ -189,9 +205,13 @@ shop_xp_click_action:
   - '/minecraft:xp $arg2l $arg1'
   
   # add coins to seller
+  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.translation.auto_claim_profit==True'
   - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:scoreboard players add $arg4 ssCoins $arg3'
+  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  - '$Script$%Variable%$s.shop.id.$arg7.profit+$arg3'
   
   # remove coins from buyer
+  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough'
   - '/minecraft:scoreboard players remove $arg1 ssCoins $arg3'
   
   # remove bought xp level number from stock
@@ -222,11 +242,82 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
+  # arg7 = $s.shop.init.new_id
   
   #######################
-  #     with stock      #
+  #  auto claim owner   #
   #######################
-  - '$Script$%elseif%$arg5==sneak<and>$PlayerDataFor%$arg4%$s.shop.stock.xp%>0'
+  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.translation.auto_claim_profit==True'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Amount: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  
+  # "> Stock: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
+  
+  # "> Profit: x [Claim]"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"> "},{"bold":"false","color":"gray","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"All the profit gets claimed automatically"}},"strikethrough":"true","text":"Profit: 0 [Claim]"}]'
+  
+  # "> Settings:"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  
+  # "   > Auto Claim Profit: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg7.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  #######################
+  #  self claim owner   #
+  #######################
+  - '$Script$%elseif%$arg5==sneak<and>$arg1==$arg4<and>$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  
+  # "<-----[Shop]----->"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  # "> Amount: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
+  
+  # "> Reward: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
+  
+  # "> Owner: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+  
+  # "> Price: ßx"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  
+  # "> Stock: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" $PlayerDataFor%$arg4%$s.shop.stock.xp%"}]'
+  
+  # "> Profit: x [Claim]"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Profit:"},{"bold":"false","color":"dark_aqua","text":" $s.shop.id.$arg7.profit"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_setting_claim $arg1 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to claim profit"}},"text":"Claim"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "> Settings:"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Settings:"}]'
+  
+  # "   > Auto Claim Profit: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"   >"},{"bold":"false","color":"gray","text":" Auto Claim Profit:"},{"bold":"false","color":"dark_gray","text":" ["},{"bold":"false","clickEvent":{"action":"run_command","value":"/mycommand:shop_xp_setting_autoclaimprofit $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7"},"color":"aqua","hoverEvent":{"action":"show_text","value":{"bold":"false","color":"gray","text":"Click to toggle"}},"text":"$s.shop.id.$arg7.translation.auto_claim_profit"},{"bold":"false","color":"dark_gray","text":"]"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  
+  #######################
+  #       player        #
+  #######################
+  - '$Script$%elseif%$arg5==sneak<and>$arg1!=$arg4'
   
   # "<-----[Shop]----->"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
@@ -249,28 +340,44 @@ shop_xp_click_action:
   # "---------------"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
   
-  #######################
-  #       no stock      #
-  #######################
-  - '$Script$%elseif%$arg5==sneak<and>$PlayerDataFor%$arg4%$s.shop.stock.xp%<1'
   
-  # "<-----[Shop]----->"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Shop"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"true","color":"aqua","strikethrough":"true","text":"-----"},{"bold":"true","color":"dark_aqua","text":">"}]'
   
-  # "> Amount: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Amount:"},{"bold":"false","color":"dark_aqua","text":" $arg2"}]'
   
-  # "> Reward: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Reward:"},{"bold":"false","color":"dark_aqua","text":" Experience Levels"}]'
   
-  # "> Owner: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Owner:"},{"bold":"false","color":"dark_aqua","text":" $arg4"}]'
+##############################################################################
+#                      shop xp setting autoclaimprofit                       #
+##############################################################################
+shop_xp_setting_autoclaimprofit:
+  command: /shop_xp_setting_autoclaimprofit
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = $player (buyer)
+  # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg4 = $s.uuid.(seller_uuid).name
+  # arg5 = normal / sneak
+  # arg6 = enough / shortage
+  # arg7 = (shop_id)
   
-  # "> Price: ßx"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Price:"},{"bold":"false","color":"dark_aqua","text":" ß$arg3"}]'
+  # if setting is false
+  - '$Script$%elseif%$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  # set to true
+  - '$Script$%Variable%$s.shop.id.$arg7.translation.auto_claim_profit=True'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7'
+  # if profit is greater than 0, give the money
+  - '$Script$%if%$s.shop.id.$arg7.profit>0'
+  # give profit
+  - '/mycommand:shop_setting_claim $arg1 $arg7'
   
-  # "> Stock: 0"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":">"},{"bold":"false","color":"gray","text":" Stock:"},{"bold":"false","color":"dark_aqua","text":" 0"}]'
-  
-  # "---------------"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"dark_aqua","text":"<"},{"bold":"true","color":"aqua","strikethrough":"true","text":"---------------"},{"bold":"true","color":"dark_aqua","text":">"}]'
+  # if setting is true
+  - '$Script$%elseif%$s.shop.id.$arg7.translation.auto_claim_profit==True'
+  # set to false
+  - '$Script$%Variable%$s.shop.id.$arg7.translation.auto_claim_profit=False'
+  # clear chat
+  - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
+  # reclick the sign (make the same menu show again)
+  - '/mycommand:shop_xp_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7'
