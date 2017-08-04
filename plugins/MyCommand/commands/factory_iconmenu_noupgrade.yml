@@ -5,7 +5,7 @@ factory_iconmenu_noupgrade_actions:
   command: /factory_iconmenu_noupgrade_actions
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fActions&3&l]'
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleActions&$s.translation.color.$s.style.color.mark&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $s.factory.id.$arg1.tp.x 
@@ -20,4 +20,4 @@ factory_iconmenu_noupgrade_actions:
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/multiverse-core:mvtp e:$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5"}
-  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
+  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleTeleport&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normal$arg1 $arg2 $arg3'

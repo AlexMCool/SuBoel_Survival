@@ -5,7 +5,7 @@ factory_iconmenu_upgrade_actions:
   command: /factory_iconmenu_upgrade_actions
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fActions&3&l]'
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleActions&$s.translation.color.$s.style.color.mark&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $s.factory.id.$arg1.tp.x 
@@ -20,9 +20,9 @@ factory_iconmenu_upgrade_actions:
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/multiverse-core:mvtp e:$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5"}
-  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&3&l<&b&m---&3&l[&fTeleport&3&l]&b&m---&3&l>:&3> &7$arg1 $arg2 $arg3'
+  - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleTeleport&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normal$arg1 $arg2 $arg3'
   # {Command:"%openiconmenu%/mycommand:factory_iconmenu_check_upgrade $multiargs"}
-  - '7:EMERALD:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_upgrade $multiargs:&3&l<&b&m---&3&l[&fUpgrade&3&l]&b&m---&3&l>:&3> &7Show options about upgrading;  &7this factory to level &3$s.translation.next_level.$arg4'
+  - '7:EMERALD:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_upgrade $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalShow options about upgrading;  &$s.translation.color.$s.style.color.normalthis factory to level &$s.translation.color.$s.style.color.mark$s.translation.next_level.$arg4'
   
   
   
@@ -156,7 +156,7 @@ factory_iconmenu_upgrade_without:
   command: /factory_iconmenu_upgrade_without
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fUpgrade&3&l]'
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $s.factory.id.$arg1.tp.x 
@@ -171,9 +171,9 @@ factory_iconmenu_upgrade_without:
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
-  - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
+  - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleRequirement List&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalShow a list of all the;  &$s.translation.color.$s.style.color.normalrequirements of level &$s.translation.color.$s.style.color.mark$arg4'
   # {Command:"/mycommand:factory_upgrade_requirement $arg4"}
-  - '7:HOPPER:0:/mycommand$s.char.colonfactory_upgrade_requirement $arg4:&3&l<&b&m---&3&l[&fAdd Requirements&3&l]&b&m---&3&l>:&3> &7Add required items from your;  &7inventory to the checklist;  &7of level &3$arg4'
+  - '7:HOPPER:0:/mycommand$s.char.colonfactory_upgrade_requirement $arg4:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAdd Requirements&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalAdd required items from your;  &$s.translation.color.$s.style.color.normalinventory to the checklist;  &$s.translation.color.$s.style.color.normalof level &$s.translation.color.$s.style.color.mark$arg4'
   
   
   
@@ -186,7 +186,7 @@ factory_iconmenu_upgrade_with:
   command: /factory_iconmenu_upgrade_with
   type: ICON_MENU
   register: true
-  iconmenu_title: '&3&l[&fUpgrade&3&l]'
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]'
   iconmenu_size: 9
   iconmenu_commands:
   # arg1 = $s.factory.id.$arg1.tp.x 
@@ -201,8 +201,8 @@ factory_iconmenu_upgrade_with:
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   
   # {Command:"/mycommand:factory_upgrade_list $arg4"}
-  - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&3&l<&b&m---&3&l[&fRequirement List&3&l]&b&m---&3&l>:&3> &7Show a list of all the;  &7requirements of level &3$arg4'
+  - '1:PAPER:0:/mycommand$s.char.colonfactory_upgrade_list $arg4:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleRequirement List&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalShow a list of all the;  &$s.translation.color.$s.style.color.normalrequirements of level &$s.translation.color.$s.style.color.mark$arg4'
   # {Command:"/mycommand:factory_upgrade $arg5 $arg4 $arg6 $arg7 $arg8 $arg9"}
-  - '4:NETHER_STAR:0:/mycommand$s.char.colonfactory_upgrade $arg5 $arg4 $arg6 $arg7 $arg8 $arg9:&3&l<&b&m---&3&l[&fUpgrade&3&l]&b&m---&3&l>:&3> &7Upgrade this factory;  &7to level &3$arg4'
+  - '4:NETHER_STAR:0:/mycommand$s.char.colonfactory_upgrade $arg5 $arg4 $arg6 $arg7 $arg8 $arg9:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalUpgrade this factory;  &$s.translation.color.$s.style.color.normalto level &$s.translation.color.$s.style.color.mark$arg4'
   # {Command:"/mycommand:factory_upgrade_requirement $arg4"}
-  - '7:HOPPER:0:/mycommand$s.char.colonfactory_upgrade_requirement $arg4:&3&l<&b&m---&3&l[&fAdd Requirements&3&l]&b&m---&3&l>:&3> &7Add required items from your;  &7inventory to the checklist;  &7of level &3$arg4'
+  - '7:HOPPER:0:/mycommand$s.char.colonfactory_upgrade_requirement $arg4:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAdd Requirements&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalAdd required items from your;  &$s.translation.color.$s.style.color.normalinventory to the checklist;  &$s.translation.color.$s.style.color.normalof level &$s.translation.color.$s.style.color.mark$arg4'
