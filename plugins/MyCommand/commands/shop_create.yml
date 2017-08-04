@@ -112,8 +112,9 @@ shop_place_newid:
   - '$Script$%Variable%$s.shop.id.$arg1.owner_uuid=$uuid'
   - '$Script$%Variable%$s.shop.id.$arg1.profit=0'
   - '$Script$%Variable%$s.shop.id.$arg1.setting.auto_claim_profit=true'
+  - '$Script$%Variable%$s.shop.id.$arg1.status=active'
   # summon area_effect_cloud to mark the shop
-  - '/minecraft:summon minecraft:area_effect_cloud ~ ~ ~ {Radius:0.0001f,Duration:-2147483648,Particle:"take"}'
+  - '/minecraft:summon minecraft:area_effect_cloud $locX $locY.5 $locZ {Age:-2147483648,Duration:2147483647,CustomName:"ssMarker",Particle:"take",Radius:0.0001f}'
   
   
   # try again
