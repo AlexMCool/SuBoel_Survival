@@ -1,0 +1,126 @@
+##############################################################################
+#                                 shop check                                 #
+##############################################################################
+shop_check:
+  command: /shop_check
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # reset calculation
+  - '$Script$%Variable%$s.shop.init.calculation=0'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @e[name=ssMarker,tag=ssFoundSign,type=area_effect_cloud] remove ssFoundSign'
+  
+  # add tag
+  - '/minecraft:execute @a ~ ~ ~ minecraft:execute @e[name=ssMarker,type=area_effect_cloud] ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * scoreboard players tag @s add ssFoundSign'
+  - '/minecraft:execute @a ~ ~ ~ minecraft:execute @e[name=ssMarker,type=area_effect_cloud] ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * scoreboard players tag @s add ssFoundSign'
+  
+  # if there's an aec without the tag
+  - '/minecraft:execute @e[c=1,name=ssMarker,tag=!ssFoundSign,type=area_effect_cloud] ~ ~ ~ /sudo @p /mycommand:shop_check_recursion $s.shop.init.calculation'
+  
+  
+  
+  
+  
+##############################################################################
+#                            shop check recursion                            #
+##############################################################################
+shop_check_recursion:
+  command: /shop_check_recursion
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = (shop_id)
+  
+  # if player is in correct world and shop id is used (=status is active) and shop is not broken (=status is active)
+  - '$Script$%elseif%$s.shop.id.$arg1.world==$world<and>$s.shop.id.$arg1.status==active'
+  # if aec doesn't have the tag, execute profit command
+  - '/minecraft:execute $player ~ ~ ~ minecraft:execute @e[c=1,dx=0,dy=0,dz=0,name=ssMarker,tag=!ssFoundSign,type=area_effect_cloud,x=$s.shop.id.$arg1.x,y=$s.shop.id.$arg1.y,z=$s.shop.id.$arg1.z] ~ ~ ~ /sudo @p /mycommand:shop_check_profit_init $arg1 $s.shop.id.$arg1.owner_uuid'
+  # if aec does have the tag, recur
+  - '/minecraft:execute $player ~ ~ ~ minecraft:execute @e[c=1,dx=0,dy=0,dz=0,name=ssMarker,tag=ssFoundSign,type=area_effect_cloud,x=$s.shop.id.$arg1.x,y=$s.shop.id.$arg1.y,z=$s.shop.id.$arg1.z] ~ ~ ~ /sudo @p /mycommand:shop_check_recursion_variable'
+  
+  # if shop id is not used
+  - '$Script$%elseif%$s.shop.id.$arg1.status.contains=.'
+  - ''
+  
+  # if player is in another world or shop is broken
+  - '$Script$%elseif%$s.shop.id.$arg1.world!=$world<or>$s.shop.id.$arg1.status==broken'
+  # recur
+  - '/sudo $player /mycommand:shop_check_recursion_variable'
+  
+  
+  
+  
+  
+##############################################################################
+#                       shop check recursion variable                        #
+##############################################################################
+shop_check_recursion_variable:
+  command: /shop_check_recursion_variable
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # add 1 to calculation
+  - '$Script$%Variable%$s.shop.init.calculation+1'
+  
+  # recur
+  - '/mycommand:shop_check_recursion $s.shop.init.calculation'
+  
+  
+  
+  
+  
+##############################################################################
+#                           shop check profit init                           #
+##############################################################################
+shop_check_profit_init:
+  command: /shop_check_profit_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = (shop_id)
+  # arg2 = (owner_uuid)
+  
+  # kill area_effect_cloud
+  - '/minecraft:kill @e[c=1,dx=0,dy=0,dz=0,name=ssMarker,tag=!ssFoundSign,type=area_effect_cloud,x=$s.shop.id.$arg1.x,y=$s.shop.id.$arg1.y,z=$s.shop.id.$arg1.z]'
+  
+  # if there's profit
+  - '$Script$%if%$s.shop.id.$arg1.profit>0'
+  # add profit
+  - '/mycommand:shop_check_profit $arg1 $s.uuid.$arg2.name'
+  
+  # reset profit
+  - '$Script$%if%always==always'
+  - '$Script$%Variable%$s.shop.id.$arg1.profit=0'
+  # set status to broken
+  - '$Script$%Variable%$s.shop.id.$arg1.status=broken'
+  # recur
+  - '/mycommand:shop_check_recursion_variable'
+  
+  
+  
+  
+  
+##############################################################################
+#                             shop check profit                              #
+##############################################################################
+shop_check_profit:
+  command: /shop_check_profit
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = (shop_id)
+  # arg2 = (owner_name)
+  
+  # online
+  - '$Script$%if%$ponline.contains=$arg2'
+  # "[Shop] You have received ßx because the shop at x y z in x was broken and had ßx as profit"
+  - '/minecraft:tellraw $arg2 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You have received "},{"bold":"false","color":"$s.style.color.mark","text":"ß$s.shop.id.$arg1.profit"},{"bold":"false","color":"$s.style.color.normal","text":" because the shop at "},{"bold":"false","color":"$s.style.color.mark","text":"$s.shop.id.$arg1.x $s.shop.id.$arg1.y $s.shop.id.$arg1.z"},{"bold":"false","color":"$s.style.color.normal","text":" in "},{"bold":"false","color":"$s.style.color.mark","text":"$s.translation.world.$s.shop.id.$arg1.world"},{"bold":"false","color":"$s.style.color.normal","text":" was broken and had "},{"bold":"false","color":"$s.style.color.mark","text":"ß$s.shop.id.$arg1.profit"},{"bold":"false","color":"$s.style.color.normal","text":" as profit"}]'
+  # add coins
+  - '/minecraft:scoreboard players add $arg2 ssCoins $s.shop.id.$arg1.profit'
+  
+  # offline
+  - '$Script$%else%'
+  # add coins
+  - '$Script$%PlayerDataFor%$arg2%$s.paypal.received+$s.shop.id.$arg1.profit'
