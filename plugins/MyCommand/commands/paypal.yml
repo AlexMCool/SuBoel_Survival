@@ -31,8 +31,8 @@ paypal:
   # arg2 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
   - '$Script$%if%$arg1==confirm'
   
-  # paypal confirm command
-  - '/mycommand:paypal_confirm $arg2'
+  # check for enough money
+  - '/mycommand:paypal_confirm_init $arg2'
   
   #######################################
   #                share                #
@@ -54,7 +54,7 @@ paypal:
   # arg1 = !confirm / !send
   - '$Script$%if%$arg1!=confirm<and>$arg1!=send<and>$arg1!=share'
   
-  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code>"
+  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>"
   - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>"}]'
   
   
@@ -124,6 +124,34 @@ paypal_reset_tan:
   
   # set tan to NoData
   - '$Script$%PlayerDataFor%$arg1%$s.paypal.tan=NoData'
+  
+  
+  
+  
+  
+##############################################################################
+#                            paypal confirm init                             #
+##############################################################################
+paypal_confirm_init:
+  command: /paypal_confirm_init
+  type: RUN_CONSOLE
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+  register: true
+  runcmd:
+  # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
+  
+  # add tag if enough money
+  - '/minecraft:scoreboard players tag @a[name=$player,score_ssCoins_min=$PlayerData%$s.paypal.amount%] add sppEnough'
+  
+  # enough money
+  - '/minecraft:execute @a[name=$player,tag=sppEnough] ~ ~ ~ /sudo @s /mycommand:paypal_confirm $arg1'
+  
+  # not enough money  
+  # "[PayPal] You don't have enough money anymore"
+  - '/minecraft:tellraw @a[name=$player,tag=!sppEnough] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t enough money anymore"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @a[name=$player,tag=sppEnough] remove sppEnough'
   
   
   
