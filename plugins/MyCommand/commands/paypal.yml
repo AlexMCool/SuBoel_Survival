@@ -57,8 +57,8 @@ paypal:
   # arg1 = !confirm / !send
   - '$Script$%if%$arg1!=confirm<and>$arg1!=send<and>$arg1!=share'
   
-  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>"
-  - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>"}]'
+  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"
+  - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"}]'
   
   
   
@@ -138,7 +138,7 @@ paypal_reset_tan:
 paypal_confirm_init:
   command: /paypal_confirm_init
   type: RUN_CONSOLE
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
@@ -166,7 +166,7 @@ paypal_confirm_init:
 paypal_confirm:
   command: /paypal_confirm
   type: RUN_AS_OPERATOR
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
