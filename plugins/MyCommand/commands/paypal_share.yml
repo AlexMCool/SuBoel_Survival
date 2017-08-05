@@ -4,7 +4,6 @@
 paypal_share:
   command: /paypal_share
   type: RUN_AS_OPERATOR
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   require_all_arguments: false
   register: true
   runcmd:
@@ -303,6 +302,11 @@ paypal_share:
   - '$Script$%elseif%$multiargs.args.lenght>2'
   # "[PayPal] You cannot share money with only 1 player. Use /paypal send <receiver> <amount> instead"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You cannot share money with only "},{"bold":"false","color":"$s.style.color.mark","text":"1"},{"bold":"false","color":"$s.style.color.normal","text":" player. Use "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal send <receiver> <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" instead"}]'
+  
+  # 0 players
+  - '$Script$%else%'
+  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.error","text":"/paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"}]'
 
 
 
@@ -318,13 +322,27 @@ paypal_share_init:
   runcmd:
   # arg1 = 1 / 2 / 3 / ... (money)
   # arg2 = 1 / 2 / 3 / ... (players_to_share)
+  # arg3 = recur
   
   # setup
+  - '$Script$%if%$arg3!=recur'
   - '$Script$%PlayerData%$s.init.share.amount=$arg1'
   - '$Script$%PlayerData%$s.init.share.divided=0'
   - '$Script$%PlayerData%$s.init.share.calculation=$arg1'
   
   # calculation
+  - '$Script$%if%always==always'
+  - '/mycommand:paypal_share_calculation 134217728 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 67108864 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 33554432 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 16777216 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 8388608 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 4194304 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 2097152 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 1048576 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 524288 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 262144 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 131072 $arg1 $arg2'
   - '/mycommand:paypal_share_calculation 65536 $arg1 $arg2'
   - '/mycommand:paypal_share_calculation 32768 $arg1 $arg2'
   - '/mycommand:paypal_share_calculation 16384 $arg1 $arg2'
@@ -342,6 +360,9 @@ paypal_share_init:
   - '/mycommand:paypal_share_calculation 4 $arg1 $arg2'
   - '/mycommand:paypal_share_calculation 2 $arg1 $arg2'
   - '/mycommand:paypal_share_calculation 1 $arg1 $arg2'
+  
+  - '$Script$%if%$PlayerData%$s.init.share.calculation%>=$arg2'
+  - '/mycommand:paypal_share_init $arg1 $arg2 recur'
   
   
   
