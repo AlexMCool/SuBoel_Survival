@@ -4,7 +4,7 @@
 paypal_share_confirm_init:
   command: /paypal_share_confirm_init
   type: RUN_CONSOLE
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
@@ -753,17 +753,6 @@ paypal_share_confirm_receivers:
   - '/sudo $player /mycommand:paypal_share_confirm $arg2'
   - '/sudo $player /mycommand:paypal_share_confirm $arg3'
   
-  # 1 player
-  - '$Script$%elseif%$multiargs.args.lenght>1'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>1<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  
-  # 0 players
-  - '$Script$%elseif%$multiargs.args.lenght>0'
-  - '/say NOPLAYERS'
-  
   
   
   
@@ -774,7 +763,7 @@ paypal_share_confirm_receivers:
 paypal_share_confirm_check:
   command: /paypal_share_confirm_check
   type: RUN_AS_OPERATOR
-#  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+#  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
@@ -822,7 +811,7 @@ paypal_share_confirm_check:
 paypal_share_confirm:
   command: /paypal_share_confirm
   type: RUN_AS_OPERATOR
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <players>'
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = (receiver)
