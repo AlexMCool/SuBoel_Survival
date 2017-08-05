@@ -1,0 +1,365 @@
+##############################################################################
+#                                paypal share                                #
+##############################################################################
+paypal_share:
+  command: /paypal_share
+  type: RUN_AS_OPERATOR
+  require_all_arguments: false
+  register: true
+  runcmd:
+  # arg1 = share (because of $multiargs)
+  # arg2 = 1 / 2 / 3 / ... (amount)
+  # arg3 = (reciever)
+  # arg4 = (reciever)
+  # arg5 = (reciever)
+  # arg6 = ...
+
+  # 32 players
+  - '$Script$%elseif%$multiargs.args.lenght>33'
+  - '/mycommand:paypal_share_init $arg2 32'
+  - '/mycommand:paypal_share_check_32 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32 $arg33 $arg34'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>33<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 32 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"32"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 31 players
+  - '$Script$%elseif%$multiargs.args.lenght>32'
+  - '/mycommand:paypal_share_init $arg2 31'
+  - '/mycommand:paypal_share_check_31 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32 $arg33'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>32<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 31 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"31"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 30 players
+  - '$Script$%elseif%$multiargs.args.lenght>31'
+  - '/mycommand:paypal_share_init $arg2 30'
+  - '/mycommand:paypal_share_check_30 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>31<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 30 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"30"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 29 players
+  - '$Script$%elseif%$multiargs.args.lenght>30'
+  - '/mycommand:paypal_share_init $arg2 29'
+  - '/mycommand:paypal_share_check_29 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>30<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 29 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"29"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 28 players
+  - '$Script$%elseif%$multiargs.args.lenght>29'
+  - '/mycommand:paypal_share_init $arg2 28'
+  - '/mycommand:paypal_share_check_28 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>29<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 28 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"28"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 27 players
+  - '$Script$%elseif%$multiargs.args.lenght>28'
+  - '/mycommand:paypal_share_init $arg2 27'
+  - '/mycommand:paypal_share_check_27 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>28<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 27 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"27"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 26 players
+  - '$Script$%elseif%$multiargs.args.lenght>27'
+  - '/mycommand:paypal_share_init $arg2 26'
+  - '/mycommand:paypal_share_check_26 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>27<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 26 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"26"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 25 players
+  - '$Script$%elseif%$multiargs.args.lenght>26'
+  - '/mycommand:paypal_share_init $arg2 25'
+  - '/mycommand:paypal_share_check_25 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>26<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 25 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"25"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 24 players
+  - '$Script$%elseif%$multiargs.args.lenght>25'
+  - '/mycommand:paypal_share_init $arg2 24'
+  - '/mycommand:paypal_share_check_24 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>25<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 24 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"24"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 23 players
+  - '$Script$%elseif%$multiargs.args.lenght>24'
+  - '/mycommand:paypal_share_init $arg2 23'
+  - '/mycommand:paypal_share_check_23 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>24<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 23 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"23"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 22 players
+  - '$Script$%elseif%$multiargs.args.lenght>23'
+  - '/mycommand:paypal_share_init $arg2 22'
+  - '/mycommand:paypal_share_check_22 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>23<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 22 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"22"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 21 players
+  - '$Script$%elseif%$multiargs.args.lenght>22'
+  - '/mycommand:paypal_share_init $arg2 21'
+  - '/mycommand:paypal_share_check_21 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>22<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 21 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"21"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 20 players
+  - '$Script$%elseif%$multiargs.args.lenght>21'
+  - '/mycommand:paypal_share_init $arg2 20'
+  - '/mycommand:paypal_share_check_20 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>21<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 20 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"20"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 19 players
+  - '$Script$%elseif%$multiargs.args.lenght>20'
+  - '/mycommand:paypal_share_init $arg2 19'
+  - '/mycommand:paypal_share_check_19 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>20<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 19 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"19"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 18 players
+  - '$Script$%elseif%$multiargs.args.lenght>19'
+  - '/mycommand:paypal_share_init $arg2 18'
+  - '/mycommand:paypal_share_check_18 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>19<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 18 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"18"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 17 players
+  - '$Script$%elseif%$multiargs.args.lenght>18'
+  - '/mycommand:paypal_share_init $arg2 17'
+  - '/mycommand:paypal_share_check_17 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>18<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 17 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"17"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 16 players
+  - '$Script$%elseif%$multiargs.args.lenght>17'
+  - '/mycommand:paypal_share_init $arg2 16'
+  - '/mycommand:paypal_share_check_16 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>17<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 16 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"16"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 15 players
+  - '$Script$%elseif%$multiargs.args.lenght>16'
+  - '/mycommand:paypal_share_init $arg2 15'
+  - '/mycommand:paypal_share_check_15 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>16<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 15 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"15"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 14 players
+  - '$Script$%elseif%$multiargs.args.lenght>15'
+  - '/mycommand:paypal_share_init $arg2 14'
+  - '/mycommand:paypal_share_check_14 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>15<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 14 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"14"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 13 players
+  - '$Script$%elseif%$multiargs.args.lenght>14'
+  - '/mycommand:paypal_share_init $arg2 13'
+  - '/mycommand:paypal_share_check_13 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>14<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 13 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"13"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 12 players
+  - '$Script$%elseif%$multiargs.args.lenght>13'
+  - '/mycommand:paypal_share_init $arg2 12'
+  - '/mycommand:paypal_share_check_12 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>13<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 12 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"12"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 11 players
+  - '$Script$%elseif%$multiargs.args.lenght>12'
+  - '/mycommand:paypal_share_init $arg2 11'
+  - '/mycommand:paypal_share_check_11 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>12<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 11 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"11"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 10 players
+  - '$Script$%elseif%$multiargs.args.lenght>11'
+  - '/mycommand:paypal_share_init $arg2 10'
+  - '/mycommand:paypal_share_check_10 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>11<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 10 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"10"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 9 players
+  - '$Script$%elseif%$multiargs.args.lenght>10'
+  - '/mycommand:paypal_share_init $arg2 9'
+  - '/mycommand:paypal_share_check_9 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>10<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 9 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"9"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 8 players
+  - '$Script$%elseif%$multiargs.args.lenght>9'
+  - '/mycommand:paypal_share_init $arg2 8'
+  - '/mycommand:paypal_share_check_8 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>9<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 8 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"8"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 7 players
+  - '$Script$%elseif%$multiargs.args.lenght>8'
+  - '/mycommand:paypal_share_init $arg2 7'
+  - '/mycommand:paypal_share_check_7 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>8<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 7 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"7"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 6 players
+  - '$Script$%elseif%$multiargs.args.lenght>7'
+  - '/mycommand:paypal_share_init $arg2 6'
+  - '/mycommand:paypal_share_check_6 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>7<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 6 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"6"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 5 players
+  - '$Script$%elseif%$multiargs.args.lenght>6'
+  - '/mycommand:paypal_share_init $arg2 5'
+  - '/mycommand:paypal_share_check_5 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>6<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 5 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"5"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 4 players
+  - '$Script$%elseif%$multiargs.args.lenght>5'
+  - '/mycommand:paypal_share_init $arg2 4'
+  - '/mycommand:paypal_share_check_4 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>5<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 4 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"4"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 3 players
+  - '$Script$%elseif%$multiargs.args.lenght>4'
+  - '/mycommand:paypal_share_init $arg2 3'
+  - '/mycommand:paypal_share_check_3 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>4<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between 3 players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"3"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+
+  # 2 players
+  - '$Script$%elseif%$multiargs.args.lenght>3'
+  - '/mycommand:paypal_share_init $arg2 2'
+  - '/mycommand:paypal_share_check_2 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32 $arg33 $arg34'
+  # check if there's remaining money and a tan
+  - '$Script$%if%$multiargs.args.lenght>3<and>$PlayerData%$s.paypal.tan%!=NoData<and>$PlayerData%$s.init.share.calculation%>0'
+  # "[PayPal] Please note that when equally dividing ßx between x players, ßx will remain. You will keep the remaining ßx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Please note"},{"bold":"false","color":"$s.style.color.normal","text":" that when equally dividing "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" between "},{"bold":"false","color":"$s.style.color.mark","text":"2"},{"bold":"false","color":"$s.style.color.normal","text":" players, "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"},{"bold":"false","color":"$s.style.color.normal","text":" will remain. You will keep the remaining "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.init.share.calculation%"}]'
+  
+  # 1 player
+  - '$Script$%elseif%$multiargs.args.lenght>2'
+  - '/mycommand:paypal_share_init $arg2 1'
+  - '/mycommand:paypal_share_check_1 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32 $arg33 $arg34'
+
+
+
+
+  
+##############################################################################
+#                             paypal share init                              #
+##############################################################################
+paypal_share_init:
+  command: /paypal_share_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = 1 / 2 / 3 / ... (money)
+  # arg2 = 1 / 2 / 3 / ... (players_to_share)
+  
+  # setup
+  - '$Script$%PlayerData%$s.init.share.amount=$arg1'
+  - '$Script$%PlayerData%$s.init.share.divided=0'
+  - '$Script$%PlayerData%$s.init.share.calculation=$arg1'
+  
+  # calculation
+  - '/mycommand:paypal_share_calculation 65536 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 32768 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 16384 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 8192 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 4096 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 2048 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 1024 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 512 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 256 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 128 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 64 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 32 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 16 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 8 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 4 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 2 $arg1 $arg2'
+  - '/mycommand:paypal_share_calculation 1 $arg1 $arg2'
+  
+  
+  
+  
+  
+##############################################################################
+#                          paypal share calculation                          #
+##############################################################################
+paypal_share_calculation:
+  command: /paypal_share_calculation
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = 1 / 2 / 3 / ... / 16384 / 32768 / 65536 
+  # arg2 = 1 / 2 / 3 / ... (money)
+  # arg3 = 1 / 2 / 3 / ... (players_to_share)
+  
+  # set factor
+  - '$Script$%PlayerData%$s.init.share.factor=$arg1'
+  - '$Script$%PlayerData%$s.init.share.factor*$arg3'
+
+  # checks if factor is less or equal to calculation
+  - '$Script$%if%$multiargs.args.lenght>aaaaa<and>$PlayerData%$s.init.share.factor%<=$PlayerData%$s.init.share.calculation%'
+  # removes factor from calculation
+  - '$Script$%PlayerData%$s.init.share.calculation-$PlayerData%$s.init.share.factor%'
+  # add to divided
+  - '$Script$%PlayerData%$s.init.share.divided+$arg1'
