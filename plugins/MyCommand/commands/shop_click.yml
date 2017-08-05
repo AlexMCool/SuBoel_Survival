@@ -162,9 +162,9 @@ shop_click_action:
   - '%Repeat%$arg4%minecraft:give $arg1 minecraft:$arg2 1 $arg3'
   
   # add coins to seller
-  - '$Script$%if%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%>=$arg4<and>$arg7==normal<and>$arg8==enough<and>$s.shop.id.$arg9.translation.auto_claim_profit==True'
+  - '$Script$%if%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%>=$arg4<and>$arg7==normal<and>$arg8==enough<and>$s.shop.id.$arg9.setting.auto_claim_profit==true'
   - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:scoreboard players add $arg6 ssCoins $arg5'
-  - '$Script$%if%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%>=$arg4<and>$arg7==normal<and>$arg8==enough<and>$s.shop.id.$arg9.translation.auto_claim_profit==False'
+  - '$Script$%if%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%>=$arg4<and>$arg7==normal<and>$arg8==enough<and>$s.shop.id.$arg9.setting.auto_claim_profit==false'
   - '$Script$%Variable%$s.shop.id.$arg9.profit+$arg5'
   
   # remove coins from buyer

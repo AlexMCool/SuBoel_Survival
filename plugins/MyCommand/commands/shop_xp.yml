@@ -205,9 +205,9 @@ shop_xp_click_action:
   - '/minecraft:xp $arg2l $arg1'
   
   # add coins to seller
-  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.translation.auto_claim_profit==True'
+  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.setting.auto_claim_profit==true'
   - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:scoreboard players add $arg4 ssCoins $arg3'
-  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.translation.auto_claim_profit==False'
+  - '$Script$%if%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough<and>$s.shop.id.$arg7.setting.auto_claim_profit==false'
   - '$Script$%Variable%$s.shop.id.$arg7.profit+$arg3'
   
   # remove coins from buyer

@@ -191,9 +191,9 @@ shop_redstone_click_action:
   # "[Shop] Your purchase of ßx was successful"
   - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone_min=1] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Your purchase of "},{"bold":"false","color":"$s.style.color.mark","text":"ß$arg6"},{"bold":"false","color":"$s.style.color.normal","text":" was "},{"bold":"false","color":"$s.style.color.mark","text":"successful"}]'
   # add coins to seller
-  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.translation.auto_claim_profit==True'
+  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.setting.auto_claim_profit==true'
   - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players add $arg7 ssCoins $arg6'
-  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.translation.auto_claim_profit==False'
+  - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough<and>$s.shop.id.$arg10.setting.auto_claim_profit==false'
   - '$Script$%Variable%$s.shop.id.$arg10.profit+$arg6'
   # remove coins from buyer
   - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
