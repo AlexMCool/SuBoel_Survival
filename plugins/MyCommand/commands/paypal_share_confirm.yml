@@ -1,8 +1,142 @@
 ##############################################################################
-#                         paypal share confirm init                          #
+#                                   paypal                                   #
 ##############################################################################
-paypal_share_confirm_init:
-  command: /paypal_share_confirm_init
+paypal:
+  command: /paypal
+  type: RUN_AS_OPERATOR
+  require_all_arguments: false
+  register: true
+  runcmd:
+  #######################################
+  #                send                 #
+  ####################################### 
+  # arg1 = send
+  # arg2 = (receiver)
+  
+  # trying to send money to yourself
+  - '$Script$%if%$arg1==send<and>$arg2==$player'
+  # "<PayPal> You can't send money to yourself"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You can''t send money to yourself"}]'
+  
+  # sending is ok
+  - '$Script$%if%$arg1==send<and>$arg2!=$player'
+  
+  # paypal send command
+  - '/mycommand:paypal_send $arg2 $arg3'
+  
+  #######################################
+  #               confirm               #
+  ####################################### 
+  # arg1 = confirm
+  # arg2 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
+  - '$Script$%elseif%$arg1==confirm<and>$PlayerData%$s.paypal.receiver%.args.lenght>1'
+  - '/mycommand:paypal_share_confirm_init $arg2'
+  
+  - '$Script$%elseif%$arg1==confirm'
+  
+  # check for enough money
+  - '/mycommand:paypal_confirm_init $arg2'
+  
+  #######################################
+  #                share                #
+  ####################################### 
+  # arg1 = share
+  # arg2 = 1 / 2 / 3 / ... (amount)
+  # arg3 = (reciever)
+  # arg4 = (reciever)
+  # arg5 = (reciever)
+  # arg3 = ...
+  - '$Script$%if%$arg1==share'
+  
+  # paypal share command
+  - '/mycommand:paypal_share $multiargs'
+  
+  #######################################
+  #                usage                #
+  ####################################### 
+  # arg1 = !confirm / !send
+  - '$Script$%if%$arg1!=confirm<and>$arg1!=send<and>$arg1!=share'
+  
+  # "Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"
+  - '/minecraft:tellraw $player [{"color":"$s.style.color.error","text":"Usage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"}]'
+  
+  
+  
+  
+  
+##############################################################################
+#                                paypal send                                 #
+##############################################################################
+paypal_send:
+  command: /paypal_send
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # arg1 = (receiver)
+  # arg2 = 1 / 2 / 3 ...
+  
+  # money count under 1
+  - '$Script$%if%$arg2<1'
+  # "[PayPal] The number for <amount> you have entered is too small, it must be at least 1"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The number for"},{"bold":"false","color":"$s.style.color.mark","text":" <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too small, it must be at least"},{"bold":"false","color":"$s.style.color.mark","text":" 1"}]'
+  
+  # tan code
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.name%==$arg1<and>$arg2>0'
+  # set playerdata's tan code
+  - '$Script$%PlayerData%$s.paypal.tan=$GetRandomStringFromList%9;8;7;6;5;4;3;2;1%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%5;6;7;8;9;0;1;2;3;4%'
+  # set tries to 3
+  - '$Script$%PlayerData%$s.paypal.attempts_left=3'
+  # set receiver
+  - '$Script$%PlayerData%$s.paypal.receiver=$arg1'
+  # set amount
+  - '$Script$%PlayerData%$s.paypal.amount=$arg2'
+  
+  # enough money
+  - '/minecraft:scoreboard players tag @s[score_ssCoins_min=$arg2] add sppEnough'
+  # "[PayPal] To confirm that you want to send x ßx, type /paypal confirm <tan-code>"
+  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" To confirm that you want to send "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver% ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":", type "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal confirm <tan-code>"}]'
+  # "[PayPal] Your TAN-code is: xxxxxx"
+  - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Your TAN-code is: "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.tan%"}]'
+  
+  # not enough money
+  # "[PayPal] You don't have enough money to send"
+  - '/minecraft:execute @s[tag=!sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t have enough money to send"}]'
+  # reset tan-code
+  - '/minecraft:execute @s[tag=!sppEnough] ~ ~ ~ /mycommand:paypal_reset_tan $player'
+  # remove tag
+  - '/minecraft:scoreboard players tag @s remove sppEnough'
+  
+  # invalid name
+  - '$Script$%else%'
+  # "[PayPal] x is not a valid name"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1"},{"bold":"false","color":"$s.style.color.normal","text":" is not a valid name"}]'
+  
+  
+  
+  
+  
+##############################################################################
+#                              paypal reset tan                              #
+##############################################################################
+paypal_reset_tan:
+  command: /paypal_reset_tan
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player
+  
+  # set tan to NoData
+  - '$Script$%PlayerDataFor%$arg1%$s.paypal.tan=NoData'
+  
+  
+  
+  
+  
+##############################################################################
+#                            paypal confirm init                             #
+##############################################################################
+paypal_confirm_init:
+  command: /paypal_confirm_init
   type: RUN_CONSOLE
   error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
@@ -10,10 +144,10 @@ paypal_share_confirm_init:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
   
   # add tag if enough money
-  - '/minecraft:scoreboard players tag @a[name=$player,score_ssCoins_min=$PlayerData%$s.share.amount%] add sppEnough'
+  - '/minecraft:scoreboard players tag @a[name=$player,score_ssCoins_min=$PlayerData%$s.paypal.amount%] add sppEnough'
   
   # enough money
-  - '/minecraft:execute @a[name=$player,tag=sppEnough] ~ ~ ~ /sudo @s /mycommand:paypal_share_confirm_receivers $arg1 $PlayerData%$s.paypal.receiver%'
+  - '/minecraft:execute @a[name=$player,tag=sppEnough] ~ ~ ~ /sudo @s /mycommand:paypal_confirm $arg1'
   
   # not enough money  
   # "[PayPal] You don't have enough money anymore"
@@ -27,751 +161,33 @@ paypal_share_confirm_init:
   
   
 ##############################################################################
-#                       paypal share confirm receivers                       #
+#                               paypal confirm                               #
 ##############################################################################
-paypal_share_confirm_receivers:
-  command: /paypal_share_confirm_receivers
-  type: RUN_CONSOLE
-  register: true
-  runcmd:
-  # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
-  # arg2 = (reciever)
-  # arg3 = (reciever)
-  # arg4 = (reciever)
-  # arg5 = ...
-  
-  # 32 players
-  - '$Script$%elseif%$multiargs.args.lenght>32'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>32<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg29'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg30'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg31'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg32'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg33'
-  
-  # 31 players
-  - '$Script$%elseif%$multiargs.args.lenght>31'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>31<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg29'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg30'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg31'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg32'
-  
-  # 30 players
-  - '$Script$%elseif%$multiargs.args.lenght>30'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>30<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg29'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg30'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg31'
-  
-  # 29 players
-  - '$Script$%elseif%$multiargs.args.lenght>29'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>29<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg29'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg30'
-  
-  # 28 players
-  - '$Script$%elseif%$multiargs.args.lenght>28'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>28<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg29'
-  
-  # 27 players
-  - '$Script$%elseif%$multiargs.args.lenght>27'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>27<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg28'
-  
-  # 26 players
-  - '$Script$%elseif%$multiargs.args.lenght>26'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>26<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg27'
-  
-  # 25 players
-  - '$Script$%elseif%$multiargs.args.lenght>25'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>25<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg26'
-  
-  # 24 players
-  - '$Script$%elseif%$multiargs.args.lenght>24'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>24<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg25'
-  
-  # 23 players
-  - '$Script$%elseif%$multiargs.args.lenght>23'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>23<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg24'
-  
-  # 22 players
-  - '$Script$%elseif%$multiargs.args.lenght>22'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>22<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg23'
-  
-  # 21 players
-  - '$Script$%elseif%$multiargs.args.lenght>21'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>21<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg22'
-  
-  # 20 players
-  - '$Script$%elseif%$multiargs.args.lenght>20'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>20<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg21'
-  
-  # 19 players
-  - '$Script$%elseif%$multiargs.args.lenght>19'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>19<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg20'
-  
-  # 18 players
-  - '$Script$%elseif%$multiargs.args.lenght>18'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>18<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg19'
-  
-  # 17 players
-  - '$Script$%elseif%$multiargs.args.lenght>17'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>17<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg18'
-  
-  # 16 players
-  - '$Script$%elseif%$multiargs.args.lenght>16'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>16<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg17'
-  
-  # 15 players
-  - '$Script$%elseif%$multiargs.args.lenght>15'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>15<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg16'
-  
-  # 14 players
-  - '$Script$%elseif%$multiargs.args.lenght>14'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>14<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg15'
-  
-  # 13 players
-  - '$Script$%elseif%$multiargs.args.lenght>13'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>13<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg14'
-  
-  # 12 players
-  - '$Script$%elseif%$multiargs.args.lenght>12'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>12<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg13'
-  
-  # 11 players
-  - '$Script$%elseif%$multiargs.args.lenght>11'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>11<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg12'
-  
-  # 10 players
-  - '$Script$%elseif%$multiargs.args.lenght>10'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>10<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg11'
-  
-  # 9 players
-  - '$Script$%elseif%$multiargs.args.lenght>9'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>9<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg10'
-  
-  # 8 players
-  - '$Script$%elseif%$multiargs.args.lenght>8'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>8<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg9'
-  
-  # 7 players
-  - '$Script$%elseif%$multiargs.args.lenght>7'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>7<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg8'
-  
-  # 6 players
-  - '$Script$%elseif%$multiargs.args.lenght>6'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>6<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg7'
-  
-  # 5 players
-  - '$Script$%elseif%$multiargs.args.lenght>5'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>5<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg6'
-  
-  # 4 players
-  - '$Script$%elseif%$multiargs.args.lenght>4'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>4<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg5'
-  
-  # 3 players
-  - '$Script$%elseif%$multiargs.args.lenght>3'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>3<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg4'
-  
-  # 2 players
-  - '$Script$%elseif%$multiargs.args.lenght>2'
-  - '/sudo $player /mycommand:paypal_share_confirm_check $arg1'
-  - '$Script$%if%$multiargs.args.lenght>2<and>$PlayerDataFor%$player%$s.paypal.correct_tan%==true'
-  - '$Script$%PlayerData%$s.paypal.tan=NoData'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg2'
-  - '/sudo $player /mycommand:paypal_share_confirm $arg3'
-  
-  
-  
-  
-  
-##############################################################################
-#                         paypal share confirm check                         #
-##############################################################################
-paypal_share_confirm_check:
-  command: /paypal_share_confirm_check
+paypal_confirm:
+  command: /paypal_confirm
   type: RUN_AS_OPERATOR
-#  error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
+  error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
   
-  # set correct_tan to boolean
-  - '$Script$%PlayerData%$s.paypal.correct_tan=false'
-  - '$Script$%if%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData'
-  - '$Script$%PlayerData%$s.paypal.correct_tan=true'
+  # tan correct, tan has data, receiver is online ($arg1!=NoData, otherwise NoData would be a correct tan)
+  - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData<and>$ponline.contains=$PlayerData%$s.paypal.receiver%'
+  # "[PayPal] The TAN-code is correct. ßx has been sent to x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # send amount to online player
+  - '/mycommand:paypal_amount online $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
+  # reset tan
+  - '$Script$%PlayerData%$s.paypal.tan=NoData'
+  
+  # tan correct, tan has data, player is not online ($arg1!=NoData, otherwise NoData would be a correct tan)
+  - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData'
+  # "[PayPal] The TAN-code is correct. ßx has been sent to x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # store amount to offline player's playerdata
+  - '/mycommand:paypal_amount offline $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
+  # reset tan
+  - '$Script$%PlayerData%$s.paypal.tan=NoData'
   
   # tan has no data
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==NoData'
@@ -806,26 +222,65 @@ paypal_share_confirm_check:
   
   
 ##############################################################################
-#                            paypal share confirm                            #
+#                               paypal amount                                #
 ##############################################################################
-paypal_share_confirm:
-  command: /paypal_share_confirm
+paypal_amount:
+  command: /paypal_amount
   type: RUN_AS_OPERATOR
-  error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
-  # arg1 = (receiver)
+  #######################################
+  #               offline               #
+  ####################################### 
+  # arg1 = offline
+  # arg2 = $player
+  # arg3 = $PlayerData%$s.paypal.receiver% 
+  # arg4 = $PlayerData%$s.paypal.amount%
+  - '$Script$%if%$arg1==offline'
   
-  # if receiver is online
-  - '$Script$%elseif%$ponline.contains=$arg1'
-  # "[PayPal] The TAN-code is correct. ßx has been sent to x"
-  #- '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
-  # send amount to online player
-  - '/mycommand:paypal_amount online $player $arg1 $PlayerData%$s.paypal.amount%'
+  # remove coins
+  - '/minecraft:scoreboard players remove $arg2 ssCoins $arg4'
   
-  # if player is not online
-  - '$Script$%else%'
-  # "[PayPal] The TAN-code is correct. ßx has been sent to x"
-  #- '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
-  # store amount to offline player's playerdata
-  - '/mycommand:paypal_amount offline $player $arg1 $PlayerData%$s.paypal.amount%'
+  # add money to playerdata
+  - '$Script$%PlayerDataFor%$arg3%$s.paypal.received+$arg4'
+  
+  #######################################
+  #                online               #
+  ####################################### 
+  # arg1 = online
+  # arg2 = $player
+  # arg3 = $PlayerData%$s.paypal.receiver% 
+  # arg4 = $PlayerData%$s.paypal.amount%
+  - '$Script$%if%$arg1==online'
+  
+  # "[PayPal] You have received ßx from x"
+  - '/minecraft:tellraw $arg3 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You have received "},{"bold":"false","color":"$s.style.color.mark","text":"ß$arg4"},{"bold":"false","color":"$s.style.color.normal","text":" from "},{"bold":"false","color":"$s.style.color.mark","text":"$arg2"}]'
+  # remove coins
+  - '/minecraft:scoreboard players remove $arg2 ssCoins $arg4'
+  
+  # add coins
+  - '/minecraft:scoreboard players add $arg3 ssCoins $arg4'
+  
+  
+  
+  
+  
+##############################################################################
+#                           paypal received check                            #
+##############################################################################
+paypal_received_check:
+  command: /paypal_received_check
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  # if player has received money
+  - '$Script$%if%$PlayerData%$s.paypal.received%!=NoData<and>$PlayerData%$s.paypal.received%>0'
+  
+  # "[PayPal] You have received ßx while you were offline (delay because of playerevent happening before join message)"
+  - '$delay$<1>/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You have received "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.received%"},{"bold":"false","color":"$s.style.color.normal","text":" while you were offline"}]'
+  
+  # add coins
+  - '/scoreboard players add $player ssCoins $PlayerData%$s.paypal.received%'
+  
+  # reset received
+  - '$Script$%PlayerData%$s.paypal.received=NoData'
