@@ -4,6 +4,7 @@
 paypal_share:
   command: /paypal_share
   type: RUN_AS_OPERATOR
+  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   require_all_arguments: false
   register: true
   runcmd:
@@ -13,7 +14,12 @@ paypal_share:
   # arg4 = (reciever)
   # arg5 = (reciever)
   # arg6 = ...
-
+  
+  # >32 players
+  - '$Script$%elseif%$multiargs.args.lenght>34'
+  # "[PayPal] The amount of <receivers> you have entered is too big, it must be at most 32"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The amount of "},{"bold":"false","color":"$s.style.color.mark","text":"<receivers>"},{"bold":"false","color":"$s.style.color.normal","text":" you have entered is too big, it must be at most "},{"bold":"false","color":"$s.style.color.mark","text":"32"}]'
+  
   # 32 players
   - '$Script$%elseif%$multiargs.args.lenght>33'
   - '/mycommand:paypal_share_init $arg2 32'
@@ -295,8 +301,8 @@ paypal_share:
   
   # 1 player
   - '$Script$%elseif%$multiargs.args.lenght>2'
-  - '/mycommand:paypal_share_init $arg2 1'
-  - '/mycommand:paypal_share_check_1 $PlayerData%$s.init.share.amount% $PlayerData%$s.init.share.divided% $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13 $arg14 $arg15 $arg16 $arg17 $arg18 $arg19 $arg20 $arg21 $arg22 $arg23 $arg24 $arg25 $arg26 $arg27 $arg28 $arg29 $arg30 $arg31 $arg32 $arg33 $arg34'
+  # "[PayPal] You cannot share money with only 1 player. Use /paypal send <receiver> <amount> instead"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You cannot share money with only "},{"bold":"false","color":"$s.style.color.mark","text":"1"},{"bold":"false","color":"$s.style.color.normal","text":" player. Use "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal send <receiver> <amount>"},{"bold":"false","color":"$s.style.color.normal","text":" instead"}]'
 
 
 
