@@ -138,7 +138,7 @@ paypal_reset_tan:
 paypal_confirm_init:
   command: /paypal_confirm_init
   type: RUN_CONSOLE
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
+  error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
@@ -151,7 +151,7 @@ paypal_confirm_init:
   
   # not enough money  
   # "[PayPal] You don't have enough money anymore"
-  - '/minecraft:tellraw @a[name=$player,tag=!sppEnough] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t enough money anymore"}]'
+  - '/minecraft:tellraw @a[name=$player,tag=!sppEnough] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You don''t have enough money anymore"}]'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$player,tag=sppEnough] remove sppEnough'
@@ -166,7 +166,7 @@ paypal_confirm_init:
 paypal_confirm:
   command: /paypal_confirm
   type: RUN_AS_OPERATOR
-  error-message: '&cUsage: /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
+  error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
   register: true
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
