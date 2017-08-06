@@ -1,6 +1,3 @@
-# 
-#  					BukkitDev Help page : http://dev.bukkit.org/server-mods/mycommand/    					#
-
 af42555d-a7bf-4499-a194-2f319638fbd2:
   $s:
     name: AlexMCool
@@ -11,3 +8,13 @@ af42555d-a7bf-4499-a194-2f319638fbd2:
     name: D33tj3
     board:
       letters: d 3 3 t j 3
+ba089104-9d21-4bec-b2db-ca1971afe7d8:
+  $s:
+    name: just_a_jenna
+    board:
+      letters: j u s t _ a _ j e n n a
+cf4e0c89-c398-4416-928f-0b1996216c09:
+  $s:
+    name: ShanePoint
+    board:
+      letters: s h a n e p o i n t
