@@ -53,6 +53,15 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.init.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-48 ~ ~-16'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~16 {Age:-2147483648,CustomName:"sfLoadedChunkMarker",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~17 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~18 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder1"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~19 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder2"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~20 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder3"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~21 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder4"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~22 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder5"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~23 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder6"]}'
   # "[Factory] The factory was successfully created"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
  
@@ -220,6 +229,12 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.init.chunk.z/16'
   - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
   - '/minecraft:tp ~-32 ~ ~-16'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~20 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder7"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~21 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder8"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~22 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder9"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~23 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder10"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~24 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder11"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -236,6 +251,13 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/22",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~25 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder12"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~26 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder13"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~27 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder14"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~28 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder15"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~29 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder16"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~19.5 ~30 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder17"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -254,6 +276,12 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/24",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~30 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder18"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~29 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder19"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~28 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder20"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~27 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder21"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~26 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder22"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -262,26 +290,29 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/25",posX:-15,posY:-19,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~25 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder23"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~24 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder24"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~23 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder25"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~22 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder26"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~21 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder27"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~44 ~19.5 ~20 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder28"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
   # 26
   - '$Script$%if%$arg1==east<and>$arg2==26'
-  - '/say $locX $locY $locZ'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_first",posX:-12,posY:-22,posZ:-7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
-  - '/say $locX $locY $locZ'
   # tp to factory (upgrade) location
   - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_second",posX:-6,posY:-6,posZ:-14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
-  - '/say $locX $locY $locZ'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # tp to factory (upgrade) location
   - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/26_third",posX:-7,posY:-10,posZ:-11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
-  - '/say $locX $locY $locZ'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -292,6 +323,8 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:4,posY:-13,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~42 ~19 ~20 minecraft:rail shape=east_west'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -300,6 +333,13 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/28",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~25 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder34"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~26 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder35"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~27 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder36"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~28 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder37"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~29 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder38"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~19.5 ~30 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder39"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -316,6 +356,12 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/30",posX:4,posY:-13,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~30 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder40"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~29 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder41"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~28 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder42"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~27 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder43"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~26 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder44"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -324,6 +370,13 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/31",posX:-10,posY:-13,posZ:-2,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # summon area_effect_clouds
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~25 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder45"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~24 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder46"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~23 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder47"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~22 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder48"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~21 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder49"]}'
+  - '/minecraft:summon minecraft:area_effect_cloud ~34 ~19.5 ~20 {Age:-2147483648,CustomName:"sfHopper",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder50"]}'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -598,6 +651,8 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-9,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~20 ~19 ~21 minecraft:rail shape=north_south'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -904,6 +959,8 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:9,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~43 ~19 ~42 minecraft:rail shape=north_south'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  
@@ -1210,6 +1267,8 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/27",posX:-4,posY:-13,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~21 ~19 ~43 minecraft:rail shape=east_west'
   # "[Factory] The factory was successfully upgraded to level x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
  

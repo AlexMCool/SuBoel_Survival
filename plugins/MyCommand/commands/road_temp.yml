@@ -17,6 +17,8 @@ road_temp:
   - '$Script$%if%$arg1==reset'
   # temp to reset
   - '/tp $player 4096 64 4096'
+  - '/minecraft:kill @e[name=sfHopper,type=area_effect_cloud]'
+  - '/minecraft:kill @e[name=sfLoadedChunkMarker,type=area_effect_cloud]'
   - '/sudo c /keepchunks releaseall'
   - '/sudo $player //pos1 3596,63,3596'
   - '/sudo $player //pos2 4596,64,4596'
@@ -49,10 +51,49 @@ road_temp:
 
   
   
-test:
-  command: /test
+temp:
+  command: /temp
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
-  # store location
-  - '/say $exp $level'
+  - '/kill @e[type=area_effect_cloud,rm=1]'
+  - '//set air'
+  
+  
+temp_upgrade:
+  command: /temp_upgrade
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '$delay$<2>/factory_upgrade $arg1 1 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 2 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 3 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 4 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 5 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 6 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 7 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 8 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 9 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 10 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 11 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 12 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 13 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 14 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 15 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 16 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 17 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 18 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 19 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 20 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 21 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 22 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 23 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 24 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 25 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 26 4112 64 4112 1'
+  - '$delay$<100>/factory_upgrade $arg1 27 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 28 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 29 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 30 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 31 4112 64 4112 1'
+  - '$delay$<2>/factory_upgrade $arg1 32 4112 64 4112 1'

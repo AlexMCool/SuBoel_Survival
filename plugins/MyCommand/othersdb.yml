@@ -3,41 +3,15 @@ variables:
     shop:
       init:
         damage: 0
-        item: sign
+        item: none
         stock: 0
         redstone:
-          x: 4072
-          y: 62
-          z: 4103
-        new_id: 2
-      id:
-        '0':
-          x: 4072
-          y: 64
-          z: 4103
-          world: temp_world
-          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
-          profit: 0
-          setting:
-            auto_claim_profit: 'false'
-        '1':
-          x: 4072
-          y: 64
-          z: 4102
-          world: temp_world
-          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
-          profit: 0
-          setting:
-            auto_claim_profit: 'true'
-        '2':
-          x: 4072
-          y: 64
-          z: 4101
-          world: temp_world
-          owner_uuid: af42555d-a7bf-4499-a194-2f319638fbd2
-          profit: 0
-          setting:
-            auto_claim_profit: 'true'
+          x: 0
+          y: 0
+          z: 0
+        new_id: 0
+        calculation: 0
+      id: 0
     world: temp_world
     char:
       colon: ':'
@@ -48,623 +22,21 @@ variables:
         name: just_a_jenna
       450094ff-b6c7-4932-ba24-4ce06389dd56:
         name: D33tj3
+      cf4e0c89-c398-4416-928f-0b1996216c09:
+        name: ShanePoint
     intersection:
-      calculation: 10
-      option: 15
-      type: east_south_west
-      id:
-        now: 20
-        '1':
-          x: 4096
-          y: 64
-          z: 4096
-          type: east_north_west
-          direction: west
-        '2':
-          x: 4176
-          y: 64
-          z: 4096
-          direction: south
-          type: east_north_south_west
-        '3':
-          x: 4096
-          y: 64
-          z: 4016
-          direction: west
-          type: south_west
-        '4':
-          x: 4016
-          y: 64
-          z: 4096
-          direction: south
-          type: east_south
-        '5':
-          x: 4256
-          y: 64
-          z: 4096
-          direction: east
-          type: east_north_west
-        '6':
-          x: 4176
-          y: 64
-          z: 4016
-          direction: south
-          type: north_south
-        '7':
-          x: 4176
-          y: 64
-          z: 4176
-          direction: north
-          type: east_north_south_west
-        '8':
-          x: 4016
-          y: 64
-          z: 4016
-          direction: east
-          type: east_west
-        '9':
-          x: 4016
-          y: 64
-          z: 4176
-          direction: north
-          type: north_south_west
-        '10':
-          x: 4336
-          y: 64
-          z: 4096
-          direction: west
-          type: east_south_west
-        '11':
-          x: 4256
-          y: 64
-          z: 4016
-          direction: south
-        '12':
-          x: 4176
-          y: 64
-          z: 3936
-          direction: south
-        '13':
-          x: 4256
-          y: 64
-          z: 4176
-          direction: west
-        '14':
-          x: 4176
-          y: 64
-          z: 4256
-          direction: north
-        '15':
-          x: 4096
-          y: 64
-          z: 4176
-          direction: east
-        '16':
-          x: 3936
-          y: 64
-          z: 4016
-          direction: east
-        '17':
-          x: 4016
-          y: 64
-          z: 4256
-          direction: north
-        '18':
-          x: 3936
-          y: 64
-          z: 4176
-          direction: east
-        '19':
-          x: 4416
-          y: 64
-          z: 4096
-          direction: west
-        '20':
-          x: 4336
-          y: 64
-          z: 4176
-          direction: north
-      location:
-        4096,64,4096:
-          id: 1
-        4176,64,4096:
-          id: 2
-        4096,64,4016:
-          id: 3
-        4016,64,4096:
-          id: 4
-        4256,64,4096:
-          id: 5
-        4176,64,4016:
-          id: 6
-        4176,64,4176:
-          id: 7
-        4016,64,4016:
-          id: 8
-        4016,64,4176:
-          id: 9
-        4336,64,4096:
-          id: 10
-        4256,64,4016:
-          id: 11
-        4176,64,3936:
-          id: 12
-        4256,64,4176:
-          id: 13
-        4176,64,4256:
-          id: 14
-        4096,64,4176:
-          id: 15
-        3936,64,4016:
-          id: 16
-        4016,64,4256:
-          id: 17
-        3936,64,4176:
-          id: 18
-        4416,64,4096:
-          id: 19
-        4336,64,4176:
-          id: 20
+      calculation: 0
+      option: 0
+      type: ''
+      id: ''
+      location: ''
     factory:
       init:
-        player_factory_id: 1
+        player_factory_id: 0
         list: 0
-      calculation: 19
-      id:
-        now: 20
-        '1':
-          status: north
-          board:
-            background: 15
-            text: 7
-            word: services
-          x: 4112
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4122
-            y: 64
-            z: 4325
-            rot: 0
-          item: none
-          level: 42
-          next_level: 43
-        '2':
-          status: west
-          board:
-            background: 7
-            text: 0
-            word: creative
-          x: 4112
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4109
-            y: 64
-            z: 4085
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '3':
-          status: south
-          board:
-            background: 7
-            text: 0
-            word: technologies
-          x: 4032
-          y: 64
-          z: 4032
-          east: -1
-          north: -1
-          south: used
-          west: -1
-          tp:
-            x: 4085
-            y: 64
-            z: 4098
-            rot: 180
-          item: none
-          level: 0
-          next_level: 1
-        '4':
-          status: north
-          board:
-            background: 15
-            text: 0
-            word: innovations
-          x: 4032
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4042
-            y: 64
-            z: 4109
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '5':
-          status: west
-          board:
-            background: 7
-            text: 8
-            word: labs
-          x: 4192
-          y: 64
-          z: 4112
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4189
-            y: 64
-            z: 4165
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '6':
-          status: north
-          board:
-            background: 8
-            text: 7
-            word: brands
-          x: 4192
-          y: 64
-          z: 4032
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4202
-            y: 64
-            z: 4029
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '7':
-          status: south
-          board:
-            background: 7
-            text: 15
-            word: digital
-          x: 4032
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: used
-          west: -1
-          tp:
-            x: 4085
-            y: 64
-            z: 4018
-            rot: 180
-          item: none
-          level: 0
-          next_level: 1
-        '8':
-          status: east
-          board:
-            background: 15
-            text: 8
-            word: properties
-          x: 3952
-          y: 64
-          z: 4112
-          east: used
-          north: -1
-          south: -1
-          west: -1
-          tp:
-            x: 4018
-            y: 64
-            z: 4122
-            rot: 90
-          item: none
-          level: 0
-          next_level: 1
-        '9':
-          status: north
-          board:
-            background: 7
-            text: 8
-            word: designs
-          x: 4272
-          y: 64
-          z: 4112
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4282
-            y: 64
-            z: 4109
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '10':
-          status: north
-          board:
-            background: 0
-            text: 7
-            word: worldwide
-          x: 4272
-          y: 64
-          z: 4032
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4282
-            y: 64
-            z: 4029
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '11':
-          status: east
-          board:
-            background: 15
-            text: 8
-            word: innovations
-          x: 4112
-          y: 64
-          z: 3952
-          east: used
-          north: -1
-          south: -1
-          west: -1
-          tp:
-            x: 4178
-            y: 64
-            z: 3962
-            rot: 90
-          item: none
-          level: 0
-          next_level: 1
-        '12':
-          status: west
-          board:
-            background: 8
-            text: 15
-            word: tech
-          x: 4192
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4189
-            y: 64
-            z: 4005
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '13':
-          status: west
-          board:
-            background: 15
-            text: 0
-            word: productions
-          x: 4192
-          y: 64
-          z: 4192
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4189
-            y: 64
-            z: 4245
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '14':
-          status: north
-          board:
-            background: 7
-            text: 15
-            word: creative
-          x: 4112
-          y: 64
-          z: 4192
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 4122
-            y: 64
-            z: 4189
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '15':
-          status: south
-          board:
-            background: 0
-            text: 7
-            word: labs
-          x: 3952
-          y: 64
-          z: 3952
-          east: -1
-          north: -1
-          south: used
-          west: -1
-          tp:
-            x: 4005
-            y: 64
-            z: 4018
-            rot: 180
-          item: none
-          level: 0
-          next_level: 1
-        '16':
-          status: north
-          board:
-            background: 15
-            text: 7
-            word: tech
-          x: 3952
-          y: 64
-          z: 4032
-          east: -1
-          north: used
-          south: -1
-          west: -1
-          tp:
-            x: 3962
-            y: 64
-            z: 4029
-            rot: 0
-          item: none
-          level: 0
-          next_level: 1
-        '17':
-          status: west
-          board:
-            background: 7
-            text: 8
-            word: studios
-          x: 4032
-          y: 64
-          z: 4192
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4029
-            y: 64
-            z: 4245
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '18':
-          status: east
-          board:
-            background: 15
-            text: 8
-            word: services
-          x: 3952
-          y: 64
-          z: 4192
-          east: used
-          north: -1
-          south: -1
-          west: -1
-          tp:
-            x: 4018
-            y: 64
-            z: 4202
-            rot: 90
-          item: none
-          level: 0
-          next_level: 1
-        '19':
-          status: west
-          board:
-            background: 8
-            text: 7
-            word: international
-          x: 4352
-          y: 64
-          z: 4112
-          east: -1
-          north: -1
-          south: -1
-          west: used
-          tp:
-            x: 4349
-            y: 64
-            z: 4165
-            rot: -90
-          item: none
-          level: 0
-          next_level: 1
-        '20':
-          status: 0
-          board:
-            background: 0
-            text: 15
-            word: productions
-          x: 4352
-          y: 64
-          z: 4032
-          east: unavailable
-          north: unavailable
-          south: unused
-          west: unavailable
-      location:
-        4112,64,4112:
-          id: 1
-        4112,64,4032:
-          id: 2
-        4032,64,4032:
-          id: 3
-        4032,64,4112:
-          id: 4
-        4192,64,4112:
-          id: 5
-        4192,64,4032:
-          id: 6
-        4032,64,3952:
-          id: 7
-        3952,64,4112:
-          id: 8
-        4272,64,4112:
-          id: 9
-        4272,64,4032:
-          id: 10
-        4112,64,3952:
-          id: 11
-        4192,64,3952:
-          id: 12
-        4192,64,4192:
-          id: 13
-        4112,64,4192:
-          id: 14
-        3952,64,3952:
-          id: 15
-        3952,64,4032:
-          id: 16
-        4032,64,4192:
-          id: 17
-        3952,64,4192:
-          id: 18
-        4352,64,4112:
-          id: 19
-        4352,64,4032:
-          id: 20
+      calculation: 0
+      id: ''
+      location: ''
       level:
         '1':
           upgrade:
@@ -676,28 +48,28 @@ variables:
               concrete:7: 85
               detector_rail:0: 1
               golden_rail:0: 5
-              hopper:0: 21
+              hopper:0: 28
               iron_bars:0: 1
               iron_door:0: 1
-              rail:0: 18
+              rail:0: 21
               redstone_torch:0: 2
               stained_glass:8: 8
               stone:6: 108
-              stone_brick_stairs:0: 215
+              stone_brick_stairs:0: 222
               stone_slab:0: 66
               stone_slab:5: 73
               stone_stairs:0: 2
-              stonebrick:0: 114
+              stonebrick:0: 122
               trapped_chest:0: 12
               wooden_button:0: 4
         '2':
           upgrade:
             requirement:
               lever:0: 1
-              redstone:0: 23
-              redstone_lamp:0: 21
-              repeater:0: 10
-              stonebrick:0: 6
+              redstone:0: 17
+              redstone_lamp:0: 14
+              repeater:0: 8
+              stonebrick:0: 4
         '3':
           upgrade:
             requirement:
@@ -933,17 +305,17 @@ variables:
         '20':
           upgrade:
             requirement:
-              chest:0: 9
+              chest:0: 6
               detector_rail:0: 5
               golden_rail:0: 10
-              hopper:0: 25
+              hopper:0: 20
               rail:0: 36
               redstone_torch:0: 2
               slime:0: 8
-              stone:6: 27
+              stone:6: 32
               stone_brick_stairs:0: 38
               stone_slab:0: 29
-              trapped_chest:0: 6
+              trapped_chest:0: 4
         '21':
           upgrade:
             requirement:
@@ -961,14 +333,14 @@ variables:
         '22':
           upgrade:
             requirement:
-              chest:0: 9
-              hopper:0: 30
+              chest:0: 6
+              hopper:0: 24
               prismarine:0: 6
               rail:0: 6
               slime:0: 4
-              stone:6: 17
+              stone:6: 23
               stone_brick_stairs:0: 40
-              trapped_chest:0: 9
+              trapped_chest:0: 6
         '23':
           upgrade:
             requirement:
@@ -985,20 +357,20 @@ variables:
         '24':
           upgrade:
             requirement:
-              chest:0: 9
-              hopper:0: 25
+              chest:0: 6
+              hopper:0: 21
               rail:0: 6
               slime:0: 6
               sponge:0: 6
-              stone:6: 43
+              stone:6: 48
               stone_brick_stairs:0: 22
-              trapped_chest:0: 6
+              trapped_chest:0: 4
         '25':
           upgrade:
             requirement:
-              chest:0: 9
+              chest:0: 6
               heavy_weighted_pressure_plate:0: 2
-              hopper:0: 30
+              hopper:0: 24
               iron_door:0: 1
               iron_trapdoor:0: 115
               prismarine:0: 9
@@ -1006,11 +378,11 @@ variables:
               quartz_stairs:0: 14
               rail:0: 6
               sponge:0: 7
-              stone:6: 41
+              stone:6: 47
               stone_brick_stairs:0: 34
               stone_slab:0: 18
               stonebrick:0: 7
-              trapped_chest:0: 9
+              trapped_chest:0: 6
         '26':
           upgrade:
             requirement:
@@ -1048,31 +420,31 @@ variables:
         '27':
           upgrade:
             requirement:
-              chest:0: 9
-              hopper:0: 25
+              chest:0: 6
+              hopper:0: 20
               packed_ice:0: 5
-              rail:0: 15
+              rail:0: 18
               sponge:1: 5
-              stone:6: 27
+              stone:6: 32
               stone_brick_stairs:0: 38
-              trapped_chest:0: 6
+              trapped_chest:0: 4
         '28':
           upgrade:
             requirement:
               brick_block:0: 104
-              chest:0: 9
+              chest:0: 6
               cobblestone_wall:0: 105
-              hopper:0: 30
+              hopper:0: 25
               iron_bars:0: 420
               packed_ice:0: 7
               rail:0: 6
               red_shulker_box:0: 7
-              stone:6: 17
+              stone:6: 23
               stone_brick_stairs:0: 95
               stone_button:0: 190
               stone_slab:5: 49
               stonebrick:0: 4
-              trapped_chest:0: 9
+              trapped_chest:0: 6
         '29':
           upgrade:
             requirement:
@@ -1087,31 +459,31 @@ variables:
           upgrade:
             requirement:
               beacon:0: 3
-              chest:0: 9
-              hopper:0: 25
+              chest:0: 6
+              hopper:0: 21
               packed_ice:0: 3
               prismarine:0: 7
               rail:0: 7
-              stone:6: 43
+              stone:6: 48
               stone_brick_stairs:0: 22
-              trapped_chest:0: 6
+              trapped_chest:0: 4
         '31':
           upgrade:
             requirement:
               beacon:0: 2
-              chest:0: 9
+              chest:0: 6
               cobblestone_wall:0: 180
-              hopper:0: 30
+              hopper:0: 25
               iron_trapdoor:0: 16
               rail:0: 6
               slime:0: 5
               sponge:0: 4
               sponge:1: 4
               stone:0: 258
-              stone:6: 123
+              stone:6: 128
               stone_brick_stairs:0: 20
               stone_slab:0: 4
-              trapped_chest:0: 9
+              trapped_chest:0: 6
         '32':
           upgrade:
             requirement:
@@ -1141,14 +513,34 @@ variables:
       AlexMCool: AlexMCool test \n hi
     style:
       color:
-        'false': red
-        'true': green
-        'mark': dark_aqua
-        'normal': gray
-        'accent': dark_gray
-        'title': white
-        'light_mark': aqua
+        'false': aqua
+        'true': aqua
+        mark: dark_aqua
+        normal: gray
+        accent: dark_gray
+        title: white
+        light_mark: aqua
+        error: red
+        inverted_title: black
+        sign_normal: dark_gray
     translation:
+      color:
+        aqua: b
+        black: 0
+        blue: 9
+        dark_aqua: 3
+        dark_blue: 1
+        dark_gray: 8
+        dark_green: 2
+        dark_purple: 5
+        dark_red: 4
+        gold: 6
+        gray: 7
+        green: a
+        light_purple: d
+        red: c
+        white: f
+        yellow: e
       boolean:
         'false': 'False'
         'true': 'True'
