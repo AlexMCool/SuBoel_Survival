@@ -17,9 +17,8 @@ road_temp:
   - '$Script$%if%$arg1==reset'
   # temp to reset
   - '/tp $player 4096 64 4096'
-  - '/minecraft:kill @e[name=sfHopper,type=area_effect_cloud]'
-  - '/minecraft:kill @e[name=sfLoadedChunkMarker,type=area_effect_cloud]'
   - '/minecraft:kill @e[name=sfHopperChain,type=area_effect_cloud]'
+  - '/minecraft:kill @e[name=sfItemDelay,type=area_effect_cloud]'
   - '/sudo c /keepchunks releaseall'
   - '/sudo $player //pos1 3596,63,3596'
   - '/sudo $player //pos2 4596,64,4596'
@@ -49,18 +48,19 @@ road_temp:
   
   
   
-
   
   
 temp:
   command: /temp
-  type: RUN_AS_OPERATOR
+  type: RUN_CONSOLE
   register: true
   runcmd:
-  - '/kill @e[type=area_effect_cloud,rm=1]'
-  - '//set air'
+  - ''
+ 
+ 
   
   
+ 
 temp_upgrade:
   command: /temp_upgrade
   type: RUN_AS_OPERATOR
