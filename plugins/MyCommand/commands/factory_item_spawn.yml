@@ -1,0 +1,65 @@
+##############################################################################
+#                             factory item spawn                             #
+##############################################################################
+factory_item_spawn:
+  command: /factory_item_spawn
+  type: RUN_CONSOLE
+  register: true
+  runcmd: 
+  # arg1 = (factory_id)
+  
+  # find closest hopper where there can be a new item
+  - '$Script$%Variable%$s.factory.init.order_number=0'
+  - '/mycommand:factory_item_spawn_hopper $arg1 $s.factory.init.order_number'
+  
+  
+  
+  
+  
+##############################################################################
+#                         factory item spawn hopper                          #
+##############################################################################
+factory_item_spawn_hopper:
+  command: /factory_item_spawn_hopper
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = (factory_id)
+  # arg2 = (order_number)
+  
+  # set score to 0 if hopper has space, set score to 1 if hopper is full
+  - '/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:execute @s[tag=sfOrder$arg2] ~ ~ ~ /minecraft:function suboel:factory/hoppers'
+  
+  # add item to blockdata
+  - '/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:execute @s[score_sfHopper=0,tag=sfOrder$arg2] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Items:[{Count:1b,Damage:$s.factory.id.$arg1.item.damages,id:"minecraft:$s.factory.id.$arg1.item.name",Slot:0b}],TransferCooldown:2}'
+  # reset score
+  - '/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:scoreboard players reset @s[score_sfHopper=0,tag=sfOrder$arg2] sfHopper'
+  
+  # recur
+  - '/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:execute @s[score_sfHopper_min=1,tag=sfOrder$arg2] ~ ~ ~ /mycommand:factory_item_spawn_recur $arg1 $arg2'
+  
+  
+  
+  
+  
+##############################################################################
+#                          factory item spawn recur                          #
+##############################################################################
+factory_item_spawn_recur:
+  command: /factory_item_spawn_recur
+  type: RUN_CONSOLE
+  register: true
+  delaytimer: 1
+  delaytimer_format: TICKS
+  runcmd:
+  # arg1 = (factory_id)
+  # arg2 = (order_number)
+  
+  # reset score
+  - '$delay$/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:scoreboard players reset @s[tag=sfOrder$arg2] sfHopper'
+  
+  # add 1 to variable
+  - '$Script$%Variable%$s.factory.init.order_number+1'
+  
+  # recur
+  - '$delay$/mycommand:factory_item_spawn_hopper $arg1 $s.factory.init.order_number'
