@@ -1,0 +1,518 @@
+##############################################################################
+#                               activity setup                               #
+##############################################################################
+activity_setup:
+  command: /activity_setup
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '/minecraft:scoreboard objectives add saIsActive dummy Is Active'
+  
+  - '/minecraft:scoreboard objectives add saDiAviate stat.aviateOneCm Distance by Elytra'
+  - '/minecraft:scoreboard objectives add saDiBoat stat.boatOneCm Distance by Boat'
+  - '/minecraft:scoreboard objectives add saDiClimb stat.climbOneCm Distance Climbed'
+  - '/minecraft:scoreboard objectives add saDiCrouch stat.crouchOneCm Distance Crouched'
+  - '/minecraft:scoreboard objectives add saDiDive stat.diveOneCm Distance Dove'
+  - '/minecraft:scoreboard objectives add saDiFly stat.flyOneCm Distance Flown'
+  - '/minecraft:scoreboard objectives add saDiHorse stat.horseOneCm Distance by Horse'
+  - '/minecraft:scoreboard objectives add saDiMinecart stat.minecartOneCm Distance by Minecart'
+  - '/minecraft:scoreboard objectives add saDiPig stat.pigOneCm Distance by Pig'
+  - '/minecraft:scoreboard objectives add saDiSprint stat.sprintOneCm Distance Sprinted'
+  - '/minecraft:scoreboard objectives add saDiSwim stat.swimOneCm Distance Swum'
+  - '/minecraft:scoreboard objectives add saDiWalk stat.walkOneCm Distance Walked'
+  
+  
+  
+  
+ 
+##############################################################################
+#                               activity week                                #
+############################################################################## 
+activity_week:
+  command: /activity_week
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #             no new week             #
+  ####################################### 
+  # arg1 = (nothing)
+  - '$Script$%elseif%$arg1!=new_week'
+  
+  # add tag
+  - '/minecraft:scoreboard players tag @e[name=saWeekTimer,type=area_effect_cloud] add saNewWeek {Age:0}'
+  
+  # new week
+  - '/minecraft:execute @e[name=saWeekTimer,tag=saNewWeek,type=area_effect_cloud] ~ ~ ~ /mycommand:activity_week new_week'
+  
+  #######################################
+  #              new week               #
+  ####################################### 
+  # arg1 = new_week
+  - '$Script$%elseif%$arg1==new_week'
+  
+  # add 1 to week count
+  - '$Script$%Variable%$s.week+1'
+  
+  # update everyone's week info
+  - '/minecraft:execute @a ~ ~ ~ /sudo @s /mycommand:activity_week_player'
+  
+  # update area_effect_cloud
+  - '/minecraft:entitydata @e[name=saWeekTimer,tag=saNewWeek,type=area_effect_cloud] {Age:-12096000,CustomName:"saWeekTimer",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:[""]}'
+  
+  
+  
+  
+  
+##############################################################################
+#                            activity week player                            #
+############################################################################## 
+activity_week_player:
+  command: /activity_week_player
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # update player's week counter
+  - '$Script$%PlayerData%$s.init.activity.last_seen=$s.week'
+  
+  # reset player's active week tick variable
+  - '$Script$%PlayerData%$s.init.activity.week_active_ticks=0'
+  
+  
+  
+  
+  
+##############################################################################
+#                                  activity                                  #
+##############################################################################
+activity:
+  command: /activity
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #           total playtime            #
+  ####################################### 
+  # arg1 = (player)
+  # set var to active ticks 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.active_ticks%'
+  
+  # calculate days (1728000 = how many ticks a day has)
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation/1728000'
+  # reset rounded days
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days=0'
+  # calculate rounded days
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1024'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+512'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+256'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+128'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1'
+  
+  # calculate hours (24 = how many hours in a day)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*24'
+  # reset rounded hours
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours=0'
+  # calculate rounded hours
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+1'
+  
+  # calculate minutes (60 = how many minutes in an hour)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded minutes
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes=0'
+  # calculate rounded minutes
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+1'
+  
+  # calculate seconds (60 = how many seconds in a minute)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded seconds
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds=0'
+  # calculate rounded seconds
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+1'
+  
+  
+  - '$Script$%if%always==always'
+  # "<-----[Activity]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Activity"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  - '$Script$%if%always==always<and>$PlayerDataFor%$arg1%$s.name%!=NoData'
+  # "These are x's activity statistics:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"These are"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg1%$s.name%"},{"bold":"false","color":"$s.style.color.normal","text":"''s activity statistics:"}]'  
+  
+  - '$Script$%if%always==always<and>$PlayerDataFor%$arg1%$s.name%==NoData'
+  # "These are x's activity statistics:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"These are"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1"},{"bold":"false","color":"$s.style.color.normal","text":"''s activity statistics:"}]'
+  
+  - '$Script$%if%always==always'
+  # "> Total Playtime: x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Total Playtime:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg1%$s.init.activity.rounded.days%"},{"bold":"false","color":"$s.style.color.normal","text":"d "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.hours%"},{"bold":"false","color":"$s.style.color.normal","text":"h "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.minutes%"},{"bold":"false","color":"$s.style.color.normal","text":"m "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.seconds%"},{"bold":"false","color":"$s.style.color.normal","text":"s "}]'
+  
+  #######################################
+  #          playtime per week          #
+  ####################################### 
+  # arg1 = (player)
+  # set var to active ticks 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.active_ticks%'
+  # set var to amount of weeks 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_calculation=$s.week'
+  # set var to amount of ticks (1728000 = amount of ticks in a day)
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_calculation*1728000'
+  
+  # calculate days per week 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation/$PlayerDataFor%$arg1%$s.init.activity.week_calculation%'
+  
+  # reset rounded days
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days=0'
+  # calculate rounded days
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1024'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+512'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+256'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+128'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1'
+  
+  # calculate hours (24 = how many hours in a day)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*24'
+  # reset rounded hours
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours=0'
+  # calculate rounded hours
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+1'
+  
+  # calculate minutes (60 = how many minutes in an hour)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded minutes
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes=0'
+  # calculate rounded minutes
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+1'
+  
+  # calculate seconds (60 = how many seconds in a minute)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded seconds
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds=0'
+  # calculate rounded seconds
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+1'
+  
+  - '$Script$%if%always==always'
+  # "> Playtime Per Week: x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Playtime Per Week:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg1%$s.init.activity.rounded.days%"},{"bold":"false","color":"$s.style.color.normal","text":"d "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.hours%"},{"bold":"false","color":"$s.style.color.normal","text":"h "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.minutes%"},{"bold":"false","color":"$s.style.color.normal","text":"m "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.seconds%"},{"bold":"false","color":"$s.style.color.normal","text":"s "}]'
+  
+  #######################################
+  #         playtime last week          #
+  ####################################### 
+  # arg1 = (player)
+  # if player was online in current week
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%==$s.week'
+  # set var to week active ticks 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.week_active_ticks%'
+  
+  # if player was not online in current week
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%!=$s.week'
+  # set last_seen
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.last_seen=$s.week'
+  # reset week_active_ticks
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks=0'
+  # set var to week active ticks 
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.week_active_ticks%'
+
+  - '$Script$%if%always==always'
+  # calculate days
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation/1728000'
+  
+  # reset rounded days
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days=0'
+  # calculate rounded days
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1024'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1024'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-512'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+512'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-256'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+256'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-128'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+128'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.days+1'
+  
+  # calculate hours (24 = how many hours in a day)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*24'
+  # reset rounded hours
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours=0'
+  # calculate rounded hours
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.hours+1'
+  
+  # calculate minutes (60 = how many minutes in an hour)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded minutes
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes=0'
+  # calculate rounded minutes
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.minutes+1'
+  
+  # calculate seconds (60 = how many seconds in a minute)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation*60'
+  # reset rounded seconds
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds=0'
+  # calculate rounded seconds
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.rounded.seconds+1'
+  
+  - '$Script$%if%always==always'
+  # "> Playtime Last Week: x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Playtime Last Week:"},{"bold":"false","color":"$s.style.color.mark","text":" $PlayerDataFor%$arg1%$s.init.activity.rounded.days%"},{"bold":"false","color":"$s.style.color.normal","text":"d "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.hours%"},{"bold":"false","color":"$s.style.color.normal","text":"h "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.minutes%"},{"bold":"false","color":"$s.style.color.normal","text":"m "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerDataFor%$arg1%$s.init.activity.rounded.seconds%"},{"bold":"false","color":"$s.style.color.normal","text":"s "}]'
+
+  # "-----------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'

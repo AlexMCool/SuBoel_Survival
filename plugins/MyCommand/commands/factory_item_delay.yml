@@ -131,7 +131,9 @@ factory_item_delay_timer:
   # if timer is disabled
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.item.timer%==disabled'
   # add to active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.active_ticks+1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
+  # add to week_active_ticks
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
   # remove from cooldown
   - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
   # remove from timer area_effect_clouds (score_sfItemDelay_min=2 so the timer will stop when they reach a score of 1)
@@ -140,7 +142,9 @@ factory_item_delay_timer:
   # if timer is enabled
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.item.timer%==enabled'
   # add to active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.active_ticks+1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
+  # add to week_active_ticks
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
   # remove from cooldown
   - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
   # remove from timer area_effect_clouds
