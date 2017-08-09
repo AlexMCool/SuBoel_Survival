@@ -13,6 +13,8 @@ name_change_check:
   
   # reset score (delay because of playerevent happening before join message)
   - '$delay$<1>/minecraft:scoreboard players reset $player ssCoins'
+
+  - '/minecraft:scoreboard players reset $player saCooldown'
   
   - '/minecraft:scoreboard players reset $player sstAnimalsBred'
   - '/minecraft:scoreboard players reset $player sstArmorCleaned'
