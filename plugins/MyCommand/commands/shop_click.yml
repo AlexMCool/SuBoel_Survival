@@ -7,8 +7,8 @@ shop_click:
   register: true
   runcmd:
   # arg1 = nothing ($player = buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $uuid
@@ -30,8 +30,8 @@ shop_click_sneakcheck:
   register: true
   runcmd:
   # arg1 = $player (buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
@@ -68,8 +68,8 @@ shop_click_action:
   #              add stock              #
   ####################################### 
   # arg1 = $player (buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
@@ -109,42 +109,42 @@ shop_click_action:
   #######################
   #      no items       #
   #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.shop.init.stock==0'
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
   
   # "[Shop] No items to add to the stock"
   - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No items to add to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
   #       1 item        #
   #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.shop.init.stock==1'
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==1'
   
   # "[Shop] Added x item to the stock"
-  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" item to the stock"}]'
+  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" item to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
   #      >1 items       #
   #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.shop.init.stock>1'
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock>1'
   
   # "[Shop] Added x items to the stock"
-  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" items to the stock"}]'
+  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" items to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
 
   #######################################
   #                 buy                 #
   ####################################### 
   # arg1 = $player (buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
@@ -194,8 +194,8 @@ shop_click_action:
   #                info                 #
   ####################################### 
   # arg1 = $player (buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
@@ -312,8 +312,8 @@ shop_stock:
   register: true
   runcmd:
   # arg1 = $player (buyer)
-  # arg2 = $s.shop.init.item
-  # arg3 = $s.shop.init.damage
+  # arg2 = $s.init.shop.item
+  # arg3 = $s.init.shop.damage
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
@@ -326,7 +326,7 @@ shop_stock:
   # add stock
   - '$Script$%if%always==always'
   # add to added variable
-  - '$Script$%Variable%$s.shop.init.stock+$arg7'
+  - '$Script$%Variable%$s.init.shop.stock+$arg7'
   # add to stock variable
   - '$Script$%PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3+$arg7'
   # remove amount from score
