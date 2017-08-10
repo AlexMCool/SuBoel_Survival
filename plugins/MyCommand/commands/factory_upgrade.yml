@@ -213,6 +213,11 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-9,posY:-19,posZ:25,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~56 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~56 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~56 ~12 ~55 ~56 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~56 ~12 ~55 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -223,6 +228,16 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-28,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~5 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~5 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~5 ~12 ~55 ~5 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~5 ~12 ~55 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~19 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~19 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~19 ~12 ~55 ~19 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~19 ~12 ~55 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -593,6 +608,11 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:25,posY:-19,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~5 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~5 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~5 ~55 ~13 ~5 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~5 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -603,6 +623,16 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:30,posY:-20,posZ:28,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~42 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~42 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~42 ~55 ~13 ~42 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~42 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~56 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~56 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~56 ~55 ~13 ~56 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~56 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -973,6 +1003,11 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:-25,posY:-19,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~56 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~56 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~56 ~6 ~13 ~56 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~56 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -983,6 +1018,16 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:-30,posY:-20,posZ:-28,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~5 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~5 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~5 ~6 ~13 ~5 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~5 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~19 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~19 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~19 ~6 ~13 ~19 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~19 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -1353,6 +1398,11 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/16",posX:9,posY:-19,posZ:-25,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~5 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~5 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~5 ~12 ~6 ~5 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~5 ~12 ~6 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -1363,6 +1413,16 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/17",posX:28,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~42 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~42 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~42 ~12 ~6 ~42 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~42 ~12 ~6 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~56 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~56 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~56 ~12 ~6 ~56 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~56 ~12 ~6 minecraft:cobblestone_wall default'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg2 $player $s.factory.id.$arg6.level $s.factory.id.$arg6.item.name $s.factory.id.$arg6.item.damage'
   # "[Factory] The factory was successfully upgraded to level x"
