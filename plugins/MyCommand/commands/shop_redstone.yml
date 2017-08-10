@@ -35,11 +35,11 @@ shop_redstone_create:
   - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which will activate the redstone dust for "},{"bold":"false","color":"$s.style.color.mark","text":"ß$arg2"}]'
   
   # get id for shop
-  - '$Script$%Variable%$s.shop.init.new_id=0'
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.shop.init.new_id'
+  - '$Script$%Variable%$s.init.shop.new_id=0'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.init.shop.new_id'
   
   # valid; blockdata sign
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as a sign to create a shop"}]'
@@ -65,7 +65,7 @@ shop_redstone_click:
   # arg4 = (what to sell)
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $uuid
-  # arg7 = $s.shop.init.new_id
+  # arg7 = $s.init.shop.new_id
   
   # check if clicker sneaks
   - '/mycommand:shop_redstone_click_sneakcheck $player $arg1 $arg2 $arg3 $arg4 $arg5 $s.uuid.$arg6.name $arg7'
@@ -89,7 +89,7 @@ shop_redstone_click_sneakcheck:
   # arg5 = (what to sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
-  # arg8 = $s.shop.init.new_id
+  # arg8 = $s.init.shop.new_id
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
@@ -98,10 +98,10 @@ shop_redstone_click_sneakcheck:
   - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg6] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough $s.shop.init.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage $s.shop.init.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough $s.shop.init.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage $s.shop.init.new_id'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage $s.init.shop.new_id'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
@@ -130,20 +130,20 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
-  # arg10 = $s.shop.init.new_id
+  # arg10 = $s.init.shop.new_id
   - '$Script$%if%$arg1==$arg7<and>$arg8==normal'
   
   # store shop's location
-  - '$Script$%Variable%$s.shop.init.redstone.x=$arg2'
-  - '$Script$%Variable%$s.shop.init.redstone.y=$arg3'
-  - '$Script$%Variable%$s.shop.init.redstone.z=$arg4'
+  - '$Script$%Variable%$s.init.shop.redstone.x=$arg2'
+  - '$Script$%Variable%$s.init.shop.redstone.y=$arg3'
+  - '$Script$%Variable%$s.init.shop.redstone.z=$arg4'
   # get the y value of the redstone dust
-  - '$Script$%Variable%$s.shop.init.redstone.y-2'
+  - '$Script$%Variable%$s.init.shop.redstone.y-2'
    
   # setup stat and check for redstone dust
   - '/minecraft:scoreboard players set $arg1 ssRedstone 0'
   - '/minecraft:stats entity $arg1 set SuccessCount $arg1 ssRedstone'
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire *'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire *'
   - '/minecraft:stats entity $arg1 clear SuccessCount'
   
   # "[Shop] You didn't have to pay, because you're the owner of this shop"
@@ -156,9 +156,9 @@ shop_redstone_click_action:
   - '/minecraft:scoreboard players reset @a ssRedstone'
  
   # set active redstone_dust (it replaces redstone_dust, so the score doesn't matter)
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
   # wait so the redstone_dust is 1 redstone tick active, then turns the dust off
-  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
+  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
 
   #######################################
   #                 buy                 #
@@ -172,20 +172,20 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
-  # arg10 = $s.shop.init.new_id
+  # arg10 = $s.init.shop.new_id
   - '$Script$%elseif%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
   
   # store shop's location
-  - '$Script$%Variable%$s.shop.init.redstone.x=$arg2'
-  - '$Script$%Variable%$s.shop.init.redstone.y=$arg3'
-  - '$Script$%Variable%$s.shop.init.redstone.z=$arg4'
+  - '$Script$%Variable%$s.init.shop.redstone.x=$arg2'
+  - '$Script$%Variable%$s.init.shop.redstone.y=$arg3'
+  - '$Script$%Variable%$s.init.shop.redstone.z=$arg4'
   # get the y value of the redstone dust
-  - '$Script$%Variable%$s.shop.init.redstone.y-2'
+  - '$Script$%Variable%$s.init.shop.redstone.y-2'
    
   # setup stat and check for redstone dust
   - '/minecraft:scoreboard players set $arg1 ssRedstone 0'
   - '/minecraft:stats entity $arg1 set SuccessCount $arg1 ssRedstone'
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire *'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:testforblock $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire *'
   - '/minecraft:stats entity $arg1 clear SuccessCount'
   
   # "[Shop] Your purchase of ßx was successful"
@@ -206,9 +206,9 @@ shop_redstone_click_action:
   - '/minecraft:scoreboard players reset @a ssRedstone'
  
   # set active redstone_dust (it replaces redstone_dust, so the score doesn't matter)
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire power=1 replace minecraft:redstone_wire'
   # wait so the redstone_dust is 1 redstone tick active, then turns the dust off
-  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z $s.shop.init.redstone.x $s.shop.init.redstone.y $s.shop.init.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
+  - '$delay$<2>/minecraft:execute $arg1 ~ ~ ~ /minecraft:fill $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z $s.init.shop.redstone.x $s.init.shop.redstone.y $s.init.shop.redstone.z minecraft:redstone_wire power=0 replace minecraft:redstone_wire'
   
   #######################
   #      no coins       #
@@ -230,7 +230,7 @@ shop_redstone_click_action:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
-  # arg10 = $s.shop.init.new_id
+  # arg10 = $s.init.shop.new_id
   
   #######################
   #  auto claim owner   #
@@ -331,7 +331,7 @@ shop_redstone_setting_autoclaimprofit:
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
   # arg9 = enough / shortage
-  # arg10 = $s.shop.init.new_id
+  # arg10 = $s.init.shop.new_id
   
   # if setting is false
   - '$Script$%elseif%$s.shop.id.$arg10.setting.auto_claim_profit==false'
