@@ -7,10 +7,10 @@ road_new:
   register: true
   runcmd:
   # set calculation to 1
-  - '$Script$%Variable%$s.intersection.calculation=1'
+  - '$Script$%Variable%$s.init.intersection.calculation=1'
   
   # set calculation to lowest, unused, intersection id
-  - '/mycommand:road_new_calculation $s.intersection.calculation'
+  - '/mycommand:road_new_calculation $s.init.intersection.calculation'
   
   
   
@@ -45,7 +45,7 @@ road_new_calculation:
   - '$Script$%else%'
   
   # add 1 to calculation
-  - '$Script$%Variable%$s.intersection.calculation+1'
+  - '$Script$%Variable%$s.init.intersection.calculation+1'
   
   # try again
-  - '/mycommand:road_new_calculation $s.intersection.calculation'
+  - '/mycommand:road_new_calculation $s.init.intersection.calculation'
