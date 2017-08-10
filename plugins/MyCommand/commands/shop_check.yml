@@ -7,7 +7,7 @@ shop_check:
   register: true
   runcmd:
   # reset calculation
-  - '$Script$%Variable%$s.shop.init.calculation=0'
+  - '$Script$%Variable%$s.init.shop.calculation=0'
   
   # remove tag
   - '/minecraft:scoreboard players tag @e[name=ssMarker,tag=ssFoundSign,type=area_effect_cloud] remove ssFoundSign'
@@ -17,7 +17,7 @@ shop_check:
   - '/minecraft:execute @a ~ ~ ~ minecraft:execute @e[name=ssMarker,type=area_effect_cloud] ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * scoreboard players tag @s add ssFoundSign'
   
   # if there's an aec without the tag
-  - '/minecraft:execute @e[c=1,name=ssMarker,tag=!ssFoundSign,type=area_effect_cloud] ~ ~ ~ /sudo @p /mycommand:shop_check_recursion $s.shop.init.calculation'
+  - '/minecraft:execute @e[c=1,name=ssMarker,tag=!ssFoundSign,type=area_effect_cloud] ~ ~ ~ /sudo @p /mycommand:shop_check_recursion $s.init.shop.calculation'
   
   
   
@@ -62,10 +62,10 @@ shop_check_recursion_variable:
   register: true
   runcmd:
   # add 1 to calculation
-  - '$Script$%Variable%$s.shop.init.calculation+1'
+  - '$Script$%Variable%$s.init.shop.calculation+1'
   
   # recur
-  - '/mycommand:shop_check_recursion $s.shop.init.calculation'
+  - '/mycommand:shop_check_recursion $s.init.shop.calculation'
   
   
   
