@@ -43,8 +43,8 @@ shop_xp_create:
   - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1 x Experience Level"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg2"}]'
   
   # get id for shop
-  - '$Script$%Variable%$s.shop.init.new_id=0'
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.shop.init.new_id'
+  - '$Script$%Variable%$s.init.shop.new_id=0'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.init.shop.new_id'
   
   # set stock to 0 if neccessary
   - '$Script$%if%$PlayerData%$s.shop.stock.xp%==NoData'
@@ -52,7 +52,7 @@ shop_xp_create:
   
   # valid; init shop info
   - '$Script$%if%always==always'
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as a sign to create a shop"}]'
@@ -75,7 +75,7 @@ shop_xp_click:
   # arg1 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg3 = $uuid
-  # arg4 = $s.shop.init.new_id
+  # arg4 = $s.init.shop.new_id
   
   # check if clicker sneaks
   - '/mycommand:shop_xp_click_sneakcheck $player $arg1 $arg2 $s.uuid.$arg3.name $arg4'
@@ -96,7 +96,7 @@ shop_xp_click_sneakcheck:
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg4 = $s.uuid.(seller_uuid).name
-  # arg5 = $s.shop.init.new_id
+  # arg5 = $s.init.shop.new_id
   
   # reset sneak score
   - '/minecraft:scoreboard players set $arg1 ssSneak 0'
@@ -134,7 +134,7 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
-  # arg7 = $s.shop.init.new_id
+  # arg7 = $s.init.shop.new_id
   
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal'
 
@@ -145,7 +145,7 @@ shop_xp_click_action:
   # add stock
   - '$Script$%if%$arg1==$arg4<and>$arg5==normal'
   # add to added variable
-  - '$Script$%Variable%$s.shop.init.stock+$level'
+  - '$Script$%Variable%$s.init.shop.stock+$level'
   # add to stock variable
   - '$Script$%PlayerDataFor%$arg4%$s.shop.stock.xp+$level'
   # remove xp
@@ -154,35 +154,35 @@ shop_xp_click_action:
   #######################
   #      no levels      #
   #######################
-  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock==0'
+  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.init.shop.stock==0'
 
   # "[Shop] No experience levels to add to the stock"
   - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No experience levels to add to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
   #       1 level       #
   #######################
-  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock==1'
+  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.init.shop.stock==1'
   
   # "[Shop] Added x experience level to the stock"
-  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience level to the stock"}]'
+  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience level to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
   #      >1 levels      #
   #######################
-  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.shop.init.stock>1'
+  - '$Script$%if%$arg1==$arg4<and>$arg5==normal<and>$s.init.shop.stock>1'
   
   # "[Shop] Added x experience levels to the stock"
-  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.shop.init.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience levels to the stock"}]'
+  - '/minecraft:tellraw $arg4 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" experience levels to the stock"}]'
   
   # reset stock variable
-  - '$Script$%Variable%$s.shop.init.stock=0'
+  - '$Script$%Variable%$s.init.shop.stock=0'
 
   #######################################
   #                 buy                 #
@@ -193,7 +193,7 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
-  # arg7 = $s.shop.init.new_id
+  # arg7 = $s.init.shop.new_id
   
   # check if there's enough stock and the buyer is not sneaking and has enough money
   - '$Script$%elseif%$PlayerDataFor%$arg4%$s.shop.stock.xp%>=$arg2<and>$arg5==normal<and>$arg6==enough'
@@ -242,7 +242,7 @@ shop_xp_click_action:
   # arg4 = $s.uuid.(seller_uuid).name
   # arg5 = normal / sneak
   # arg6 = enough / shortage
-  # arg7 = $s.shop.init.new_id
+  # arg7 = $s.init.shop.new_id
   
   #######################
   #  auto claim owner   #
