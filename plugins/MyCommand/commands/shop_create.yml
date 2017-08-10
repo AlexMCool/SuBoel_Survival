@@ -33,7 +33,7 @@ shop_create:
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to have the item you want to create a shop for in your hand"}]'
 
   # banned items
-  - '$Script$%elseif%$iteminhand==BOW<or>$iteminhand==CHAINMAIL_BOOTS<or>$iteminhand==CHAINMAIL_CHESTPLATE<or>$iteminhand==CHAINMAIL_HELMET<or>$iteminhand==CHAINMAIL_LEGGINGS<or>$iteminhand==DIAMOND_AXE<or>$iteminhand==DIAMOND_BOOTS<or>$iteminhand==DIAMOND_CHESTPLATE<or>$iteminhand==DIAMOND_HELMET<or>$iteminhand==DIAMOND_HOE<or>$iteminhand==DIAMOND_LEGGINGS<or>$iteminhand==DIAMOND_PICKAXE<or>$iteminhand==DIAMOND_SPADE<or>$iteminhand==DIAMOND_SWORD<or>$iteminhand==ENCHANTED_BOOK<or>$iteminhand==FISHING_ROD<or>$iteminhand==FLINT_AND_STEEL<or>$iteminhand==GOLD_AXE<or>$iteminhand==GOLD_BOOTS<or>$iteminhand==GOLD_CHESTPLATE<or>$iteminhand==GOLD_HELMET<or>$iteminhand==GOLD_HOE<or>$iteminhand==GOLD_LEGGINGS<or>$iteminhand==GOLD_PICKAXE<or>$iteminhand==GOLD_SPADE<or>$iteminhand==GOLD_SWORD<or>$iteminhand==IRON_AXE<or>$iteminhand==IRON_BOOTS<or>$iteminhand==IRON_CHESTPLATE<or>$iteminhand==IRON_HELMET<or>$iteminhand==IRON_HOE<or>$iteminhand==IRON_LEGGINGS<or>$iteminhand==IRON_PICKAXE<or>$iteminhand==IRON_SPADE<or>$iteminhand==IRON_SWORD<or>$iteminhand==LEATHER_BOOTS<or>$iteminhand==LEATHER_CHESTPLATE<or>$iteminhand==LEATHER_HELMET<or>$iteminhand==LEATHER_LEGGINGS<or>$iteminhand==LINGERING_POTION<or>$iteminhand==POTION<or>$iteminhand==SHEARS<or>$iteminhand==SHIELD<or>$iteminhand==MONSTER_EGG<or>$iteminhand==SPLASH_POTION<or>$iteminhand==STONE_AXE<or>$iteminhand==STONE_PICKAXE<or>$iteminhand==STONE_SPADE<or>$iteminhand==STONE_SWORD<or>$iteminhand==TIPPED_ARROW<or>$iteminhand==WOOD_AXE<or>$iteminhand==WOOD_HOE<or>$iteminhand==WOOD_PICKAXE<or>$iteminhand==WOOD_SPADE<or>$iteminhand==WOOD_SWORD'
+  - '$Script$%elseif%$iteminhand==BOW<or>$iteminhand==CHAINMAIL_BOOTS<or>$iteminhand==CHAINMAIL_CHESTPLATE<or>$iteminhand==CHAINMAIL_HELMET<or>$iteminhand==CHAINMAIL_LEGGINGS<or>$iteminhand==DIAMOND_AXE<or>$iteminhand==DIAMOND_BOOTS<or>$iteminhand==DIAMOND_CHESTPLATE<or>$iteminhand==DIAMOND_HELMET<or>$iteminhand==DIAMOND_HOE<or>$iteminhand==DIAMOND_LEGGINGS<or>$iteminhand==DIAMOND_PICKAXE<or>$iteminhand==DIAMOND_SPADE<or>$iteminhand==DIAMOND_SWORD<or>$iteminhand==ELYTRA<or>$iteminhand==ENCHANTED_BOOK<or>$iteminhand==FISHING_ROD<or>$iteminhand==FLINT_AND_STEEL<or>$iteminhand==GOLD_AXE<or>$iteminhand==GOLD_BOOTS<or>$iteminhand==GOLD_CHESTPLATE<or>$iteminhand==GOLD_HELMET<or>$iteminhand==GOLD_HOE<or>$iteminhand==GOLD_LEGGINGS<or>$iteminhand==GOLD_PICKAXE<or>$iteminhand==GOLD_SPADE<or>$iteminhand==GOLD_SWORD<or>$iteminhand==IRON_AXE<or>$iteminhand==IRON_BOOTS<or>$iteminhand==IRON_CHESTPLATE<or>$iteminhand==IRON_HELMET<or>$iteminhand==IRON_HOE<or>$iteminhand==IRON_LEGGINGS<or>$iteminhand==IRON_PICKAXE<or>$iteminhand==IRON_SPADE<or>$iteminhand==IRON_SWORD<or>$iteminhand==LEATHER_BOOTS<or>$iteminhand==LEATHER_CHESTPLATE<or>$iteminhand==LEATHER_HELMET<or>$iteminhand==LEATHER_LEGGINGS<or>$iteminhand==LINGERING_POTION<or>$iteminhand==POTION<or>$iteminhand==SHEARS<or>$iteminhand==SHIELD<or>$iteminhand==MONSTER_EGG<or>$iteminhand==SPLASH_POTION<or>$iteminhand==STONE_AXE<or>$iteminhand==STONE_PICKAXE<or>$iteminhand==STONE_SPADE<or>$iteminhand==STONE_SWORD<or>$iteminhand==TIPPED_ARROW<or>$iteminhand==WOOD_AXE<or>$iteminhand==WOOD_HOE<or>$iteminhand==WOOD_PICKAXE<or>$iteminhand==WOOD_SPADE<or>$iteminhand==WOOD_SWORD'
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The item you''re holding, cannot be used for a shop"}]'
 
   #######################################
@@ -71,15 +71,15 @@ shop_place:
   # arg1 = $player
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg4 = $s.shop.init.item
-  # arg5 = $s.shop.init.damage
+  # arg4 = $s.init.shop.item
+  # arg5 = $s.init.shop.damage
   
   # "[Shop] Successfully created a shop which sells x x x for ßx"
-  - '/tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$s.shop.init.item:$s.shop.init.damage"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
+  - '/tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$s.init.shop.item:$s.init.shop.damage"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # get id for shop
-  - '$Script$%Variable%$s.shop.init.new_id=0'
-  - '/sudo $arg1 /mycommand:shop_place_newid $s.shop.init.new_id'
+  - '$Script$%Variable%$s.init.shop.new_id=0'
+  - '/sudo $arg1 /mycommand:shop_place_newid $s.init.shop.new_id'
   
   # set stock to 0 if neccessary
   - '$Script$%if%$PlayerDataFor%$arg1%$s.shop.stock.$arg4:$arg5%==NoData'
@@ -87,7 +87,7 @@ shop_place:
   
   # blockdata on sign
   - '$Script$%if%always==always'
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.shop.init.item $s.shop.init.damage $arg2 $arg3 $uuid $s.shop.init.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$s.shop.init.item:$s.shop.init.damage\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.init.shop.item $s.init.shop.damage $arg2 $arg3 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$s.init.shop.item:$s.init.shop.damage\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
   
   
   
@@ -101,7 +101,7 @@ shop_place_newid:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
-  # arg1 = $s.shop.init.new_id
+  # arg1 = $s.init.shop.new_id
   
   # if id contains '.' which means the id doesn't exist
   - '$Script$%if%$s.shop.id.$arg1.x.contains=.'
@@ -119,5 +119,5 @@ shop_place_newid:
   
   # try again
   - '$Script$%else%'
-  - '$Script$%Variable%$s.shop.init.new_id+1'
-  - '/mycommand:shop_place_newid $s.shop.init.new_id'
+  - '$Script$%Variable%$s.init.shop.new_id+1'
+  - '/mycommand:shop_place_newid $s.init.shop.new_id'
