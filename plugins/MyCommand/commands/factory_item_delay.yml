@@ -13,86 +13,86 @@ factory_item_delay_init:
   # arg5 = (damage_value)
   
   # calculate how many hours
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.hours=1'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.hours+$arg3'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.hours-$s.item.minimum_level.$arg4:$arg5'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours=1'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours+$arg3'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours-$s.item.minimum_level.$arg4:$arg5'
   # calculate how many items/hour
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.hours*$s.item.multiplier.$arg4:$arg5'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours*$s.item.multiplier.$arg4:$arg5'
   # calculate how many ticks/item
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation=72000'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation/$PlayerDataFor%$arg2%$s.init.item.hours%'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation=72000'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation/$PlayerDataFor%$arg2%$s.init.product.hours%'
   
   # round answer
   # reset rounded
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded=0'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded=0'
   # round answer via binary search
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=131072'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+131072'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-131072'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=65536'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+65536'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-65536'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=32768'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+32768'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-32768'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=16384'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+16384'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-16384'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=8192'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+8192'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-8192'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=4096'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+4096'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-4096'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=2048'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+2048'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-2048'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=1024'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+1024'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-1024'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=512'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+512'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-512'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=256'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+256'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-256'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=128'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+128'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-128'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=64'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+64'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-64'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=32'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+32'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-32'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=16'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+16'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-16'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=8'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+8'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-8'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=4'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+4'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-4'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=2'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+2'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-2'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=1'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+1'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-1'
-  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.item.operation%>=0.5'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.rounded+1'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.item.operation-0.5'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=131072'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+131072'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-131072'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=65536'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+65536'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-65536'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=32768'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+32768'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-32768'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=16384'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+16384'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-16384'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=8192'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+8192'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-8192'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=4096'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+4096'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-4096'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=2048'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+2048'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-2048'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=1024'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+1024'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-1024'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=512'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+512'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-512'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=256'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+256'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-256'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=128'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+128'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-128'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=64'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+64'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-64'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=32'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+32'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-32'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=16'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+16'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-16'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=8'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+8'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-8'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=4'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+4'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-4'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=2'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+2'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-2'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=1'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+1'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-1'
+  - '$Script$%if%$PlayerDataFor%$arg2%$s.init.product.operation%>=0.5'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.rounded+1'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation-0.5'
   
   # set factory's item delay variable to rounded number (if the number isn't the max number, which means the dividing has failed)
-  - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.item.rounded%!=262144'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.delay=$PlayerDataFor%$arg2%$s.init.item.rounded%'
+  - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.product.rounded%!=262144'
+  - '$Script$%Variable%$s.factory.id.$arg1.item.delay=$PlayerDataFor%$arg2%$s.init.product.rounded%'
   # set up scoreboard scores
   - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfDelayVar $s.factory.id.$arg1.item.delay'
   - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfItemDelay $s.factory.id.$arg1.item.delay'
   
   # set factory's item delay variable to rounded number (if the number is the max number, which means the dividing has failed)
-  - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.item.rounded%>=262144'
+  - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.product.rounded%>=262144'
   - '$Script$%Variable%$s.factory.id.$arg1.item.delay=none'
   # set up scoreboard scores
   - '/minecraft:scoreboard players reset @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfDelayVar'
@@ -129,7 +129,7 @@ factory_item_delay_timer:
   # arg2 = (uuid)
   
   # if timer is disabled
-  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.item.timer%==disabled'
+  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%==disabled'
   # add to active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
   # add to week_active_ticks
@@ -140,7 +140,7 @@ factory_item_delay_timer:
   - '/minecraft:scoreboard players remove @e[name=sfItemDelay,tag=sf$arg2,type=area_effect_cloud] sfItemDelay 1'
   
   # if timer is enabled
-  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.item.timer%==enabled'
+  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%==enabled'
   # add to active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
   # add to week_active_ticks
@@ -172,7 +172,7 @@ factory_item_delay_check_init:
   # arg4 = (next_id)
   
   # disable timer
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.timer=disabled'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.timer=disabled'
   
   # if (next_id) is not the last id
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%!=NoData<and>$PlayerDataFor%$arg1%$s.factory.factory_id.$arg4.id%!=NoData'
@@ -186,7 +186,7 @@ factory_item_delay_check_init:
   # spawn item and reset timer
   - '/minecraft:execute @e[c=1,name=sfItemDelay,score_sfItemDelay=0,tag=sf$arg2,type=area_effect_cloud] ~ ~ ~ /mycommand:factory_item_delay_check $arg1 $arg2 $PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%'
   # enable timer
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.timer=enabled'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.timer=enabled'
   
   
   
@@ -208,13 +208,13 @@ factory_item_delay_check_recur:
   # arg4 = (next_id)
   
   # add 1 to (player_factory_id) and (next_id)
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.temp_id=$arg3'
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.temp_id+1'
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.next_id=$arg4'
-  - '$Script$%PlayerDataFor%$arg1%$s.init.item.next_id+1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.temp_id=$arg3'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.temp_id+1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.next_id=$arg4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.product.next_id+1'
   
   # retry
-  - '$delay$/mycommand:factory_item_delay_check_init $arg1 $arg2 $PlayerDataFor%$arg1%$s.init.item.temp_id% $PlayerDataFor%$arg1%$s.init.item.next_id%'
+  - '$delay$/mycommand:factory_item_delay_check_init $arg1 $arg2 $PlayerDataFor%$arg1%$s.init.product.temp_id% $PlayerDataFor%$arg1%$s.init.product.next_id%'
   
   
   

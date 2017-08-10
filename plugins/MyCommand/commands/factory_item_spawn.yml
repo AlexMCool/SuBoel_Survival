@@ -9,8 +9,8 @@ factory_item_spawn:
   # arg1 = (factory_id)
   
   # find closest hopper where there can be a new item
-  - '$Script$%Variable%$s.factory.init.order_number=0'
-  - '/mycommand:factory_item_spawn_hopper $arg1 $s.factory.init.order_number'
+  - '$Script$%Variable%$s.init.factory.order_number=0'
+  - '/mycommand:factory_item_spawn_hopper $arg1 $s.init.factory.order_number'
   
   
   
@@ -59,7 +59,7 @@ factory_item_spawn_recur:
   - '$delay$/minecraft:execute @e[name=sfHopperChain,tag=sfID$arg1,type=area_effect_cloud] ~ ~ ~ /minecraft:scoreboard players reset @s[tag=sfOrder$arg2] sfHopper'
   
   # add 1 to variable
-  - '$Script$%Variable%$s.factory.init.order_number+1'
+  - '$Script$%Variable%$s.init.factory.order_number+1'
   
   # recur
-  - '$delay$/mycommand:factory_item_spawn_hopper $arg1 $s.factory.init.order_number'
+  - '$delay$/mycommand:factory_item_spawn_hopper $arg1 $s.init.factory.order_number'

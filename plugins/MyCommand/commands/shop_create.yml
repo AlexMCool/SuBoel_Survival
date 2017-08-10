@@ -71,11 +71,11 @@ shop_place:
   # arg1 = $player
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg4 = $s.init.shop.item
-  # arg5 = $s.init.shop.damage
+  # arg4 = $s.init.product.name
+  # arg5 = $s.init.product.damage
   
   # "[Shop] Successfully created a shop which sells x x x for ßx"
-  - '/tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$s.init.shop.item:$s.init.shop.damage"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
+  - '/tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$s.init.product.name:$s.init.product.damage"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
   
   # get id for shop
   - '$Script$%Variable%$s.init.shop.new_id=0'
@@ -87,7 +87,7 @@ shop_place:
   
   # blockdata on sign
   - '$Script$%if%always==always'
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.init.shop.item $s.init.shop.damage $arg2 $arg3 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$s.init.shop.item:$s.init.shop.damage\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $s.init.product.name $s.init.product.damage $arg2 $arg3 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$s.init.product.name:$s.init.product.damage\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
   
   
   

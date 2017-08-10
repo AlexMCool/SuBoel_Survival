@@ -21,7 +21,7 @@ road_intersection_create:
   - '/mycommand:road_intersection_check_road east'
 
   # check if intersection is possible
-  - '$Script$%if%$arg1==east<and>$s.intersection.type!=impossible'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type!=impossible'
   
   # set stone_slab for the intersection border
   - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -31,14 +31,14 @@ road_intersection_create:
 
   # load intersection structure
   - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
-  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
   - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
   - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
 
   #######################
   #    east with east   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=east'
   
   # set corner stone_slab
   - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -64,7 +64,7 @@ road_intersection_create:
   #######################
   #   east with north   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=north'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -89,7 +89,7 @@ road_intersection_create:
   #######################
   #   east with south   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=south'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -114,7 +114,7 @@ road_intersection_create:
   #######################
   #    east with west   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=west'
   
   # set corner stone_slab
   - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -145,7 +145,7 @@ road_intersection_create:
   - '/mycommand:road_intersection_check_road north'
 
   # check if intersection is possible
-  - '$Script$%if%$arg1==north<and>$s.intersection.type!=impossible'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type!=impossible'
 
   # set stone_slab for the intersection border
   - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -155,14 +155,14 @@ road_intersection_create:
 
   # load intersection structure
   - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
-  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
   - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
   - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
 
   #######################
   #   north with east   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=east'
   
   # set corner stone_slab
   - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -187,7 +187,7 @@ road_intersection_create:
   #######################
   #  north with north   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=north'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -213,7 +213,7 @@ road_intersection_create:
   #######################
   #  north with south   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=south'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -238,7 +238,7 @@ road_intersection_create:
   #######################
   #   north with west   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=west'
   
   # set corner stone_slab
   - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -269,7 +269,7 @@ road_intersection_create:
   - '/mycommand:road_intersection_check_road south'
 
   # check if intersection is possible
-  - '$Script$%if%$arg1==south<and>$s.intersection.type!=impossible'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type!=impossible'
 
   # set stone_slab for the intersection border
   - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -279,14 +279,14 @@ road_intersection_create:
 
   # load intersection structure
   - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
-  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
   - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
   - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
 
   #######################
   #   south with east   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=east'
   
   # set corner stone_slab
   - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -311,7 +311,7 @@ road_intersection_create:
   #######################
   #  south with north   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=north'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -336,7 +336,7 @@ road_intersection_create:
   #######################
   #  south with south   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=south'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -362,7 +362,7 @@ road_intersection_create:
   #######################
   #   south with west   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=west'
   
   # set corner stone_slab
   - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -393,7 +393,7 @@ road_intersection_create:
   - '/mycommand:road_intersection_check_road west'
 
   # check if intersection is possible
-  - '$Script$%if%$arg1==west<and>$s.intersection.type!=impossible'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type!=impossible'
 
   # set stone_slab for the intersection border
   - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -403,14 +403,14 @@ road_intersection_create:
 
   # load intersection structure
   - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
-  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
   - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
   - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
 
   #######################
   #    west with east   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=east'
   
   # set corner stone_slab
   - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -435,7 +435,7 @@ road_intersection_create:
   #######################
   #   west with north   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=north'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -460,7 +460,7 @@ road_intersection_create:
   #######################
   #   west with south   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=south'
   
   # set corner stone_slab
   - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -485,7 +485,7 @@ road_intersection_create:
   #######################
   #    west with west   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=west'
   
   # set corner stone_slab
   - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
@@ -515,7 +515,7 @@ road_intersection_create:
   #       origin        #
   #######################
   # always save intersection type (and location and id if necessary)
-  - '$Script$%if%$s.intersection.type==impossible<or>$s.intersection.type!=impossible'
+  - '$Script$%if%$s.init.intersection.type==impossible<or>$s.init.intersection.type!=impossible'
   
   # checks if the intersection has an id (and first initializes the variables)
   - '/mycommand:road_intersection_check_id $locX $locY $locZ'
@@ -523,12 +523,12 @@ road_intersection_create:
   - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
   
   # save origin intersection type
-  - '/mycommand:road_intersection_init type $s.intersection.location.$locX,$locY,$locZ.id $s.intersection.type'
+  - '/mycommand:road_intersection_init type $s.intersection.location.$locX,$locY,$locZ.id $s.init.intersection.type'
   
   #######################
   #        east         #
   #######################
-  - '$Script$%if%$s.intersection.type.contains=east'
+  - '$Script$%if%$s.init.intersection.type.contains=east'
   
   # tp to intersection
   - '/minecraft:tp @s ~80 ~ ~'
@@ -544,7 +544,7 @@ road_intersection_create:
   #######################
   #        north        #
   #######################
-  - '$Script$%if%$s.intersection.type.contains=north'
+  - '$Script$%if%$s.init.intersection.type.contains=north'
   
   # tp to intersection
   - '/minecraft:tp @s ~ ~ ~-80'
@@ -560,7 +560,7 @@ road_intersection_create:
   #######################
   #        south        #
   #######################
-  - '$Script$%if%$s.intersection.type.contains=south'
+  - '$Script$%if%$s.init.intersection.type.contains=south'
   
   # tp to intersection
   - '/minecraft:tp @s ~ ~ ~80'
@@ -576,7 +576,7 @@ road_intersection_create:
   #######################
   #        west         #
   #######################
-  - '$Script$%if%$s.intersection.type.contains=west'
+  - '$Script$%if%$s.init.intersection.type.contains=west'
   
   # tp to intersection
   - '/minecraft:tp @s ~-80 ~ ~'
@@ -595,7 +595,7 @@ road_intersection_create:
   #######################
   #    east with east   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=east'
   
   # tp to pos,pos factory
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -622,7 +622,7 @@ road_intersection_create:
   #######################
   #   east with north   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=north'
  
   # neg,neg east
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -641,7 +641,7 @@ road_intersection_create:
   #######################
   #   east with south   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=south'
   
   # pos,pos west
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -660,7 +660,7 @@ road_intersection_create:
   #######################
   #    east with west   #
   #######################
-  - '$Script$%if%$arg1==east<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=west'
   
   # neg,neg south
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -679,7 +679,7 @@ road_intersection_create:
   #######################
   #   north with east   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=east'
   
   # tp to pos,pos factory
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -706,7 +706,7 @@ road_intersection_create:
   #######################
   #  north with north   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=north'
  
   # neg,neg east
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -725,7 +725,7 @@ road_intersection_create:
   #######################
   #  north with south   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=south'
   
   # pos,pos west
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -744,7 +744,7 @@ road_intersection_create:
   #######################
   #   north with west   #
   #######################
-  - '$Script$%if%$arg1==north<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=west'
   
   # neg,neg south
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -763,7 +763,7 @@ road_intersection_create:
   #######################
   #   south with east   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=east'
   
   # tp to pos,pos factory
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -790,7 +790,7 @@ road_intersection_create:
   #######################
   #  south with north   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=north'
  
   # neg,neg east
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -809,7 +809,7 @@ road_intersection_create:
   #######################
   #  south with south   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=south'
   
   # pos,pos west
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -828,7 +828,7 @@ road_intersection_create:
   #######################
   #   south with west   #
   #######################
-  - '$Script$%if%$arg1==south<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=west'
   
   # neg,neg south
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -847,7 +847,7 @@ road_intersection_create:
   #######################
   #    west with east   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=east'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=east'
   
   # tp to pos,pos factory
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -874,7 +874,7 @@ road_intersection_create:
   #######################
   #   west with north   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=north'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=north'
  
   # neg,neg east
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -893,7 +893,7 @@ road_intersection_create:
   #######################
   #   west with south   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=south'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=south'
   
   # pos,pos west
   - '/minecraft:tp @s ~16 ~ ~16'
@@ -912,7 +912,7 @@ road_intersection_create:
   #######################
   #    west with west   #
   #######################
-  - '$Script$%if%$arg1==west<and>$s.intersection.type.contains=west'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=west'
   
   # neg,neg south
   - '/minecraft:tp @s ~-64 ~ ~-64'
@@ -944,7 +944,7 @@ road_intersection_check_road:
   #                reset                #
   #######################################
   # reset option value
-  - '$Script$%Variable%$s.intersection.option=0'
+  - '$Script$%Variable%$s.init.intersection.option=0'
   
   #######################################
   #                check                #
@@ -1047,40 +1047,40 @@ road_intersection_check_road:
   - '/mycommand:road_intersection_option 1'
   
   # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==15'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;east_south;east_south_west;east_west%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;east_south;east_south_west;east_west%'
   
   # 13
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==13'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_south;east_south_west;east_west%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south;east_south_west;east_west%'
   
   # 11
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==11'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_west;east_west%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_west;east_west%'
   
   # 9
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==9'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_west%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==9'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_west%'
   
   # 7
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==7'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_south%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_south%'
   
   # 5
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==5'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_south%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==5'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south%'
   
   # 3
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==3'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north%'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==3'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north%'
   
   # 1
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==1'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==1'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   # if none of these
-  - '$Script$%if%$arg1==east<and>$s.intersection.option==14<or>$arg1==east<and>$s.intersection.option==12<or>$arg1==east<and>$s.intersection.option==10<or>$arg1==east<and>$s.intersection.option==8<or>$arg1==east<and>$s.intersection.option==6<or>$arg1==east<and>$s.intersection.option==4<or>$arg1==east<and>$s.intersection.option==2<or>$arg1==east<and>$s.intersection.option==0'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==14<or>$arg1==east<and>$s.init.intersection.option==12<or>$arg1==east<and>$s.init.intersection.option==10<or>$arg1==east<and>$s.init.intersection.option==8<or>$arg1==east<and>$s.init.intersection.option==6<or>$arg1==east<and>$s.init.intersection.option==4<or>$arg1==east<and>$s.init.intersection.option==2<or>$arg1==east<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   #######################
   #        north        #
@@ -1089,40 +1089,40 @@ road_intersection_check_road:
   - '/mycommand:road_intersection_option 2'
   
   # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==15'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;north_south;north_south_west;north_west%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;north_south;north_south_west;north_west%'
   
   # 14
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==14'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_south;north_south_west;north_west%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south;north_south_west;north_west%'
   
   # 11
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==11'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_west;north_west%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_west;north_west%'
   
   # 10
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==10'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_west%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==10'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_west%'
   
   # 7
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==7'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north;east_north_south;north_south%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;north_south%'
   
   # 6
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==6'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_south%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==6'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south%'
   
   # 3
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==3'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north%'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==3'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north%'
   
   # 2
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==2'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==2'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   # if none of these
-  - '$Script$%if%$arg1==north<and>$s.intersection.option==13<or>$arg1==north<and>$s.intersection.option==12<or>$arg1==north<and>$s.intersection.option==9<or>$arg1==north<and>$s.intersection.option==8<or>$arg1==north<and>$s.intersection.option==5<or>$arg1==north<and>$s.intersection.option==4<or>$arg1==north<and>$s.intersection.option==1<or>$arg1==north<and>$s.intersection.option==0'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==13<or>$arg1==north<and>$s.init.intersection.option==12<or>$arg1==north<and>$s.init.intersection.option==9<or>$arg1==north<and>$s.init.intersection.option==8<or>$arg1==north<and>$s.init.intersection.option==5<or>$arg1==north<and>$s.init.intersection.option==4<or>$arg1==north<and>$s.init.intersection.option==1<or>$arg1==north<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   #######################
   #        south        #
@@ -1131,40 +1131,40 @@ road_intersection_check_road:
   - '/mycommand:road_intersection_option 4'
   
   # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==15'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north_south;east_north_south_west;east_south;east_south_west;north_south;north_south_west;south_west%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south;east_north_south_west;east_south;east_south_west;north_south;north_south_west;south_west%'
   
   # 14
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==14'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_south;north_south_west;south_west%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south;north_south_west;south_west%'
   
   # 13
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==13'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_south;east_south_west;south_west%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south;east_south_west;south_west%'
   
   # 12
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==12'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%south_west%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==12'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%south_west%'
   
   # 7
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==7'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north_south;east_south;north_south%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south;east_south;north_south%'
   
   # 6
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==6'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_south%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==6'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south%'
   
   # 5
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==5'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_south%'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==5'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south%'
   
   # 4
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==4'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==4'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   # if none of these
-  - '$Script$%if%$arg1==south<and>$s.intersection.option==11<or>$arg1==south<and>$s.intersection.option==10<or>$arg1==south<and>$s.intersection.option==9<or>$arg1==south<and>$s.intersection.option==8<or>$arg1==south<and>$s.intersection.option==3<or>$arg1==south<and>$s.intersection.option==2<or>$arg1==south<and>$s.intersection.option==1<or>$arg1==south<and>$s.intersection.option==0'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==11<or>$arg1==south<and>$s.init.intersection.option==10<or>$arg1==south<and>$s.init.intersection.option==9<or>$arg1==south<and>$s.init.intersection.option==8<or>$arg1==south<and>$s.init.intersection.option==3<or>$arg1==south<and>$s.init.intersection.option==2<or>$arg1==south<and>$s.init.intersection.option==1<or>$arg1==south<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   #######################
   #        west         #
@@ -1173,40 +1173,40 @@ road_intersection_check_road:
   - '/mycommand:road_intersection_option 8'
   
   # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==15'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north_south_west;east_north_west;east_south_west;east_west;north_south_west;north_west;south_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south_west;east_north_west;east_south_west;east_west;north_south_west;north_west;south_west%'
   
   # 14
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==14'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_south_west;north_west;south_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south_west;north_west;south_west%'
   
   # 13
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==13'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_south_west;east_west;south_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south_west;east_west;south_west%'
   
   # 12
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==12'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%south_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==12'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%south_west%'
   
   # 11
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==11'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_north_west;east_west;north_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_west;east_west;north_west%'
   
   # 10
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==10'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%north_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==10'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_west%'
   
   # 9
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==9'
-  - '$Script$%Variable%$s.intersection.type=$GetRandomStringFromList%east_west%'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==9'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_west%'
   
   # 8
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==8'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==8'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
   
   # if none of these
-  - '$Script$%if%$arg1==west<and>$s.intersection.option==7<or>$arg1==west<and>$s.intersection.option==6<or>$arg1==west<and>$s.intersection.option==5<or>$arg1==west<and>$s.intersection.option==4<or>$arg1==west<and>$s.intersection.option==3<or>$arg1==west<and>$s.intersection.option==2<or>$arg1==west<and>$s.intersection.option==1<or>$arg1==west<and>$s.intersection.option==0'
-  - '$Script$%Variable%$s.intersection.type=impossible'
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==7<or>$arg1==west<and>$s.init.intersection.option==6<or>$arg1==west<and>$s.init.intersection.option==5<or>$arg1==west<and>$s.init.intersection.option==4<or>$arg1==west<and>$s.init.intersection.option==3<or>$arg1==west<and>$s.init.intersection.option==2<or>$arg1==west<and>$s.init.intersection.option==1<or>$arg1==west<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
 
 
   
@@ -1223,7 +1223,7 @@ road_intersection_option:
   # arg1 = 1 / 2 / 4 / 8
   
   # add x to option variable
-  - '$Script$%Variable%$s.intersection.option+$arg1'
+  - '$Script$%Variable%$s.init.intersection.option+$arg1'
 
   
   
@@ -1246,10 +1246,10 @@ road_intersection_check_id:
   
   # adds 1 to total and now
 #  - '$Script$%Variable%$s.intersection.id.total+1'
-  - '$Script$%Variable%$s.intersection.id.now+1'
+  - '$Script$%Variable%$s.init.intersection.id_now+1'
   
   # initialize the id and location
-  - '/mycommand:road_intersection_init id $s.intersection.id.now $locX $locY $locZ'
+  - '/mycommand:road_intersection_init id $s.init.intersection.id_now $locX $locY $locZ'
   
   
   
@@ -1280,7 +1280,7 @@ road_intersection_init:
   #                 id                  #
   ####################################### 
   # arg1 = id
-  # arg2 = $s.intersection.id.now
+  # arg2 = $s.init.intersection.id_now
   # arg3 = $locX
   # arg4 = $locY
   # arg5 = $locZ
@@ -1294,7 +1294,7 @@ road_intersection_init:
   ####################################### 
   # arg1 = type
   # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
-  # arg3 = $s.intersection.type
+  # arg3 = $s.init.intersection.type
   - '$Script$%if%$arg1==type'
   
   # set origin intersection type
@@ -1343,7 +1343,7 @@ road_intersection_info:
   ####################################### 
   # arg1 = type
   # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
-  # arg3 = $s.intersection.type
+  # arg3 = $s.init.intersection.type
   - '$Script$%if%$arg1==type'
   
   # set origin intersection type

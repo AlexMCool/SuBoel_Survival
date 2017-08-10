@@ -15,10 +15,10 @@ road_factory_check_id:
   
   # adds 1 to total and now
 #  - '$Script$%Variable%$s.factory.id.total+1'
-  - '$Script$%Variable%$s.factory.id.now+1'
+  - '$Script$%Variable%$s.init.factory.id_now+1'
   
   # initialize the id and location
-  - '/mycommand:road_factory_init id $s.factory.id.now $locX $locY $locZ'
+  - '/mycommand:road_factory_init id $s.init.factory.id_now $locX $locY $locZ'
   
   
   
@@ -60,7 +60,7 @@ road_factory_init:
   #                 id                  #
   ####################################### 
   # arg1 = id
-  # arg2 = $s.factory.id.now
+  # arg2 = $s.init.factory.id_now
   # arg3 = $locX
   # arg4 = $locY
   # arg5 = $locZ
