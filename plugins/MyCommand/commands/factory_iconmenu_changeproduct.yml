@@ -1,0 +1,190 @@
+##############################################################################
+#                    factory iconmenu changeproduct init                     #
+##############################################################################
+factory_iconmenu_changeproduct_init:
+  command: /factory_iconmenu_changeproduct_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  #######################################
+  #                wait                 #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time>$s.time'
+  
+  # set var to minutes left var
+  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation=$s.factory.id.$arg9.item.min_time'
+  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation-$s.time'
+  # 1200 ticks in a minute
+  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation/1200'
+  
+  # calculate minutes and seconds left
+  - '/mycommand:factory_iconmenu_changeproduct_init_time $player'   
+  
+  # "[Factory] You need to wait x minute(s) and x second(s) to be able to change the item of this factory again"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to wait"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.minutes%"},{"bold":"false","color":"gray","text":" minute(s) and"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.seconds%"},{"bold":"false","color":"gray","text":" second(s) to be able to change the item of this factory again"}]'
+
+  #######################################
+  #              low level              #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time'
+  
+  # init holding item
+  - '/mycommand:shop_init $player nothing nothing no_shop'
+  
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.level<$s.item.minimum_level.$s.init.shop.item:$s.init.shop.damage'
+  
+  # "[Factory] The factory has to be at least level x to change the product to x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory has to be at least level"},{"bold":"false","color":"dark_aqua","text":" $s.item.minimum_level.$s.init.shop.item:$s.init.shop.damage"},{"bold":"false","color":"gray","text":" to change the product to"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$s.init.shop.item:$s.init.shop.damage"}]'
+  
+  #######################################
+  #            same product             #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$s.init.shop.item:$s.init.shop.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.shop.item:$s.init.shop.damage'
+  
+  # "[Factory] The factory is already producing x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory is already producing"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$s.init.shop.item:$s.init.shop.damage"}]'
+  
+  #######################################
+  #            everything ok            #
+  ####################################### 
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$s.init.shop.item:$s.init.shop.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.shop.item:$s.init.shop.damage'
+  
+  # open confirmation menu
+  - '$delay$<2>/factory_iconmenu_changeproduct $multiargs $s.init.shop.item $s.init.shop.damage'
+  
+  
+  
+  
+  
+##############################################################################
+#                  factory iconmenu changeproduct init time                  #
+##############################################################################
+factory_iconmenu_changeproduct_init_time:
+  command: /factory_iconmenu_changeproduct_init_time
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # arg1 = $player
+  
+  # reset rounded minutes
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes=0'
+  # calculate rounded minutes
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.minutes+1'
+  
+  # calculate seconds (60 = how many seconds in a minute)
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation*60'
+  # reset rounded seconds
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds=0'
+  # calculate rounded seconds
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-64'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+64'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-32'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+32'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-16'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+16'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-8'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+8'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-4'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+4'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-2'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+2'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation%>=1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.calculation-1'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.factory.change_delay.rounded.seconds+1'
+  
+  
+  
+  
+  
+##############################################################################
+#                       factory iconmenu changeproduct                       #
+##############################################################################
+factory_iconmenu_changeproduct:
+  command: /factory_iconmenu_changeproduct
+  type: ICON_MENU
+  register: true
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  iconmenu_size: 9
+  iconmenu_commands:
+  # arg1 = $s.factory.id.$arg1.tp.x 
+  # arg2 = $s.factory.id.$arg1.tp.y 
+  # arg3 = $s.factory.id.$arg1.tp.z 
+  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg5 = $s.factory.id.$arg1.status 
+  # arg6 = $s.factory.id.$arg1.x 
+  # arg7 = $s.factory.id.$arg1.y
+  # arg8 = $s.factory.id.$arg1.z 
+  # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
+  # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
+  # arg11 = upgrade / noupgrade
+  # arg12 = $s.init.shop.item
+  # arg13 = $s.init.shop.damage
+  - '2:WOOL:5:/mycommand$s.char.colonfactory_item_change $arg9 $player $s.factory.id.$arg9.level $arg12 $arg13:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalChange the product to;  &$s.translation.color.$s.style.color.mark$s.translation.$arg12$s.char.colon$arg13;&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalThis can only be done every;  &$s.translation.color.$s.style.color.normalhour'
+  - '6:WOOL:14:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_$arg11_actions $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel changing the;  &$s.translation.color.$s.style.color.normalproduct'
