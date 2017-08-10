@@ -1,0 +1,10 @@
+##############################################################################
+#                                  time var                                  #
+##############################################################################
+time_var:
+  command: /time_var
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  # add 1 to time var
+  - '$Script$%Variable%$s.time+1'
