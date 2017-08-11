@@ -11,7 +11,7 @@ factory_iconmenu_upgrade_actions:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -24,7 +24,7 @@ factory_iconmenu_upgrade_actions:
   # {Command:"/multiverse-core:mvtp e:$s.general.world$s.char.colon$arg1.5,$arg2.5,$arg3.5"}
   - '4:ENDER_PEARL:0:/multiverse-core$s.char.colonmvtp e$s.char.colon$s.general.world$s.char.colon$arg1.5,$arg2.5,$arg3.5$s.char.colon0$s.char.colon$arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleTeleport&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normal$arg1 $arg2 $arg3'
   # {Command:"%openiconmenu%/mycommand:factory_iconmenu_check_upgrade $multiargs"}
-  - '7:EMERALD:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_upgrade $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalShow options about upgrading;  &$s.translation.color.$s.style.color.normalthis factory to level &$s.translation.color.$s.style.color.mark$s.translation.next_level.$arg4'
+  - '7:EMERALD:0:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_check_upgrade $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleUpgrade&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalShow options about upgrading;  &$s.translation.color.$s.style.color.normalthis factory to level &$s.translation.color.$s.style.color.mark$arg4'
   
   
   
@@ -41,7 +41,7 @@ factory_iconmenu_check_upgrade:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -164,7 +164,7 @@ factory_iconmenu_upgrade_without:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -194,7 +194,7 @@ factory_iconmenu_upgrade_with:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y

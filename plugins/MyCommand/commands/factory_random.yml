@@ -7,7 +7,7 @@ factory_random:
   register: true
   runcmd:
   # latest factory is still at level 0
-  - '$Script$%if%$s.factory.id.$arg1.level==0'
+  - '$Script$%if%$s.factory.id.$arg1.level.current==0'
   # "[Factory] You can't claim a new factory plot, because you already have an empty plot"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You can''t claim a new factory plot, because you already have an empty plot"}]'
   
@@ -262,8 +262,8 @@ factory_random_direction_choose:
   - '$Script$%if%$s.factory.id.$arg1.status==east<or>$s.factory.id.$arg1.status==north<or>$s.factory.id.$arg1.status==south<or>$s.factory.id.$arg1.status==west'
   - '$Script$%Variable%$s.factory.id.$arg1.item.damage=none'
   - '$Script$%Variable%$s.factory.id.$arg1.item.name=none'
-  - '$Script$%Variable%$s.factory.id.$arg1.level=0'
-  - '$Script$%Variable%$s.factory.id.$arg1.next_level=1'
+  - '$Script$%Variable%$s.factory.id.$arg1.level.current=0'
+  - '$Script$%Variable%$s.factory.id.$arg1.level.next=1'
   
   
   

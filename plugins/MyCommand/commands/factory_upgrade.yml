@@ -24,8 +24,8 @@ factory_upgrade:
   - '/minecraft:effect $player minecraft:resistance 1000000 255 true'
   
   # add 1 to variables
-  - '$Script$%Variable%$s.factory.id.$arg6.next_level+1'
-  - '$Script$%Variable%$s.factory.id.$arg6.level+1'
+  - '$Script$%Variable%$s.factory.id.$arg6.level.next+1'
+  - '$Script$%Variable%$s.factory.id.$arg6.level.current+1'
   
   #######################################
   #                east                 #

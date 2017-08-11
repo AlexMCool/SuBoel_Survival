@@ -12,7 +12,7 @@ factory_iconmenu_changeproduct_init:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -40,7 +40,7 @@ factory_iconmenu_changeproduct_init:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -74,7 +74,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -84,7 +84,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.level<$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.level.current<$s.item.minimum_level.$arg12:$arg13'
   
   # "[Factory] The factory has to be at least level x to change the product to x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory has to be at least level"},{"bold":"false","color":"dark_aqua","text":" $s.item.minimum_level.$arg12:$arg13"},{"bold":"false","color":"gray","text":" to change the product to"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg12:$arg13"}]'
@@ -95,7 +95,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -105,7 +105,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$arg12:$arg13<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.item.minimum_level.$arg12:$arg13'
   
   # "[Factory] The factory is already producing x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory is already producing"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg12:$arg13"}]'
@@ -116,7 +116,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -126,7 +126,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$arg12:$arg13<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.item.minimum_level.$arg12:$arg13'
   
   # open confirmation menu
   - '$delay$<2>/factory_iconmenu_changeproduct $multiargs'
@@ -215,7 +215,7 @@ factory_iconmenu_changeproduct:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -226,7 +226,7 @@ factory_iconmenu_changeproduct:
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
   
-  # {Command:"/mycommand:factory_item_change $arg9 $player $s.factory.id.$arg9.level $arg12 $arg13"}
-  - '2:WOOL:5:/mycommand$s.char.colonfactory_item_change $arg9 $player $s.factory.id.$arg9.level $arg12 $arg13:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalChange the product to;  &$s.translation.color.$s.style.color.mark$s.translation.$arg12$s.char.colon$arg13;&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalThis can only be done every;  &$s.translation.color.$s.style.color.normalhour'
+  # {Command:"/mycommand:factory_item_change $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13"}
+  - '2:WOOL:5:/mycommand$s.char.colonfactory_item_change $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalChange the product to;  &$s.translation.color.$s.style.color.mark$s.translation.$arg12$s.char.colon$arg13;&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalThis can only be done every;  &$s.translation.color.$s.style.color.normalhour'
   # {Command:"/mycommand:factory_iconmenu_$arg11_actions $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10"}
   - '6:WOOL:14:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_$arg11_actions $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel changing the;  &$s.translation.color.$s.style.color.normalproduct'

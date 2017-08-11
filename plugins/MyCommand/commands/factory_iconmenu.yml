@@ -199,7 +199,7 @@ factory_iconmenu_checktype:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -214,7 +214,7 @@ factory_iconmenu_checktype:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
@@ -230,7 +230,7 @@ factory_iconmenu_checktype:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
   # arg3 = $s.factory.id.$arg1.tp.z 
-  # arg4 = $s.factory.id.$arg1.next_level 
+  # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
   # arg6 = $s.factory.id.$arg1.x 
   # arg7 = $s.factory.id.$arg1.y
