@@ -15,7 +15,7 @@ factory_upgrade:
   - '$Script$%PlayerData%$s.init.location.world=$world'
   
   # tp to factory (upgrade) location
-  - '/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   
   # set web to not fall down or move
   #- '/minecraft:fill ~ ~ ~ ~ ~1 ~ minecraft:web default'
@@ -342,12 +342,12 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:-6,posY:-6,posZ:-14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:-7,posY:-10,posZ:-11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
@@ -737,12 +737,12 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:-14,posY:-6,posZ:6,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:-11,posY:-10,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
@@ -1132,12 +1132,12 @@ factory_upgrade:
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:14,posY:-6,posZ:-6,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:11,posY:-10,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
   - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
@@ -1527,12 +1527,12 @@ factory_upgrade:
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:6,posY:-6,posZ:14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
   # tp to factory (upgrade) location
-  - '$delay$<20>/multiverse-core:mvtp e:$s.world:$arg3.5,$arg4,$arg5.5'
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
   - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:7,posY:-10,posZ:11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
   - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
   - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'

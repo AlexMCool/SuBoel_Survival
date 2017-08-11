@@ -52,7 +52,7 @@ activity_week:
   - '$Script$%elseif%$arg1==new_week'
   
   # add 1 to week count
-  - '$Script$%Variable%$s.week+1'
+  - '$Script$%Variable%$s.general.week+1'
   
   # update everyone's week info
   - '/minecraft:execute @a ~ ~ ~ /sudo @s /mycommand:activity_week_player'
@@ -73,7 +73,7 @@ activity_week_player:
   register: true
   runcmd:
   # update player's week counter
-  - '$Script$%PlayerData%$s.init.activity.last_seen=$s.week'
+  - '$Script$%PlayerData%$s.init.activity.last_seen=$s.general.week'
   
   # reset player's active week tick variable
   - '$Script$%PlayerData%$s.init.activity.week_active_ticks=0'
@@ -241,7 +241,7 @@ activity:
   # set var to active ticks 
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.active_ticks%'
   # set var to amount of weeks 
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_calculation=$s.week'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_calculation=$s.general.week'
   # set var to amount of ticks (1728000 = amount of ticks in a day)
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_calculation*1728000'
   
@@ -375,14 +375,14 @@ activity:
   ####################################### 
   # arg1 = (player)
   # if player was online in current week
-  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%==$s.week'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%==$s.general.week'
   # set var to week active ticks 
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.calculation=$PlayerDataFor%$arg1%$s.init.activity.week_active_ticks%'
   
   # if player was not online in current week
-  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%!=$s.week'
+  - '$Script$%if%$PlayerDataFor%$arg1%$s.init.activity.last_seen%!=$s.general.week'
   # set last_seen
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.last_seen=$s.week'
+  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.last_seen=$s.general.week'
   # reset week_active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks=0'
   # set var to week active ticks 

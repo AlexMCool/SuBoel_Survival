@@ -19,11 +19,11 @@ factory_iconmenu_changeproduct_init:
   # arg8 = $s.factory.id.$arg1.z 
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time>$s.time'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time>$s.general.time'
   
   # set var to minutes left var
   - '$Script$%PlayerData%$s.init.factory.change_delay.calculation=$s.factory.id.$arg9.item.min_time'
-  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation-$s.time'
+  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation-$s.general.time'
   # 1200 ticks in a minute
   - '$Script$%PlayerData%$s.init.factory.change_delay.calculation/1200'
   
@@ -46,12 +46,12 @@ factory_iconmenu_changeproduct_init:
   # arg8 = $s.factory.id.$arg1.z 
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time'
   
   # init holding item
   - '/mycommand:shop_init $player nothing nothing no_shop'
   
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.level<$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.level<$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
   
   # "[Factory] The factory has to be at least level x to change the product to x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory has to be at least level"},{"bold":"false","color":"dark_aqua","text":" $s.item.minimum_level.$s.init.product.name:$s.init.product.damage"},{"bold":"false","color":"gray","text":" to change the product to"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$s.init.product.name:$s.init.product.damage"}]'
@@ -69,7 +69,7 @@ factory_iconmenu_changeproduct_init:
   # arg8 = $s.factory.id.$arg1.z 
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$s.init.product.name:$s.init.product.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$s.init.product.name:$s.init.product.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
   
   # "[Factory] The factory is already producing x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory is already producing"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$s.init.product.name:$s.init.product.damage"}]'
@@ -87,7 +87,7 @@ factory_iconmenu_changeproduct_init:
   # arg8 = $s.factory.id.$arg1.z 
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$s.init.product.name:$s.init.product.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
+  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$s.init.product.name:$s.init.product.damage<and>$s.factory.id.$arg9.level>=$s.item.minimum_level.$s.init.product.name:$s.init.product.damage'
   
   # open confirmation menu
   - '$delay$<2>/factory_iconmenu_changeproduct $multiargs $s.init.product.name $s.init.product.damage'

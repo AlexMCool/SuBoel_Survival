@@ -44,9 +44,9 @@ road_temp:
   - '$Script$%Variable%$s.init.shop.redstone.z=0'
   - '$Script$%Variable%$s.init.shop.new_id=0'
   - '$Script$%Variable%$s.shop..id=0'
-  - '$Script$%Variable%$s.world=temp_world'
-  - '$Script$%Variable%$s.week=0'
-  - '$Script$%Variable%$s.time=0'
+  - '$Script$%Variable%$s.general.world=temp_world'
+  - '$Script$%Variable%$s.general.week=0'
+  - '$Script$%Variable%$s.general.time=0'
   - '/tp 4096 ~ 4096'
   
   
