@@ -201,9 +201,9 @@ factory_iconmenu_checktype:
   # arg3 = $s.factory.id.$arg1.tp.z 
   # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
-  # arg6 = $s.factory.id.$arg1.x 
-  # arg7 = $s.factory.id.$arg1.y
-  # arg8 = $s.factory.id.$arg1.z 
+  # arg6 = $s.factory.id.$arg1.location.x 
+  # arg7 = $s.factory.id.$arg1.location.y
+  # arg8 = $s.factory.id.$arg1.location.z 
   # arg9 = $PlayerData%$s.factory.factory_id.1.id%
   - '$Script$%if%$arg4==1'
   - '$delay$<2>/mycommand:factory_iconmenu_create_actions $multiargs'
@@ -216,9 +216,9 @@ factory_iconmenu_checktype:
   # arg3 = $s.factory.id.$arg1.tp.z 
   # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
-  # arg6 = $s.factory.id.$arg1.x 
-  # arg7 = $s.factory.id.$arg1.y
-  # arg8 = $s.factory.id.$arg1.z 
+  # arg6 = $s.factory.id.$arg1.location.x 
+  # arg7 = $s.factory.id.$arg1.location.y
+  # arg8 = $s.factory.id.$arg1.location.z 
   # arg9 = $PlayerData%$s.factory.factory_id.1.id%
   - '$Script$%if%$arg4>1<and>$arg4<33'
   - '$delay$<2>/mycommand:factory_iconmenu_upgrade_actions $multiargs'
@@ -232,9 +232,9 @@ factory_iconmenu_checktype:
   # arg3 = $s.factory.id.$arg1.tp.z 
   # arg4 = $s.factory.id.$arg1.level.next 
   # arg5 = $s.factory.id.$arg1.status 
-  # arg6 = $s.factory.id.$arg1.x 
-  # arg7 = $s.factory.id.$arg1.y
-  # arg8 = $s.factory.id.$arg1.z 
+  # arg6 = $s.factory.id.$arg1.location.x 
+  # arg7 = $s.factory.id.$arg1.location.y
+  # arg8 = $s.factory.id.$arg1.location.z 
   # arg9 = $PlayerData%$s.factory.factory_id.1.id%
   - '$Script$%if%$arg4>32'
   - '$delay$<2>/mycommand:factory_iconmenu_noupgrade_actions $multiargs'

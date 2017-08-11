@@ -141,9 +141,9 @@ road_factory_info_init:
   - '$Script$%Variable%$s.factory.id.$arg1.board.word=$GetRandomStringFromList%brands;business;companies;corporations;creative;designs;development;digital;dynamics;enterprise;industrial;industries;innovations;international;labs;logistics;organisations;productions;properties;services;scientific;solutions;studios;systems;tech;technologies;unlimited;worldwide;&co%'
   
   # save location
-  - '$Script$%Variable%$s.factory.id.$arg1.x=$arg2'
-  - '$Script$%Variable%$s.factory.id.$arg1.y=$arg3'
-  - '$Script$%Variable%$s.factory.id.$arg1.z=$arg4'
+  - '$Script$%Variable%$s.factory.id.$arg1.location.x=$arg2'
+  - '$Script$%Variable%$s.factory.id.$arg1.location.y=$arg3'
+  - '$Script$%Variable%$s.factory.id.$arg1.location.z=$arg4'
   
   # sets rotation to unavailable (to reset)
   - '$Script$%Variable%$s.factory.id.$arg1.east=unavailable'

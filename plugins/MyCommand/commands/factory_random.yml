@@ -57,7 +57,7 @@ factory_random_calculation:
   - '/mycommand:factory_random_status_set $arg1'
   
   # teleport to factory location
-  - '/minecraft:tp $s.factory.id.$arg1.x $s.factory.id.$arg1.y $s.factory.id.$arg1.z'
+  - '/minecraft:tp $s.factory.id.$arg1.location.x $s.factory.id.$arg1.location.y $s.factory.id.$arg1.location.z'
   
   # choose direction for factory, save tp location, set item to none, set level to 0, and set next_level to 1
   - '/mycommand:factory_random_direction_choose $arg1 $s.factory.id.$arg1.status'
