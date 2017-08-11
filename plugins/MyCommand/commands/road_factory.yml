@@ -14,7 +14,6 @@ road_factory_check_id:
   - '$Script$%if%$s.factory.location.$arg1,$arg2,$arg3.id.contains=.'
   
   # adds 1 to total and now
-#  - '$Script$%Variable%$s.factory.id.total+1'
   - '$Script$%Variable%$s.init.factory.id_now+1'
   
   # initialize the id and location
@@ -85,10 +84,10 @@ road_factory_info_unused:
   # arg2 = east / north / south / west
   
   # if status is unavailable
-  - '$Script$%if%$s.factory.id.$arg1.$arg2==unavailable'
+  - '$Script$%if%$s.factory.id.$arg1.direction.$arg2==unavailable'
   
   # sets status to unused
-  - '$Script$%Variable%$s.factory.id.$arg1.$arg2=unused'
+  - '$Script$%Variable%$s.factory.id.$arg1.direction.$arg2=unused'
   
   
   
@@ -113,7 +112,7 @@ road_factory_info_init:
   # arg6 = $GetRandomStringFromList%15;8;7;0% 
   
   # checks if the variable contains a '.' (which means there's nothing stored)
-  - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
+  - '$Script$%if%$s.factory.id.$arg1.direction.east.contains=.'
   
   #######################
   #   always (setup)    #
@@ -137,7 +136,7 @@ road_factory_info_init:
   - '$Script$%Variable%$s.factory.id.$arg1.board.text=$GetRandomStringFromList%0;7;8%'
   
   # choose word (again testing for '.' because of the 'if' statements before)  
-  - '$Script$%if%$s.factory.id.$arg1.east.contains=.'
+  - '$Script$%if%$s.factory.id.$arg1.direction.east.contains=.'
   - '$Script$%Variable%$s.factory.id.$arg1.board.word=$GetRandomStringFromList%brands;business;companies;corporations;creative;designs;development;digital;dynamics;enterprise;industrial;industries;innovations;international;labs;logistics;organisations;productions;properties;services;scientific;solutions;studios;systems;tech;technologies;unlimited;worldwide;&co%'
   
   # save location
@@ -146,7 +145,7 @@ road_factory_info_init:
   - '$Script$%Variable%$s.factory.id.$arg1.location.z=$arg4'
   
   # sets rotation to unavailable (to reset)
-  - '$Script$%Variable%$s.factory.id.$arg1.east=unavailable'
+  - '$Script$%Variable%$s.factory.id.$arg1.direction.east=unavailable'
   
   #######################################
   #               north                 #
@@ -157,10 +156,10 @@ road_factory_info_init:
   # arg4 = $locZ
   
   # checks if the variable contains a '.' (which means there's nothing stored)
-  - '$Script$%if%$s.factory.id.$arg1.north.contains=.'
+  - '$Script$%if%$s.factory.id.$arg1.direction.north.contains=.'
   
   # sets rotation to unavailable (to reset)
-  - '$Script$%Variable%$s.factory.id.$arg1.north=unavailable'
+  - '$Script$%Variable%$s.factory.id.$arg1.direction.north=unavailable'
   
   #######################################
   #               south                 #
@@ -171,10 +170,10 @@ road_factory_info_init:
   # arg4 = $locZ
   
   # checks if the variable contains a '.' (which means there's nothing stored)
-  - '$Script$%if%$s.factory.id.$arg1.south.contains=.'
+  - '$Script$%if%$s.factory.id.$arg1.direction.south.contains=.'
   
   # sets rotation to unavailable (to reset)
-  - '$Script$%Variable%$s.factory.id.$arg1.south=unavailable'
+  - '$Script$%Variable%$s.factory.id.$arg1.direction.south=unavailable'
   
   #######################################
   #                west                 #
@@ -185,7 +184,7 @@ road_factory_info_init:
   # arg4 = $locZ
   
   # checks if the variable contains a '.' (which means there's nothing stored)
-  - '$Script$%if%$s.factory.id.$arg1.west.contains=.'
+  - '$Script$%if%$s.factory.id.$arg1.direction.west.contains=.'
   
   # sets rotation to unavailable (to reset)
-  - '$Script$%Variable%$s.factory.id.$arg1.west=unavailable'
+  - '$Script$%Variable%$s.factory.id.$arg1.direction.west=unavailable'
