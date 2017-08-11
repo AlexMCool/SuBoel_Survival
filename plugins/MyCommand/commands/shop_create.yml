@@ -48,7 +48,9 @@ shop_create:
   - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
   
   # valid; init shop info
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_init $player $arg1 $arg2'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:holding_init $player'
+  # valid; place shop
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place $player $arg1 $arg2 $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
   
   # "[Shop] You need to stand in the same block as a sign to create a shop"
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as a sign to create a shop"}]'
