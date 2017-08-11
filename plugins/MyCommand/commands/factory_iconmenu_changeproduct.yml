@@ -20,10 +20,10 @@ factory_iconmenu_changeproduct_init:
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%
   # arg11 = upgrade / noupgrade
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time>$s.general.time'
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time>$s.general.time'
   
   # set var to minutes left var
-  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation=$s.factory.id.$arg9.item.min_time'
+  - '$Script$%PlayerData%$s.init.factory.change_delay.calculation=$s.factory.id.$arg9.product.min_time'
   - '$Script$%PlayerData%$s.init.factory.change_delay.calculation-$s.general.time'
   # 1200 ticks in a minute
   - '$Script$%PlayerData%$s.init.factory.change_delay.calculation/1200'
@@ -48,7 +48,7 @@ factory_iconmenu_changeproduct_init:
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
   # arg11 = upgrade / noupgrade
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time'
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time'
   
   # init holding item
   - '/mycommand:holding_init $player'
@@ -84,10 +84,10 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.level.current<$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$s.factory.id.$arg9.level.current<$s.product.minimum_level.$arg12:$arg13'
   
   # "[Factory] The factory has to be at least level x to change the product to x"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory has to be at least level"},{"bold":"false","color":"dark_aqua","text":" $s.item.minimum_level.$arg12:$arg13"},{"bold":"false","color":"gray","text":" to change the product to"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg12:$arg13"}]'
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory has to be at least level"},{"bold":"false","color":"dark_aqua","text":" $s.product.minimum_level.$arg12:$arg13"},{"bold":"false","color":"gray","text":" to change the product to"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg12:$arg13"}]'
   
   #######################################
   #            same product             #
@@ -105,7 +105,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage==$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$s.factory.id.$arg9.product.name:$s.factory.id.$arg9.product.damage==$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.product.minimum_level.$arg12:$arg13'
   
   # "[Factory] The factory is already producing x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory is already producing"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg12:$arg13"}]'
@@ -126,7 +126,7 @@ factory_iconmenu_changeproduct_withproduct:
   # arg11 = upgrade / noupgrade
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
-  - '$Script$%if%$s.factory.id.$arg9.item.min_time<=$s.general.time<and>$s.factory.id.$arg9.item.name:$s.factory.id.$arg9.item.damage!=$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.item.minimum_level.$arg12:$arg13'
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$s.factory.id.$arg9.product.name:$s.factory.id.$arg9.product.damage!=$arg12:$arg13<and>$s.factory.id.$arg9.level.current>=$s.product.minimum_level.$arg12:$arg13'
   
   # open confirmation menu
   - '$delay$<2>/factory_iconmenu_changeproduct $multiargs'
