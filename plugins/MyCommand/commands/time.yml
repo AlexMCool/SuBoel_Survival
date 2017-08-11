@@ -7,4 +7,4 @@ time_var:
   register: true
   runcmd:
   # add 1 to time var
-  - '$Script$%Variable%$s.time+1'
+  - '$Script$%Variable%$s.general.time+1'

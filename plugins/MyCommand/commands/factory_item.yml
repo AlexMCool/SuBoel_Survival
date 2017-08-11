@@ -19,7 +19,7 @@ factory_item_change:
   - '$Script$%Variable%$s.factory.id.$arg1.item.damage=$arg5'
   - '$Script$%Variable%$s.factory.id.$arg1.item.name=$arg4'
   # manage cooldown
-  - '/mycommand:factory_item_change_delay $arg1 $s.time'
+  - '/mycommand:factory_item_change_delay $arg1 $s.general.time'
   
   # "[Factory] The factory will now produce x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory will now produce"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg4:$arg5"}]'
@@ -37,7 +37,7 @@ factory_item_change_delay:
   register: true
   runcmd:
   # arg1 = (factory_id)
-  # arg2 = $s.time (for some reason just "$s.time" didn't work, but when it's in a arg value, it does)
+  # arg2 = $s.general.time (for some reason just "$s.general.time" didn't work, but when it's in a arg value, it does)
   
   # manage cooldown
   - '$Script$%Variable%$s.factory.id.$arg1.item.min_time=$arg2'
