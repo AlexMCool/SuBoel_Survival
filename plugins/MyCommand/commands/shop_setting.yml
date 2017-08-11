@@ -7,8 +7,8 @@ shop_setting_autoclaimprofit:
   register: true
   runcmd:
   # arg1 = $player (buyer)
-  # arg2 = $s.init.product.name
-  # arg3 = $s.init.product.damage
+  # arg2 = $PlayerData%$s.init.product.name%
+  # arg3 = $PlayerData%$s.init.product.damage%
   # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $s.uuid.(seller_uuid).name
