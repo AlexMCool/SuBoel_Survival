@@ -260,8 +260,8 @@ factory_random_direction_choose:
   
   # set up variables
   - '$Script$%if%$s.factory.id.$arg1.status==east<or>$s.factory.id.$arg1.status==north<or>$s.factory.id.$arg1.status==south<or>$s.factory.id.$arg1.status==west'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.damage=none'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.name=none'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.damage=none'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.name=none'
   - '$Script$%Variable%$s.factory.id.$arg1.level.current=0'
   - '$Script$%Variable%$s.factory.id.$arg1.level.next=1'
   

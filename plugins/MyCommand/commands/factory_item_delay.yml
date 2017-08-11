@@ -15,9 +15,9 @@ factory_item_delay_init:
   # calculate how many hours
   - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours=1'
   - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours+$arg3'
-  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours-$s.item.minimum_level.$arg4:$arg5'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours-$s.product.minimum_level.$arg4:$arg5'
   # calculate how many items/hour
-  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours*$s.item.multiplier.$arg4:$arg5'
+  - '$Script$%PlayerDataFor%$arg2%$s.init.product.hours*$s.product.multiplier.$arg4:$arg5'
   # calculate how many ticks/item
   - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation=72000'
   - '$Script$%PlayerDataFor%$arg2%$s.init.product.operation/$PlayerDataFor%$arg2%$s.init.product.hours%'
@@ -86,14 +86,14 @@ factory_item_delay_init:
   
   # set factory's item delay variable to rounded number (if the number isn't the max number, which means the dividing has failed)
   - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.product.rounded%!=262144'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.delay=$PlayerDataFor%$arg2%$s.init.product.rounded%'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.delay=$PlayerDataFor%$arg2%$s.init.product.rounded%'
   # set up scoreboard scores
-  - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfDelayVar $s.factory.id.$arg1.item.delay'
-  - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfItemDelay $s.factory.id.$arg1.item.delay'
+  - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfDelayVar $s.factory.id.$arg1.product.delay'
+  - '/minecraft:scoreboard players set @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfItemDelay $s.factory.id.$arg1.product.delay'
   
   # set factory's item delay variable to rounded number (if the number is the max number, which means the dividing has failed)
   - '$Script$%if%always==always<and>$PlayerDataFor%$arg2%$s.init.product.rounded%>=262144'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.delay=none'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.delay=none'
   # set up scoreboard scores
   - '/minecraft:scoreboard players reset @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfDelayVar'
   - '/minecraft:scoreboard players reset @e[name=sfItemDelay,tag=sfID$arg1,type=area_effect_cloud] sfItemDelay'
@@ -140,7 +140,7 @@ factory_item_delay_timer:
   - '/minecraft:scoreboard players remove @e[name=sfItemDelay,tag=sf$arg2,type=area_effect_cloud] sfItemDelay 1'
   
   # if timer is enabled
-  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%==enabled'
+  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%!=disabled'
   # add to active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
   # add to week_active_ticks

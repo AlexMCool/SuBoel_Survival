@@ -16,8 +16,8 @@ factory_item_change:
   - '/mycommand:factory_item_delay_init $arg1 $arg2 $arg3 $arg4 $arg5'
   
   # set variables for factory
-  - '$Script$%Variable%$s.factory.id.$arg1.item.damage=$arg5'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.name=$arg4'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.damage=$arg5'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.name=$arg4'
   # manage cooldown
   - '/mycommand:factory_item_change_delay $arg1 $s.general.time'
   
@@ -40,5 +40,5 @@ factory_item_change_delay:
   # arg2 = $s.general.time (for some reason just "$s.general.time" didn't work, but when it's in a arg value, it does)
   
   # manage cooldown
-  - '$Script$%Variable%$s.factory.id.$arg1.item.min_time=$arg2'
-  - '$Script$%Variable%$s.factory.id.$arg1.item.min_time+72000'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.min_time=$arg2'
+  - '$Script$%Variable%$s.factory.id.$arg1.product.min_time+72000'
