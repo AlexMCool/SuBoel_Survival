@@ -36,8 +36,6 @@ road_temp:
   - '$Script$%Variable%$s.factory.id='
   - '$Script$%Variable%$s.init.factory.id_now=0'
   - '$Script$%Variable%$s.factory.location='
-  - '$Script$%Variable%$s.init.product.damage=0'
-  - '$Script$%Variable%$s.init.product.name=none'
   - '$Script$%Variable%$s.init.shop.stock=0'
   - '$Script$%Variable%$s.init.shop.redstone.x=0'
   - '$Script$%Variable%$s.init.shop.redstone.y=0'
