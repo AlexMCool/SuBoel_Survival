@@ -13,7 +13,7 @@ road_temp:
   register: true
   runcmd:
   - '$Script$%if%$arg1==tp'
-  - '/tp $s.intersection.id.$arg2.x $s.intersection.id.$arg2.y $s.intersection.id.$arg2.z'
+  - '/tp $s.intersection.id.$arg2.location.x $s.intersection.id.$arg2.location.y $s.intersection.id.$arg2.location.z'
   - '$Script$%if%$arg1==reset'
   # temp to reset
   - '/tp $player 4096 64 4096'

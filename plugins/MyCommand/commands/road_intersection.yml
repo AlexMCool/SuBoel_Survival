@@ -1334,9 +1334,9 @@ road_intersection_info:
   - '$Script$%if%$arg1==location'
   
   # saves location
-  - '$Script$%Variable%$s.intersection.id.$arg2.x=$arg3'
-  - '$Script$%Variable%$s.intersection.id.$arg2.y=$arg4'
-  - '$Script$%Variable%$s.intersection.id.$arg2.z=$arg5'
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.x=$arg3'
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.y=$arg4'
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.z=$arg5'
   
   #######################################
   #                type                 #

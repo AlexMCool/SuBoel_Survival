@@ -33,7 +33,7 @@ road_new_calculation:
   
   # create new intersection
   # tp to location of new intersection
-  - '/minecraft:tp $s.intersection.id.$arg1.x $s.intersection.id.$arg1.y $s.intersection.id.$arg1.z'
+  - '/minecraft:tp $s.intersection.id.$arg1.location.x $s.intersection.id.$arg1.location.y $s.intersection.id.$arg1.location.z'
   
   # create new intersection
   - '/mycommand:road_intersection_create $s.intersection.id.$arg1.direction'
