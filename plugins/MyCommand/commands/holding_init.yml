@@ -1,64 +1,57 @@
 ##############################################################################
-#                                 shop init                                  #
+#                                holding init                                #
 ##############################################################################
-shop_init:
-  command: /shop_init
+holding_init:
+  command: /holding_init
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
   # arg1 = $player
-  # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
-  # arg3 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
-  # arg4 = (nothing) / no_shop
   
   # reset variables (set to 'none')
   - '$Script$%PlayerData%$s.init.product.damage=none'
   - '$Script$%PlayerData%$s.init.product.name=none'
   
   # initialize damage value
-  - '/mycommand:shop_init_damage $arg1'
+  - '/mycommand:holding_init_damage $arg1'
   
   # initialize item
-  - '/mycommand:shop_init_a $arg1'
-  - '/mycommand:shop_init_b $arg1'
-  - '/mycommand:shop_init_c $arg1'
-  - '/mycommand:shop_init_d $arg1'
-  - '/mycommand:shop_init_e $arg1'
-  - '/mycommand:shop_init_f $arg1'
-  - '/mycommand:shop_init_g $arg1'
-  - '/mycommand:shop_init_h $arg1'
-  - '/mycommand:shop_init_i $arg1'
-  - '/mycommand:shop_init_j $arg1'
-  - '/mycommand:shop_init_k $arg1'
-  - '/mycommand:shop_init_l $arg1'
-  - '/mycommand:shop_init_m $arg1'
-  - '/mycommand:shop_init_n $arg1'
-  - '/mycommand:shop_init_o $arg1'
-  - '/mycommand:shop_init_p $arg1'
-  - '/mycommand:shop_init_q $arg1'
-  - '/mycommand:shop_init_r $arg1'
-  - '/mycommand:shop_init_s $arg1'
-  - '/mycommand:shop_init_t $arg1'
-  - '/mycommand:shop_init_u $arg1'
-  - '/mycommand:shop_init_v $arg1'
-  - '/mycommand:shop_init_w $arg1'
-  - '/mycommand:shop_init_x $arg1'
-  - '/mycommand:shop_init_y $arg1'
-  - '/mycommand:shop_init_z $arg1'
-  
-  # place shop
-  - '$Script$%if%$arg4!=no_shop'
-  - '/mycommand:shop_place $arg1 $arg2 $arg3 $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
+  - '/mycommand:holding_init_a $arg1'
+  - '/mycommand:holding_init_b $arg1'
+  - '/mycommand:holding_init_c $arg1'
+  - '/mycommand:holding_init_d $arg1'
+  - '/mycommand:holding_init_e $arg1'
+  - '/mycommand:holding_init_f $arg1'
+  - '/mycommand:holding_init_g $arg1'
+  - '/mycommand:holding_init_h $arg1'
+  - '/mycommand:holding_init_i $arg1'
+  - '/mycommand:holding_init_j $arg1'
+  - '/mycommand:holding_init_k $arg1'
+  - '/mycommand:holding_init_l $arg1'
+  - '/mycommand:holding_init_m $arg1'
+  - '/mycommand:holding_init_n $arg1'
+  - '/mycommand:holding_init_o $arg1'
+  - '/mycommand:holding_init_p $arg1'
+  - '/mycommand:holding_init_q $arg1'
+  - '/mycommand:holding_init_r $arg1'
+  - '/mycommand:holding_init_s $arg1'
+  - '/mycommand:holding_init_t $arg1'
+  - '/mycommand:holding_init_u $arg1'
+  - '/mycommand:holding_init_v $arg1'
+  - '/mycommand:holding_init_w $arg1'
+  - '/mycommand:holding_init_x $arg1'
+  - '/mycommand:holding_init_y $arg1'
+  - '/mycommand:holding_init_z $arg1'
 
   
   
 
   
 ##############################################################################
-#                              shop init damage                              #
+#                             holding init damage                            #
 ##############################################################################
-shop_init_damage:
-  command: /shop_init_damage
+holding_init_damage:
+  command: /holding_init_damage
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -122,8 +115,8 @@ shop_init_damage:
   
 
 
-shop_init_a:
-  command: /shop_init_a
+holding_init_a:
+  command: /holding_init_a
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -165,8 +158,8 @@ shop_init_a:
   
   
 
-shop_init_b:
-  command: /shop_init_b
+holding_init_b:
+  command: /holding_init_b
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -292,8 +285,8 @@ shop_init_b:
   
   
 
-shop_init_c:
-  command: /shop_init_c
+holding_init_c:
+  command: /holding_init_c
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -431,8 +424,8 @@ shop_init_c:
 
   
   
-shop_init_d:
-  command: /shop_init_d
+holding_init_d:
+  command: /holding_init_d
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -537,8 +530,8 @@ shop_init_d:
   
 
 
-shop_init_e:
-  command: /shop_init_e
+holding_init_e:
+  command: /holding_init_e
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -601,8 +594,8 @@ shop_init_e:
 
   
   
-shop_init_f:
-  command: /shop_init_f
+holding_init_f:
+  command: /holding_init_f
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -671,8 +664,8 @@ shop_init_f:
   
   
 
-shop_init_g:
-  command: /shop_init_g
+holding_init_g:
+  command: /holding_init_g
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -774,8 +767,8 @@ shop_init_g:
   
   
 
-shop_init_h:
-  command: /shop_init_h
+holding_init_h:
+  command: /holding_init_h
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -799,8 +792,8 @@ shop_init_h:
 
   
   
-shop_init_i:
-  command: /shop_init_i
+holding_init_i:
+  command: /holding_init_i
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -866,8 +859,8 @@ shop_init_i:
 
   
   
-shop_init_j:
-  command: /shop_init_j
+holding_init_j:
+  command: /holding_init_j
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -894,8 +887,8 @@ shop_init_j:
   
   
 
-shop_init_k:
-  command: /shop_init_k
+holding_init_k:
+  command: /holding_init_k
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -905,8 +898,8 @@ shop_init_k:
 
   
   
-shop_init_l:
-  command: /shop_init_l
+holding_init_l:
+  command: /holding_init_l
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -996,8 +989,8 @@ shop_init_l:
   
 
 
-shop_init_m:
-  command: /shop_init_m
+holding_init_m:
+  command: /holding_init_m
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1057,8 +1050,8 @@ shop_init_m:
   
   
 
-shop_init_n:
-  command: /shop_init_n
+holding_init_n:
+  command: /holding_init_n
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1097,8 +1090,8 @@ shop_init_n:
   
   
 
-shop_init_o:
-  command: /shop_init_o
+holding_init_o:
+  command: /holding_init_o
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1122,8 +1115,8 @@ shop_init_o:
 
   
   
-shop_init_p:
-  command: /shop_init_p
+holding_init_p:
+  command: /holding_init_p
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1225,8 +1218,8 @@ shop_init_p:
   
   
 
-shop_init_q:
-  command: /shop_init_q
+holding_init_q:
+  command: /holding_init_q
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1247,8 +1240,8 @@ shop_init_q:
   
   
 
-shop_init_r:
-  command: /shop_init_r
+holding_init_r:
+  command: /holding_init_r
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1362,8 +1355,8 @@ shop_init_r:
   
   
 
-shop_init_s:
-  command: /shop_init_s
+holding_init_s:
+  command: /holding_init_s
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1531,8 +1524,8 @@ shop_init_s:
 
   
   
-shop_init_t:
-  command: /shop_init_t
+holding_init_t:
+  command: /holding_init_t
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1568,8 +1561,8 @@ shop_init_t:
   
   
 
-shop_init_u:
-  command: /shop_init_u
+holding_init_u:
+  command: /holding_init_u
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1587,8 +1580,8 @@ shop_init_u:
   
   
 
-shop_init_v:
-  command: /shop_init_v
+holding_init_v:
+  command: /holding_init_v
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1600,8 +1593,8 @@ shop_init_v:
   
   
 
-shop_init_w:
-  command: /shop_init_w
+holding_init_w:
+  command: /holding_init_w
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1676,8 +1669,8 @@ shop_init_w:
 
   
   
-shop_init_x:
-  command: /shop_init_x
+holding_init_x:
+  command: /holding_init_x
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1687,8 +1680,8 @@ shop_init_x:
   
   
 
-shop_init_y:
-  command: /shop_init_y
+holding_init_y:
+  command: /holding_init_y
   type: RUN_CONSOLE
   register: true
   runcmd:
@@ -1706,8 +1699,8 @@ shop_init_y:
 
   
   
-shop_init_z:
-  command: /shop_init_z
+holding_init_z:
+  command: /holding_init_z
   type: RUN_CONSOLE
   register: true
   runcmd:
