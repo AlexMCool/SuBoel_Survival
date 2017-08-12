@@ -134,6 +134,14 @@ factory_item_delay_timer:
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
   # add to week_active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
+  # add loan
+  - '/minecraft:scoreboard players add @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] ssCoins $s.general.loan'
+  # "[Loan] You received ßx for being active for an hour"
+  - '/minecraft:tellraw @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Loan"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You received"},{"bold":"false","color":"$s.style.color.mark","text":" ß$s.general.loan"},{"bold":"false","color":"$s.style.color.normal","text":" for being active for an hour"}]'
+  # reset loan delay
+  - '/minecraft:scoreboard players set @a[name=$arg1,score_saLoan=0] saLoan 72000'
+  # remove from loan delay
+  - '/minecraft:scoreboard players remove $arg1 saLoan 1'
   # remove from cooldown
   - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
   # remove from timer area_effect_clouds
@@ -145,6 +153,14 @@ factory_item_delay_timer:
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
   # add to week_active_ticks
   - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
+  # add loan
+  - '/minecraft:scoreboard players add @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] ssCoins $s.general.loan'
+  # "[Loan] You received ßx for being active for an hour"
+  - '/minecraft:tellraw @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Loan"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You received"},{"bold":"false","color":"$s.style.color.mark","text":" ß$s.general.loan"},{"bold":"false","color":"$s.style.color.normal","text":" for being active for an hour"}]'
+  # reset loan delay
+  - '/minecraft:scoreboard players set @a[name=$arg1,score_saLoan=0] saLoan 72000'
+  # remove from loan delay
+  - '/minecraft:scoreboard players remove $arg1 saLoan 1'
   # remove from cooldown
   - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
   # remove from timer area_effect_clouds
