@@ -76,65 +76,91 @@ shop_click_action:
   # arg7 = normal / sneak
   # arg8 = enough / shortage
   # arg9 = (shop_id)
-  
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal'
   
+  # check if there's illegal products in inventory (named, with inventory, enchanted)
+  - '/minecraft:scoreboard players tag $arg6 add ssGoodInventory'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{display:{}}}]}'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{ench:[{}]}}]}'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{BlockEntityTag:{Items:[{}]}}}]}'
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{}}]}'
+  
   # reset score
-  - '/minecraft:scoreboard players set $arg6 ssClearCounter 0'
+  - '/minecraft:scoreboard players set @a[name=$arg6,tag=ssGoodInventory] ssClearCounter 0'
   
   # setup stat
-  - '/minecraft:stats entity $arg6 set AffectedItems $arg6 ssClearCounter'
-  - '/minecraft:execute $arg6 ~ ~ ~ /minecraft:clear $arg6 $arg2 $arg3'
+  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] set AffectedItems @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
+  - '/minecraft:execute @a[name=$arg6,tag=ssGoodInventory] ~ ~ ~ /minecraft:clear $arg6 $arg2 $arg3'
   
-  # add items to the stock
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2048] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2048'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1024] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1024'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=512] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 512'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=256] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 256'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=128] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 128'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=64] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 64'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=32] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 32'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=16] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 16'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=8] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 8'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=4] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 4'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1'
+  # add products to the stock
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2048,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2048'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1024,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1024'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=512,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 512'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=256,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 256'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=128,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 128'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=64,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 64'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=32,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 32'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=16,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 16'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=8,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 8'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=4,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 4'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1'
   
   # clear stat
-  - '/minecraft:stats entity $arg6 clear AffectedItems'
+  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] clear AffectedItems'
   
   # reset score
-  - '/minecraft:scoreboard players reset $arg6 ssClearCounter'
+  - '/minecraft:scoreboard players reset @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
   
   #######################
-  #      no items       #
+  #  no good products   #
   #######################
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
   
-  # "[Shop] No items to add to the stock"
-  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No items to add to the stock"}]'
+  # "[Shop] There were no products added to the stock. Remove all x with a name, with enchantments and with other special info from your inventory"
+  - '/minecraft:tellraw @a[name=$arg6,tag=!ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" There were no products added to the stock. Remove all"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"},{"bold":"false","color":"$s.style.color.normal","text":" with a name, with enchantments and with other special info from your inventory"}]'
   
   # reset stock variable
   - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
-  #       1 item        #
+  #     no products     #
+  #######################
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
+  
+  # "[Shop] No products to add to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No products to add to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.init.shop.stock=0'
+  
+  #######################
+  #      1 product      #
   #######################
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==1'
   
-  # "[Shop] Added x item to the stock"
-  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" item to the stock"}]'
+  # "[Shop] Added x product to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" product to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
   
   # reset stock variable
   - '$Script$%Variable%$s.init.shop.stock=0'
   
   #######################
-  #      >1 items       #
+  #     >1 products     #
   #######################
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock>1'
   
-  # "[Shop] Added x items to the stock"
-  - '/minecraft:tellraw $arg6 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" items to the stock"}]'
+  # "[Shop] Added x products to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" products to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
   
   # reset stock variable
   - '$Script$%Variable%$s.init.shop.stock=0'
@@ -158,7 +184,7 @@ shop_click_action:
   # "[Shop] You successfully bought x x x for ßx"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You successfully bought"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4 x $s.translation.$arg2:$arg3"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg5"}]'
   
-  # give items (repeat so it can overflow a stack)
+  # give products (repeat so it can overflow a stack)
   - '%Repeat%$arg4%minecraft:give $arg1 minecraft:$arg2 1 $arg3'
   
   # add coins to seller
@@ -171,7 +197,7 @@ shop_click_action:
   - '$Script$%if%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%>=$arg4<and>$arg7==normal<and>$arg8==enough'
   - '/minecraft:scoreboard players remove $arg1 ssCoins $arg5'
   
-  # remove bought item number from stock
+  # remove bought product number from stock
   - '$Script$%PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3-$arg4'
 
   #######################
@@ -179,8 +205,8 @@ shop_click_action:
   #######################
   - '$Script$%elseif%$PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3%<$arg4<and>$arg7==normal'
   
-  # "[Shop] The shop doesn't have enough items in stock"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The shop doesn''t have enough items in stock"}]'
+  # "[Shop] The shop doesn't have enough products in stock"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The shop doesn''t have enough products in stock"}]'
 
   #######################
   #      no coins       #
@@ -214,8 +240,8 @@ shop_click_action:
   # "> Amount: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
-  # "> Item: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Item:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
+  # "> Product: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Product:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
   
   # "> Owner: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg6"}]'
@@ -249,8 +275,8 @@ shop_click_action:
   # "> Amount: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
-  # "> Item: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Item:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
+  # "> Product: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Product:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
   
   # "> Owner: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg6"}]'
@@ -284,8 +310,8 @@ shop_click_action:
   # "> Amount: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Amount:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg4"}]'
   
-  # "> Item: x"
-  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Item:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
+  # "> Product: x"
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Product:"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"}]'
   
   # "> Owner: x"
   - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" Owner:"},{"bold":"false","color":"$s.style.color.mark","text":" $arg6"}]'
