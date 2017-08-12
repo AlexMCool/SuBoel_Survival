@@ -8,11 +8,11 @@ holding_init:
   runcmd:
   # arg1 = $player
   
-  # reset variables (set to 'none')
+  # reset variables
   - '$Script$%PlayerData%$s.init.product.damage=none'
   - '$Script$%PlayerData%$s.init.product.name=none'
   
-  # initialize damage value
+  # initialize damage value (get correct damage value)
   - '/mycommand:holding_init_damage $arg1'
   
   # initialize item
@@ -42,6 +42,11 @@ holding_init:
   - '/mycommand:holding_init_x $arg1'
   - '/mycommand:holding_init_y $arg1'
   - '/mycommand:holding_init_z $arg1'
+  
+  # if holding item with damage
+  - '$Script$%if%$iteminhand==BOW<or>$iteminhand==CHAINMAIL_BOOTS<or>$iteminhand==CHAINMAIL_CHESTPLATE<or>$iteminhand==CHAINMAIL_HELMET<or>$iteminhand==CHAINMAIL_LEGGINGS<or>$iteminhand==DIAMOND_AXE<or>$iteminhand==DIAMOND_BOOTS<or>$iteminhand==DIAMOND_CHESTPLATE<or>$iteminhand==DIAMOND_HELMET<or>$iteminhand==DIAMOND_HOE<or>$iteminhand==DIAMOND_LEGGINGS<or>$iteminhand==DIAMOND_PICKAXE<or>$iteminhand==DIAMOND_SPADE<or>$iteminhand==DIAMOND_SWORD<or>$iteminhand==ELYTRA<or>$iteminhand==FISHING_ROD<or>$iteminhand==FLINT_AND_STEEL<or>$iteminhand==GOLD_AXE<or>$iteminhand==GOLD_BOOTS<or>$iteminhand==GOLD_CHESTPLATE<or>$iteminhand==GOLD_HELMET<or>$iteminhand==GOLD_HOE<or>$iteminhand==GOLD_LEGGINGS<or>$iteminhand==GOLD_PICKAXE<or>$iteminhand==GOLD_SPADE<or>$iteminhand==GOLD_SWORD<or>$iteminhand==IRON_AXE<or>$iteminhand==IRON_BOOTS<or>$iteminhand==IRON_CHESTPLATE<or>$iteminhand==IRON_HELMET<or>$iteminhand==IRON_HOE<or>$iteminhand==IRON_LEGGINGS<or>$iteminhand==IRON_PICKAXE<or>$iteminhand==IRON_SPADE<or>$iteminhand==IRON_SWORD<or>$iteminhand==LEATHER_BOOTS<or>$iteminhand==LEATHER_CHESTPLATE<or>$iteminhand==LEATHER_HELMET<or>$iteminhand==LEATHER_LEGGINGS<or>$iteminhand==SHEARS<or>$iteminhand==SHIELD<or>$iteminhand==STONE_AXE<or>$iteminhand==STONE_PICKAXE<or>$iteminhand==STONE_SPADE<or>$iteminhand==STONE_SWORD<or>$iteminhand==WOOD_AXE<or>$iteminhand==WOOD_HOE<or>$iteminhand==WOOD_PICKAXE<or>$iteminhand==WOOD_SPADE<or>$iteminhand==WOOD_SWORD'
+  # set damage to 0 because the item is a tool
+  - '$Script$%PlayerData%$s.init.product.damage=0'
 
   
   
