@@ -78,92 +78,8 @@ shop_click_action:
   # arg9 = (shop_id)
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal'
   
-  # check if there's illegal products in inventory (named, with inventory, enchanted)
-  - '/minecraft:scoreboard players tag $arg6 add ssGoodInventory'
-    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{display:{}}}]}'
-    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{ench:[{}]}}]}'
-    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{BlockEntityTag:{Items:[{}]}}}]}'
-  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{}}]}'
-  
-  # reset score
-  - '/minecraft:scoreboard players set @a[name=$arg6,tag=ssGoodInventory] ssClearCounter 0'
-  
-  # setup stat
-  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] set AffectedItems @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
-  - '/minecraft:execute @a[name=$arg6,tag=ssGoodInventory] ~ ~ ~ /minecraft:clear $arg6 $arg2 $arg3'
-  
-  # add products to the stock
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2048,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2048'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1024,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1024'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=512,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 512'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=256,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 256'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=128,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 128'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=64,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 64'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=32,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 32'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=16,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 16'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=8,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 8'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=4,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 4'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2'
-  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1'
-  
-  # clear stat
-  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] clear AffectedItems'
-  
-  # reset score
-  - '/minecraft:scoreboard players reset @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
-  
-  #######################
-  #  no good products   #
-  #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
-  
-  # "[Shop] There were no products added to the stock. Remove all x with a name, with enchantments and with other special info from your inventory"
-  - '/minecraft:tellraw @a[name=$arg6,tag=!ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" There were no products added to the stock. Remove all"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"},{"bold":"false","color":"$s.style.color.normal","text":" with a name, with enchantments and with other special info from your inventory"}]'
-  
-  # reset stock variable
-  - '$Script$%Variable%$s.init.shop.stock=0'
-  
-  #######################
-  #     no products     #
-  #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
-  
-  # "[Shop] No products to add to the stock"
-  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No products to add to the stock"}]'
-  
-  # remove tag
-  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
-  
-  # reset stock variable
-  - '$Script$%Variable%$s.init.shop.stock=0'
-  
-  #######################
-  #      1 product      #
-  #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==1'
-  
-  # "[Shop] Added x product to the stock"
-  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" product to the stock"}]'
-  
-  # remove tag
-  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
-  
-  # reset stock variable
-  - '$Script$%Variable%$s.init.shop.stock=0'
-  
-  #######################
-  #     >1 products     #
-  #######################
-  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock>1'
-  
-  # "[Shop] Added x products to the stock"
-  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" products to the stock"}]'
-  
-  # remove tag
-  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
-  
-  # reset stock variable
-  - '$Script$%Variable%$s.init.shop.stock=0'
+  # open confirm menu
+  - '/sudo $arg1 /mycommand:shop_click_action_stock_confirm $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
 
   #######################################
   #                 buy                 #
@@ -329,6 +245,147 @@ shop_click_action:
 
 
 
+##############################################################################
+#                      shop click action stock confirm                       #
+##############################################################################
+shop_click_action_stock_confirm:
+  command: /shop_click_action_stock_confirm
+  type: ICON_MENU
+  register: true
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  iconmenu_size: 9
+  iconmenu_commands:
+  # arg1 = $player (buyer)
+  # arg2 = $PlayerData%$s.init.product.name%
+  # arg3 = $PlayerData%$s.init.product.damage%
+  # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg6 = $s.uuid.(seller_uuid).name
+  # arg7 = normal / sneak
+  # arg8 = enough / shortage
+  # arg9 = (shop_id)
+  
+  # {Command:"/mycommand:shop_click_action_stock $mutliargs"}
+  - '2:WOOL:5:/mycommand$s.char.colonshop_click_action_stock $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalMove all &$s.translation.color.$s.style.color.mark$s.translation.$arg2$s.char.colon$arg3;  &$s.translation.color.$s.style.color.normalfrom your inventory to;  &$s.translation.color.$s.style.color.normalthe shop''s stock'
+  # {Command:""}
+  - '6:WOOL:14::&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel adding stock;  &$s.translation.color.$s.style.color.normalto the shop'
+  
+  
+  
+  
+  
+##############################################################################
+#                          shop click action stock                           #
+##############################################################################
+shop_click_action_stock:
+  command: /shop_click_action_stock
+  type: RUN_CONSOLE
+  register: true
+  runcmd:
+  #######################################
+  #              add stock              #
+  ####################################### 
+  # arg1 = $player (buyer)
+  # arg2 = $PlayerData%$s.init.product.name%
+  # arg3 = $PlayerData%$s.init.product.damage%
+  # arg4 = 1 / 2 / 3 / ... / 62 / 63 / 64
+  # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
+  # arg6 = $s.uuid.(seller_uuid).name
+  # arg7 = normal / sneak
+  # arg8 = enough / shortage
+  # arg9 = (shop_id)
+  
+  # check if there's illegal products in inventory (named, with inventory, enchanted)
+  - '/minecraft:scoreboard players tag $arg6 add ssGoodInventory'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{display:{}}}]}'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{ench:[{}]}}]}'
+    # - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{BlockEntityTag:{Items:[{}]}}}]}'
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory {Inventory:[{id:"minecraft:$arg2",tag:{}}]}'
+  
+  # reset score
+  - '/minecraft:scoreboard players set @a[name=$arg6,tag=ssGoodInventory] ssClearCounter 0'
+  
+  # setup stat
+  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] set AffectedItems @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
+  - '/minecraft:execute @a[name=$arg6,tag=ssGoodInventory] ~ ~ ~ /minecraft:clear $arg6 $arg2 $arg3'
+  
+  # add products to the stock
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2048,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2048'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1024,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1024'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=512,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 512'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=256,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 256'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=128,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 128'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=64,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 64'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=32,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 32'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=16,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 16'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=8,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 8'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=4,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 4'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=2,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 2'
+  - '/minecraft:execute @a[name=$arg6,score_ssClearCounter_min=1,tag=ssGoodInventory] ~ ~ ~ /mycommand:shop_stock $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 1'
+  
+  # clear stat
+  - '/minecraft:stats entity @a[name=$arg6,tag=ssGoodInventory] clear AffectedItems'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @a[name=$arg6,tag=ssGoodInventory] ssClearCounter'
+  
+  #######################
+  #  no good products   #
+  #######################
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
+  
+  # "[Shop] There were no products added to the stock. Remove all x with a name, with enchantments and with other special info from your inventory"
+  - '/minecraft:tellraw @a[name=$arg6,tag=!ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" There were no products added to the stock. Remove all"},{"bold":"false","color":"$s.style.color.mark","text":" $s.translation.$arg2:$arg3"},{"bold":"false","color":"$s.style.color.normal","text":" with a name, with enchantments and with other special info from your inventory"}]'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.init.shop.stock=0'
+  
+  #######################
+  #     no products     #
+  #######################
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==0'
+  
+  # "[Shop] No products to add to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" No products to add to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.init.shop.stock=0'
+  
+  #######################
+  #      1 product      #
+  #######################
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock==1'
+  
+  # "[Shop] Added x product to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" product to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.init.shop.stock=0'
+  
+  #######################
+  #     >1 products     #
+  #######################
+  - '$Script$%if%$arg1==$arg6<and>$arg7==normal<and>$s.init.shop.stock>1'
+  
+  # "[Shop] Added x products to the stock"
+  - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" products to the stock"}]'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
+  
+  # reset stock variable
+  - '$Script$%Variable%$s.init.shop.stock=0'
+
+  
+  
+  
+  
 ##############################################################################
 #                                 shop stock                                 #
 ##############################################################################
