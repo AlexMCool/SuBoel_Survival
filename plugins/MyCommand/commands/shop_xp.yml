@@ -35,9 +35,20 @@ shop_xp_create:
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   - '$Script$%elseif%$arg1>=1<and>$arg1<=64<and>$arg2>=1<and>$arg2<=65536'
   
-  # check for sign
-  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:standing_sign * /minecraft:scoreboard players tag @s add ssValid'
-  - '/minecraft:execute $player ~ ~ ~ detect ~ ~ ~ minecraft:wall_sign * /minecraft:scoreboard players tag @s add ssValid'
+  # stats for sign data
+  - '/minecraft:scoreboard players set $player ssSignData 0'
+  - '/minecraft:stats entity $player set SuccessCount $player ssSignData'
+  # empty standing_sign
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:testforblock ~ ~ ~ minecraft:standing_sign * {Text1:"{\"text\":\"\"}",Text2:"{\"text\":\"\"}",Text3:"{\"text\":\"\"}",Text4:"{\"text\":\"\"}"}'
+  # add tag
+  - '/minecraft:scoreboard players tag @a[name=$player,score_ssSignData_min=1] add ssValid'
+  # empty wall_sign
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:testforblock ~ ~ ~ minecraft:wall_sign * {Text1:"{\"text\":\"\"}",Text2:"{\"text\":\"\"}",Text3:"{\"text\":\"\"}",Text4:"{\"text\":\"\"}"}'
+  # add tag
+  - '/minecraft:scoreboard players tag @a[name=$player,score_ssSignData_min=1] add ssValid'
+  # clear stat
+  - '/minecraft:stats entity $player clear SuccessCount'
+  - '/minecraft:scoreboard players reset $player ssSignData'
   
   # "[Shop] Successfully created a shop which sells x x Experience Level for ßx"
   - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg1 x Experience Level"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg2"}]'
@@ -55,7 +66,7 @@ shop_xp_create:
   - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_xp_click $arg1 $arg2 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"bold\":\"false\",\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"Experience Level\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
-  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as a sign to create a shop"}]'
+  - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as an empty sign to create a shop"}]'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$player,tag=ssValid] remove ssValid'
