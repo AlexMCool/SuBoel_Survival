@@ -48,30 +48,28 @@ factory_iconmenu_changeproduct_init:
   # arg9 = $PlayerData%$s.factory.factory_id.$arg1.id%
   # arg10 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot%  
   # arg11 = upgrade / noupgrade
-  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time'
-  
-  # init holding item
-  - '/mycommand:holding_init $player'
-  
-  # if holding item is allowed
-  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand!=AIR<and>$iteminhand!=ENCHANTED_BOOK<and>$iteminhand!=LINGERING_POTION<and>$iteminhand!=POTION<and>$iteminhand!=MONSTER_EGG<and>$iteminhand!=SPLASH_POTION<and>$iteminhand!=TIPPED_ARROW'
-  # messages with item (which is not illegal) known
-  - '/mycommand:factory_iconmenu_changeproduct_withproduct $multiargs $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
   
   # if holding item is air
   - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==AIR' 
   # "[Factory] You need to have the product you want to produce in your hand"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Factory"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to have the product you want to produce in your hand"}]'
   
-  # else (item is not illegal)
-  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==ENCHANTED_BOOK<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==LINGERING_POTION<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==POTION<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==MONSTER_EGG<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==SPLASH_POTION<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==TIPPED_ARROW'
-  # "[Factory] The product you''re holding cannot be produced"
+  # if holding item is illegal
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==ENCHANTED_BOOK<and>$iteminhand!=AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==LINGERING_POTION<and>$iteminhand!=AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==POTION<and>$iteminhand!=AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==MONSTER_EGG<and>$iteminhand!=AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==SPLASH_POTION<and>$iteminhand!=AIR<or>$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand==TIPPED_ARROW<and>$iteminhand!=AIR'
+  # "[Factory] The product you're holding cannot be produced"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Factory"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The product you''re holding cannot be produced"}]'
   
+  # if holding item is allowed
+  - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand!=AIR<and>$iteminhand!=ENCHANTED_BOOK<and>$iteminhand!=LINGERING_POTION<and>$iteminhand!=POTION<and>$iteminhand!=MONSTER_EGG<and>$iteminhand!=SPLASH_POTION<and>$iteminhand!=TIPPED_ARROW'
+  # init holding item
+  - '/mycommand:holding_init $player'
+  # messages with item (which is not illegal) known
+  - '/mycommand:factory_iconmenu_changeproduct_withproduct $multiargs $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
+  
+
   
   
-  
-  
+    
 ##############################################################################
 #                 factory iconmenu changeproduct withproduct                 #
 ##############################################################################
