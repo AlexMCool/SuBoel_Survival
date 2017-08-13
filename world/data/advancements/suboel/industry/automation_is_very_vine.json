@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fifth factory",
+        "title": "Automation Is Very Vine",
+        "frame": "task",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:vine"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/its_a_girl"
+    
+}
