@@ -3,8 +3,10 @@
 ##############################################################################
 name_change_check:
   command: /name_change_check
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $uuid
   
