@@ -274,8 +274,10 @@ paypal_amount:
 ##############################################################################
 paypal_received_check:
   command: /paypal_received_check
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # if player has received money
   - '$Script$%if%$PlayerData%$s.paypal.received%!=NoData<and>$PlayerData%$s.paypal.received%>0'
