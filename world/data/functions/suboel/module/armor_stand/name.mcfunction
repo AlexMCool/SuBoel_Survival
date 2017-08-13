@@ -62,4 +62,4 @@ entitydata @e[name=pose_zombie,type=armor_stand] {Pose:{Head:[0f,0f,0f],LeftArm:
 # entitydata @e[name=armor_stand,type=armor_stand] {Pose:{Head:[0f,0f,0f],LeftArm:[0f,0f,0f],LeftLeg:[0f,0f,0f],RightArm:[0f,0f,0f],RightLeg:[0f,0f,0f]}}
 
 # reset name
-entitydata @e[name=!armor_stand,type=armor_stand] {CustomName:"armor_stand"}
+entitydata @e[name=!armor_stand,type=armor_stand] {CustomName:"armor_stand"} 
