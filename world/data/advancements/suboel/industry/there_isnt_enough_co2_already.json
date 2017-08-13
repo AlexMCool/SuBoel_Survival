@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fifteenth factory",
+        "title": "There Isn't Enough CO₂ Already",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:coal"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/time_for_family_planning"
+    
+}

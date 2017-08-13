@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 19",
+        "title": "We Need To Go Higher",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone_slab"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/lead_the_way"
+    
+}

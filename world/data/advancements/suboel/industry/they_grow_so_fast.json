@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 32",
+        "title": "They Grow So Fast!",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:dye",
+			"data": 15
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/youre_off_the_naughty_list"
+    
+}

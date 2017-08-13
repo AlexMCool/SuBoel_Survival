@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fourtieth factory",
+        "title": "Factory Obsession",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_ingot"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/industrial_revolution"
+    
+}

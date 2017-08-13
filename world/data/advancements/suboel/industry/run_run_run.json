@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Use the emergency ladder",
+        "title": "RUN RUN RUN!",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:quartz_stairs"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/save_yourself"
+    
+}

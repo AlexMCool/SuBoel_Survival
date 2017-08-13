@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your twenty-fifth factory",
+        "title": "Global Warming Is A Myth, Right?",
+        "frame": "task",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:fire_charge"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/one_can_never_have_enough_co2"
+    
+}

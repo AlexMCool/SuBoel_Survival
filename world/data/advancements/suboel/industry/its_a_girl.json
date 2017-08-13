@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your second factory",
+        "title": "It's A Girl!",
+        "frame": "task",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:wool",
+			"data": 6
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/its_a_boy"
+    
+}

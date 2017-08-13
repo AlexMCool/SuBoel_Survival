@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Farm stone",
+        "title": "THE MOST VALUABLE BLOCK!!!",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:stone"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

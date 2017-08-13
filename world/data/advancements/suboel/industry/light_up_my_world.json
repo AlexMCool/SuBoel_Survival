@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 2",
+        "title": "Light Up My World",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:redstone_lamp"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 21",
+        "title": "No Parking In Handicapped Spots",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:barrier"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/we_need_to_go_higher"
+    
+}

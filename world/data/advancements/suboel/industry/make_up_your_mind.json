@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Change a factory's product 30 times",
+        "title": "Make Up Your Mind",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:structure_void"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

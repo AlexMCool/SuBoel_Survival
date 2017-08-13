@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Claim your first factory plot",
+        "title": "Plot Twist",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone",
+			"data": 6
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/root"
+    
+}

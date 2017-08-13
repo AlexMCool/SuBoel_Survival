@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 23",
+        "title": "You're On The Naughty List",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:writable_book"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/no_parking_in_handicapped_spots"
+    
+}

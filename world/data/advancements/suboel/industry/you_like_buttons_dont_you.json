@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Toggle the lights at the second story 100 times",
+        "title": "You Like Buttons, Don't You?",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:stone_button"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/youre_on_the_naughty_list"
+    
+}

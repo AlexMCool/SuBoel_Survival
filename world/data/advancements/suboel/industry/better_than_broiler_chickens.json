@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Farm chicken",
+        "title": "Better Than Broiler Chickens",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:chicken"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your first level 1 factory",
+        "title": "It's A Boy!",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:wool",
+            "data": 3
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/plot_twist"
+    
+}

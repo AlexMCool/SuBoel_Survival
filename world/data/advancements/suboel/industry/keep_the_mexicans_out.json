@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 28",
+        "title": "Keep The Mexicans Out!",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:cactus"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/too_lazy_to_walk"
+    
+}
