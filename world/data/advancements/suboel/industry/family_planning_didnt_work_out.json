@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your thirtieth factory",
+        "title": "Family Planning Didn't Work Out",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:bucket"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/global_warming_is_a_myth_right"
+    
+}

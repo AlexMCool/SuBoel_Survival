@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 3",
+        "title": "We Need To Build A Wall",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_bars"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/light_up_my_world"
+    
+}

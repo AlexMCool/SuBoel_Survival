@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fifty-fourth factory",
+        "title": "Do You Even Sleep?",
+        "frame": "goal",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:bed",
+			"data": 7
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/nolifer"
+    
+}

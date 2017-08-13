@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 29",
+        "title": "SAVE YOURSELF!",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:lava_bucket"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/keep_the_mexicans_out"
+    
+}

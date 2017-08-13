@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 8",
+        "title": "Unlock The Doors",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:concrete_powder",
+			"data": 8
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/sign_of_greatness"
+    
+}

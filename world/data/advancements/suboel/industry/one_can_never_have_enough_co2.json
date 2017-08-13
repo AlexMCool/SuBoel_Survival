@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your twentieth factory",
+        "title": "One Can Never Have Enough CO₂",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:coal",
+			"data": 1
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/there_isnt_enough_co2_already"
+    
+}

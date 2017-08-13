@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Use the elevator 30 times",
+        "title": "Stairs Are For Healthy People",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone_brick_stairs"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/too_lazy_to_walk"
+    
+}

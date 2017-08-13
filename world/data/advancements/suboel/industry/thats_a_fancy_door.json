@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Open the garage door 10 times",
+        "title": "That's A Fancy Door",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:iron_door"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/unlock_the_doors"
+    
+}

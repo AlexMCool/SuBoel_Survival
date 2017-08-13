@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Produce your first item",
+        "title": "Let The Gears Roll",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:coal_ore"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/its_a_boy"
+    
+}

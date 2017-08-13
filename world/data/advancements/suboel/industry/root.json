@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": false,
+        "background": "minecraft:textures/blocks/stone_andesite.png",
+        "description": "Let's ruin the climate",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone",
+            "data": 5
+        },
+        "show_toast": false,
+        "title": "Industry"
+    }
+}

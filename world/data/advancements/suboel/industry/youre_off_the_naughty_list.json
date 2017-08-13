@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 31",
+        "title": "You're Off The Naughty List",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:paper"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/save_yourself"
+    
+}

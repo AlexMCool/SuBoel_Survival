@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your thirty-fifth factory",
+        "title": "Industrial Revolution",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_nugget"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/family_planning_didnt_work_out"
+    
+}

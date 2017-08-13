@@ -1,0 +1,21 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Upgrade a factory to level 15",
+        "title": "Lead The Way",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:concrete",
+			"data": 7
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/unlock_the_doors"
+    
+}

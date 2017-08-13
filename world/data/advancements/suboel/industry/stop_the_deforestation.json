@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Farm some kind of wood",
+        "title": "Stop The Deforestation",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:sapling"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Take a look at the factory's oven",
+        "title": "It's Getting Hot Out Here",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:furnace"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/lead_the_way"
+    
+}

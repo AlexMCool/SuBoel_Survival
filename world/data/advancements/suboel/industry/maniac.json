@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fourty-fifth factory",
+        "title": "Maniac",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_axe"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/factory_obsession"
+    
+}

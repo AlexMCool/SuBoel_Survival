@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Build your fiftieth factory",
+        "title": "Nolifer",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:clock"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/maniac"
+    
+}

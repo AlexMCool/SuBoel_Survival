@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Farm a useless item",
+        "title": "Why Would You Farm That?!",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:wooden_door"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/let_the_gears_roll"
+    
+}

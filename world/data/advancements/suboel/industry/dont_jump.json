@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Enjoy the view of the factory's roof",
+        "title": "Don't Jump!",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:feather"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/too_lazy_to_walk"
+    
+}

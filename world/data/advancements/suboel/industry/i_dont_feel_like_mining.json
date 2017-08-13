@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Farm both diamonds and iron",
+        "title": "I Don't Feel Like Mining",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:wooden_pickaxe"
+        },
+        "show_toast": true
+    },
+    "parent": "suboel:industry/its_a_girl"
+    
+}
