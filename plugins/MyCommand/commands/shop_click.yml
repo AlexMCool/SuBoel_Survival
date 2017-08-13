@@ -3,8 +3,10 @@
 ##############################################################################
 shop_click:
   command: /shop_click
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = nothing ($player = buyer)
   # arg2 = $PlayerData%$s.init.product.name%
@@ -44,10 +46,10 @@ shop_click_sneakcheck:
   - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg5] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal enough $arg7'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal shortage $arg7'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak enough $arg7'
-  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak shortage $arg7'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal enough $arg7'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 normal shortage $arg7'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak enough $arg7'
+  - '$delay$<0>/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 sneak shortage $arg7'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
@@ -61,8 +63,10 @@ shop_click_sneakcheck:
 ##############################################################################
 shop_click_action:
   command: /shop_click_action
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #              add stock              #
@@ -79,7 +83,7 @@ shop_click_action:
   - '$Script$%if%$arg1==$arg6<and>$arg7==normal'
   
   # open confirm menu
-  - '/sudo $arg1 /mycommand:shop_click_action_stock_confirm $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
+  - '/sudo $arg1 /mycommand:code shop_click_action_stock_confirm $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
 
   #######################################
   #                 buy                 #
@@ -250,10 +254,12 @@ shop_click_action:
 ##############################################################################
 shop_click_action_stock_confirm:
   command: /shop_click_action_stock_confirm
-  type: ICON_MENU
-  register: true
-  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  execute_mode: FROM_ANOTHER_COMMAND
   iconmenu_size: 9
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  permission-required: false
+  register: true
+  type: ICON_MENU
   iconmenu_commands:
   # arg1 = $player (buyer)
   # arg2 = $PlayerData%$s.init.product.name%

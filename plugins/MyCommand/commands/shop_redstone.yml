@@ -9,7 +9,7 @@ shop_redstone_create:
   #######################################
   #           error messages            #
   ####################################### 
-  # arg1 = (what to sell)
+  # arg1 = (what_to_sell)
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   
   # price under 1
@@ -23,7 +23,7 @@ shop_redstone_create:
   #######################################
   #           no price error            #
   ####################################### 
-  # arg1 = (what to sell)
+  # arg1 = (what_to_sell)
   # arg2 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   - '$Script$%elseif%$arg2>=1<and>$arg2<=65536'
   
@@ -47,10 +47,10 @@ shop_redstone_create:
   
   # get id for shop
   - '$Script$%Variable%$s.init.shop.new_id=0'
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place_newid $s.init.shop.new_id'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:code shop_place_newid $s.general.code $s.init.shop.new_id'
   
   # valid; blockdata sign
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_redstone_click $locX $locY $locZ $arg1 $arg2 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:code shop_redstone_click shopVerificationCodea589h³21r€ $locX $locY $locZ $arg1 $arg2 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"text\":\"\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg1\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg2\"}]"}'
   
   # invalid; error message
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as an empty sign to create a shop"}]'
@@ -67,13 +67,15 @@ shop_redstone_create:
 ##############################################################################
 shop_redstone_click:
   command: /shop_redstone_click
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $locX
   # arg2 = $locY
   # arg3 = $locZ
-  # arg4 = (what to sell)
+  # arg4 = (what_to_sell)
   # arg5 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg6 = $uuid
   # arg7 = $s.init.shop.new_id
@@ -97,7 +99,7 @@ shop_redstone_click_sneakcheck:
   # arg2 = $locX
   # arg3 = $locY
   # arg4 = $locZ
-  # arg5 = (what to sell)
+  # arg5 = (what_to_sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = $s.init.shop.new_id
@@ -109,10 +111,10 @@ shop_redstone_click_sneakcheck:
   - '/minecraft:scoreboard players tag @a[name=$arg1,score_ssCoins_min=$arg6] add ssEnough'
   
   # action depending on money and sneaking (delay; if there's no delay sneak is always 0)
-  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough $s.init.shop.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage $s.init.shop.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough $s.init.shop.new_id'
-  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage $s.init.shop.new_id'
+  - '$delay$<1>/execute @a[name=$arg1,score_ssSneak=0,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_redstone_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal enough $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak=0,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_redstone_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 normal shortage $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_redstone_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak enough $s.init.shop.new_id'
+  - '/execute @a[name=$arg1,score_ssSneak_min=1,tag=!ssEnough] ~ ~ ~ /sudo $arg1 /mycommand:code shop_redstone_click_action $s.general.code $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 sneak shortage $s.init.shop.new_id'
   
   # remove tag
   - '/minecraft:scoreboard players tag @a[name=$arg1,tag=ssEnough] remove ssEnough'
@@ -126,8 +128,10 @@ shop_redstone_click_sneakcheck:
 ##############################################################################
 shop_redstone_click_action:
   command: /shop_redstone_click_action
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #              own shop               #
@@ -136,7 +140,7 @@ shop_redstone_click_action:
   # arg2 = $locX
   # arg3 = $locY
   # arg4 = $locZ
-  # arg5 = (what to sell)
+  # arg5 = (what_to_sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
@@ -178,7 +182,7 @@ shop_redstone_click_action:
   # arg2 = $locX
   # arg3 = $locY
   # arg4 = $locZ
-  # arg5 = (what to sell)
+  # arg5 = (what_to_sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
@@ -236,7 +240,7 @@ shop_redstone_click_action:
   # arg2 = $locX
   # arg3 = $locY
   # arg4 = $locZ
-  # arg5 = (what to sell)
+  # arg5 = (what_to_sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak
@@ -337,7 +341,7 @@ shop_redstone_setting_autoclaimprofit:
   # arg2 = $locX
   # arg3 = $locY
   # arg4 = $locZ
-  # arg5 = (what to sell)
+  # arg5 = (what_to_sell)
   # arg6 = 1 / 2 / 3 / ... / 65534 / 65535 / 65536
   # arg7 = $s.uuid.(seller_uuid).name
   # arg8 = normal / sneak

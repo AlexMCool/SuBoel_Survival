@@ -8,13 +8,13 @@
 PlayerJoin:
   active: true
   execute:
-  - '/mycommand:paypal_received_check'
-  - '/mycommand:name_change_check $uuid'
+  - '/mycommand:code paypal_received_check $s.general.code'
+  - '/mycommand:code name_change_check $s.general.code $uuid'
 
 PlayerKick:
   active: false
   execute:
-  - '/example'
+  - ''
 
 PlayerQuit:
   active: false
@@ -24,7 +24,7 @@ PlayerQuit:
 PlayerRespawn:
   active: false
   execute:
-  - '/example'
+  - ''
 
 PlayerDeath:
   active_on_kill: true

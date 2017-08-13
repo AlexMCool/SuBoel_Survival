@@ -37,7 +37,7 @@ activity_week:
   #             no new week             #
   ####################################### 
   # arg1 = (nothing)
-  - '$Script$%elseif%$arg1!=new_week'
+  - '$Script$%elseif%$arg1==new_week'
   
   # add tag
   - '/minecraft:scoreboard players tag @e[name=saWeekTimer,type=area_effect_cloud] add saNewWeek {Age:0}'
@@ -49,13 +49,13 @@ activity_week:
   #              new week               #
   ####################################### 
   # arg1 = new_week
-  - '$Script$%elseif%$arg1==new_week'
+  - '$Script$%elseif%$arg1!=new_week'
   
   # add 1 to week count
   - '$Script$%Variable%$s.general.week+1'
   
   # update everyone's week info
-  - '/minecraft:execute @a ~ ~ ~ /sudo @s /mycommand:activity_week_player'
+  - '/minecraft:execute @a ~ ~ ~ /sudo @s /mycommand:code activity_week_player $s.general.code'
   
   # update area_effect_cloud
   - '/minecraft:entitydata @e[name=saWeekTimer,tag=saNewWeek,type=area_effect_cloud] {Age:-12096000,CustomName:"saWeekTimer",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:[""]}'
@@ -69,6 +69,8 @@ activity_week:
 ############################################################################## 
 activity_week_player:
   command: /activity_week_player
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   type: RUN_CONSOLE
   register: true
   runcmd:
