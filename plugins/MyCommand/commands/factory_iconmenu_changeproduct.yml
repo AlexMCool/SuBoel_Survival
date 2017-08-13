@@ -61,8 +61,10 @@ factory_iconmenu_changeproduct_init:
   
   # if holding item is allowed
   - '$Script$%if%$s.factory.id.$arg9.product.min_time<=$s.general.time<and>$iteminhand!=AIR<and>$iteminhand!=ENCHANTED_BOOK<and>$iteminhand!=LINGERING_POTION<and>$iteminhand!=POTION<and>$iteminhand!=MONSTER_EGG<and>$iteminhand!=SPLASH_POTION<and>$iteminhand!=TIPPED_ARROW'
+  # verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
   # init holding item
-  - '/mycommand:holding_init $player'
+  - '/mycommand:code holding_init $s.general.code $player'
   # messages with item (which is not illegal) known
   - '/mycommand:factory_iconmenu_changeproduct_withproduct $multiargs $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
   

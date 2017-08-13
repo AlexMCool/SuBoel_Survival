@@ -107,8 +107,10 @@ factory_item_delay_init:
 ##############################################################################
 factory_item_delay_player:
   command: /factory_item_delay_player
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # manage factory item delay timers
   - '/mycommand:factory_item_delay_timer $player $uuid'

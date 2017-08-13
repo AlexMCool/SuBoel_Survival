@@ -1,8 +1,10 @@
 shop:
   command: /shop
-  type: RUN_AS_OPERATOR
-  require_all_arguments: false
+  execute_mode: NORMAL
+  permission-required: false
   register: true
+  require_all_arguments: false
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #               create                #

@@ -58,10 +58,12 @@ shop_create:
   - '/minecraft:stats entity $player clear SuccessCount'
   - '/minecraft:scoreboard players reset $player ssSignData'
   
+  # verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
   # valid; init shop info
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:holding_init $player'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:code holding_init $s.general.code $player'
   # valid; place shop
-  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:shop_place $player $arg1 $arg2 $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:code shop_place $s.general.code $player $arg1 $arg2 $PlayerData%$s.init.product.name% $PlayerData%$s.init.product.damage%'
   
   # "[Shop] You need to stand in the same block as an empty sign to create a shop"
   - '/minecraft:tellraw @a[name=$player,tag=!ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to stand in the same block as an empty sign to create a shop"}]'
@@ -78,8 +80,10 @@ shop_create:
 ##############################################################################
 shop_place:
   command: /shop_place
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
@@ -92,7 +96,7 @@ shop_place:
   
   # get id for shop
   - '$Script$%Variable%$s.init.shop.new_id=0'
-  - '/sudo $arg1 /mycommand:shop_place_newid $s.init.shop.new_id'
+  - '/sudo $arg1 /mycommand:code shop_place_newid $s.general.code $s.init.shop.new_id'
   
   # set stock to 0 if neccessary
   - '$Script$%if%$PlayerDataFor%$arg1%$s.shop.stock.$arg4:$arg5%==NoData'
@@ -100,7 +104,7 @@ shop_place:
   
   # blockdata on sign
   - '$Script$%if%always==always'
-  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:shop_click nothing $arg4 $arg5 $arg2 $arg3 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$arg4:$arg5\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:blockdata ~ ~ ~ {Text1:"[{\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/sudo @p /mycommand:code shop_click shopVerificationCodea589h³21r€ nothing $arg4 $arg5 $arg2 $arg3 $uuid $s.init.shop.new_id\"},\"text\":\"<\",\"color\":\"$s.style.color.mark\",\"bold\":\"true\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"[\"},{\"bold\":\"false\",\"color\":\"$s.style.color.inverted_title\",\"text\":\"Buy\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\"]\"},{\"bold\":\"true\",\"color\":\"$s.style.color.light_mark\",\"strikethrough\":\"true\",\"text\":\"---\"},{\"bold\":\"true\",\"color\":\"$s.style.color.mark\",\"text\":\">\"}]",Text2:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$arg2 x\"}]",Text3:"[{\"color\":\"$s.style.color.sign_normal\",\"text\":\"$s.translation.$arg4:$arg5\"}]",Text4:"[{\"color\":\"$s.style.color.light_mark\",\"text\":\"ß$arg3\"}]"}'
   
   
   
@@ -111,8 +115,10 @@ shop_place:
 ##############################################################################
 shop_place_newid:
   command: /shop_place_newid
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $s.init.shop.new_id
   

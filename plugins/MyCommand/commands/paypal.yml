@@ -3,9 +3,11 @@
 ##############################################################################
 paypal:
   command: /paypal
-  type: RUN_AS_OPERATOR
-  require_all_arguments: false
+  execute_mode: NORMAL
+  permission-required: false
   register: true
+  require_all_arguments: false
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                send                 #
@@ -147,7 +149,7 @@ paypal_confirm_init:
   - '/minecraft:scoreboard players tag @a[name=$player,score_ssCoins_min=$PlayerData%$s.paypal.amount%] add sppEnough'
   
   # enough money
-  - '/minecraft:execute @a[name=$player,tag=sppEnough] ~ ~ ~ /sudo @s /mycommand:paypal_confirm $arg1'
+  - '/minecraft:execute @a[name=$player,tag=sppEnough] ~ ~ ~ /sudo @s /mycommand:code paypal_confirm $s.general.code $arg1'
   
   # not enough money  
   # "[PayPal] You don't have enough money anymore"
@@ -165,9 +167,11 @@ paypal_confirm_init:
 ##############################################################################
 paypal_confirm:
   command: /paypal_confirm
-  type: RUN_AS_OPERATOR
   error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
   

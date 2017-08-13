@@ -3,8 +3,10 @@
 ##############################################################################
 holding_init:
   command: /holding_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $player
   

@@ -3,8 +3,10 @@
 ##############################################################################
 factory:
   command: /factory
-  type: RUN_AS_OPERATOR
+  execute_mode: NORMAL
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   - '$Script$%elseif%$PlayerData%$s.factory.factory_id.54.id%!=NoData'
   - '/mycommand:factory_iconmenu_init_id 54'
