@@ -3,8 +3,10 @@
 ##############################################################################
 time_var:
   command: /time_var
-  type: RUN_CONSOLE
+  execute_mode: CONSOLE_ONLY
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # add 1 to time var
   - '$Script$%Variable%$s.general.time+1'

@@ -3,8 +3,10 @@
 ##############################################################################
 road_new:
   command: /road_new
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # set calculation to 1
   - '$Script$%Variable%$s.init.intersection.calculation=1'
@@ -21,8 +23,10 @@ road_new:
 ##############################################################################
 road_new_calculation:
   command: /road_new_calculation
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #          no type variable           #

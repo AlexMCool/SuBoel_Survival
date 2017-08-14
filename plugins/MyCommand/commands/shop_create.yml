@@ -3,8 +3,10 @@
 ##############################################################################
 shop_create:
   command: /shop_create
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #           error messages            #

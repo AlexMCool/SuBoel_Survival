@@ -3,8 +3,10 @@
 ############################################################################## 
 factory_keepchunk:
   command: /factory_keepchunk
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $PlayerData%$s.chunk.x% 
   # arg2 = $PlayerData%$s.chunk.z% 

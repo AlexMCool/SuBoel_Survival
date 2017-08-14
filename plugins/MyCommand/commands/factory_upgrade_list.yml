@@ -3,8 +3,10 @@
 ############################################################################## 
 factory_upgrade_list:
   command: /factory_upgrade_list
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = 1 / 2 / 3 / ... / 30 / 31 / 32
   

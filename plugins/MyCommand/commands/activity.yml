@@ -3,8 +3,9 @@
 ##############################################################################
 activity_setup:
   command: /activity_setup
-  type: RUN_AS_OPERATOR
+  execute_mode: NORMAL
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   - '/minecraft:scoreboard objectives add saIsActive dummy Is Active'
   
@@ -30,8 +31,10 @@ activity_setup:
 ############################################################################## 
 activity_week:
   command: /activity_week
-  type: RUN_CONSOLE
+  execute_mode: CONSOLE_ONLY
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #             no new week             #
@@ -89,8 +92,10 @@ activity_week_player:
 ##############################################################################
 activity:
   command: /activity
-  type: RUN_CONSOLE
+  execute_mode: NORMAL
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #           total playtime            #

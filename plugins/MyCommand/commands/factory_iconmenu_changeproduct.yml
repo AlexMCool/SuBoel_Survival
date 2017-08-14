@@ -3,8 +3,10 @@
 ##############################################################################
 factory_iconmenu_changeproduct_init:
   command: /factory_iconmenu_changeproduct_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                wait                 #
@@ -77,8 +79,10 @@ factory_iconmenu_changeproduct_init:
 ##############################################################################
 factory_iconmenu_changeproduct_withproduct:
   command: /factory_iconmenu_changeproduct_withproduct
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #              low level              #
@@ -152,8 +156,10 @@ factory_iconmenu_changeproduct_withproduct:
 ##############################################################################
 factory_iconmenu_changeproduct_init_time:
   command: /factory_iconmenu_changeproduct_init_time
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player
   
@@ -219,10 +225,12 @@ factory_iconmenu_changeproduct_init_time:
 ##############################################################################
 factory_iconmenu_changeproduct:
   command: /factory_iconmenu_changeproduct
-  type: ICON_MENU
-  register: true
-  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  execute_mode: FROM_ANOTHER_COMMAND
   iconmenu_size: 9
+  iconmenu_title: '&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleAre You Sure?&$s.translation.color.$s.style.color.mark&l]'
+  permission-required: false
+  register: true
+  type: ICON_MENU
   iconmenu_commands:
   # arg1 = $s.factory.id.$arg1.tp.x 
   # arg2 = $s.factory.id.$arg1.tp.y 
@@ -238,7 +246,7 @@ factory_iconmenu_changeproduct:
   # arg12 = $PlayerData%$s.init.product.name% 
   # arg13 = $PlayerData%$s.init.product.damage%
   
-  # {Command:"/mycommand:factory_item_change $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13"}
-  - '2:WOOL:5:/mycommand$s.char.colonfactory_item_change $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalChange the product to;  &$s.translation.color.$s.style.color.mark$s.translation.$arg12$s.char.colon$arg13;&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalThis can only be done every;  &$s.translation.color.$s.style.color.normalhour'
-  # {Command:"/mycommand:factory_iconmenu_$arg11_actions $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10"}
-  - '6:WOOL:14:%openiconmenu%/mycommand$s.char.colonfactory_iconmenu_$arg11_actions $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel changing the;  &$s.translation.color.$s.style.color.normalproduct'
+  # {Command:"/mycommand:code_menu factory_item_change $s.general.code $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13"}
+  - '2:WOOL:5:/mycommand$s.char.coloncode_menu factory_item_change $s.general.code $arg9 $player $s.factory.id.$arg9.level.current $arg12 $arg13:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalChange the product to;  &$s.translation.color.$s.style.color.mark$s.translation.$arg12$s.char.colon$arg13;&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalThis can only be done every;  &$s.translation.color.$s.style.color.normalhour'
+  # {Command:"/mycommand:code_openmenu factory_iconmenu_x_actions $s.general.code $arg11 $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10"}
+  - '6:WOOL:14:/mycommand$s.char.coloncode_openmenu factory_iconmenu_x_actions $s.general.code $arg11 $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel changing the;  &$s.translation.color.$s.style.color.normalproduct'

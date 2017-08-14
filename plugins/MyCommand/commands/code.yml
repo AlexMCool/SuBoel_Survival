@@ -1,5 +1,175 @@
+##############################################################################
+#                               code openmenu                                #
+##############################################################################
+code_openmenu:
+  command: /code_openmenu
+  execute_mode: NORMAL
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # arg1 = factory_iconmenu_check_create / factory_iconmenu_check_upgrade / factory_iconmenu_x_actions
+  
+  # arg2 = $s.general.code
+  
+  # arg3 = $s.factory.id.$arg1.tp.x / $s.factory.id.$(factory_id).tp.x / {upgrade / noupgrade}
+  
+  # arg4 = $s.factory.id.$arg1.tp.y / $s.factory.id.$(factory_id).tp.y / $s.factory.id.(factory_id).tp.x
+  
+  # arg5 = $s.factory.id.$arg1.tp.z / $s.factory.id.$(factory_id).tp.z / $s.factory.id.(factory_id).tp.y
+  
+  # arg6 = $s.factory.id.$arg1.level.next / $s.factory.id.$(factory_id).level.next / $s.factory.id.(factory_id).tp.z
+  
+  # arg7 = $s.factory.id.$arg1.status / $s.factory.id.$(factory_id).status / $s.factory.id.(factory_id).level.next
+  
+  # arg8 = $s.factory.id.$arg1.location.x / $s.factory.id.$(factory_id).location.x / $s.factory.id.(factory_id).status
+  
+  # arg9 = $s.factory.id.$arg1.location.y / $s.factory.id.$(factory_id).location.y / $s.factory.id.(factory_id).location.x
+  
+  # arg10 = $s.factory.id.$arg1.location.z / $s.factory.id.$(factory_id).location.z / $s.factory.id.(factory_id).location.y
+  
+  # arg11 = $PlayerData%$s.factory.factory_id.$arg1.id% / $PlayerData%$s.factory.factory_id.$(factory_id).id% / $s.factory.id.(factory_id).location.z
+  
+  # arg12 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot% / $PlayerData%$s.factory.factory_id.$(factory_id).tp.rot% / $PlayerData%$s.factory.factory_id.(factory_id).id%
+  
+  # arg13 = (nothing) / (nothing) / $PlayerData%$s.factory.factory_id.(factory_id).tp.rot%
+  
+  # factory_iconmenu_check_create
+  - '$Script$%elseif%$arg1==factory_iconmenu_check_create<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_iconmenu_check_create
+  - '/mycommand:factory_iconmenu_check_create $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12'
+  
+  # factory_iconmenu_check_upgrade
+  - '$Script$%elseif%$arg1==factory_iconmenu_check_upgrade<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_iconmenu_check_upgrade
+  - '/mycommand:factory_iconmenu_check_upgrade $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12'
+  
+  # factory_iconmenu_x_actions
+  - '$Script$%elseif%$arg1==factory_iconmenu_x_actions<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_iconmenu_x_actions
+  - '/mycommand:factory_iconmenu_$arg3_actions $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13'
+  
+  
+  
+  
+  
+##############################################################################
+#                                 code menu                                  #
+##############################################################################
+code_menu:
+  command: /code_menu
+  execute_mode: NORMAL
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # note: factory_random has more arguments, but those are not used!
+  
+  # arg1 = factory_iconmenu_changeproduct_init / factory_iconmenu_checktype / factory_item_change / factory_random / factory_upgrade / factory_upgrade_list / factory_upgrade_requirement / mvtp / shop_click_action_stock
+  
+  # arg2 = $s.general.code
+  
+  # arg3 = $s.factory.id.$arg1.tp.x / $s.factory.id.(factory_id).tp.x / $PlayerData%$s.factory.factory_id.$arg1.id% / (factory_id) / $s.factory.id.(factory_id).status / $s.factory.id.(factory_id).level.next / $s.factory.id.(factory_id).level.next / $s.general.world / $player
+  
+  # arg4 = $s.factory.id.$arg1.tp.y / $s.factory.id.(factory_id).tp.y / $player / (nothing) / $s.factory.id.(factory_id).level.next / (nothing) / (nothing) / $s.factory.id.(factory_id).tp.x / $PlayerData%$s.init.product.name%
+  
+  # arg5 = $s.factory.id.$arg1.tp.z / $s.factory.id.(factory_id).tp.z / $s.factory.id.(factory_id).level.current / (nothing) / $s.factory.id.(factory_id).location.x / (nothing) / (nothing) / $s.factory.id.(factory_id).tp.y / $PlayerData%$s.init.product.damage%
+  
+  # arg6 = $s.factory.id.$arg1.level.next / $s.factory.id.(factory_id).level.next / $PlayerData%$s.init.product.name% / (nothing) / $s.factory.id.(factory_id).location.y / (nothing) / (nothing) / $s.factory.id.(factory_id).tp.z / {1 / 2 / 3 / ... / 62 / 63 / 64}
+  
+  # arg7 = $s.factory.id.$arg1.status / $s.factory.id.(factory_id).status / $PlayerData%$s.init.product.damage% / (nothing) / $s.factory.id.(factory_id).location.z / (nothing) / (nothing) / $PlayerData%$s.factory.factory_id.(factory_id).tp.rot% / {1 / 2 / 3 / ... / 65534 / 65535 / 65536}
+  
+  # arg8 = $s.factory.id.$arg1.location.x / $s.factory.id.(factory_id).location.x / (nothing) / (nothing) / $PlayerData%$s.factory.factory_id.(factory_id).id% / (nothing) / (nothing) / (nothing) / $s.uuid.(seller_uuid).name
+  
+  # arg9 = $s.factory.id.$arg1.location.y / $s.factory.id.(factory_id).location.y / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {normal / sneak}
+  
+  # arg10 = $s.factory.id.$arg1.location.z / $s.factory.id.(factory_id).location.z / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {enough / shortage}
+  
+  # arg11 = $PlayerData%$s.factory.factory_id.$arg1.id% / (factory_id) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (shop_id)
+  
+  # arg12 = $PlayerData%$s.factory.factory_id.$arg1.tp.rot% / $s.factory.id.(factory_id).tp.rot / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing)
+  
+  # arg13 = {noupgrade / upgrade} / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing)
+  
+  # factory_iconmenu_changeproduct_init
+  - '$Script$%elseif%$arg1==factory_iconmenu_changeproduct_init<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_iconmenu_changeproduct_init
+  - '/mycommand:factory_iconmenu_changeproduct_init $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13'
+  
+  # factory_iconmenu_checktype
+  - '$Script$%elseif%$arg1==factory_iconmenu_checktype<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_iconmenu_checktype
+  - '/mycommand:factory_iconmenu_checktype $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12'
+  
+  # factory_item_change
+  - '$Script$%elseif%$arg1==factory_item_change<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_item_change
+  - '/mycommand:factory_item_change $arg3 $arg4 $arg5 $arg6 $arg7'
+  
+  # factory_random
+  - '$Script$%elseif%$arg1==factory_random<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_random
+  - '/mycommand:factory_random $arg3'
+  
+  # factory_upgrade
+  - '$Script$%elseif%$arg1==factory_upgrade<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_upgrade
+  - '/mycommand:factory_upgrade $arg3 $arg4 $arg5 $arg6 $arg7 $arg8'
+  
+  # factory_upgrade_list
+  - '$Script$%elseif%$arg1==factory_upgrade_list<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_upgrade_list
+  - '/mycommand:factory_upgrade_list $arg3'
+  
+  # factory_upgrade_requirement
+  - '$Script$%elseif%$arg1==factory_upgrade_requirement<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # factory_upgrade_requirement
+  - '/mycommand:factory_upgrade_requirement $arg3'
+  
+  # mvtp
+  - '$Script$%elseif%$arg1==mvtp<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # mvtp
+  - '/multiverse-core:mvtp e$s.char.colon$arg3$s.char.colon$arg4.5,$arg5.5,$arg6.5$s.char.colon0$s.char.colon$arg7'
+  
+  # shop_click_action_stock
+  - '$Script$%elseif%$arg1==shop_click_action_stock<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # shop_click_action_stock
+  - '/mycommand:shop_click_action_stock $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11'
+
+
+
+
+  
+##############################################################################
+#                                    code                                    #
+##############################################################################
 code:
   command: /code
+  execute_mode: NORMAL
   permission-required: false
   register: true
   type: RUN_AS_OPERATOR

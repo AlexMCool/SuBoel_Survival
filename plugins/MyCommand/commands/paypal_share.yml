@@ -3,9 +3,11 @@
 ##############################################################################
 paypal_share:
   command: /paypal_share
-  type: RUN_AS_OPERATOR
-  require_all_arguments: false
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  require_all_arguments: false
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = share (because of $multiargs)
   # arg2 = 1 / 2 / 3 / ... (amount)
@@ -317,8 +319,10 @@ paypal_share:
 ##############################################################################
 paypal_share_init:
   command: /paypal_share_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = 1 / 2 / 3 / ... (money)
   # arg2 = 1 / 2 / 3 / ... (players_to_share)
@@ -373,8 +377,10 @@ paypal_share_init:
 ##############################################################################
 paypal_share_calculation:
   command: /paypal_share_calculation
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = 1 / 2 / 3 / ... / 16384 / 32768 / 65536 
   # arg2 = 1 / 2 / 3 / ... (money)
