@@ -3,8 +3,10 @@
 ##############################################################################
 factory_item_delay_init:
   command: /factory_item_delay_init
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (factory_id)
   # arg2 = (factory_owner)
@@ -124,8 +126,10 @@ factory_item_delay_player:
 ##############################################################################
 factory_item_delay_timer:
   command: /factory_item_delay_timer
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (name)
   # arg2 = (uuid)
@@ -179,10 +183,12 @@ factory_item_delay_timer:
 ##############################################################################
 factory_item_delay_check_init:
   command: /factory_item_delay_check_init
-  type: RUN_CONSOLE
   delaytimer: 1
   delaytimer_format: TICKS
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (name)
   # arg2 = (uuid)
@@ -215,10 +221,12 @@ factory_item_delay_check_init:
 ##############################################################################
 factory_item_delay_check_recur:
   command: /factory_item_delay_check_recur
-  type: RUN_CONSOLE
   delaytimer: 1
   delaytimer_format: TICKS
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (name)
   # arg2 = (uuid)
@@ -243,8 +251,10 @@ factory_item_delay_check_recur:
 ##############################################################################
 factory_item_delay_check:
   command: /factory_item_delay_check
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (name)
   # arg2 = (uuid)

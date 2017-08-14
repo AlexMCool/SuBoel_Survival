@@ -3,8 +3,10 @@
 ##############################################################################
 shop_check:
   command: /shop_check
-  type: RUN_CONSOLE
+  execute_mode: CONSOLE_ONLY
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # reset calculation
   - '$Script$%Variable%$s.init.shop.calculation=0'
@@ -113,8 +115,10 @@ shop_check_profit_init:
 ##############################################################################
 shop_check_profit:
   command: /shop_check_profit
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = (shop_id)
   # arg2 = (owner_name)

@@ -3,9 +3,13 @@
 ##############################################################################
 factory_random:
   command: /factory_random
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
+  # arg1 = (highest_factory_id)
+  
   # latest factory is still at level 0
   - '$Script$%if%$s.factory.id.$arg1.level.current==0'
   # "[Factory] You can't claim a new factory plot, because you already have an empty plot"
@@ -42,8 +46,10 @@ factory_random:
 ##############################################################################
 factory_random_calculation:
   command: /factory_random_calculation
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #          factory available          #
@@ -104,8 +110,10 @@ factory_random_calculation:
 ##############################################################################  
 factory_random_status_set:
   command: /factory_random_status_set
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                east                 #
@@ -152,8 +160,10 @@ factory_random_status_set:
 ############################################################################## 
 factory_random_direction_choose:
   command: /factory_random_direction_choose
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $s.init.factory.calculation
   # arg2 = $s.factory.id.$arg1.status
@@ -273,8 +283,10 @@ factory_random_direction_choose:
 ##############################################################################
 factory_random_sides:
   command: /factory_random_sides
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # set all sides to '-1'
   - '$Script$%Variable%$s.factory.id.$arg1.direction.east=-1'

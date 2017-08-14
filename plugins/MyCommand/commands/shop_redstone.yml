@@ -3,8 +3,10 @@
 ##############################################################################
 shop_redstone_create:
   command: /shop_redstone_create
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #           error messages            #
@@ -92,8 +94,10 @@ shop_redstone_click:
 ##############################################################################
 shop_redstone_click_sneakcheck:
   command: /shop_redstone_click_sneakcheck
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = $locX
@@ -334,8 +338,10 @@ shop_redstone_click_action:
 ##############################################################################
 shop_redstone_setting_autoclaimprofit:
   command: /shop_redstone_setting_autoclaimprofit
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = $locX

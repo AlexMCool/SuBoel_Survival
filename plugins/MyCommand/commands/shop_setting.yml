@@ -3,8 +3,10 @@
 ##############################################################################
 shop_setting_autoclaimprofit:
   command: /shop_setting_autoclaimprofit
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = $PlayerData%$s.init.product.name%
@@ -47,8 +49,10 @@ shop_setting_autoclaimprofit:
 ##############################################################################
 shop_setting_claim:
   command: /shop_setting_claim
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = (shop_id)

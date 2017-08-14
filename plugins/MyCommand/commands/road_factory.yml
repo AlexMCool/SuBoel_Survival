@@ -3,8 +3,10 @@
 ##############################################################################
 road_factory_check_id:
   command: /road_factory_check_id
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $locX
   # arg2 = $locY
@@ -28,8 +30,10 @@ road_factory_check_id:
 ##############################################################################
 road_factory_init:
   command: /road_factory_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #               unused                #
@@ -77,8 +81,10 @@ road_factory_init:
 ##############################################################################
 road_factory_info_unused:
   command: /road_factory_info_unused
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $s.factory.location.$locX,$locY,$locZ.id
   # arg2 = east / north / south / west
@@ -98,8 +104,10 @@ road_factory_info_unused:
 ##############################################################################
 road_factory_info_init:
   command: /road_factory_info_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                east                 #

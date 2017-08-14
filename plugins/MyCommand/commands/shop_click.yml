@@ -28,8 +28,10 @@ shop_click:
 ##############################################################################
 shop_click_sneakcheck:
   command: /shop_click_sneakcheck
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = $PlayerData%$s.init.product.name%
@@ -271,8 +273,8 @@ shop_click_action_stock_confirm:
   # arg8 = enough / shortage
   # arg9 = (shop_id)
   
-  # {Command:"/mycommand:shop_click_action_stock $mutliargs"}
-  - '2:WOOL:5:/mycommand$s.char.colonshop_click_action_stock $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalMove all &$s.translation.color.$s.style.color.mark$s.translation.$arg2$s.char.colon$arg3;  &$s.translation.color.$s.style.color.normalfrom your inventory to;  &$s.translation.color.$s.style.color.normalthe shop''s stock'
+  # {Command:"/mycommand:code_menu shop_click_action_stock $s.general.code $mutliargs"}
+  - '2:WOOL:5:/mycommand$s.char.coloncode_menu shop_click_action_stock $s.general.code $multiargs:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleYes&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalMove all &$s.translation.color.$s.style.color.mark$s.translation.$arg2$s.char.colon$arg3;  &$s.translation.color.$s.style.color.normalfrom your inventory to;  &$s.translation.color.$s.style.color.normalthe shop''s stock'
   # {Command:""}
   - '6:WOOL:14::&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleNo&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalCancel adding stock;  &$s.translation.color.$s.style.color.normalto the shop'
   
@@ -285,8 +287,10 @@ shop_click_action_stock_confirm:
 ##############################################################################
 shop_click_action_stock:
   command: /shop_click_action_stock
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #              add stock              #
@@ -397,8 +401,10 @@ shop_click_action_stock:
 ##############################################################################
 shop_stock:
   command: /shop_stock
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = $PlayerData%$s.init.product.name%

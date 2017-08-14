@@ -3,8 +3,10 @@
 ##############################################################################
 shop_xp_create:
   command: /shop_xp_create
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   #######################################
   #           error messages            #
@@ -102,8 +104,10 @@ shop_xp_click:
 ##############################################################################
 shop_xp_click_sneakcheck:
   command: /shop_xp_click_sneakcheck
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64
@@ -364,8 +368,10 @@ shop_xp_click_action:
 ##############################################################################
 shop_xp_setting_autoclaimprofit:
   command: /shop_xp_setting_autoclaimprofit
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $player (buyer)
   # arg2 = 1 / 2 / 3 / ... / 62 / 63 / 64

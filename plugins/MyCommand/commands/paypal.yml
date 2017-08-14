@@ -71,8 +71,10 @@ paypal:
 ##############################################################################
 paypal_send:
   command: /paypal_send
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = (receiver)
   # arg2 = 1 / 2 / 3 ...
@@ -122,8 +124,10 @@ paypal_send:
 ##############################################################################
 paypal_reset_tan:
   command: /paypal_reset_tan
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player
   
@@ -139,9 +143,11 @@ paypal_reset_tan:
 ##############################################################################
 paypal_confirm_init:
   command: /paypal_confirm_init
-  type: RUN_CONSOLE
   error-message: '&$s.translation.color.$s.style.color.error /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>'
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = 000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999
   
@@ -230,8 +236,10 @@ paypal_confirm:
 ##############################################################################
 paypal_amount:
   command: /paypal_amount
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #               offline               #

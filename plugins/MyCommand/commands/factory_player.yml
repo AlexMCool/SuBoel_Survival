@@ -3,8 +3,10 @@
 ##############################################################################
 factory_player_calculation:
   command: /factory_player_calculation
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #            id available             #

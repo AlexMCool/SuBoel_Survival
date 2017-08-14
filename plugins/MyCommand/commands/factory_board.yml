@@ -3,8 +3,10 @@
 ############################################################################## 
 factory_board_create:
   command: /factory_board_create
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = east / north / south / west
   # arg2 = big / small
@@ -21,8 +23,10 @@ factory_board_create:
 ############################################################################## 
 factory_board_id_init:
   command: /factory_board_id_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = east / north / south / west
   # arg2 = big / small
@@ -38,8 +42,10 @@ factory_board_id_init:
 ##############################################################################
 factory_board_info_select:
   command: /factory_board_info_select
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:   
   #######################################
   #                east                 #
@@ -186,8 +192,10 @@ factory_board_info_select:
 ##############################################################################
 factory_board_print_init:
   command: /factory_board_print_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = east / north / south / west
   # arg2 = $s.factory.location.$locX,$locY,$locZ.id
@@ -207,8 +215,10 @@ factory_board_print_init:
 ############################################################################## 
 factory_board_word:
   command: /factory_board_word
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                east                 #
@@ -1043,8 +1053,10 @@ factory_board_name:
 ##############################################################################
 factory_board_text_init:
   command: /factory_board_text_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = east / north / south / west
   # arg2 = 0 / 1 / 2 / ... / 13 / 14 / 15
@@ -1091,8 +1103,10 @@ factory_board_text_init:
 ##############################################################################
 factory_board_letter_print:
   command: /factory_board_letter_print
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #             directions              #

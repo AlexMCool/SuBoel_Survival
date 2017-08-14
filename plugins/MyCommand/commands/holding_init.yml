@@ -59,8 +59,10 @@ holding_init:
 ##############################################################################
 holding_init_damage:
   command: /holding_init_damage
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = $player
   
@@ -124,8 +126,10 @@ holding_init_damage:
 
 holding_init_a:
   command: /holding_init_a
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_acacia_boat {SelectedItem:{id:"minecraft:acacia_boat"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_acacia_door {SelectedItem:{id:"minecraft:acacia_door"}}'
@@ -167,8 +171,10 @@ holding_init_a:
 
 holding_init_b:
   command: /holding_init_b
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_baked_potato {SelectedItem:{id:"minecraft:baked_potato"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_banner {SelectedItem:{id:"minecraft:banner"}}'
@@ -294,8 +300,10 @@ holding_init_b:
 
 holding_init_c:
   command: /holding_init_c
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_cactus {SelectedItem:{id:"minecraft:cactus"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_cake {SelectedItem:{id:"minecraft:cake"}}'
@@ -433,8 +441,10 @@ holding_init_c:
   
 holding_init_d:
   command: /holding_init_d
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_dark_oak_boat {SelectedItem:{id:"minecraft:dark_oak_boat"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_dark_oak_door {SelectedItem:{id:"minecraft:dark_oak_door"}}'
@@ -539,8 +549,10 @@ holding_init_d:
 
 holding_init_e:
   command: /holding_init_e
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_egg {SelectedItem:{id:"minecraft:egg"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_elytra {SelectedItem:{id:"minecraft:elytra"}}'
@@ -603,8 +615,10 @@ holding_init_e:
   
 holding_init_f:
   command: /holding_init_f
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_farmland {SelectedItem:{id:"minecraft:farmland"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_feather {SelectedItem:{id:"minecraft:feather"}}'
@@ -673,8 +687,10 @@ holding_init_f:
 
 holding_init_g:
   command: /holding_init_g
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_ghast_tear {SelectedItem:{id:"minecraft:ghast_tear"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_glass {SelectedItem:{id:"minecraft:glass"}}'
@@ -776,8 +792,10 @@ holding_init_g:
 
 holding_init_h:
   command: /holding_init_h
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_hardened_clay {SelectedItem:{id:"minecraft:hardened_clay"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_hay_block {SelectedItem:{id:"minecraft:hay_block"}}'
@@ -801,8 +819,10 @@ holding_init_h:
   
 holding_init_i:
   command: /holding_init_i
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_ice {SelectedItem:{id:"minecraft:ice"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_iron_axe {SelectedItem:{id:"minecraft:iron_axe"}}'
@@ -868,8 +888,10 @@ holding_init_i:
   
 holding_init_j:
   command: /holding_init_j
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_jukebox {SelectedItem:{id:"minecraft:jukebox"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_jungle_boat {SelectedItem:{id:"minecraft:jungle_boat"}}'
@@ -896,8 +918,10 @@ holding_init_j:
 
 holding_init_k:
   command: /holding_init_k
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - ''
 
@@ -907,8 +931,10 @@ holding_init_k:
   
 holding_init_l:
   command: /holding_init_l
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_ladder {SelectedItem:{id:"minecraft:ladder"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_lapis_block {SelectedItem:{id:"minecraft:lapis_block"}}'
@@ -998,8 +1024,10 @@ holding_init_l:
 
 holding_init_m:
   command: /holding_init_m
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_magenta_glazed_terracotta {SelectedItem:{id:"minecraft:magenta_glazed_terracotta"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_magenta_shulker_box {SelectedItem:{id:"minecraft:magenta_shulker_box"}}'
@@ -1059,8 +1087,10 @@ holding_init_m:
 
 holding_init_n:
   command: /holding_init_n
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_name_tag {SelectedItem:{id:"minecraft:name_tag"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_nether_brick {SelectedItem:{id:"minecraft:nether_brick"}}'
@@ -1099,8 +1129,10 @@ holding_init_n:
 
 holding_init_o:
   command: /holding_init_o
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_oak_stairs {SelectedItem:{id:"minecraft:oak_stairs"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_observer {SelectedItem:{id:"minecraft:observer"}}'
@@ -1124,8 +1156,10 @@ holding_init_o:
   
 holding_init_p:
   command: /holding_init_p
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_packed_ice {SelectedItem:{id:"minecraft:packed_ice"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_painting {SelectedItem:{id:"minecraft:painting"}}'
@@ -1227,8 +1261,10 @@ holding_init_p:
 
 holding_init_q:
   command: /holding_init_q
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_quartz {SelectedItem:{id:"minecraft:quartz"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_quartz_block {SelectedItem:{id:"minecraft:quartz_block"}}'
@@ -1249,8 +1285,10 @@ holding_init_q:
 
 holding_init_r:
   command: /holding_init_r
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_rabbit {SelectedItem:{id:"minecraft:rabbit"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_rabbit_foot {SelectedItem:{id:"minecraft:rabbit_foot"}}'
@@ -1364,8 +1402,10 @@ holding_init_r:
 
 holding_init_s:
   command: /holding_init_s
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_saddle {SelectedItem:{id:"minecraft:saddle"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_sand {SelectedItem:{id:"minecraft:sand"}}'
@@ -1533,8 +1573,10 @@ holding_init_s:
   
 holding_init_t:
   command: /holding_init_t
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_tallgrass {SelectedItem:{id:"minecraft:tallgrass"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_tipped_arrow {SelectedItem:{id:"minecraft:tipped_arrow"}}'
@@ -1570,8 +1612,10 @@ holding_init_t:
 
 holding_init_u:
   command: /holding_init_u
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_unlit_redstone_torch {SelectedItem:{id:"minecraft:unlit_redstone_torch"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_unpowered_comparator {SelectedItem:{id:"minecraft:unpowered_comparator"}}'
@@ -1589,8 +1633,10 @@ holding_init_u:
 
 holding_init_v:
   command: /holding_init_v
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_vine {SelectedItem:{id:"minecraft:vine"}}'
   - '$NoReplace/minecraft:execute @a[tag=item_vine] ~ ~ ~ /mycommand:mycmd-playerdata set $arg1 $s.init.product.name vine'
@@ -1602,8 +1648,10 @@ holding_init_v:
 
 holding_init_w:
   command: /holding_init_w
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_wall_banner {SelectedItem:{id:"minecraft:wall_banner"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_wall_sign {SelectedItem:{id:"minecraft:wall_sign"}}'
@@ -1678,8 +1726,10 @@ holding_init_w:
   
 holding_init_x:
   command: /holding_init_x
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - ''
 
@@ -1689,8 +1739,10 @@ holding_init_x:
 
 holding_init_y:
   command: /holding_init_y
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - '/minecraft:scoreboard players tag $arg1 add item_yellow_flower {SelectedItem:{id:"minecraft:yellow_flower"}}'
   - '/minecraft:scoreboard players tag $arg1 add item_yellow_glazed_terracotta {SelectedItem:{id:"minecraft:yellow_glazed_terracotta"}}'
@@ -1708,7 +1760,9 @@ holding_init_y:
   
 holding_init_z:
   command: /holding_init_z
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   - ''

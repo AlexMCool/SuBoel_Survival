@@ -3,8 +3,10 @@
 ##############################################################################
 factory_item_spawn:
   command: /factory_item_spawn
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd: 
   # arg1 = (factory_id)
   
@@ -21,8 +23,10 @@ factory_item_spawn:
 ##############################################################################
 factory_item_spawn_hopper:
   command: /factory_item_spawn_hopper
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (factory_id)
   # arg2 = (order_number)
@@ -47,10 +51,12 @@ factory_item_spawn_hopper:
 ##############################################################################
 factory_item_spawn_recur:
   command: /factory_item_spawn_recur
-  type: RUN_CONSOLE
-  register: true
   delaytimer: 1
   delaytimer_format: TICKS
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = (factory_id)
   # arg2 = (order_number)

@@ -3,8 +3,10 @@
 ##############################################################################
 factory_item_change:
   command: /factory_item_change
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = (factory_id)
   # arg2 = (factory_owner)
@@ -33,8 +35,10 @@ factory_item_change:
 ##############################################################################
 factory_item_change_delay:
   command: /factory_item_change_delay
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = (factory_id)
   # arg2 = $s.general.time (for some reason just "$s.general.time" didn't work, but when it's in a arg value, it does)

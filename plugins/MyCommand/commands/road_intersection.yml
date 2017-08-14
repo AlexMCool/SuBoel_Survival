@@ -3,8 +3,10 @@
 ##############################################################################
 road_intersection_create:
   command: /road_intersection_create
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                setup                #
@@ -937,8 +939,10 @@ road_intersection_create:
 ##############################################################################
 road_intersection_check_road:
   command: /road_intersection_check_road
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #                reset                #
@@ -1217,8 +1221,10 @@ road_intersection_check_road:
 ##############################################################################
 road_intersection_option:
   command: /road_intersection_option
-  type: RUN_CONSOLE
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_CONSOLE
   runcmd:
   # arg1 = 1 / 2 / 4 / 8
   
@@ -1234,8 +1240,10 @@ road_intersection_option:
 ##############################################################################
 road_intersection_check_id:
   command: /road_intersection_check_id
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   # arg1 = $locX
   # arg2 = $locY
@@ -1260,8 +1268,10 @@ road_intersection_check_id:
 ##############################################################################
 road_intersection_init:
   command: /road_intersection_init
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #              location               #
@@ -1320,8 +1330,10 @@ road_intersection_init:
 ##############################################################################
 road_intersection_info:
   command: /road_intersection_info
-  type: RUN_AS_OPERATOR
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
   register: true
+  type: RUN_AS_OPERATOR
   runcmd:
   #######################################
   #              location               #

@@ -3,9 +3,11 @@
 ############################################################################## 
 factory_upgrade_init_lack:
   command: /factory_upgrade_init_lack
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
   # note: run console
   type: RUN_CONSOLE
-  register: true
   runcmd:
   # arg1 = $arg1 
   # arg2 = $arg2 
@@ -37,9 +39,11 @@ factory_upgrade_init_lack:
 ############################################################################## 
 factory_upgrade_init_obtained:
   command: /factory_upgrade_init_obtained
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
   # note: run console
   type: RUN_CONSOLE
-  register: true
   runcmd:
   # arg1 = $player
   # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
