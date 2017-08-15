@@ -1,0 +1,2 @@
+fill ~-7 ~3 ~-29 ~6 ~7 ~-3 minecraft:wooden_button facing=down,powered=false replace minecraft:wooden_button facing=down,powered=true
+blockdata ~ ~ ~ {Command:"minecraft:function suboel:factory/lights/bottom/south_on"}
