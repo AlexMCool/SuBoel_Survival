@@ -57,6 +57,12 @@ advancements_reset:
   - '/minecraft:advancement revoke $player only suboel:init/location_advancements'
   - '/minecraft:advancement revoke $player only suboel:init/run_run_run'
   
+  - '/minecraft:advancement revoke $player only suboel:paypal/donating_to_charity'
+  - '/minecraft:advancement revoke $player only suboel:paypal/hand_over_the_money'
+  - '/minecraft:advancement revoke $player only suboel:paypal/im_sure'
+  - '/minecraft:advancement revoke $player only suboel:paypal/sharing_is_caring'
+  - '/minecraft:advancement revoke $player only suboel:paypal/sharing_is_confirming'
+  
   - '/minecraft:scoreboard players reset $player sadChangeProduct'
   - '/minecraft:scoreboard players reset $player sadColored'
   - '/minecraft:scoreboard players reset $player sadElevator'
