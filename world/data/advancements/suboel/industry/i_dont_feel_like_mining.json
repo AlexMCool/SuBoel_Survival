@@ -1,12 +1,15 @@
 {
     "criteria": {
-        "impossible": {
+        "farm_mine_product_1": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_mine_product_2": {
             "trigger": "minecraft:impossible"
         }
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Farm both diamonds and iron",
+        "description": "Produce both diamonds and iron simultaneously",
         "title": "I Don't Feel Like Mining",
         "frame": "challenge",
         "hidden": true,

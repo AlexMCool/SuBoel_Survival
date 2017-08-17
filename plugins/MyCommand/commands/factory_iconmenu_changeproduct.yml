@@ -33,8 +33,8 @@ factory_iconmenu_changeproduct_init:
   # calculate minutes and seconds left
   - '/mycommand:factory_iconmenu_changeproduct_init_time $player'   
   
-  # "[Factory] You need to wait x minute(s) and x second(s) to be able to change the item of this factory again"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to wait"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.minutes%"},{"bold":"false","color":"gray","text":" minute(s) and"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.seconds%"},{"bold":"false","color":"gray","text":" second(s) to be able to change the item of this factory again"}]'
+  # "[Factory] You need to wait x minute(s) and x second(s) to be able to change the product of this factory again"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" You need to wait"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.minutes%"},{"bold":"false","color":"gray","text":" minute(s) and"},{"bold":"false","color":"dark_aqua","text":" $PlayerData%$s.init.factory.change_delay.rounded.seconds%"},{"bold":"false","color":"gray","text":" second(s) to be able to change the product of this factory again"}]'
 
   #######################################
   #              low level              #

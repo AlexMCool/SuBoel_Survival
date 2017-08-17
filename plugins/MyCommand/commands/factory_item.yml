@@ -7,24 +7,458 @@ factory_item_change:
   permission-required: false
   register: true
   type: RUN_AS_OPERATOR
-  runcmd:
+  runcmd:  
+  #######################################
+  #             old product             #
+  ####################################### 
   # arg1 = (factory_id)
   # arg2 = (factory_owner)
   # arg3 = (factory_level)
   # arg4 = (item_name)
   # arg5 = (damage_value)
   
-  # set correct delay
-  - '/mycommand:factory_item_delay_init $arg1 $arg2 $arg3 $arg4 $arg5'
+  #######################
+  #    change count     #
+  #######################  
+  # check if product is being changed
+  - '$Script$%if%$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage!=none:none'
+  
+  # add to players' score
+  - '/minecraft:scoreboard players add $player sadChangeProduct 1'
+  
+  #######################
+  #i_dont_feel_like_mining#
+  #######################  
+  # check if old product was a product for i_dont_feel_like_mining
+  - '$Script$%if%$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==diamond:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==iron_ingot:0'
+  
+  # setup stats
+  - '/minecraft:scoreboard players set $player sadCheck 0'
+  - '/minecraft:stats entity $player set SuccessCount $player sadCheck'
+  
+  # get stats score
+  - '/minecraft:advancement test $player suboel:industry/i_dont_feel_like_mining'
+  - '/minecraft:stats entity $player clear SuccessCount'
+  
+  # remove score
+  - '/minecraft:scoreboard players remove @a[name=$player,score_sadCheck=0] sadNoMining 1'
+  
+  # grant and revoke criteria
+  # 0
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=0,score_sadNoMining_min=0] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=0,score_sadNoMining_min=0] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  # 1
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=1,score_sadNoMining_min=1] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=1,score_sadNoMining_min=1] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  # 2
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=2,score_sadNoMining_min=2] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=2,score_sadNoMining_min=2] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  
+  # reset stats score
+  - '/minecraft:scoreboard players reset $player sadCheck'
+  
+  #######################
+  #the_redstone_scientist#
+  #######################  
+  # check if old product was a product for the_redstone_scientist
+  - '$Script$%if%$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==activator_rail:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==comparator:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==daylight_detector:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==detector_rail:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==dispenser:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==dropper:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==golden_rail:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==heavy_weighted_pressure_plate:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==hopper:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==iron_door:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==iron_trapdoor:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==jukebox:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==lever:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==light_weihted_pressure_plate:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==noteblock:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==observer:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==piston:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==redstone:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==redstone_block:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==redstone_lamp:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==redstone_ore:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==redstone_torch:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==repeater:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==sticky_piston:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==stone_button:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==tnt:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==trapped_chest:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==tripwire_hook:0<or>$s.factory.id.$arg1.product.name:$s.factory.id.$arg1.product.damage==wooden_button:0'
+  
+  # setup stats
+  - '/minecraft:scoreboard players set $player sadCheck 0'
+  - '/minecraft:stats entity $player set SuccessCount $player sadCheck'
+  
+  # get stats score
+  - '/minecraft:advancement test $player suboel:industry/the_redstone_scientist'
+  - '/minecraft:stats entity $player clear SuccessCount'
+  
+  # remove score
+  - '/minecraft:scoreboard players remove @a[name=$player,score_sadCheck=0] sadRedstone 1'
+  
+  # grant and revoke criteria
+  # 0
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 1
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 2
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 3
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 4
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 5
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 6
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 7
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 8
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 9
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 10
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  
+  # reset stats score
+  - '/minecraft:scoreboard players reset $player sadCheck'
+
+  #######################################
+  #             new product             #
+  ####################################### 
+  # arg1 = (factory_id)
+  # arg2 = (factory_owner)
+  # arg3 = (factory_level)
+  # arg4 = (item_name)
+  # arg5 = (damage_value)
+  - '$Script$%if%always==always'
   
   # set variables for factory
   - '$Script$%Variable%$s.factory.id.$arg1.product.damage=$arg5'
   - '$Script$%Variable%$s.factory.id.$arg1.product.name=$arg4'
+  
+  # set correct delay
+  - '/mycommand:factory_item_delay_init $arg1 $arg2 $arg3 $arg4 $arg5'
+  
   # manage cooldown
   - '/mycommand:factory_item_change_delay $arg1 $s.general.time'
   
   # "[Factory] The factory will now produce x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory will now produce"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg4:$arg5"}]'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/let_the_gears_roll'
+  
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$player,score_sadChangeProduct_min=30,score_sadChangeProduct=30] only suboel:industry/make_up_your_mind'
+  
+  #######################
+  #i_dont_feel_like_mining#
+  #######################  
+  # check if new product is a product for i_dont_feel_like_mining
+  - '$Script$%if%$arg4:$arg5==diamond:0<or>$arg4:$arg5==iron_ingot:0'
+  
+  # setup stats
+  - '/minecraft:scoreboard players set $player sadCheck 0'
+  - '/minecraft:stats entity $player set SuccessCount $player sadCheck'
+  
+  # get stats score
+  - '/minecraft:advancement test $player suboel:industry/i_dont_feel_like_mining'
+  - '/minecraft:stats entity $player clear SuccessCount'
+  
+  # add score
+  - '/minecraft:scoreboard players add @a[name=$player,score_sadCheck=0] sadNoMining 1'
+  
+  # grant and revoke criteria
+  # 0
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=0,score_sadNoMining_min=0] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=0,score_sadNoMining_min=0] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  # 1
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadNoMining=1,score_sadNoMining_min=1] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=1,score_sadNoMining_min=1] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  # 2
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=2,score_sadNoMining_min=2] only suboel:industry/i_dont_feel_like_mining farm_mine_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadNoMining=2,score_sadNoMining_min=2] only suboel:industry/i_dont_feel_like_mining farm_mine_product_1'
+  
+  # reset stats score
+  - '/minecraft:scoreboard players reset $player sadCheck'
+  
+  #######################
+  #   world_of_color    #
+  #######################  
+  # check if new product is a product for world_of_color
+  - '$Script$%if%$arg4==banner<or>$arg4==bed<or>$arg4==black_glazed_terracotta<or>$arg4==black_shulker_box<or>$arg4==brown_glazed_terracotta<or>$arg4==brown_shulker_box<or>$arg4==carpet<or>$arg4==concrete<or>$arg4==concrete_powder<or>$arg4==cyan_glazed_terracotta<or>$arg4==cyan_shulker_box<or>$arg4==dark_blue_glazed_terracotta<or>$arg4==dark_blue_shulker_box<or>$arg4==dye<or>$arg4==gray_glazed_terracotta<or>$arg4==gray_shulker_box<or>$arg4==green_glazed_terracotta<or>$arg4==green_shulker_box<or>$arg4==light_blue_glazed_terracotta<or>$arg4==light_blue_shulker_box<or>$arg4==lime_glazed_terracotta<or>$arg4==lime_shulker_box<or>$arg4==magenta_glazed_terracotta<or>$arg4==magenta_shulker_box<or>$arg4==orange_glazed_terracotta<or>$arg4==orange_shulker_box<or>$arg4==pink_glazed_terracotta<or>$arg4==pink_shulker_box<or>$arg4==purple_glazed_terracotta<or>$arg4==purple_shulker_box<or>$arg4==red_glazed_terracotta<or>$arg4==red_shulker_box<or>$arg4==silver_glazed_terracotta<or>$arg4==silver_shulker_box<or>$arg4==stained_glass<or>$arg4==stained_glass_pane<or>$arg4==stained_hardened_clay<or>$arg4==white_glazed_terracotta<or>$arg4==white_shulker_box<or>$arg4==wool<or>$arg4==yellow_glazed_terracotta<or>$arg4==yellow_shulker_box'
+  
+  # add score
+  - '/minecraft:scoreboard players add $player sadColored 1'
+  
+  # grant criteria
+  # 1
+  - '/minecraft:advancement grant @a[name=$player,score_sadColored=1,score_sadColored_min=1] only suboel:industry/world_of_color farm_colored_product_1'
+  # 2
+  - '/minecraft:advancement grant @a[name=$player,score_sadColored=2,score_sadColored_min=2] only suboel:industry/world_of_color farm_colored_product_2'
+  # 3
+  - '/minecraft:advancement grant @a[name=$player,score_sadColored=3,score_sadColored_min=3] only suboel:industry/world_of_color farm_colored_product_3'
+  # 4
+  - '/minecraft:advancement grant @a[name=$player,score_sadColored=4,score_sadColored_min=4] only suboel:industry/world_of_color farm_colored_product_4'
+  # 5
+  - '/minecraft:advancement grant @a[name=$player,score_sadColored=5,score_sadColored_min=5] only suboel:industry/world_of_color farm_colored_product_5'
+  
+  #######################
+  #the_redstone_scientist#
+  #######################  
+  # check if old product was a product for the_redstone_scientist
+  - '$Script$%if%$arg4:$arg5==activator_rail:0<or>$arg4:$arg5==comparator:0<or>$arg4:$arg5==daylight_detector:0<or>$arg4:$arg5==detector_rail:0<or>$arg4:$arg5==dispenser:0<or>$arg4:$arg5==dropper:0<or>$arg4:$arg5==golden_rail:0<or>$arg4:$arg5==heavy_weighted_pressure_plate:0<or>$arg4:$arg5==hopper:0<or>$arg4:$arg5==iron_door:0<or>$arg4:$arg5==iron_trapdoor:0<or>$arg4:$arg5==jukebox:0<or>$arg4:$arg5==lever:0<or>$arg4:$arg5==light_weihted_pressure_plate:0<or>$arg4:$arg5==noteblock:0<or>$arg4:$arg5==observer:0<or>$arg4:$arg5==piston:0<or>$arg4:$arg5==redstone:0<or>$arg4:$arg5==redstone_block:0<or>$arg4:$arg5==redstone_lamp:0<or>$arg4:$arg5==redstone_ore:0<or>$arg4:$arg5==redstone_torch:0<or>$arg4:$arg5==repeater:0<or>$arg4:$arg5==sticky_piston:0<or>$arg4:$arg5==stone_button:0<or>$arg4:$arg5==tnt:0<or>$arg4:$arg5==trapped_chest:0<or>$arg4:$arg5==tripwire_hook:0<or>$arg4:$arg5==wooden_button:0'
+  
+  # setup stats
+  - '/minecraft:scoreboard players set $player sadCheck 0'
+  - '/minecraft:stats entity $player set SuccessCount $player sadCheck'
+  
+  # get stats score
+  - '/minecraft:advancement test $player suboel:industry/the_redstone_scientist'
+  - '/minecraft:stats entity $player clear SuccessCount'
+  
+  # add score
+  - '/minecraft:scoreboard players add @a[name=$player,score_sadCheck=0] sadRedstone 1'
+  
+  # grant and revoke criteria
+  # 0
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=0,score_sadRedstone_min=0] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 1
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=1,score_sadRedstone_min=1] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 2
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=2,score_sadRedstone_min=2] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 3
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=3,score_sadRedstone_min=3] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 4
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=4,score_sadRedstone_min=4] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 5
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=5,score_sadRedstone_min=5] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 6
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=6,score_sadRedstone_min=6] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 7
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=7,score_sadRedstone_min=7] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 8
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=8,score_sadRedstone_min=8] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 9
+  - '/minecraft:advancement revoke @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=9,score_sadRedstone_min=9] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  # 10
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_10'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_9'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_8'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_7'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_6'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_5'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_4'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_3'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_2'
+  - '/minecraft:advancement grant @a[name=$player,score_sadCheck=0,score_sadRedstone=10,score_sadRedstone_min=10] only suboel:industry/the_redstone_scientist farm_redstone_product_1'
+  
+  # reset stats score
+  - '/minecraft:scoreboard players reset $player sadCheck'
+  
+  #######################
+  #why_would_you_produce_that#
+  #######################  
+  # check if old product was a product for why_would_you_produce_that
+  - '$Script$%if%$arg4:$arg5==acacia_boat:0<or>$arg4:$arg5==acacia_door:0<or>$arg4==bed<or>$arg4:$arg5==beetroot_seeds:0<or>$arg4:$arg5==birch_boat:0<or>$arg4:$arg5==birch_door:0<or>$arg4:$arg5==boat:0<or>$arg4:$arg5==bowl:0<or>$arg4:$arg5==carrot_on_a_stick:0<or>$arg4:$arg5==cauldron:0<or>$arg4:$arg5==clock:0<or>$arg4:$arg5==compass:0<or>$arg4:$arg5==dark_oak_boat:0<or>$arg4:$arg5==dark_oak_door:0<or>$arg4:$arg5==deadbush:0<or>$arg4:$arg5==fishing_rod:0<or>$arg4:$arg5==flower_pot:0<or>$arg4:$arg5==heavy_weighted_pressure_plate:0<or>$arg4:$arg5==jungle_boat:0<or>$arg4:$arg5==jungle_door:0<or>$arg4:$arg5==light_weighted_pressure_plate:0<or>$arg4:$arg5==melon_seeds:0<or>$arg4:$arg5==pumpkin_seeds:0<or>$arg4:$arg5==snowball:0<or>$arg4:$arg5==spruce_boat:0<or>$arg4:$arg5==spruce_door:0<or>$arg4:$arg5==stick:0<or>$arg4:$arg5==stone_button:0<or>$arg4:$arg5==stone_pressure_plate:0<or>$arg4:$arg5==wheat_seeds:0<or>$arg4:$arg5==wooden_button:0<or>$arg4:$arg5==wooden_door:0<or>$arg4:$arg5==wooden_pressure_plate:0'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/why_would_you_produce_that'
+  
+  #######################
+  #better_than_broiler_chickens#
+  #######################  
+  # check if old product was a product for better_than_broiler_chickens
+  - '$Script$%if%$arg4:$arg5==chicken:0<or>$arg4:$arg5==cooked_chicken:0'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/better_than_broiler_chickens'
+  
+  #######################
+  #stop_the_deforestation#
+  #######################  
+  # check if old product was a product for stop_the_deforestation
+  - '$Script$%if%$arg4==log<or>$arg4==log2<or>$arg4==planks'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/stop_the_deforestation'
+  
+  #######################
+  #the_most_valuable_block#
+  #######################  
+  # check if old product was a product for the_most_valuable_block
+  - '$Script$%if%$arg4:$arg5==stone:0'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/the_most_valuable_block'
   
   
   

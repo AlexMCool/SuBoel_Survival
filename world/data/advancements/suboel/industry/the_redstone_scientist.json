@@ -1,12 +1,39 @@
 {
     "criteria": {
-        "impossible": {
+		"farm_redstone_product_1": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_2": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_3": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_4": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_5": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_6": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_7": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_8": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_9": {
+            "trigger": "minecraft:impossible"
+        },
+		"farm_redstone_product_10": {
             "trigger": "minecraft:impossible"
         }
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Farm 10 redstone components",
+        "description": "Produce 10 redstone components simultaneously",
         "title": "The Redstone Scientist",
         "frame": "challenge",
         "hidden": false,
@@ -16,5 +43,4 @@
         "show_toast": true
     },
     "parent": "suboel:industry/time_for_family_planning"
-    
 }

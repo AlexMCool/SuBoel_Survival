@@ -6,15 +6,14 @@
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Produce chicken",
-        "title": "Better Than Broiler Chickens",
+        "description": "Toggle the lights at the first story 50 times",
+        "title": "Button Crusher",
         "frame": "challenge",
-        "hidden": false,
+        "hidden": true,
         "icon": {
-            "item": "minecraft:chicken"
+            "item": "minecraft:wooden_button"
         },
         "show_toast": true
     },
-    "parent": "suboel:industry/let_the_gears_roll"
-    
+    "parent": "suboel:industry/unlock_the_doors"
 }

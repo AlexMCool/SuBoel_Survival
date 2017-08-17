@@ -8,6 +8,10 @@
 PlayerJoin:
   active: true
   execute:
+  - '/minecraft:advancement grant $player only suboel:business/root'
+  - '/minecraft:advancement grant $player only suboel:industry/root'
+  - '/minecraft:advancement grant $player only suboel:paypal/root'
+  - '/minecraft:advancement grant $player only suboel:suboel/root'
   - '/mycommand:code paypal_received_check $s.general.code'
   - '/mycommand:code name_change_check $s.general.code $uuid'
 
@@ -19,7 +23,7 @@ PlayerKick:
 PlayerQuit:
   active: false
   execute:
-  - '$broadcasttext$&e$player &6leaved the server.'
+  - ''
 
 PlayerRespawn:
   active: false

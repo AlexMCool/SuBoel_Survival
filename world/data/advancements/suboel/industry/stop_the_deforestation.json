@@ -6,7 +6,7 @@
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Farm some kind of wood",
+        "description": "Produce some kind of wood",
         "title": "Stop The Deforestation",
         "frame": "challenge",
         "hidden": false,

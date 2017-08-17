@@ -1,0 +1,142 @@
+##############################################################################
+#                             advancements reset                             #
+##############################################################################
+advancements_reset:
+  command: /advancements_reset
+  execute_mode: NORMAL
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  - '/minecraft:advancement grant $player from suboel:industry/root'
+  
+  - '/minecraft:advancement revoke $player only suboel:industry/automation_is_very_vine'
+  - '/minecraft:advancement revoke $player only suboel:industry/better_than_broiler_chickens'
+  - '/minecraft:advancement revoke $player only suboel:industry/button_crusher'
+  - '/minecraft:advancement revoke $player only suboel:industry/do_you_even_sleep'
+  - '/minecraft:advancement revoke $player only suboel:industry/dont_jump'
+  - '/minecraft:advancement revoke $player only suboel:industry/factory_obsession'
+  - '/minecraft:advancement revoke $player only suboel:industry/family_planning_didnt_work_out'
+  - '/minecraft:advancement revoke $player only suboel:industry/global_warming_is_a_myth_right'
+  - '/minecraft:advancement revoke $player only suboel:industry/i_dont_feel_like_mining'
+  - '/minecraft:advancement revoke $player only suboel:industry/industrial_revolution'
+  - '/minecraft:advancement revoke $player only suboel:industry/its_a_boy'
+  - '/minecraft:advancement revoke $player only suboel:industry/its_a_girl'
+  - '/minecraft:advancement revoke $player only suboel:industry/its_getting_hot_out_here'
+  - '/minecraft:advancement revoke $player only suboel:industry/just_spam_the_lever'
+  - '/minecraft:advancement revoke $player only suboel:industry/keep_the_mexicans_out'
+  - '/minecraft:advancement revoke $player only suboel:industry/lead_the_way'
+  - '/minecraft:advancement revoke $player only suboel:industry/let_the_gears_roll'
+  - '/minecraft:advancement revoke $player only suboel:industry/light_up_my_world'
+  - '/minecraft:advancement revoke $player only suboel:industry/make_up_your_mind'
+  - '/minecraft:advancement revoke $player only suboel:industry/maniac'
+  - '/minecraft:advancement revoke $player only suboel:industry/no_parking_in_handicapped_spots'
+  - '/minecraft:advancement revoke $player only suboel:industry/nolifer'
+  - '/minecraft:advancement revoke $player only suboel:industry/one_can_never_have_enough_co2'
+  - '/minecraft:advancement revoke $player only suboel:industry/plot_twist'
+  - '/minecraft:advancement revoke $player only suboel:industry/run_run_run'
+  - '/minecraft:advancement revoke $player only suboel:industry/save_yourself'
+  - '/minecraft:advancement revoke $player only suboel:industry/sign_of_greatness'
+  - '/minecraft:advancement revoke $player only suboel:industry/stairs_are_for_healthy_people'
+  - '/minecraft:advancement revoke $player only suboel:industry/stop_the_deforestation'
+  - '/minecraft:advancement revoke $player only suboel:industry/thats_a_fancy_door'
+  - '/minecraft:advancement revoke $player only suboel:industry/the_most_valuable_block'
+  - '/minecraft:advancement revoke $player only suboel:industry/the_redstone_scientist'
+  - '/minecraft:advancement revoke $player only suboel:industry/there_isnt_enough_co2_already'
+  - '/minecraft:advancement revoke $player only suboel:industry/they_grow_so_fast'
+  - '/minecraft:advancement revoke $player only suboel:industry/time_for_family_planning'
+  - '/minecraft:advancement revoke $player only suboel:industry/too_lazy_to_walk'
+  - '/minecraft:advancement revoke $player only suboel:industry/unlock_the_doors'
+  - '/minecraft:advancement revoke $player only suboel:industry/we_need_to_build_a_wall'
+  - '/minecraft:advancement revoke $player only suboel:industry/we_need_to_go_higher'
+  - '/minecraft:advancement revoke $player only suboel:industry/why_would_you_produce_that'
+  - '/minecraft:advancement revoke $player only suboel:industry/world_of_color'
+  - '/minecraft:advancement revoke $player only suboel:industry/you_like_buttons_dont_you'
+  - '/minecraft:advancement revoke $player only suboel:industry/youre_off_the_naughty_list'
+  - '/minecraft:advancement revoke $player only suboel:industry/youre_on_the_naughty_list'
+  
+  - '/minecraft:advancement revoke $player only suboel:init/location_advancements'
+  - '/minecraft:advancement revoke $player only suboel:init/run_run_run'
+  
+  - '/minecraft:scoreboard players reset $player sadChangeProduct'
+  - '/minecraft:scoreboard players reset $player sadColored'
+  - '/minecraft:scoreboard players reset $player sadElevator'
+  - '/minecraft:scoreboard players reset $player sadGarage'
+  - '/minecraft:scoreboard players reset $player sadLightsBottom'
+  - '/minecraft:scoreboard players reset $player sadLightsTop'
+  - '/minecraft:scoreboard players reset $player sadLightsSmall'
+  - '/minecraft:scoreboard players reset $player sadNoMining'
+  - '/minecraft:scoreboard players reset $player sadRedstone'
+  
+  
+  
+  
+  
+##############################################################################
+#                         advancements factorycount                          #
+##############################################################################
+advancements_factorycount:
+  command: /advancements_factorycount
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # 2 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.2.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/its_a_girl'
+  
+  # 5 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.5.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/automation_is_very_vine'
+  
+  # 10 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.10.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/time_for_family_planning'
+  
+  # 15 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.15.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/there_isnt_enough_co2_already'
+  
+  # 20 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.20.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/one_can_never_have_enough_co2'
+  
+  # 25 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.25.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/global_warming_is_a_myth_right'
+  
+  # 30 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.30.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/family_planning_didnt_work_out'
+  
+  # 35 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.35.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/industrial_revolution'
+  
+  # 40 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.40.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/factory_obsession'
+  
+  # 45 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.45.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/maniac'
+  
+  # 50 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.50.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/nolifer'
+  
+  # 54 factories
+  - '$Script$%if%$PlayerData%$s.factory.factory_id.54.id%!=NoData'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/do_you_even_sleep'

@@ -36,6 +36,8 @@ factory_random:
   - '/multiverse-core:mvtp $player e:$PlayerData%$s.init.location.world%:$PlayerData%$s.init.location.x%.5,$PlayerData%$s.init.location.y%.5,$PlayerData%$s.init.location.z%.5:$PlayerData%$s.init.location.rotation.pitch%:$PlayerData%$s.init.location.rotation.yaw%'
   # "[Factory] Successfully claimed a new factory plot"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" claimed a new factory plot"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/plot_twist'
   
   
   

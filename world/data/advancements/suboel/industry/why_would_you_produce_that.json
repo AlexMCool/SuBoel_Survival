@@ -1,17 +1,17 @@
 {
     "criteria": {
-        "impossible": {
+        "farm_useless_product_1": {
             "trigger": "minecraft:impossible"
         }
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Produce chicken",
-        "title": "Better Than Broiler Chickens",
+        "description": "Produce a useless product",
+        "title": "Why Would You Produce That?!",
         "frame": "challenge",
-        "hidden": false,
+        "hidden": true,
         "icon": {
-            "item": "minecraft:chicken"
+            "item": "minecraft:bowl"
         },
         "show_toast": true
     },

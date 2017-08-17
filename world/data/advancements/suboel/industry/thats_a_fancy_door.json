@@ -6,7 +6,7 @@
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Open the garage door 10 times",
+        "description": "Open the garage door 20 times",
         "title": "That's A Fancy Door",
         "frame": "challenge",
         "hidden": true,
