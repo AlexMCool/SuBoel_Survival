@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Share money (/paypal confirm)",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:concrete_powder",
+			"data": 5
+        },
+        "show_toast": true,
+        "title": "Sharing Is Confirming"
+    },
+    "parent": "suboel:paypal/sharing_is_caring"
+}
