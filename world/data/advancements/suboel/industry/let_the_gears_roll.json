@@ -6,7 +6,7 @@
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Produce your first item",
+        "description": "Produce your first product",
         "title": "Let The Gears Roll",
         "frame": "task",
         "hidden": false,

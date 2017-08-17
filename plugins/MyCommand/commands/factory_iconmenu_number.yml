@@ -16,7 +16,7 @@ factory_iconmenu_0:
   # arg54 = $PlayerData%$s.factory.factory_id.54.id%
   
   # {Command:"/mycommand:code_menu factory_iconmenu_checktype $s.general.code $s.factory.id.$arg1.tp.x $s.factory.id.$arg1.tp.y $s.factory.id.$arg1.tp.z $s.factory.id.$arg1.level.next $s.factory.id.$arg1.status $s.factory.id.$arg1.location.x $s.factory.id.$arg1.location.y $s.factory.id.$arg1.location.z $arg1"}
-  - '8:CLAY_BRICK:0:/mycommand$s.char.coloncode_menu factory_random $s.general.code:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleClaim New Factory Plot&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalClaim a new and empty;  &$s.translation.color.$s.style.color.normalfactory plot'
+  - '8:CLAY_BRICK:0:/mycommand$s.char.coloncode_menu factory_random $s.general.code none:&$s.translation.color.$s.style.color.mark&l<&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l[&$s.translation.color.$s.style.color.titleClaim New Factory Plot&$s.translation.color.$s.style.color.mark&l]&$s.translation.color.$s.style.color.light_mark&m---&$s.translation.color.$s.style.color.mark&l>:&$s.translation.color.$s.style.color.mark> &$s.translation.color.$s.style.color.normalClaim a new and empty;  &$s.translation.color.$s.style.color.normalfactory plot'
   
   
   

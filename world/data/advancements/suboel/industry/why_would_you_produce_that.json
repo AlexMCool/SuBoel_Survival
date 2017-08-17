@@ -1,20 +1,20 @@
 {
     "criteria": {
-        "impossible": {
+        "farm_useless_product_1": {
             "trigger": "minecraft:impossible"
         }
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Visit someone else's factory",
-        "title": "Is Anybody Home?",
+        "description": "Produce a useless product",
+        "title": "Why Would You Produce That?!",
         "frame": "challenge",
         "hidden": true,
         "icon": {
-            "item": "minecraft:spruce_door"
+            "item": "minecraft:bowl"
         },
         "show_toast": true
     },
-    "parent": "suboel:industry/plot_twist"
+    "parent": "suboel:industry/let_the_gears_roll"
     
 }

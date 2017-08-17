@@ -1,0 +1,25 @@
+{
+    "criteria": {
+        "enter_block": {
+            "conditions": {
+                "block": "structure_void"
+            },
+            "trigger": "minecraft:enter_block"
+        }
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Triggers function when standing in a structure void",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:structure_void"
+        },
+        "show_toast": false,
+	    "title": "Location Advancements"
+    },
+    "parent": "suboel:init/root",
+    "rewards": {
+        "function": "suboel:init/location_advancements"
+    }
+}

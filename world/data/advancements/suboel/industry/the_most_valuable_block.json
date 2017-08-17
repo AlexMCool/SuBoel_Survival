@@ -6,7 +6,7 @@
     },
 	"display": {
         "announce_to_chat": true,
-        "description": "Farm stone",
+        "description": "Produce stone",
         "title": "THE MOST VALUABLE BLOCK!!!",
         "frame": "challenge",
         "hidden": true,

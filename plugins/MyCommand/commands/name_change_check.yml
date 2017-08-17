@@ -18,6 +18,16 @@ name_change_check:
 
   - '/minecraft:scoreboard players reset $player saCooldown'
   
+  - '/minecraft:scoreboard players reset $player sadChangeProduct'
+  - '/minecraft:scoreboard players reset $player sadColored'
+  - '/minecraft:scoreboard players reset $player sadElevator'
+  - '/minecraft:scoreboard players reset $player sadGarage'
+  - '/minecraft:scoreboard players reset $player sadLightsBottom'
+  - '/minecraft:scoreboard players reset $player sadLightsTop'
+  - '/minecraft:scoreboard players reset $player sadLightsSmall'
+  - '/minecraft:scoreboard players reset $player sadNoMining'
+  - '/minecraft:scoreboard players reset $player sadRedstone'
+  
   - '/minecraft:scoreboard players reset $player sstAnimalsBred'
   - '/minecraft:scoreboard players reset $player sstArmorCleaned'
   - '/minecraft:scoreboard players reset $player sstBannersCleaned'
@@ -77,6 +87,18 @@ name_change_check:
   
   # operation
   - '/minecraft:scoreboard players operation $player ssCoins = $PlayerData%$s.name% ssCoins'
+
+  - '/minecraft:scoreboard players operation $player saCooldown = $PlayerData%$s.name% saCooldown'
+  
+  - '/minecraft:scoreboard players operation $player sadChangeProduct = $PlayerData%$s.name% sadChangeProduct'
+  - '/minecraft:scoreboard players operation $player sadColored = $PlayerData%$s.name% sadColored'
+  - '/minecraft:scoreboard players operation $player sadElevator = $PlayerData%$s.name% sadElevator'
+  - '/minecraft:scoreboard players operation $player sadGarage = $PlayerData%$s.name% sadGarage'
+  - '/minecraft:scoreboard players operation $player sadLightsBottom = $PlayerData%$s.name% sadLightsBottom'
+  - '/minecraft:scoreboard players operation $player sadLightsTop = $PlayerData%$s.name% sadLightsTop'
+  - '/minecraft:scoreboard players operation $player sadLightsSmall = $PlayerData%$s.name% sadLightsSmall'
+  - '/minecraft:scoreboard players operation $player sadNoMining = $PlayerData%$s.name% sadNoMining'
+  - '/minecraft:scoreboard players operation $player sadRedstone = $PlayerData%$s.name% sadRedstone'
   
   - '/minecraft:scoreboard players operation $player sstAnimalsBred = $PlayerData%$s.name% sstAnimalsBred'
   - '/minecraft:scoreboard players operation $player sstArmorCleaned = $PlayerData%$s.name% sstArmorCleaned'
@@ -137,6 +159,18 @@ name_change_check:
   
   # reset old players' score
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% ssCoins'
+
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% saCooldown'
+  
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadChangeProduct'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadColored'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadElevator'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadGarage'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadLightsBottom'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadLightsTop'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadLightsSmall'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadNoMining'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadRedstone'
   
   - '/minecraft:scoreboard players reset $playerData%$s.name% sstAnimalsBred'
   - '/minecraft:scoreboard players reset $playerData%$s.name% sstArmorCleaned'

@@ -3,7 +3,7 @@
 ##############################################################################
 road_intersection_create:
   command: /road_intersection_create
-  execute_mode: FROM_ANOTHER_COMMAND
+  execute_mode: NORMAL
   permission-required: false
   register: true
   type: RUN_AS_OPERATOR

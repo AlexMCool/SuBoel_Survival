@@ -1,0 +1,31 @@
+{
+    "criteria": {
+        "checkpoint_1": {
+            "trigger": "minecraft:impossible"
+        },
+        "checkpoint_2": {
+            "trigger": "minecraft:impossible"
+        },
+        "checkpoint_3": {
+            "trigger": "minecraft:impossible"
+        },
+        "checkpoint_4": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Initializes checkpoint locations for run_run_run",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:quartz_stairs"
+        },
+        "show_toast": false,
+	    "title": "Emergency Ladder Checkpoints"
+    },
+    "parent": "suboel:init/location_advancements",
+    "rewards": {
+        "function": "suboel:init/run_run_run"
+    }
+}

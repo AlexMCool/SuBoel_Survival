@@ -1,6 +1,18 @@
 {
     "criteria": {
-        "impossible": {
+        "farm_colored_product_1": {
+            "trigger": "minecraft:impossible"
+        },
+        "farm_colored_product_2": {
+            "trigger": "minecraft:impossible"
+        },
+        "farm_colored_product_3": {
+            "trigger": "minecraft:impossible"
+        },
+        "farm_colored_product_4": {
+            "trigger": "minecraft:impossible"
+        },
+        "farm_colored_product_5": {
             "trigger": "minecraft:impossible"
         }
     },
@@ -16,5 +28,4 @@
         "show_toast": true
     },
     "parent": "suboel:industry/automation_is_very_vine"
-    
 }
