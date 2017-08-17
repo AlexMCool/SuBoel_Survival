@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Share money (/paypal share)",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:diamond"
+        },
+        "show_toast": true,
+        "title": "Sharing Is Caring"
+    },
+    "parent": "suboel:paypal/root"
+}

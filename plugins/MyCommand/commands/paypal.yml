@@ -101,6 +101,8 @@ paypal_send:
   - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" To confirm that you want to send "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver% ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":", type "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal confirm <tan-code>"}]'
   # "[PayPal] Your TAN-code is: xxxxxx"
   - '/minecraft:execute @s[tag=sppEnough] ~ ~ ~ /minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Your TAN-code is: "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.tan%"}]'
+  # grant advancement
+  - '/minecraft:advancement grant @s[tag=sppEnough] only suboel:paypal/donating_to_charity'
   
   # not enough money
   # "[PayPal] You don't have enough money to send"
@@ -185,6 +187,8 @@ paypal_confirm:
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData<and>$ponline.contains=$PlayerData%$s.paypal.receiver%'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:paypal/im_sure'
   # send amount to online player
   - '/mycommand:paypal_amount online $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
   # reset tan
@@ -194,6 +198,8 @@ paypal_confirm:
   - '$Script$%elseif%$PlayerData%$s.paypal.tan%==$arg1<and>$arg1!=NoData'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:paypal/im_sure'
   # store amount to offline player's playerdata
   - '/mycommand:paypal_amount offline $player $PlayerData%$s.paypal.receiver% $PlayerData%$s.paypal.amount%'
   # reset tan
@@ -272,6 +278,9 @@ paypal_amount:
   
   # add coins
   - '/minecraft:scoreboard players add $arg3 ssCoins $arg4'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $arg3 only suboel:paypal/hand_over_the_money'
   
   
   

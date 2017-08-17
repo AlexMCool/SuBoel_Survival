@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Confirm your first payment",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:wool",
+			"data": 5
+        },
+        "show_toast": true,
+        "title": "I'm Sure"
+    },
+    "parent": "suboel:paypal/donating_to_charity"
+}

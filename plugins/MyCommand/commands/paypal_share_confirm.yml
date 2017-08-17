@@ -825,6 +825,8 @@ paypal_share_confirm:
   - '$Script$%elseif%$ponline.contains=$arg1'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
   #- '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:paypal/sharing_is_confirming'
   # send amount to online player
   - '/mycommand:paypal_amount online $player $arg1 $PlayerData%$s.paypal.amount%'
   
@@ -832,5 +834,7 @@ paypal_share_confirm:
   - '$Script$%else%'
   # "[PayPal] The TAN-code is correct. ßx has been sent to x"
   #- '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"PayPal"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The TAN-code is correct. "},{"bold":"false","color":"$s.style.color.mark","text":"ß$PlayerData%$s.paypal.amount%"},{"bold":"false","color":"$s.style.color.normal","text":" has been sent to "},{"bold":"false","color":"$s.style.color.mark","text":"$PlayerData%$s.paypal.receiver%"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:paypal/sharing_is_confirming'
   # store amount to offline player's playerdata
   - '/mycommand:paypal_amount offline $player $arg1 $PlayerData%$s.paypal.amount%'

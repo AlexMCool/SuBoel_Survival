@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Receive money from someone",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:gold_nugget"
+        },
+        "show_toast": true,
+        "title": "Hand Over The Money"
+    },
+    "parent": "suboel:paypal/root"
+}
