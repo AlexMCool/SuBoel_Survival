@@ -1,3 +1,6 @@
+#######################################
+#                setup                #
+#######################################
 scoreboard objectives remove sstAnimalsBred
 scoreboard objectives remove sstArmorCleaned
 scoreboard objectives remove sstBannersCleaned
