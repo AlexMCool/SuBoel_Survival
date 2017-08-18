@@ -1,14 +1,32 @@
-# set up stat score
+#######################################
+#             change time             #
+#######################################
+#######################
+#        stat         #
+#######################
+# setup stat
 stats entity @s set QueryResult @s smTimeCalc
 scoreboard players set @s smTimeCalc 0
 
-# time query
+# get time
 time query daytime
+
+# clear stat
 stats entity @s clear QueryResult
 
+#######################
+#     change time     #
+#######################
+# set score to day ticks
 scoreboard players set smUntilDay smTimeCalc 24000
+
+# get ticks left from day
 scoreboard players operation smUntilDay smTimeCalc -= @s smTimeCalc
+
+# set score
 scoreboard players operation @s smTimeCalc = smUntilDay smTimeCalc
+
+# binary search add time
 execute @s[score_smTimeCalc_min=16384] ~ ~ ~ time add 16384
 execute @s[score_smTimeCalc_min=16384] ~ ~ ~ scoreboard players remove @s smTimeCalc 16384
 execute @s[score_smTimeCalc_min=8192] ~ ~ ~ time add 8192
@@ -39,4 +57,6 @@ execute @s[score_smTimeCalc_min=2] ~ ~ ~ time add 2
 execute @s[score_smTimeCalc_min=2] ~ ~ ~ scoreboard players remove @s smTimeCalc 2
 execute @s[score_smTimeCalc_min=1] ~ ~ ~ time add 1
 execute @s[score_smTimeCalc_min=1] ~ ~ ~ scoreboard players remove @s smTimeCalc 1
+
+# reset score
 scoreboard players reset @s smTimeCalc

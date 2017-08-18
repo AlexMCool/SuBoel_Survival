@@ -1,7 +1,16 @@
+#######################################
+#             sleep check             #
+#######################################
+# add score if sleeping
 scoreboard players add @a smSleep 1 {Sleeping:1b}
+
+# run function
 execute @a[score_smSleep=50,score_smSleep_min=50] ~ ~ ~ function suboel:module/sleep/change_time
+
+# reset score
 scoreboard players set @a[score_smSleep_min=50,score_smSleep=50] smSleep 0
 
+# actionbar
 execute @a[score_smSleep=1,score_smSleep_min=1] ~ ~ ~ title @a actionbar [{"color":"dark_aqua","selector":"@a[score_smSleep=1,score_smSleep_min=1]"},{"color":"gray","text":" is now sleeping"}]
 
 # set score to 0 if the function has run

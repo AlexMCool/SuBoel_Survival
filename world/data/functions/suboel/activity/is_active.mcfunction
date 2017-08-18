@@ -1,5 +1,13 @@
+#######################################
+#                reset                #
+#######################################
+# reset score
 scoreboard players set @s saIsActive 0
 
+#######################################
+#                 add                 #
+#######################################
+# add to score if active
 scoreboard players operation @s[score_saDiAviate_min=1] saIsActive += @s[score_saDiAviate_min=1] saDiAviate
 scoreboard players reset @s saDiAviate
 
@@ -36,4 +44,8 @@ scoreboard players reset @s saDiSwim
 scoreboard players operation @s[score_saDiWalk_min=1] saIsActive += @s[score_saDiWalk_min=1] saDiWalk
 scoreboard players reset @s saDiWalk
 
+#######################################
+#              cooldown               #
+#######################################
+# reset cooldown if active
 scoreboard players set @s[score_saIsActive_min=1] saCooldown 1201
