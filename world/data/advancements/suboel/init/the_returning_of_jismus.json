@@ -1,0 +1,32 @@
+{
+    "criteria": {
+        "bred_animals": {
+            "conditions": {
+                "child": {
+                    "nbt": "{Color:6b}",
+                    "type": "minecraft:sheep"
+				}
+			},
+            "trigger": "minecraft:bred_animals"
+		},
+		"honor_jismus": {
+			"trigger": "minecraft:impossible"
+		}
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Grant \"The Returning Of Jismus\" if both the parent is achieved and the objective of the advancement itself",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+		    "data": 6,
+            "item": "minecraft:wool"
+        },
+        "show_toast": false,
+	    "title": "Init \"The Returning Of Jismus\""
+    },
+    "parent": "suboel:init/honor_jismus",
+    "rewards": {
+        "function": "suboel:init/trigger/12"
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 20 normal shops",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:chest_minecart"
+        },
+        "show_toast": true,
+        "title": "Business Expansion"
+    },
+    "parent": "suboel:business/fill_your_wallet"
+}

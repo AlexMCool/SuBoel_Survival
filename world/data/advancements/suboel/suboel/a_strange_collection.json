@@ -1,0 +1,47 @@
+{
+    "criteria": {
+        "skull_alexmcool": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"AlexMCool\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_d33tj3": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"D33tj3\"}"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect everyone's head, but ask politely!",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+		    "data": 3,
+            "item": "minecraft:skull"
+        },
+        "show_toast": true,
+	    "title": "A Strange Collection"
+    },
+    "parent": "suboel:suboel/viva_la_dictatorship"
+}

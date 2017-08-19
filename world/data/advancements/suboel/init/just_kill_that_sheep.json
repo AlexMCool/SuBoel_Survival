@@ -1,0 +1,36 @@
+{
+    "criteria": {
+        "player_killed_entity": {
+            "conditions": {
+                "entity": {
+                    "nbt": "{Color:6b}",
+                    "type": "minecraft:sheep"
+                },
+                "killing_blow": {
+                    "source_entity": {
+                        "nbt": "{SelectedItem:{id:\"minecraft:stone_pickaxe\"}}"
+                    }
+                }
+            },
+            "trigger": "minecraft:player_killed_entity"
+        },
+        "sheepnapping": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Grant \"\"Just Kill That Sheep\"\" if both the parent is achieved and the objective of the advancement itself",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone_pickaxe"
+        },
+        "show_toast": false,
+	    "title": "Init \"\"Just Kill That Sheep\"\""
+    },
+    "parent": "suboel:init/root",
+    "rewards": {
+        "function": "suboel:init/trigger/10"
+    }
+}

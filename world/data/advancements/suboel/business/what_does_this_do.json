@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Fiddle around with the shop's setting",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:wooden_button"
+        },
+        "show_toast": true,
+        "title": "What Does This Do?"
+    },
+    "parent": "suboel:business/root"
+}

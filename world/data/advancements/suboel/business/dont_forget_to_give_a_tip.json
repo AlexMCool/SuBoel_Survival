@@ -1,0 +1,25 @@
+{
+    "criteria": {
+        "normal_shop": {
+            "trigger": "minecraft:impossible"
+        },
+        "redstone_shop": {
+            "trigger": "minecraft:impossible"
+        },
+        "xp_shop": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Buy something from every shop type",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:paper"
+        },
+        "show_toast": true,
+        "title": "Don't Forget To Give A Tip"
+    },
+    "parent": "suboel:business/let_the_money_roll"
+}

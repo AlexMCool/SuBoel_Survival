@@ -1,0 +1,23 @@
+{
+    "criteria": {
+        "location": {
+            "conditions": {
+                "biome": "extreme_hills",
+                "dimension": "overworld"
+            },
+            "trigger": "minecraft:location"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Visit an extreme hills biome",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone"
+        },
+        "show_toast": true,
+	    "title": "Flashbacks"
+    },
+    "parent": "suboel:suboel/root"
+}

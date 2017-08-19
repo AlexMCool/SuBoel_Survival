@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Earn ß10000 with your shops",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:yellow_glazed_terracotta"
+        },
+        "show_toast": true,
+        "title": "Multinational"
+    },
+    "parent": "suboel:business/good_business"
+}

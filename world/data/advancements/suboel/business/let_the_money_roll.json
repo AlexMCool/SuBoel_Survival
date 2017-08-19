@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Buy your first product",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:gold_ingot"
+        },
+        "show_toast": true,
+        "title": "Let The Money Roll"
+    },
+    "parent": "suboel:business/root"
+}

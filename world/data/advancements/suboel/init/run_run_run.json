@@ -26,6 +26,6 @@
     },
     "parent": "suboel:init/location_advancements",
     "rewards": {
-        "function": "suboel:init/run_run_run"
+        "function": "suboel:init/trigger/1"
     }
 }

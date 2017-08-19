@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Add your first experience to the stock",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:experience_bottle"
+        },
+        "show_toast": true,
+        "title": "Fill The Bottle"
+    },
+    "parent": "suboel:business/experienced_salesman"
+}

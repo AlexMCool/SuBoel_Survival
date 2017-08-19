@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make your first experience shop",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:glass_bottle"
+        },
+        "show_toast": true,
+        "title": "Experienced Salesman"
+    },
+    "parent": "suboel:business/root"
+}

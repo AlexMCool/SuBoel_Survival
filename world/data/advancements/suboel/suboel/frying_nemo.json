@@ -1,0 +1,128 @@
+{
+    "criteria": {
+        "capital_nemo": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 2,
+                        "item": "minecraft:fish",
+                        "nbt": "{display:{Name:\"Nemo\"}}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "cooked_fish": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 0,
+                        "item": "minecraft:cooked_fish"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "cooked_salmon": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 1,
+                        "item": "minecraft:cooked_fish"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},        
+		"eat_pufferfish": {
+            "conditions": {
+                "item": {
+                    "data": 3,
+                    "item": "minecraft:fish"
+                }
+            },
+            "trigger": "minecraft:consume_item"
+        },
+        "nemo": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 2,
+                        "item": "minecraft:fish",
+                        "nbt": "{display:{Name:\"nemo\"}}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pufferfish": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:fish"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "raw_fish": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 0,
+                        "item": "minecraft:fish"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "raw_salmon": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 1,
+                        "item": "minecraft:fish"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect all raw and cooked types of fish, rename a clownfish to Nemo and eat a pufferfish",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:fish"
+        },
+        "show_toast": true,
+	    "title": "Frying Nemo"
+    },
+    "parent": "suboel:suboel/root",
+    "requirements": [
+        [
+            "capital_nemo",
+            "nemo"
+        ],
+        [
+            "cooked_salmon"
+        ],
+		[
+			"cooked_fish"
+        ],
+		[
+			"eat_pufferfish"
+        ],
+		[
+			"pufferfish"
+        ],
+		[
+			"raw_fish"
+        ],
+		[
+			"raw_salmon"
+        ]
+    ]
+}

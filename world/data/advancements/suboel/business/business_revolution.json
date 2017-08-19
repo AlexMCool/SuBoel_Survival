@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 50 normal shops",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:crafting_table"
+        },
+        "show_toast": true,
+        "title": "Business Revolution"
+    },
+    "parent": "suboel:business/business_expansion"
+}

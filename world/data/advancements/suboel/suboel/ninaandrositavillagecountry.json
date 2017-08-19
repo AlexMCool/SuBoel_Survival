@@ -1,0 +1,54 @@
+{
+    "criteria": {
+        "diamond_horse_armor": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:diamond_horse_armor"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        },
+        "golden_horse_armor": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:golden_horse_armor"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        },
+        "iron_horse_armor": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:iron_horse_armor"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        },
+        "tame_horse": {
+            "conditions": {
+                "entity": {
+                    "type": "minecraft:horse"
+                }
+            },
+            "trigger": "minecraft:tame_animal"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect all types of horse armor and tame a horse",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_horse_armor"
+        },
+        "show_toast": true,
+	    "title": "Ninaandrositavillagecountry"
+    },
+    "parent": "suboel:suboel/djingle_all_the_way"
+}

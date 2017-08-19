@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Kill a pink sheep with a stone pickaxe",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:stone_pickaxe"
+        },
+        "show_toast": true,
+	    "title": "\"Just Kill That Sheep\""
+    },
+    "parent": "suboel:suboel/sheepnapping"
+}

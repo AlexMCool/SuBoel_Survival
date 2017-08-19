@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 5 experience shops",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:enchanting_table"
+        },
+        "show_toast": true,
+        "title": "Getting Experienced"
+    },
+    "parent": "suboel:business/its_empty_again"
+}

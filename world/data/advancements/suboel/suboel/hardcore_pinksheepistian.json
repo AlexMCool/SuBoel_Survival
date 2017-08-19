@@ -1,0 +1,158 @@
+{
+    "criteria": {
+        "pink_banner": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 9,
+                        "item": "minecraft:banner"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_bed": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:bed"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_carpet": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:carpet"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_concrete": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:concrete"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_concrete_powder": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:concrete_powder"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_dye": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 9,
+                        "item": "minecraft:dye"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_glazed_terracotta": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:pink_glazed_terracotta"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_shulker_box": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:pink_shulker_box"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_stained_glass_pane": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:stained_glass_pane"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_terracotta": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:stained_hardened_clay"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_tulip": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 7,
+                        "item": "minecraft:red_flower"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_wool": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:wool"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect every pink item",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+		    "data": 6,
+            "item": "minecraft:stained_glass"
+        },
+        "show_toast": true,
+	    "title": "Hardcore Pinksheepistian"
+    },
+    "parent": "suboel:suboel/i_hate_jungles"
+}

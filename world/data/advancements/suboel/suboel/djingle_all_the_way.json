@@ -1,0 +1,71 @@
+{
+    "criteria": {
+        "carrot": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 64
+                        },
+                        "item": "minecraft:carrot"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "oak_leaves": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 64
+                        },
+                        "data": 0,
+                        "item": "minecraft:leaves"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        },
+        "orange_terracotta": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 64
+                        },
+                        "data": 1,
+                        "item": "minecraft:stained_hardened_clay"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        },
+        "orange_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 64
+                        },
+                        "data": 1,
+                        "item": "minecraft:stained_glass"
+					}
+                ]
+            },
+			"trigger": "minecraft:inventory_changed"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect a stack carrots, orange terracotta, orange stained glass and oak leaves",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:carrot"
+        },
+        "show_toast": true,
+	    "title": "Djingle All The Way"
+    },
+    "parent": "suboel:suboel/all_colors_of_the_rainbow"
+}

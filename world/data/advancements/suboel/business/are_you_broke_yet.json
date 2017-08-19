@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Buy 200 products",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:iron_nugget"
+        },
+        "show_toast": true,
+        "title": "Are You Broke Yet?"
+    },
+    "parent": "suboel:business/good_for_the_economy"
+}
