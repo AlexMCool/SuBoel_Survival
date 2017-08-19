@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Sell your first experience",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:glass_bottle"
+        },
+        "show_toast": true,
+        "title": "It's Empty Again"
+    },
+    "parent": "suboel:business/fill_the_bottle"
+}

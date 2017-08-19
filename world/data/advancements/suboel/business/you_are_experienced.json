@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 10 experience shops",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:enchanted_book"
+        },
+        "show_toast": true,
+        "title": "You Are Experienced"
+    },
+    "parent": "suboel:business/getting_experienced"
+}

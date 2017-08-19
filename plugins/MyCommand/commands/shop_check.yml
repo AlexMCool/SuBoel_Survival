@@ -3,7 +3,7 @@
 ##############################################################################
 shop_check:
   command: /shop_check
-  execute_mode: CONSOLE_ONLY
+  execute_mode: FROM_ANOTHER_COMMAND
   permission-required: false
   register: true
   type: RUN_CONSOLE

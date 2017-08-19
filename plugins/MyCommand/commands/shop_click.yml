@@ -121,6 +121,34 @@ shop_click_action:
   
   # remove bought product number from stock
   - '$Script$%PlayerDataFor%$arg6%$s.shop.stock.$arg2:$arg3-$arg4'
+  
+  # grant advancement
+  - '/minecraft:advancement grant $arg6 only suboel:business/fill_your_wallet'
+  
+  # grant advancement criterium
+  - '/minecraft:advancement grant $arg1 only suboel:business/dont_forget_to_give_a_tip normal_shop'
+  
+  # add 1 to score
+  - '/minecraft:scoreboard players add $arg6 sadShopEarn $arg5'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,score_sadShopEarn_min=1000] only suboel:business/money_maker'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,score_sadShopEarn_min=4000] only suboel:business/good_business'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,score_sadShopEarn_min=10000] only suboel:business/multinational'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,score_sadShopEarn_min=1000000] only suboel:business/millionaire'
+  
+  # add 1 to score
+  - '/minecraft:scoreboard players add $arg1 sadShopProdBuy 1'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg1,score_sadShopProdBuy_min=1] only suboel:business/let_the_money_roll'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg1,score_sadShopProdBuy_min=50] only suboel:business/addicted_to_shopping'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg1,score_sadShopProdBuy_min=100] only suboel:business/good_for_the_economy'
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg1,score_sadShopProdBuy_min=200] only suboel:business/are_you_broke_yet'
 
   #######################
   #      no stock       #
@@ -372,6 +400,9 @@ shop_click_action_stock:
   # "[Shop] Added x product to the stock"
   - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" product to the stock"}]'
   
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,tag=ssGoodInventory] only suboel:business/time_to_stock_up'
+  
   # remove tag
   - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'
   
@@ -385,6 +416,9 @@ shop_click_action_stock:
   
   # "[Shop] Added x products to the stock"
   - '/minecraft:tellraw @a[name=$arg6,tag=ssGoodInventory] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Added"},{"bold":"false","color":"$s.style.color.mark","text":" $s.init.shop.stock"},{"bold":"false","color":"$s.style.color.normal","text":" products to the stock"}]'
+  
+  # grant advancement
+  - '/minecraft:advancement grant @a[name=$arg6,tag=ssGoodInventory] only suboel:business/time_to_stock_up'
   
   # remove tag
   - '/minecraft:scoreboard players tag $arg6 remove ssGoodInventory'

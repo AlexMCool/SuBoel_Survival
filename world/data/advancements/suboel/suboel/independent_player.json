@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Play for 6 hours when no one is around to play with Wumpus",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:diamond"
+        },
+        "show_toast": true,
+	    "title": "Independent Player"
+    },
+    "parent": "suboel:suboel/root"
+}

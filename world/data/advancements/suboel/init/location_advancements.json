@@ -20,6 +20,6 @@
     },
     "parent": "suboel:init/root",
     "rewards": {
-        "function": "suboel:init/location_advancements"
+        "function": "suboel:init/trigger/location"
     }
 }

@@ -3,17 +3,5 @@
         "impossible": {
             "trigger": "minecraft:impossible"
         }
-    },
-	"display": {
-        "announce_to_chat": false,
-        "background": "minecraft:textures/blocks/bedrock.png",
-        "description": "Initializing advancements",
-        "frame": "task",
-        "hidden": true,
-        "icon": {
-            "item": "minecraft:bedrock"
-        },
-        "show_toast": false,
-        "title": "Init"
     }
 }

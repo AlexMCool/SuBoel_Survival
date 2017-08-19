@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 10 redstone shops",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:redstone_torch"
+        },
+        "show_toast": true,
+        "title": "Open The Gates"
+    },
+    "parent": "suboel:business/open_the_gate"
+}

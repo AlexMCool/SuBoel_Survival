@@ -1,0 +1,193 @@
+{
+    "criteria": {
+        "black_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 15,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "blue_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 11,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "brown_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 12,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "cyan_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 9,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "gray_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 7,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "green_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 13,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "light_blue_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "light_gray_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 8,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "lime_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 5,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "magenta_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 2,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "orange_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 1,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "pink_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 6,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "purple_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 10,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "red_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 14,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "white_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 0,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "yellow_stained_glass": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 4,
+                        "item": "minecraft:stained_glass"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect every color of stained glass",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+			"data": 3,
+            "item": "minecraft:stained_glass"
+        },
+        "show_toast": true,
+	    "title": "All Colors Of The Rainbow"
+    },
+    "parent": "suboel:suboel/hardcore_pinksheepistian"
+}

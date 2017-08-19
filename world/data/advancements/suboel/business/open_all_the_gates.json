@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make 20 redstone shops",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:redstone_block"
+        },
+        "show_toast": true,
+        "title": "Open ALL The Gates"
+    },
+    "parent": "suboel:business/open_the_gates"
+}

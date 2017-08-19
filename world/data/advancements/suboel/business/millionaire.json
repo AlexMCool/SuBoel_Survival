@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Earn ß1000000 with your shops",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:gold_block"
+        },
+        "show_toast": true,
+        "title": "Millionaire"
+    },
+    "parent": "suboel:business/multinational"
+}

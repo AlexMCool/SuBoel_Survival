@@ -7,7 +7,35 @@ advancements_reset:
   register: true
   type: RUN_AS_OPERATOR
   runcmd:
+  - '/minecraft:advancement grant $player from suboel:business/root'
   - '/minecraft:advancement grant $player from suboel:industry/root'
+  - '/minecraft:advancement grant $player from suboel:paypal/root'
+  - '/minecraft:advancement grant $player from suboel:suboel/root'
+  
+  - '/minecraft:advancement revoke $player only suboel:business/addicted_to_shopping'
+  - '/minecraft:advancement revoke $player only suboel:business/advanced_business'
+  - '/minecraft:advancement revoke $player only suboel:business/are_you_broke_yet'
+  - '/minecraft:advancement revoke $player only suboel:business/business_expansion'
+  - '/minecraft:advancement revoke $player only suboel:business/business_revolution'
+  - '/minecraft:advancement revoke $player only suboel:business/dont_forget_to_give_a_tip'
+  - '/minecraft:advancement revoke $player only suboel:business/experienced_salesman'
+  - '/minecraft:advancement revoke $player only suboel:business/fill_the_bottle'
+  - '/minecraft:advancement revoke $player only suboel:business/fill_your_wallet'
+  - '/minecraft:advancement revoke $player only suboel:business/getting_experienced'
+  - '/minecraft:advancement revoke $player only suboel:business/good_business'
+  - '/minecraft:advancement revoke $player only suboel:business/good_for_the_economy'
+  - '/minecraft:advancement revoke $player only suboel:business/its_empty_again'
+  - '/minecraft:advancement revoke $player only suboel:business/let_the_money_roll'
+  - '/minecraft:advancement revoke $player only suboel:business/millionaire'
+  - '/minecraft:advancement revoke $player only suboel:business/money_maker'
+  - '/minecraft:advancement revoke $player only suboel:business/multinational'
+  - '/minecraft:advancement revoke $player only suboel:business/open_all_the_gates'
+  - '/minecraft:advancement revoke $player only suboel:business/open_the_gate'
+  - '/minecraft:advancement revoke $player only suboel:business/open_the_gates'
+  - '/minecraft:advancement revoke $player only suboel:business/time_to_stock_up'
+  - '/minecraft:advancement revoke $player only suboel:business/were_open'
+  - '/minecraft:advancement revoke $player only suboel:business/what_does_this_do'
+  - '/minecraft:advancement revoke $player only suboel:business/you_are_experienced'
   
   - '/minecraft:advancement revoke $player only suboel:industry/automation_is_very_vine'
   - '/minecraft:advancement revoke $player only suboel:industry/better_than_broiler_chickens'
@@ -54,14 +82,34 @@ advancements_reset:
   - '/minecraft:advancement revoke $player only suboel:industry/youre_off_the_naughty_list'
   - '/minecraft:advancement revoke $player only suboel:industry/youre_on_the_naughty_list'
   
+  - '/minecraft:advancement revoke $player only suboel:init/bless_the_end'
+  - '/minecraft:advancement revoke $player only suboel:init/honor_jismus'
+  - '/minecraft:advancement revoke $player only suboel:init/just_kill_that_sheep'
   - '/minecraft:advancement revoke $player only suboel:init/location_advancements'
   - '/minecraft:advancement revoke $player only suboel:init/run_run_run'
+  - '/minecraft:advancement revoke $player only suboel:init/the_returning_of_jismus'
   
   - '/minecraft:advancement revoke $player only suboel:paypal/donating_to_charity'
   - '/minecraft:advancement revoke $player only suboel:paypal/hand_over_the_money'
   - '/minecraft:advancement revoke $player only suboel:paypal/im_sure'
   - '/minecraft:advancement revoke $player only suboel:paypal/sharing_is_caring'
   - '/minecraft:advancement revoke $player only suboel:paypal/sharing_is_confirming'
+  
+  - '/minecraft:advancement revoke $player only suboel:suboel/all_colors_of_the_rainbow'
+  - '/minecraft:advancement revoke $player only suboel:suboel/bless_the_end'
+  - '/minecraft:advancement revoke $player only suboel:suboel/djingle_all_the_way'
+  - '/minecraft:advancement revoke $player only suboel:suboel/flashbacks'
+  - '/minecraft:advancement revoke $player only suboel:suboel/frying_nemo'
+  - '/minecraft:advancement revoke $player only suboel:suboel/hardcore_pinksheepistian'
+  - '/minecraft:advancement revoke $player only suboel:suboel/honor_jismus'
+  - '/minecraft:advancement revoke $player only suboel:suboel/i_hate_jungles'
+  - '/minecraft:advancement revoke $player only suboel:suboel/independent_player'
+  - '/minecraft:advancement revoke $player only suboel:suboel/just_kill_that_sheep'
+  - '/minecraft:advancement revoke $player only suboel:suboel/ninaandrositavillagecountry'
+  - '/minecraft:advancement revoke $player only suboel:suboel/not_shalal'
+  - '/minecraft:advancement revoke $player only suboel:suboel/sheepnapping'
+  - '/minecraft:advancement revoke $player only suboel:suboel/the_returning_of_jismus'
+  - '/minecraft:advancement revoke $player only suboel:suboel/viva_la_dictatorship'
   
   - '/minecraft:scoreboard players reset $player sadChangeProduct'
   - '/minecraft:scoreboard players reset $player sadColored'
@@ -72,6 +120,28 @@ advancements_reset:
   - '/minecraft:scoreboard players reset $player sadLightsSmall'
   - '/minecraft:scoreboard players reset $player sadNoMining'
   - '/minecraft:scoreboard players reset $player sadRedstone'
+  - '/minecraft:scoreboard players reset $player sadRunRunRun'
+  # /scoreboard objectives add sadShopBuy dummy Shop Bought
+  - '/minecraft:scoreboard players reset $player sadShopBuy'
+  # /scoreboard objectives add sadShopCreate dummy Normal Shops Created
+  - '/minecraft:scoreboard players reset $player sadShopCreate'
+  # /scoreboard objectives add sadShopEarn dummy Shop Money Earned
+  - '/minecraft:scoreboard players reset $player sadShopEarn'
+  # /scoreboard objectives add sadShopProdBuy dummy Shop Products Bought
+  - '/minecraft:scoreboard players reset $player sadShopProdBuy'
+  # /scoreboard objectives add sadShopRedCreate dummy Redstone Shops Created
+  - '/minecraft:scoreboard players reset $player sadShopRedCreate'
+  # /scoreboard objectives add sadShopXpCreate dummy Experienced Shops Created
+  - '/minecraft:scoreboard players reset $player sadShopXpCreate'
+  - '/minecraft:scoreboard players reset $player sad§bLocation§r'
+  - '/minecraft:scoreboard players reset $player sad§bTrigger§r'
+  
+  # if roots/root
+  - '$Script$%if%$arg1==root<or>$arg1==roots'
+  - '/minecraft:advancement revoke $player only suboel:business/root'
+  - '/minecraft:advancement revoke $player only suboel:industry/root'
+  - '/minecraft:advancement revoke $player only suboel:paypal/root'
+  - '/minecraft:advancement revoke $player only suboel:suboel/root'
   
   
   

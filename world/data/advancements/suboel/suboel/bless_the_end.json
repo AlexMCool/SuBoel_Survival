@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Place a pink wool block in the end",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:end_stone"
+        },
+        "show_toast": true,
+	    "title": "Bless The End"
+    },
+    "parent": "suboel:suboel/the_returning_of_jismus"
+}

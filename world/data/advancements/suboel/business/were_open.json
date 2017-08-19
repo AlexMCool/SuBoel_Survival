@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Make your first normal shop",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:gold_nugget"
+        },
+        "show_toast": true,
+        "title": "We're Open!"
+    },
+    "parent": "suboel:business/root"
+}

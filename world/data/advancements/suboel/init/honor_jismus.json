@@ -1,0 +1,37 @@
+{
+    "criteria": {
+        "just_kill_that_sheep": {
+            "trigger": "minecraft:impossible"
+        },
+        "placed_cobblestone": {
+            "conditions": {
+                "block": "minecraft:cobblestone"
+            },
+            "trigger": "minecraft:placed_block"
+        },
+        "placed_pink_wool": {
+            "conditions": {
+                "block": "minecraft:wool",
+                "state": {
+                    "color": "pink"
+                }
+            },
+            "trigger": "minecraft:placed_block"
+        }
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Grant \"Honor Jismus\" if both the parent is achieved and the objective of the advancement itself",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:cobblestone"
+        },
+        "show_toast": false,
+	    "title": "Init \"Honor Jismus\""
+    },
+    "parent": "suboel:init/just_kill_that_sheep",
+    "rewards": {
+        "function": "suboel:init/trigger/11"
+    }
+}

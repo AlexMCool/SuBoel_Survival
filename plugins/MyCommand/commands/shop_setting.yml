@@ -30,6 +30,8 @@ shop_setting_autoclaimprofit:
   - '$Script$%if%$s.shop.id.$arg9.profit>0'
   # give profit
   - '/mycommand:shop_setting_claim $arg1 $arg9'
+  # grant advancement
+  - '/minecraft:advancement grant $arg1 only suboel:business/what_does_this_do'
   
   # if setting is true
   - '$Script$%elseif%$s.shop.id.$arg9.setting.auto_claim_profit==true'
@@ -39,6 +41,8 @@ shop_setting_autoclaimprofit:
   - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
   # reclick the sign (make the same menu show again)
   - '/mycommand:shop_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
+  # grant advancement
+  - '/minecraft:advancement grant $arg1 only suboel:business/what_does_this_do'
   
   
   

@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Let two sheep make Jismus",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+		    "data": 6,
+            "item": "minecraft:wool"
+        },
+        "show_toast": true,
+	    "title": "The Returning Of Jismus"
+    },
+    "parent": "suboel:suboel/honor_jismus"
+}

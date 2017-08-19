@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Add your first product to the stock",
+        "frame": "task",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:chest"
+        },
+        "show_toast": true,
+        "title": "Time To Stock Up"
+    },
+    "parent": "suboel:business/were_open"
+}

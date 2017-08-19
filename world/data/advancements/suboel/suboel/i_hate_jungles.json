@@ -1,0 +1,122 @@
+{
+    "criteria": {
+        "jungle_boat": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jungle_boat"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_door": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jungle_door"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_fence": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jungle_fence"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_fence_gate": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jungle_fence_gate"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_leaves": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:leaves"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_sapling": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:sapling"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_wood": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:log"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_wood_planks": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:planks"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_wood_slab": {
+            "conditions": {
+                "items": [
+                    {
+                        "data": 3,
+                        "item": "minecraft:wooden_slab"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "jungle_wood_stairs": {
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:jungle_stairs"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect every jungle related item",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+			"data": 3,
+            "item": "minecraft:sapling"
+        },
+        "show_toast": true,
+	    "title": "I Hate Jungles"
+    },
+    "parent": "suboel:suboel/frying_nemo"
+}

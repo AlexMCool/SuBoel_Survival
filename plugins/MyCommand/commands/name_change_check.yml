@@ -16,6 +16,7 @@ name_change_check:
   # reset score (delay because of playerevent happening before join message)
   - '$delay$<1>/minecraft:scoreboard players reset $player ssCoins'
 
+  - '/minecraft:scoreboard players reset $player saAlone'
   - '/minecraft:scoreboard players reset $player saCooldown'
   
   - '/minecraft:scoreboard players reset $player sadChangeProduct'
@@ -27,6 +28,13 @@ name_change_check:
   - '/minecraft:scoreboard players reset $player sadLightsSmall'
   - '/minecraft:scoreboard players reset $player sadNoMining'
   - '/minecraft:scoreboard players reset $player sadRedstone'
+  - '/minecraft:scoreboard players reset $player sadRunRunRun'
+  - '/minecraft:scoreboard players reset $player sadShopBuy'
+  - '/minecraft:scoreboard players reset $player sadShopCreate'
+  - '/minecraft:scoreboard players reset $player sadShopEarn'
+  - '/minecraft:scoreboard players reset $player sadShopProdBuy'
+  - '/minecraft:scoreboard players reset $player sadShopRedCreate'
+  - '/minecraft:scoreboard players reset $player sadShopXpCreate'
   
   - '/minecraft:scoreboard players reset $player sstAnimalsBred'
   - '/minecraft:scoreboard players reset $player sstArmorCleaned'
@@ -88,6 +96,7 @@ name_change_check:
   # operation
   - '/minecraft:scoreboard players operation $player ssCoins = $PlayerData%$s.name% ssCoins'
 
+  - '/minecraft:scoreboard players operation $player saAlone = $PlayerData%$s.name% saAlone'
   - '/minecraft:scoreboard players operation $player saCooldown = $PlayerData%$s.name% saCooldown'
   
   - '/minecraft:scoreboard players operation $player sadChangeProduct = $PlayerData%$s.name% sadChangeProduct'
@@ -99,6 +108,13 @@ name_change_check:
   - '/minecraft:scoreboard players operation $player sadLightsSmall = $PlayerData%$s.name% sadLightsSmall'
   - '/minecraft:scoreboard players operation $player sadNoMining = $PlayerData%$s.name% sadNoMining'
   - '/minecraft:scoreboard players operation $player sadRedstone = $PlayerData%$s.name% sadRedstone'
+  - '/minecraft:scoreboard players operation $player sadRunRunRun = $PlayerData%$s.name% sadRunRunRun'
+  - '/minecraft:scoreboard players operation $player sadShopBuy = $PlayerData%$s.name% sadShopBuy'
+  - '/minecraft:scoreboard players operation $player sadShopCreate = $PlayerData%$s.name% sadShopCreate'
+  - '/minecraft:scoreboard players operation $player sadShopEarn = $PlayerData%$s.name% sadShopEarn'
+  - '/minecraft:scoreboard players operation $player sadShopProdBuy = $PlayerData%$s.name% sadShopProdBuy'
+  - '/minecraft:scoreboard players operation $player sadShopRedCreate = $PlayerData%$s.name% sadShopRedCreate'
+  - '/minecraft:scoreboard players operation $player sadShopXpCreate = $PlayerData%$s.name% sadShopXpCreate'
   
   - '/minecraft:scoreboard players operation $player sstAnimalsBred = $PlayerData%$s.name% sstAnimalsBred'
   - '/minecraft:scoreboard players operation $player sstArmorCleaned = $PlayerData%$s.name% sstArmorCleaned'
@@ -160,6 +176,7 @@ name_change_check:
   # reset old players' score
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% ssCoins'
 
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% saAlone'
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% saCooldown'
   
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadChangeProduct'
@@ -171,6 +188,13 @@ name_change_check:
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadLightsSmall'
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadNoMining'
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadRedstone'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadRunRunRun'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopBuy'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopCreate'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopEarn'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopProdBuy'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopRedCreate'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadShopXpCreate'
   
   - '/minecraft:scoreboard players reset $playerData%$s.name% sstAnimalsBred'
   - '/minecraft:scoreboard players reset $playerData%$s.name% sstArmorCleaned'

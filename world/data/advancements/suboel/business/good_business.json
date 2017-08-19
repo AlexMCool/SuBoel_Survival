@@ -1,0 +1,20 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Earn ß4000 with your shops",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:concrete_powder",
+			"data": 4
+        },
+        "show_toast": true,
+        "title": "Good Business"
+    },
+    "parent": "suboel:business/money_maker"
+}

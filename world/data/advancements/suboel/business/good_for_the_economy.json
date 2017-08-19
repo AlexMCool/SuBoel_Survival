@@ -1,0 +1,19 @@
+{
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Buy 100 products",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:iron_ingot"
+        },
+        "show_toast": true,
+        "title": "Good For The Economy"
+    },
+    "parent": "suboel:business/addicted_to_shopping"
+}

@@ -1,0 +1,34 @@
+{
+    "criteria": {
+        "placed_block": {
+            "conditions": {
+                "block": "minecraft:wool",
+                "location": {
+                    "dimension": "the_end"
+                },
+                "state": {
+                    "color": "pink"
+                }
+            },
+            "trigger": "minecraft:placed_block"
+        },
+		"the_returning_of_jismus": {
+			"trigger": "minecraft:impossible"
+		}
+    },
+	"display": {
+        "announce_to_chat": false,
+        "description": "Grant \"Bless The End\" if both the parent is achieved and the objective of the advancement itself",
+        "frame": "goal",
+        "hidden": false,
+        "icon": {
+            "item": "minecraft:end_stone"
+        },
+        "show_toast": false,
+	    "title": "Init \"Bless The End\""
+    },
+    "parent": "suboel:init/the_returning_of_jismus",
+    "rewards": {
+        "function": "suboel:init/trigger/13"
+    }
+}

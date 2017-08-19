@@ -1,0 +1,64 @@
+{
+    "criteria": {
+        "player_hurt_entity_damage_31": {
+            "conditions": {
+                "damage": {
+                    "source_entity": {
+                        "nbt": "{SelectedItem:{id:\"minecraft:golden_pickaxe\",Damage:31s}}"
+                    }
+                },
+				"entity": {
+					"type": "minecraft:ender_dragon"
+				}
+            },
+            "trigger": "minecraft:player_hurt_entity"
+		},
+        "player_hurt_entity_damage_32": {
+            "conditions": {
+                "damage": {
+                    "source_entity": {
+                        "nbt": "{SelectedItem:{id:\"minecraft:golden_pickaxe\",Damage:32s}}"
+                    }
+                },
+				"entity": {
+					"type": "minecraft:ender_dragon"
+				}
+            },
+            "trigger": "minecraft:player_hurt_entity"
+		},
+        "red_wool": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": 20,
+                        "data": 14,
+                        "item": "minecraft:wool"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "Collect 20 red wool and hurt the Ender Dragon with the last blow of a golden pickaxe",
+        "frame": "challenge",
+        "hidden": false,
+        "icon": {
+			"data": 14,
+            "item": "minecraft:wool"
+        },
+        "show_toast": true,
+	    "title": "Viva La Dictatorship"
+    },
+    "parent": "suboel:suboel/ninaandrositavillagecountry",
+	"requirements": [
+		[
+			"player_hurt_entity_damage_31",
+			"player_hurt_entity_damage_32"
+		],
+		[
+			"red_wool"
+		]
+	]
+}

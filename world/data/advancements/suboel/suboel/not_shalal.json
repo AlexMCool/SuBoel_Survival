@@ -1,0 +1,38 @@
+{
+    "criteria": {
+        "consume_cooked_mutton": {
+            "conditions": {
+                "item": {
+                    "item": "minecraft:cooked_mutton"
+                }
+            },
+            "trigger": "minecraft:consume_item"
+        },
+        "consume_mutton": {
+            "conditions": {
+                "item": {
+                    "item": "minecraft:mutton"
+                }
+            },
+            "trigger": "minecraft:consume_item"
+        }
+    },
+	"display": {
+        "announce_to_chat": true,
+        "description": "You're disgraced to the Pinksheepistians",
+        "frame": "challenge",
+        "hidden": true,
+        "icon": {
+            "item": "minecraft:mutton"
+        },
+        "show_toast": true,
+	    "title": "Not Shalal!"
+    },
+    "parent": "suboel:suboel/root",
+	"requirements": [
+        [
+            "consume_cooked_mutton",
+            "consume_mutton"
+        ]
+    ]
+}
