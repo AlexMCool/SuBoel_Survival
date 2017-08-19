@@ -1,0 +1,42 @@
+##############################################################################
+#                                    root                                    #
+##############################################################################
+root:
+  command: /root
+  execute_mode: CONSOLE_ONLY
+  permission-required: false
+  register: true
+  type: RUN_CONSOLE
+  runcmd:
+  #######################################
+  #             shop check              #
+  ####################################### 
+  # check for broken shops
+  - '/mycommand:shop_check'
+  
+  #######################################
+  #         factory item delay          #
+  ####################################### 
+  # factory item delay timer
+  - '/sudo @a[score_saCooldown_min=1] /mycommand:code factory_item_delay_player itemDelayVerificationCodea203q²87a¼'
+  
+  #######################################
+  #              activity               #
+  ####################################### 
+  # manages activity timer
+  - '/minecraft:execute @a ~ ~ ~ /minecraft:function suboel:activity/is_active'
+  
+  # manages week timer
+  - '/mycommand:activity_week'
+  
+  #######################################
+  #              time var               #
+  ####################################### 
+  # manages time
+  - '/mycommand:time_var'
+  
+  #######################################
+  #            advancements             #
+  ####################################### 
+  # advancements
+  - '/minecraft:execute @a ~ ~ ~ /minecraft:function suboel:init/advancements'

@@ -47,6 +47,9 @@ shop_redstone_create:
   # "[Shop] Successfully created a shop which will activate the redstone dust for ßx"
   - '/tellraw @a[name=$player,tag=ssValid] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which will activate the redstone dust for "},{"bold":"false","color":"$s.style.color.mark","text":"ß$arg2"}]'
   
+  # function for shop count
+  - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /minecraft:function suboel:business/shop_redstone_create'
+  
   # get id for shop
   - '$Script$%Variable%$s.init.shop.new_id=0'
   - '/minecraft:execute @a[name=$player,tag=ssValid] ~ ~ ~ /sudo $player /mycommand:code shop_place_newid $s.general.code $s.init.shop.new_id'
@@ -216,7 +219,23 @@ shop_redstone_click_action:
   - '$Script$%Variable%$s.shop.id.$arg10.profit+$arg6'
   # remove coins from buyer
   - '$Script$%if%$arg1!=$arg7<and>$arg8==normal<and>$arg9==enough'
-  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players remove @s ssCoins $arg6'
+  - '/minecraft:scoreboard players remove @a[name=$arg1,score_ssRedstone_min=1] ssCoins $arg6'
+  # grant advancement
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:advancement grant $arg7 only suboel:business/open_the_gate'
+  
+  # grant advancement criterium
+  - '/minecraft:advancement grant @a[name=$arg1,score_ssRedstone_min=1] only suboel:business/dont_forget_to_give_a_tip redstone_shop'
+  
+  # add 1 to score
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:scoreboard players add $arg7 sadShopEarn $arg5'
+  # grant advancement
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:advancement grant @a[name=$arg7,score_sadShopEarn_min=1000] only suboel:business/money_maker'
+  # grant advancement
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:advancement grant @a[name=$arg7,score_sadShopEarn_min=4000] only suboel:business/good_business'
+  # grant advancement
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:advancement grant @a[name=$arg7,score_sadShopEarn_min=10000] only suboel:business/multinational'
+  # grant advancement
+  - '/minecraft:execute @a[name=$arg1,score_ssRedstone_min=1] ~ ~ ~ /minecraft:advancement grant @a[name=$arg7,score_sadShopEarn_min=1000000] only suboel:business/millionaire'
   
   # "[Shop] This shop isn't active yet. There needs to be a redstone dust 2 blocks below the sign"
   - '/minecraft:tellraw @a[name=$arg1,score_ssRedstone=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" This shop isn''t active yet. There needs to be a redstone dust "},{"bold":"false","color":"$s.style.color.mark","text":"2"},{"bold":"false","color":"$s.style.color.normal","text":" blocks below the sign"}]'
@@ -366,6 +385,8 @@ shop_redstone_setting_autoclaimprofit:
   - '$Script$%if%$s.shop.id.$arg10.profit>0'
   # give profit
   - '/mycommand:shop_setting_claim $arg1 $arg10'
+  # grant advancement
+  - '/minecraft:advancement grant $arg1 only suboel:business/what_does_this_do'
   
   # if setting is true
   - '$Script$%elseif%$s.shop.id.$arg10.setting.auto_claim_profit==true'
@@ -375,3 +396,5 @@ shop_redstone_setting_autoclaimprofit:
   - '%Repeat%100%/minecraft:tellraw $arg1 [{"text":""}]'
   # reclick the sign (make the same menu show again)
   - '/mycommand:shop_redstone_click_action $arg1 $arg2 $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10'
+  # grant advancement
+  - '/minecraft:advancement grant $arg1 only suboel:business/what_does_this_do'

@@ -94,7 +94,10 @@ shop_place:
   # arg5 = $PlayerDataFor%$arg1%$s.init.product.damage%
   
   # "[Shop] Successfully created a shop which sells x x x for ßx"
-  - '/tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$arg4:$arg5"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
+  - '/minecraft:tellraw $arg1 [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" created a shop which sells"},{"bold":"false","color":"$s.style.color.mark","text":" $arg2 x $s.translation.$arg4:$arg5"},{"bold":"false","color":"$s.style.color.normal","text":" for"},{"bold":"false","color":"$s.style.color.mark","text":" ß$arg3"}]'
+  
+  # function for shop count
+  - '/minecraft:execute $arg1 ~ ~ ~ /minecraft:function suboel:business/shop_create'
   
   # get id for shop
   - '$Script$%Variable%$s.init.shop.new_id=0'

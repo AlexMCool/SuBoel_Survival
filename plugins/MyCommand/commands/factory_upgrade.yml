@@ -3,7 +3,7 @@
 ##############################################################################
 factory_upgrade:
   command: /factory_upgrade
-  execute_mode: NORMAL
+  execute_mode: FROM_ANOTHER_COMMAND
   permission-required: false
   register: true
   type: RUN_AS_OPERATOR

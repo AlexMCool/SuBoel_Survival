@@ -31,7 +31,7 @@ activity_setup:
 ############################################################################## 
 activity_week:
   command: /activity_week
-  execute_mode: CONSOLE_ONLY
+  execute_mode: FROM_ANOTHER_COMMAND
   permission-required: false
   register: true
   type: RUN_CONSOLE
@@ -40,19 +40,19 @@ activity_week:
   #             no new week             #
   ####################################### 
   # arg1 = (nothing)
-  - '$Script$%elseif%$arg1==new_week'
+  - '$Script$%elseif%$arg1!=new_week'
   
   # add tag
-  - '/minecraft:scoreboard players tag @e[name=saWeekTimer,type=area_effect_cloud] add saNewWeek {Age:0}'
+  - '/minecraft:scoreboard players tag @e[name=srRoot,type=area_effect_cloud] add saNewWeek {Age:0}'
   
   # new week
-  - '/minecraft:execute @e[name=saWeekTimer,tag=saNewWeek,type=area_effect_cloud] ~ ~ ~ /mycommand:activity_week new_week'
+  - '/minecraft:execute @e[name=srRoot,tag=saNewWeek,type=area_effect_cloud] ~ ~ ~ /mycommand:activity_week new_week'
   
   #######################################
   #              new week               #
   ####################################### 
   # arg1 = new_week
-  - '$Script$%elseif%$arg1!=new_week'
+  - '$Script$%elseif%$arg1==new_week'
   
   # add 1 to week count
   - '$Script$%Variable%$s.general.week+1'
@@ -61,7 +61,7 @@ activity_week:
   - '/minecraft:execute @a ~ ~ ~ /sudo @s /mycommand:code activity_week_player $s.general.code'
   
   # update area_effect_cloud
-  - '/minecraft:entitydata @e[name=saWeekTimer,tag=saNewWeek,type=area_effect_cloud] {Age:-12096000,CustomName:"saWeekTimer",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:[""]}'
+  - '/minecraft:entitydata @e[name=srRoot,tag=saNewWeek,type=area_effect_cloud] {Age:-12096000,CustomName:"srRoot",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:[""]}'
   
   
   
