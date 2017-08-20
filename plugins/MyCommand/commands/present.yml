@@ -13,16 +13,16 @@ present:
   # teleport
   - '/multiverse-core:mvtp e:$PlayerData%$s.present.world%:$PlayerData%$s.present.x%.5,$PlayerData%$s.present.y%.5,$PlayerData%$s.present.z%.5:$PlayerData%$s.present.rotation.pitch%:$PlayerData%$s.present.rotation.yaw%'
   
-  # "[Present] Welcome back!"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
+  # "[The Present] Welcome back!"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
   
   # playsound
   - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s ~ ~ ~ 128'
   
   # if in present world
   - '$Script$%else%'
-  # "[Present] You are already in the present time, silly!"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You are already in the present time, silly!"}]'
+  # "[The Present] You are already in the present time, silly!"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You are already in the present time, silly!"}]'
   
   
   
