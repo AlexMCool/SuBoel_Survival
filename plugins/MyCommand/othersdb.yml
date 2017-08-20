@@ -1,63 +1,64 @@
 variables:
   $s:
-    shop:
-      init:
-        damage: ''
-        item: ''
-        stock: ''
-        redstone:
-          x: ''
-          y: ''
-          z: ''
-        new_id: ''
-        calculation: ''
-      id: ''
-    world: temp_world
-    week: 0
+    init: ''
+    shop: ''
+    general:
+      world: the_future
+      week: 0
+      time: 0
+      loan: 100
+      code: f875b]42bÂ³
     char:
       colon: ':'
     uuid:
-      af42555d-a7bf-4499-a194-2f319638fbd2:
-        name: AlexMCool
-      ba089104-9d21-4bec-b2db-ca1971afe7d8:
-        name: just_a_jenna
+      0f6061f5-bf7a-405f-bd7e-e8ab0c765337:
+        name: Jessuh_
+      209dc6c6-1c58-4ffc-9f1d-82638d586af4:
+        name: Stumpf_
+      39564b54-2585-4421-9355-ddde76a237b5:
+        name: NightX_
+      3d7f6be9-0246-4d58-ab64-13bc94875cbd:
+        name: Mr_casper13
       450094ff-b6c7-4932-ba24-4ce06389dd56:
         name: D33tj3
+      45a64c53-ea1b-42a4-982e-be15030a4c9f:
+        name: CarrotBanger
+      4b021bef-0530-450a-8018-ce117e15d9dc:
+        name: Mister_Failure
+      4debf4ff-40b0-4375-9b92-413b3f200e7d:
+        name: GamenMetTijs
+      66c1074d-028e-46ec-abe2-48ad45281869:
+        name: TheMinerCat
+      6712d1b9-2090-4af4-9596-436953671313:
+        name: XD_STIJN_XD
+      7c4b2ce2-04e7-4546-bb7c-09700c9c8760:
+        name: Annaxis
+      8996dcc3-fcb2-4d90-a819-c106a31b0e67:
+        name: Perux
+      8a6715f8-c923-4432-ae12-82cc6ba9b157:
+        name: nemsol
+      966be069-4385-4fd7-bd5c-7d8da5e9fa08:
+        name: Rosita2002
+      9d9889c6-78ba-4a30-bc8f-d188119c6012:
+        name: Stieven
+      a0be708b-65c7-4ab1-9582-a47be4e5000c:
+        name: Luckeyy_
+      af42555d-a7bf-4499-a194-2f319638fbd2:
+        name: AlexMCool
+      b641bebe-1504-4fb5-8db5-e5d7ce3902e6:
+        name: DennisjeVG
+      ba089104-9d21-4bec-b2db-ca1971afe7d8:
+        name: just_a_jenna
+      c2aa18a3-dc59-43bc-94e1-b68b594d08fd:
+        name: Joehoel
+      cdd90bf3-3cea-47d3-8d9d-e794d3e40d32:
+        name: Nathanfinncraft
       cf4e0c89-c398-4416-928f-0b1996216c09:
         name: ShanePoint
-    intersection:
-      calculation: ''
-      option: ''
-      type: ''
-      id:
-        now: 4
-        '1':
-          x: 4096
-          y: 64
-          z: 4096
-          type: east_north_west
-        '2':
-          x: 4176
-          y: 64
-          z: 4096
-          direction: west
-        '3':
-          x: 4096
-          y: 64
-          z: 4016
-          direction: south
-        '4':
-          x: 4016
-          y: 64
-          z: 4096
-          direction: east
-      location: ''
+      e3415874-f224-4c04-8b1f-234318d427bf:
+        name: pollepels
+    intersection: ''
     factory:
-      init:
-        player_factory_id: ''
-        list: ''
-        order_number: ''
-      calculation: ''
       id: ''
       location: ''
       level:
@@ -544,7 +545,7 @@ variables:
         error: red
         inverted_title: black
         sign_normal: dark_gray
-    item:
+    product:
       multiplier:
         acacia_boat:0: 32
         acacia_door:0: 32
@@ -1793,40 +1794,10 @@ variables:
         'false': 'False'
         'true': 'True'
       world:
-        temp_world: Temporary World
-      next_level:
-        '1': '1'
-        '2': '2'
-        '3': '3'
-        '4': '4'
-        '5': '5'
-        '6': '6'
-        '7': '7'
-        '8': '8'
-        '9': '9'
-        '10': '10'
-        '11': '11'
-        '12': '12'
-        '13': '13'
-        '14': '14'
-        '15': '15'
-        '16': '16'
-        '17': '17'
-        '18': '18'
-        '19': '19'
-        '20': '20'
-        '21': '21'
-        '22': '22'
-        '23': '23'
-        '24': '24'
-        '25': '25'
-        '26': '26'
-        '27': '27'
-        '28': '28'
-        '29': '29'
-        '30': '31'
-        '32': '32'
-        '33': No Upgrades Available
+        the_future: The Future
+        world: The Overworld
+        world_nether: The Nether
+        world_the_end: The End
       word:
         brands: b r a n d s
         business: b u s i n e s s
