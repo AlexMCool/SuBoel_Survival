@@ -1,6 +1,6 @@
 {
     "criteria": {
-        "skull_alexmcool": {
+        "skull_alex": {
             "conditions": {
                 "items": [
                     {
@@ -15,7 +15,37 @@
 		    },
             "trigger": "minecraft:inventory_changed"
 		},
-        "skull_d33tj3": {
+        "skull_brenno": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"NightX_\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_casper": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Mr_casper13\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_danielle": {
             "conditions": {
                 "items": [
                     {
@@ -25,11 +55,296 @@
                         "data": 3,
                         "item": "minecraft:skull",
                         "nbt": "{SkullOwner:\"D33tj3\"}"
-					}
-                ]
-            },
-			"trigger": "minecraft:inventory_changed"
-        }
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_dennis": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"DennisjeVG\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_jasmijn": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"TheMinerCat\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_jenna": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"just_a_jenna\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_jesse": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Jessuh_\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_joel": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Joehoel\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_lesley": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Mister_Failure\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_lucas": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Luckeyy_\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_nathan": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Nathanfinncraft\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_naz-pari": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Annaxis\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_nemo": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"nemsol\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_nina": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"pollepels\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_per": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Perux\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_rosa": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Rosita2002\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_shane": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"ShanePoint\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_stef": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Stumpf_\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_steven": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"Stieven\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_stijn": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"XD_STIJN_XD\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_tariq": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"CarrotBanger\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		},
+        "skull_tijs": {
+            "conditions": {
+                "items": [
+                    {
+                        "count": {
+                            "min": 1
+                        },
+                        "data": 3,
+                        "item": "minecraft:skull",
+                        "nbt": "{SkullOwner:\"GamenMetTijs\"}"
+                    }
+			    ]
+		    },
+            "trigger": "minecraft:inventory_changed"
+		}
     },
 	"display": {
         "announce_to_chat": true,
