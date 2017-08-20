@@ -12,20 +12,29 @@ packs:
     hash: 81ffbd1712afe8cdf138b570c0fc9934742c33c1
     format: 3
     restricted: false
+    permission: worldresourcepacks.pack.empty
   the_future:
     url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Future%5D%20%5BAlexMCool%5D%20%5BV1.0%5D.zip
-    hash: abcdef012345678abcdef012345678abcdef0123
+    hash: df66ca33d773fbe5cc367935f94165b34356e2ce
     format: 3
     restricted: false
+    permission: worldresourcepacks.pack.the_future
   the_present:
     url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Present%5D%20%5BSuBoel%5D%20%5BV1.0%5D.zip
-    hash: abcdef012345678abcdef012345678abcaef0123
+    hash: c6c716310cadd7c64d0b3b047d4b77012f3c4ce6
     format: 3
     restricted: false
+    permission: worldresourcepacks.pack.the_present
 empty: empty
 server:
   pack: present
   send-delay: 10
 worlds:
-  temp_world:
+  the_future:
     pack: the_future
+  world:
+    pack: the_present
+  world_nether:
+    pack: the_present
+  world_the_end:
+    pack: the_present
