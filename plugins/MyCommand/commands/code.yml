@@ -363,3 +363,58 @@ code_openmenu:
   - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
   # factory_iconmenu_x_actions
   - '/mycommand:factory_iconmenu_$arg3_actions $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12 $arg13'
+  
+  
+  
+  
+  
+##############################################################################
+#                                code tellraw                                #
+##############################################################################
+code_tellraw:
+  command: /code_tellraw
+  execute_mode: NORMAL
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # arg1 = shop_redstone_setting_autoclaimprofit / shop_setting_autoclaimprofit / shop_setting_claim / shop_xp_setting_autoclaimprofit
+  # arg2 = shopSettingVerificationa312×rhÂ²94vâ¬
+  # arg3 = (buyer) / (buyer) / (buyer) / (buyer)
+  # arg4 = $locX / $PlayerData%$s.init.product.name% / (shop_id) / {1 / 2 / 3 / ... / 62 / 63 / 64}
+  # arg5 = $locY / $PlayerData%$s.init.product.damage% / (nothing) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536}
+  # arg6 = $locZ / {1 / 2 / 3 / ... / 62 / 63 / 64} / (nothing) / (seller)
+  # arg7 = (what_to_sell) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / {normal / sneak}
+  # arg8 = {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (seller) / (nothing) / {enough / shortage}
+  # arg9 = (seller) / {normal / sneak} / (nothing) / (shop_id)
+  # arg10 = {normal / sneak} / {enough / shortage} / (nothing) / (nothing)
+  # arg11 = {enough / shortage} / (shop_id) / (nothing) / (nothing)
+  # arg12 = (shop_id) / (nothing) / (nothing) / (nothing)
+  
+  # arg1 = $player 
+  # arg2 = 
+  # arg3 = 
+  # arg4 = $s.uuid.(seller_uuid).name
+  # arg5 = 
+  # arg6 = 
+  # arg7 = $s.init.shop.new_id
+  
+  # shop_redstone_setting_autoclaimprofit
+  - '$Script$%elseif%$arg1==shop_redstone_setting_autoclaimprofit<and>$arg2==shopSettingVerificationa312×rhÂ²94vâ¬'
+  # shop_redstone_setting_autoclaimprofit
+  - '/mycommand:shop_redstone_setting_autoclaimprofit $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11 $arg12'
+  
+  # shop_setting_autoclaimprofit
+  - '$Script$%elseif%$arg1==shop_setting_autoclaimprofit<and>$arg2==shopSettingVerificationa312×rhÂ²94vâ¬'
+  # shop_setting_autoclaimprofit
+  - '/mycommand:shop_setting_autoclaimprofit $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9 $arg10 $arg11'
+  
+  # shop_setting_claim
+  - '$Script$%elseif%$arg1==shop_setting_claim<and>$arg2==shopSettingVerificationa312×rhÂ²94vâ¬'
+  # shop_setting_claim
+  - '/mycommand:shop_setting_claim $arg3 $arg4'
+  
+  # shop_xp_setting_autoclaimprofit
+  - '$Script$%elseif%$arg1==shop_xp_setting_autoclaimprofit<and>$arg2==shopSettingVerificationa312×rhÂ²94vâ¬'
+  # shop_xp_setting_autoclaimprofit
+  - '/mycommand:shop_xp_setting_autoclaimprofit $arg3 $arg4 $arg5 $arg6 $arg7 $arg8 $arg9'
