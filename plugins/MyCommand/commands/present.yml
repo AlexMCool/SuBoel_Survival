@@ -1,0 +1,52 @@
+##############################################################################
+#                                  present                                   #
+##############################################################################
+present:
+  command: /present
+  execute_mode: NORMAL
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # if in future world
+  - '$Script$%if%$world==$s.general.world'
+  # teleport
+  - '/multiverse-core:mvtp e:$PlayerData%$s.present.world%:$PlayerData%$s.present.x%.5,$PlayerData%$s.present.y%.5,$PlayerData%$s.present.z%.5:$PlayerData%$s.present.rotation.pitch%:$PlayerData%$s.present.rotation.yaw%'
+  
+  # "[Present] Welcome back!"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
+  
+  # playsound
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s'
+  
+  # if in present world
+  - '$Script$%else%'
+  # "[Present] You are already in the present time, silly!"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You are already in the present time, silly!"}]'
+  
+  
+  
+  
+  
+##############################################################################
+#                                present save                                #
+##############################################################################
+present_save:
+  command: /present_save
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # if player is not in the factory world
+  - '$Script$%if%$world!=$s.general.world'
+  # save location
+  - '$Script$%PlayerData%$s.present.x=$locX'
+  - '$Script$%PlayerData%$s.present.y=$locY'
+  - '$Script$%PlayerData%$s.present.z=$locZ'
+  - '$Script$%PlayerData%$s.present.rotation.yaw=$loc_yaw'
+  - '$Script$%PlayerData%$s.present.rotation.pitch=$loc_pitch'
+  - '$Script$%PlayerData%$s.present.world=$world'
+  
+  # "[The Future] Type /present to go back to the present time"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Future"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Type"},{"bold":"false","color":"$s.style.color.mark","text":" /present"},{"bold":"false","color":"$s.style.color.normal","text":" to go back to the present time"}]'
