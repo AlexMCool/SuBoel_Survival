@@ -1,0 +1,1 @@
+execute @e[name=srRoot,type=area_effect_cloud] ~ ~ ~ summon minecraft:area_effect_cloud ~ ~1 ~ {Age:-100,CustomName:"shTimer",Particle:"take",Radius:0.001f,Tags:["shSummon"]}

@@ -8,29 +8,29 @@ code:
   register: true
   type: RUN_AS_OPERATOR
   runcmd:
-  # arg1 = advancement_roots / activity_week_player / factory_item_delay_timer / holding_init / name_change_check / paypal_confirm / paypal_received_check / paypal_share_confirm / paypal_share_confirm_check / paypal_share_confirm_receivers / shop_check_profit_init / shop_check_recursion / shop_check_recursion_variable / shop_click / shop_click_action / shop_click_action_stock_confirm / shop_place / shop_place_newid / shop_redstone_click / shop_redstone_click_action / shop_xp_click / shop_xp_click_action / shop_xp_click_action_stock_confirm
+  # arg1 = advancement_roots / activity_week_player / factory_item_delay_timer / herobrine / holding_init / name_change_check / paypal_confirm / paypal_received_check / paypal_share_confirm / paypal_share_confirm_check / paypal_share_confirm_receivers / shop_check_profit_init / shop_check_recursion / shop_check_recursion_variable / shop_click / shop_click_action / shop_click_action_stock_confirm / shop_place / shop_place_newid / shop_redstone_click / shop_redstone_click_action / shop_xp_click / shop_xp_click_action / shop_xp_click_action_stock_confirm
   
   # arg2 = $s.general.code / itemDelayVerificationCodea203q²87a¼ / shopVerificationCodea589h³21r€
   
-  # arg3 = (nothing) / (nothing) / (nothing) / $player / $uuid / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / (nothing) / (receiver) / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / (shop_id) / $s.init.shop.calculation / (nothing) / (nothing) / $player / $player / $player / (nothing) / $locX / $player / {1 / 2 / 3 / ... / 62 / 63 / 64} / $player / $player
+  # arg3 = (nothing) / (nothing) / (nothing) / (nothing) / $player / $uuid / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / (nothing) / (receiver) / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / {000000 / 000001 / 000002 / ... / 999997 / 999998 / 999999} / (shop_id) / $s.init.shop.calculation / (nothing) / (nothing) / $player / $player / $player / (nothing) / $locX / $player / {1 / 2 / 3 / ... / 62 / 63 / 64} / $player / $player
   
-  # arg4 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (owner_uuid) / (nothing) / (nothing) / $PlayerDataFor%$arg1%$s.init.product.name% / $PlayerData%$s.init.product.name% / $PlayerData%$s.init.product.name% / {1 / 2 / 3 / ... / 62 / 63 / 64} / (nothing) / $locY / $locX / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64}
+  # arg4 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (owner_uuid) / (nothing) / (nothing) / $PlayerDataFor%$arg1%$s.init.product.name% / $PlayerData%$s.init.product.name% / $PlayerData%$s.init.product.name% / {1 / 2 / 3 / ... / 62 / 63 / 64} / (nothing) / $locY / $locX / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64}
   
-  # arg5 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $PlayerDataFor%$arg1%$s.init.product.damage% / $PlayerData%$s.init.product.damage% / $PlayerData%$s.init.product.damage% / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / $locZ / $locY / $uuid / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536}
+  # arg5 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $PlayerDataFor%$arg1%$s.init.product.damage% / $PlayerData%$s.init.product.damage% / $PlayerData%$s.init.product.damage% / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / $locZ / $locY / $uuid / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536}
   
-  # arg6 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64} / $PlayerData%$s.init.product.name% / (nothing) / (what_to_sell) / $locX / $s.init.shop.new_id / $s.uuid.(seller_uuid).name / $s.uuid.(seller_uuid).name
+  # arg6 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64} / {1 / 2 / 3 / ... / 62 / 63 / 64} / $PlayerData%$s.init.product.name% / (nothing) / (what_to_sell) / $locX / $s.init.shop.new_id / $s.uuid.(seller_uuid).name / $s.uuid.(seller_uuid).name
   
-  # arg7 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / $PlayerData%$s.init.product.damage% / (nothing) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (what_to_sell) / (nothing) / {normal / sneak} / {normal / sneak}
+  # arg7 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / $PlayerData%$s.init.product.damage% / (nothing) / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (what_to_sell) / (nothing) / {normal / sneak} / {normal / sneak}
   
-  # arg8 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $uuid / $s.uuid.(seller_uuid).name / $s.uuid.(seller_uuid).name / (nothing) / (nothing) / $uuid / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / {enough / shortage} / {enough / shortage}
+  # arg8 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $uuid / $s.uuid.(seller_uuid).name / $s.uuid.(seller_uuid).name / (nothing) / (nothing) / $uuid / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / {enough / shortage} / {enough / shortage}
   
-  # arg9 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $s.init.shop.new_id / {sneak / normal} / {normal / sneak} / (nothing) / (nothing) / $uuid $s.init.shop.new_id / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / $s.init.shop.new_id / $s.init.shop.new_id
+  # arg9 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / $s.init.shop.new_id / {sneak / normal} / {normal / sneak} / (nothing) / (nothing) / $uuid $s.init.shop.new_id / {1 / 2 / 3 / ... / 65534 / 65535 / 65536} / (nothing) / $s.init.shop.new_id / $s.init.shop.new_id
   
-  # arg10 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {enough / shortage} / {enough / shortage} / (nothing) / (nothing) / (nothing) / {normal / sneak} / (nothing) / (nothing) / (nothing)
+  # arg10 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {enough / shortage} / {enough / shortage} / (nothing) / (nothing) / (nothing) / {normal / sneak} / (nothing) / (nothing) / (nothing)
   
-  # arg11 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (shop_id) / (shop_id) / (nothing) / (nothing) / (nothing) / {enough / shortage} / (nothing) / (nothing) / (nothing)
+  # arg11 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (shop_id) / (shop_id) / (nothing) / (nothing) / (nothing) / {enough / shortage} / (nothing) / (nothing) / (nothing)
   
-  # arg12 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {$s.init.shop.new_id} / (nothing) / (nothing) / (nothing)
+  # arg12 = (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / (nothing) / {$s.init.shop.new_id} / (nothing) / (nothing) / (nothing)
   
   # activity_week_player
   - '$Script$%elseif%$arg1==activity_week_player<and>$arg2==itemDelayVerificationCodea203q²87a¼'
@@ -56,6 +56,13 @@ code:
   - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
   # factory_item_delay_timer
   - '/mycommand:factory_item_delay_timer'
+  
+  # herobrine
+  - '$Script$%elseif%$arg1==herobrine<and>$arg2==$s.general.code'
+  # reset verification code
+  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  # herobrine
+  - '/mycommand:herobrine'
   
   # holding_init
   - '$Script$%elseif%$arg1==holding_init<and>$arg2==$s.general.code'
