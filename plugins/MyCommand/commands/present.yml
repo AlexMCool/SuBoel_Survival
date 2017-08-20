@@ -17,7 +17,7 @@ present:
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
   
   # playsound
-  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s'
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s ~ ~ ~ 128'
   
   # if in present world
   - '$Script$%else%'

@@ -296,7 +296,7 @@ code_menu:
   # mvtp
   - '/mycommand:present_save'
   - '/multiverse-core:mvtp e$s.char.colon$arg3$s.char.colon$arg4.5,$arg5.5,$arg6.5$s.char.colon0$s.char.colon$arg7'
-  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s'
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s ~ ~ ~ 128'
   
   # shop_click_action_stock
   - '$Script$%elseif%$arg1==shop_click_action_stock<and>$arg2==$s.general.code'
