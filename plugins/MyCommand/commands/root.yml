@@ -40,3 +40,15 @@ root:
   ####################################### 
   # advancements
   - '/minecraft:execute @a ~ ~ ~ /minecraft:function suboel:init/advancements'
+  
+  #######################################
+  #              herobrine              #
+  ####################################### 
+  # resummon timer
+  - '/minecraft:function suboel:herobrine/resummon_timer unless @e[name=shTimer,type=area_effect_cloud]'
+  
+  # summon herobrine
+  - '/minecraft:execute @e[name=shTimer,tag=shSummon,type=area_effect_cloud] ~ ~ ~ /sudo @r /mycommand:code herobrine $s.general.code'
+  
+  # random age
+  - '/minecraft:entitydata @e[name=shTimer,tag=shSummon,type=area_effect_cloud] {Age:-$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%2;3;4;5;6;7;8;9;1%$GetRandomStringFromList%3;4;5;6;7;8;9;1;2%$GetRandomStringFromList%4;5;6;7;8;9;1;2;3%,Tags:[""]}'
