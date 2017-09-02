@@ -105,74 +105,28 @@ factory_item_delay_init:
   
   
 ##############################################################################
-#                         factory item delay player                          #
-##############################################################################
-factory_item_delay_player:
-  command: /factory_item_delay_player
-  execute_mode: FROM_ANOTHER_COMMAND
-  permission-required: false
-  register: true
-  type: RUN_CONSOLE
-  runcmd:
-  # manage factory item delay timers
-  - '/mycommand:factory_item_delay_timer $player $uuid'
-  
-  
-  
-  
-  
-##############################################################################
 #                          factory item delay timer                          #
 ##############################################################################
 factory_item_delay_timer:
   command: /factory_item_delay_timer
-  execute_mode: FROM_ANOTHER_COMMAND
+  execute_mode: NORMAL
   permission-required: false
   register: true
   type: RUN_CONSOLE
   runcmd:
-  # arg1 = (name)
-  # arg2 = (uuid)
+  # arg1 = itemDelayVerificationCodea203q²87a¼
   
-  # if timer is disabled
-  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%==disabled'
-  # add to active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
-  # add to week_active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
-  # add loan
-  - '/minecraft:scoreboard players add @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] ssCoins $s.general.loan'
-  # "[Loan] You received ßx for being active for an hour"
-  - '/minecraft:tellraw @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Loan"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You received"},{"bold":"false","color":"$s.style.color.mark","text":" ß$s.general.loan"},{"bold":"false","color":"$s.style.color.normal","text":" for being active for an hour"}]'
-  # reset loan delay
-  - '/minecraft:scoreboard players set @a[name=$arg1,score_saLoan=0] saLoan 72000'
-  # remove from loan delay
-  - '/minecraft:scoreboard players remove $arg1 saLoan 1'
-  # remove from cooldown
-  - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
-  # remove from timer area_effect_clouds
-  - '/minecraft:scoreboard players remove @e[name=sfItemDelay,tag=sf$arg2,type=area_effect_cloud] sfItemDelay 1'
+  # check for code
+  - '$Script$%if%$arg1==itemDelayVerificationCodea203q²87a¼'
   
-  # if timer is enabled
-  - '$Script$%elseif%$PlayerDataFor%$arg1%$s.init.product.timer%!=disabled'
-  # add to active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.active_ticks+1'
-  # add to week_active_ticks
-  - '$Script$%PlayerDataFor%$arg1%$s.init.activity.week_active_ticks+1'
-  # add loan
-  - '/minecraft:scoreboard players add @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] ssCoins $s.general.loan'
-  # "[Loan] You received ßx for being active for an hour"
-  - '/minecraft:tellraw @a[name=$arg1,score_saLoan=0,score_saLoan_min=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Loan"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You received"},{"bold":"false","color":"$s.style.color.mark","text":" ß$s.general.loan"},{"bold":"false","color":"$s.style.color.normal","text":" for being active for an hour"}]'
-  # reset loan delay
-  - '/minecraft:scoreboard players set @a[name=$arg1,score_saLoan=0] saLoan 72000'
-  # remove from loan delay
-  - '/minecraft:scoreboard players remove $arg1 saLoan 1'
-  # remove from cooldown
-  - '/minecraft:scoreboard players remove $arg1 saCooldown 1'
+  # manage scores
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:function suboel:factory/item_delay'
+  
   # remove from timer area_effect_clouds
-  - '/minecraft:scoreboard players remove @e[name=sfItemDelay,tag=sf$arg2,type=area_effect_cloud] sfItemDelay 1'
+  - '/minecraft:scoreboard players remove @e[name=sfItemDelay,tag=sf$uuid,type=area_effect_cloud] sfItemDelay 1'
+  
   #  check each player's factory ID
-  - '/minecraft:execute @e[c=1,name=sfItemDelay,score_sfItemDelay=0,tag=sf$arg2,type=area_effect_cloud] ~ ~ ~ /mycommand:factory_item_delay_check_init $arg1 $arg2 1 2'
+  - '/minecraft:execute @e[c=1,name=sfItemDelay,score_sfItemDelay=0,score_sfItemDelay_min=0,tag=sf$uuid,type=area_effect_cloud] ~ ~ ~ /mycommand:factory_item_delay_check_init $player $uuid 1 2'
   
   
   
@@ -194,10 +148,7 @@ factory_item_delay_check_init:
   # arg2 = (uuid)
   # arg3 = (player_factory_id)
   # arg4 = (next_id)
-  
-  # disable timer
-  - '$Script$%PlayerDataFor%$arg1%$s.init.product.timer=disabled'
-  
+  - '/say $arg3'
   # if (next_id) is not the last id
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%!=NoData<and>$PlayerDataFor%$arg1%$s.factory.factory_id.$arg4.id%!=NoData'
   # spawn item and reset timer
@@ -209,8 +160,6 @@ factory_item_delay_check_init:
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%!=NoData<and>$PlayerDataFor%$arg1%$s.factory.factory_id.$arg4.id%==NoData'
   # spawn item and reset timer
   - '/minecraft:execute @e[c=1,name=sfItemDelay,score_sfItemDelay=0,tag=sf$arg2,type=area_effect_cloud] ~ ~ ~ /mycommand:factory_item_delay_check $arg1 $arg2 $PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%'
-  # enable timer
-  - '$Script$%PlayerDataFor%$arg1%$s.init.product.timer=enabled'
   
   
   

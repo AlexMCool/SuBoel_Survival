@@ -18,6 +18,8 @@ name_change_check:
 
   - '/minecraft:scoreboard players reset $player saAlone'
   - '/minecraft:scoreboard players reset $player saCooldown'
+  - '/minecraft:scoreboard players reset $player saTicks'
+  - '/minecraft:scoreboard players reset $player saWeekTicks'
   
   - '/minecraft:scoreboard players reset $player sadChangeProduct'
   - '/minecraft:scoreboard players reset $player sadColored'
@@ -98,6 +100,8 @@ name_change_check:
 
   - '/minecraft:scoreboard players operation $player saAlone = $PlayerData%$s.name% saAlone'
   - '/minecraft:scoreboard players operation $player saCooldown = $PlayerData%$s.name% saCooldown'
+  - '/minecraft:scoreboard players operation $player saTicks = $PlayerData%$s.name% saTicks'
+  - '/minecraft:scoreboard players operation $player saWeekTicks = $PlayerData%$s.name% saWeekTicks'
   
   - '/minecraft:scoreboard players operation $player sadChangeProduct = $PlayerData%$s.name% sadChangeProduct'
   - '/minecraft:scoreboard players operation $player sadColored = $PlayerData%$s.name% sadColored'
@@ -178,6 +182,8 @@ name_change_check:
 
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% saAlone'
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% saCooldown'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% saTicks'
+  - '/minecraft:scoreboard players reset $PlayerData%$s.name% saWeekTicks'
   
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadChangeProduct'
   - '/minecraft:scoreboard players reset $PlayerData%$s.name% sadColored'

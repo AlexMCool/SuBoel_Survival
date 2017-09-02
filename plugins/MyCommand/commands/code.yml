@@ -40,7 +40,6 @@ code:
   # advancement_roots
   - '$Script$%elseif%$arg1==advancement_roots<and>$arg2==$s.general.code'
   # advancement_roots
-  - '/say yes'
   - '/minecraft:advancement grant $player only minecraft:adventure/root'
   - '/minecraft:advancement grant $player only minecraft:end/root'
   - '/minecraft:advancement grant $player only minecraft:husbandry/root'
@@ -52,9 +51,7 @@ code:
   - '/minecraft:advancement grant $player only suboel:suboel/root'
   
   # factory_item_delay_timer
-  - '$Script$%elseif%$arg1==factory_item_delay_timer<and>$arg2==$s.general.code'
-  # reset verification code
-  - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
+  - '$Script$%elseif%$arg1==factory_item_delay_timer<and>$arg2==itemDelayVerificationCodea203q²87a¼'
   # factory_item_delay_timer
   - '/mycommand:factory_item_delay_timer'
   
