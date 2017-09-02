@@ -9,12 +9,6 @@ road_intersection_create:
   type: RUN_AS_OPERATOR
   runcmd:
   #######################################
-  #                setup                #
-  #######################################
-  # tp to location
-  - '/tp @s ~ 64 ~'
-  
-  #######################################
   #          east intersection          #
   #######################################
   - '$Script$%if%$arg1==east'

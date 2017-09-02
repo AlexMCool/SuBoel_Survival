@@ -1,7 +1,10 @@
 #######################################
 #                root                 #
 #######################################
-# no greef module
+# armor stand module
+function suboel:module/armor_stand/name
+
+# enderman module
 function suboel:module/enderman/no_grief
 
 # sleep module
