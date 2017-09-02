@@ -38,8 +38,9 @@ code:
   - '/mycommand:activity_week_player'
   
   # advancement_roots
-  - '$Script$%elseif%$arg1==advancement_roots<and>$arg2==itemDelayVerificationCodea203q²87a¼'
+  - '$Script$%elseif%$arg1==advancement_roots<and>$arg2==$s.general.code'
   # advancement_roots
+  - '/say yes'
   - '/minecraft:advancement grant $player only minecraft:adventure/root'
   - '/minecraft:advancement grant $player only minecraft:end/root'
   - '/minecraft:advancement grant $player only minecraft:husbandry/root'
