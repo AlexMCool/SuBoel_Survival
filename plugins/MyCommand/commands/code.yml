@@ -293,8 +293,25 @@ code_menu:
   - '$Script$%Variable%$s.general.code=$GetRandomStringFromList%a;b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%b;c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a%$GetRandomStringFromList%~;|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%c;d;e;f;g;h;i;j;k;l;m;n;o;p;q;r;s;t;u;v;w;x;y;z;a;b%$GetRandomStringFromList%|;];[;{;};(;);*;^;$;#;@;!;?;\;¡;²;³;¤;€;~%'
   # mvtp
   - '/mycommand:present_save'
-  - '/multiverse-core:mvtp e$s.char.colon$arg3$s.char.colon$arg4.5,$arg5.5,$arg6.5$s.char.colon0$s.char.colon$arg7'
-  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s ~ ~ ~ 128'
+  # effect
+  - '/minecraft:effect $player minecraft:slowness 5 255 true'
+  - '/minecraft:effect $player minecraft:blindness 5 255 true'
+  - '/minecraft:effect $player minecraft:jump_boost 5 255 true'
+  # playsound
+  - '/minecraft:playsound minecraft:block.portal.trigger block @a ~ ~ ~ 1 1.7'
+  # particle
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:particle portal ~ ~ ~ 0 0 0 2 1000'
+  - '$delay$<50>/multiverse-core:mvtp e$s.char.colon$arg3$s.char.colon$arg4.5,$arg5.5,$arg6.5$s.char.colon0$s.char.colon$arg7'
+  # "[The Future] Welcome to the future!"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Future"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome to the future!"}]'
+  # playsound
+  - '$delay$<20>/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @a ~ ~ ~ 1'
+  # blindness
+  - '/minecraft:effect $player minecraft:slowness 3 255 true'
+  - '/minecraft:effect $player minecraft:blindness 3 255 true'
+  - '/minecraft:effect $player minecraft:jump_boost 3 255 true'
+  # particle
+  - '/minecraft:particle cloud ~ ~ ~ 0 0 0 0.5 1000'
   
   # shop_click_action_stock
   - '$Script$%elseif%$arg1==shop_click_action_stock<and>$arg2==$s.general.code'
