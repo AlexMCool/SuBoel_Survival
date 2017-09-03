@@ -119,6 +119,9 @@ factory_item_delay_timer:
   # check for code
   - '$Script$%if%$arg1==itemDelayVerificationCodea203q²87a¼'
   
+  # "[Loan] You received ß100 for being active for an hour"		
+  - '/minecraft:tellraw @a[name=$player,score_saLoan=0,score_saLoan_min=0] [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Loan"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You received"},{"bold":"false","color":"$s.style.color.mark","text":" ß100"},{"bold":"false","color":"$s.style.color.normal","text":" for being active for an hour"}]'
+  
   # manage scores
   - '/minecraft:execute $player ~ ~ ~ /minecraft:function suboel:factory/item_delay'
   
@@ -137,8 +140,6 @@ factory_item_delay_timer:
 ##############################################################################
 factory_item_delay_check_init:
   command: /factory_item_delay_check_init
-  delaytimer: 1
-  delaytimer_format: TICKS
   execute_mode: FROM_ANOTHER_COMMAND
   permission-required: false
   register: true
@@ -148,7 +149,7 @@ factory_item_delay_check_init:
   # arg2 = (uuid)
   # arg3 = (player_factory_id)
   # arg4 = (next_id)
-  - '/say $arg3'
+  
   # if (next_id) is not the last id
   - '$Script$%elseif%$PlayerDataFor%$arg1%$s.factory.factory_id.$arg3.id%!=NoData<and>$PlayerDataFor%$arg1%$s.factory.factory_id.$arg4.id%!=NoData'
   # spawn item and reset timer
