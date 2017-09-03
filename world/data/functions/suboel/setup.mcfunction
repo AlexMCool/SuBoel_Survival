@@ -11,6 +11,7 @@ function suboel:module/statistics/setup
 scoreboard objectives add saAlone dummy Alone Time
 scoreboard objectives add saCooldown dummy Activity Cooldown
 scoreboard objectives add saIsActive dummy Is Active
+scoreboard objectives add saManTicks dummy Manual Active Ticks
 scoreboard objectives add saTicks dummy Active Ticks
 scoreboard objectives add saLoan dummy Loan Delay
 scoreboard objectives add saWeekTicks dummy Active Ticks Last Week
