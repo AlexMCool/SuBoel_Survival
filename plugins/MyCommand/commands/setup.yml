@@ -23,8 +23,8 @@ setup:
   # world
   - '/multiverse-core:mvtp world'
   - '/minecraft:function suboel:setup/world'
-  # "[Setup] Successfully setup gamerules and objectives for x"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules and objectives for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
+  # "[Setup] Successfully setup gamerules for x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # world_nether
   - '/multiverse-core:mvtp world_nether'
@@ -40,3 +40,8 @@ setup:
   
   # tp to spawn
   - '/multiverse-core:mvtp world'
+  
+  # objectives
+  - '/minecraft:function suboel:setup/objectives'
+  # "[Setup] Successfully setup objectives"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup objectives"}]'
