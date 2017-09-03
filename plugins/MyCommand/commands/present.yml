@@ -62,5 +62,7 @@ present_save:
   - '$Script$%PlayerData%$s.present.rotation.pitch=$loc_pitch'
   - '$Script$%PlayerData%$s.present.world=$world'
   
+  # "[The Future] Welcome to the future!"
+  - '$delay$<52>/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Future"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome to the future!"}]'
   # "[The Future] Type /present to go back to the present time"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Future"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Type"},{"bold":"false","color":"$s.style.color.mark","text":" /present"},{"bold":"false","color":"$s.style.color.normal","text":" to go back to the present time"}]'
