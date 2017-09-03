@@ -1,5 +1,5 @@
 #######################################
-#                setup                #
+#                world                #
 #######################################
 # sleep module
 function suboel:module/sleep/setup
