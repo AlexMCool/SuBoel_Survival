@@ -14,13 +14,13 @@ packs:
     restricted: false
     permission: worldresourcepacks.pack.empty
   the_future:
-    url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Future%5D%20%5BAlexMCool%5D%20%5BV1.0%5D.zip
-    hash: df66ca33d773fbe5cc367935f94165b34356e2ce
+    url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Future%5D%20%5BAlexMCool%5D.zip
+    hash: 48fd048fada2aa8ab4c885c9c173bd9e2abe8829
     format: 3
     restricted: false
     permission: worldresourcepacks.pack.the_future
   the_present:
-    url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Present%5D%20%5BSuBoel%5D%20%5BV1.0%5D.zip
+    url: https://raw.githubusercontent.com/AlexMCool/SuBoel_Survival/master/resourcepacks/SuBoel-Survival%20%5BThe%20Present%5D%20%5BSuBoel%5D.zip
     hash: c6c716310cadd7c64d0b3b047d4b77012f3c4ce6
     format: 3
     restricted: false
