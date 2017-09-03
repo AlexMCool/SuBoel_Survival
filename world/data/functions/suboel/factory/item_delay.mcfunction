@@ -1,11 +1,8 @@
 #######################################
 #             item delay              #
 #######################################
-  # add loan
-scoreboard players add @s[score_saLoan=0,score_saLoan_min=0] ssCoins 100
-
-# reset loan delay
-scoreboard players set @s[score_saLoan=0,score_saLoan_min=0] saLoan 72000
+# give loan
+function suboel:activity/loan if @s[score_saLoan=0,score_saLoan_min=0]
 
 # remove from loan delay
 scoreboard players remove @s saLoan 1
