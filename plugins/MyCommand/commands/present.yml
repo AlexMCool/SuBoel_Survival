@@ -10,14 +10,28 @@ present:
   runcmd:
   # if in future world
   - '$Script$%if%$world==$s.general.world'
-  # teleport
-  - '/multiverse-core:mvtp e:$PlayerData%$s.present.world%:$PlayerData%$s.present.x%.5,$PlayerData%$s.present.y%.5,$PlayerData%$s.present.z%.5:$PlayerData%$s.present.rotation.pitch%:$PlayerData%$s.present.rotation.yaw%'
+  # effect
+  - '/minecraft:effect $player minecraft:slowness 5 255 true'
+  - '/minecraft:effect $player minecraft:blindness 5 255 true'
+  - '/minecraft:effect $player minecraft:jump_boost 5 255 true'
+  # playsound
+  - '/minecraft:playsound minecraft:block.portal.trigger block @a ~ ~ ~ 1 1.7'
+  # particle
+  - '/minecraft:execute $player ~ ~ ~ /minecraft:particle portal ~ ~ ~ 0 0 0 2 1000'
   
+  # teleport
+  - '$delay$<50>/multiverse-core:mvtp e:$PlayerData%$s.present.world%:$PlayerData%$s.present.x%.5,$PlayerData%$s.present.y%.5,$PlayerData%$s.present.z%.5:$PlayerData%$s.present.rotation.pitch%:$PlayerData%$s.present.rotation.yaw%'
   # "[The Present] Welcome back!"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
   
   # playsound
-  - '/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @s ~ ~ ~ 128'
+  - '$delay$<20>/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @a ~ ~ ~ 1'
+  # blindness
+  - '/minecraft:effect $player minecraft:slowness 3 255 true'
+  - '/minecraft:effect $player minecraft:blindness 3 255 true'
+  - '/minecraft:effect $player minecraft:jump_boost 3 255 true'
+  # particle
+  - '/minecraft:particle cloud ~ ~ ~ 0 0 0 0.5 1000'
   
   # if in present world
   - '$Script$%else%'
