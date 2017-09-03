@@ -302,8 +302,6 @@ code_menu:
   # particle
   - '/minecraft:execute $player ~ ~ ~ /minecraft:particle portal ~ ~ ~ 0 0 0 2 1000'
   - '$delay$<50>/multiverse-core:mvtp e$s.char.colon$arg3$s.char.colon$arg4.5,$arg5.5,$arg6.5$s.char.colon0$s.char.colon$arg7'
-  # "[The Future] Welcome to the future!"
-  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Future"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome to the future!"}]'
   # playsound
   - '$delay$<20>/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @a ~ ~ ~ 1'
   # blindness
