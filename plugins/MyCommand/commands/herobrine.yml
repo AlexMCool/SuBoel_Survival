@@ -73,7 +73,7 @@ herobrine:
   - '$Script$%if%always==always'
   
   # show herobrine
-  - '$delay$<30>/minecraft:entitydata @e[name=shHerobrine,type=armor_stand] {ArmorItems:[{},{},{},{id:"minecraft:diamond_hoe",Count:1b,Damage:18s,tag:{Unbreakable:1b}}],DisabledSlots:2039583,Invulnerable:1b,NoBasePlate:1b,NoGravity:1b,PersistenceRequired:1b}'
+  - '$delay$<30>/minecraft:entitydata @e[name=shHerobrine,type=armor_stand] {ArmorItems:[{},{},{},{id:"minecraft:wooden_hoe",Count:1b,Damage:1s,tag:{Unbreakable:1b}}],DisabledSlots:2039583,Invulnerable:1b,NoBasePlate:1b,NoGravity:1b,PersistenceRequired:1b}'
   
   # kill herobrine
   - '$delay$<30>/minecraft:kill @e[name=shHerobrine,type=armor_stand]'
