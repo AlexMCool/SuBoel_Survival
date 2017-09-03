@@ -49,3 +49,25 @@ scoreboard players reset @s saDiWalk
 #######################################
 # reset cooldown if active
 scoreboard players set @s[score_saIsActive_min=1] saCooldown 1201
+
+#######################################
+#            acticve ticks            #
+#######################################
+# add to active ticks
+scoreboard players add @s[score_saCooldown_min=1] saTicks 1
+scoreboard players add @s[score_saCooldown_min=1] saManTicks 1
+
+#######################################
+#                 afk                 #
+#######################################
+# "[AFK] x is now afk"		
+execute @s[score_saCooldown=0,score_saCooldown_min=0,tag=!saAFK] ~ ~ ~ tellraw @a [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"AFK"},{"bold":"true","color":"dark_aqua","text":"] "},{"bold":"false","color":"dark_aqua","selector":"@s"},{"bold":"false","color":"gray","text":" is now AFK"}]
+
+# add tag
+scoreboard players tag @s[score_saCooldown=0,score_saCooldown_min=0,tag=!saAFK] add saAFK
+
+# "[AFK] x is no longer afk"		
+execute @s[score_saCooldown=1201,score_saCooldown_min=1201,tag=saAFK] ~ ~ ~ tellraw @a [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"AFK"},{"bold":"true","color":"dark_aqua","text":"] "},{"bold":"false","color":"dark_aqua","selector":"@s"},{"bold":"false","color":"gray","text":" is no longer AFK"}]
+
+# remove tag
+scoreboard players tag @s[score_saCooldown=1201,score_saCooldown_min=1201,tag=saAFK] remove saAFK
