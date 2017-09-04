@@ -65,6 +65,8 @@ factory_upgrade:
   - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~17 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
   # summon area_effect_cloud (item_delay)
   - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~17 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~53 0 ~17 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully created"
@@ -496,6 +498,8 @@ factory_upgrade:
   - '/minecraft:summon minecraft:area_effect_cloud ~17 ~3.5 ~10 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
   # summon area_effect_cloud (item_delay)
   - '/minecraft:summon minecraft:area_effect_cloud ~17 ~3.5 ~10 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~17 0 ~10 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully created"
@@ -927,6 +931,8 @@ factory_upgrade:
   - '/minecraft:summon minecraft:area_effect_cloud ~46 ~3.5 ~53 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
   # summon area_effect_cloud (item_delay)
   - '/minecraft:summon minecraft:area_effect_cloud ~46 ~3.5 ~53 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~46 0 ~53 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully created"
@@ -1358,6 +1364,8 @@ factory_upgrade:
   - '/minecraft:summon minecraft:area_effect_cloud ~10 ~3.5 ~46 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
   # summon area_effect_cloud (item_delay)
   - '/minecraft:summon minecraft:area_effect_cloud ~10 ~3.5 ~46 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~10 0 ~46 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully created"
