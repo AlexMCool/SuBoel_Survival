@@ -1,0 +1,1784 @@
+##############################################################################
+#                              factory upgrade                               #
+##############################################################################
+factory_upgrade:
+  command: /factory_upgrade
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # store origin
+  - '$Script$%PlayerData%$s.init.location.x=$locX'
+  - '$Script$%PlayerData%$s.init.location.y=$locY'
+  - '$Script$%PlayerData%$s.init.location.z=$locZ'
+  - '$Script$%PlayerData%$s.init.location.rotation.yaw=$loc_yaw'
+  - '$Script$%PlayerData%$s.init.location.rotation.pitch=$loc_pitch'
+  - '$Script$%PlayerData%$s.init.location.world=$world'
+  
+  # tp to factory (upgrade) location
+  - '/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  
+  # set web to not fall down or move
+  #- '/minecraft:fill ~ ~ ~ ~ ~1 ~ minecraft:web default'
+  
+  # restistance for falling down
+  - '/minecraft:effect $player minecraft:resistance 1000000 255 true'
+  
+  # add 1 to variables
+  - '$Script$%Variable%$s.factory.id.$arg6.level.next+1'
+  - '$Script$%Variable%$s.factory.id.$arg6.level.current+1'
+  
+  #######################################
+  #                east                 #
+  ####################################### 
+  # arg1 = east
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  
+  # 1
+  - '$Script$%if%$arg1==east<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/1",posX:20,posY:-20,posZ:-7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # set structure_block with structure
+  - '/minecraft:setblock ~ 0 ~ minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/location_advancement/east",posX:-1,posY:0,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~ 1 ~ minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~ 0 ~ ~ 1 ~ minecraft:bedrock default'
+  # keep chunk
+  - '/minecraft:tp ~48 ~ ~16'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-48 ~ ~-16'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~17 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
+  # summon area_effect_cloud (item_delay)
+  - '/minecraft:summon minecraft:area_effect_cloud ~53 ~3.5 ~17 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~53 0 ~17 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
+  # check factory count, and grant advancement if necessary
+  - '/mycommand:advancements_factorycount'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/its_a_boy'
+ 
+  # 2
+  - '$Script$%if%$arg1==east<and>$arg2==2'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/2",posX:23,posY:-17,posZ:-10,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/light_up_my_world'
+  
+  # 3
+  - '$Script$%if%$arg1==east<and>$arg2==3'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/3",posX:19,posY:-19,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_build_a_wall'
+  
+  # 4
+  - '$Script$%if%$arg1==east<and>$arg2==4'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/4",posX:32,posY:-16,posZ:-16,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/sign_of_greatness'
+  
+  # 5
+  - '$Script$%if%$arg1==east<and>$arg2==5'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/5",posX:19,posY:-19,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 6
+  - '$Script$%if%$arg1==east<and>$arg2==6'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/6",posX:-5,posY:-20,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 7
+  - '$Script$%if%$arg1==east<and>$arg2==7'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/7",posX:-1,posY:-19,posZ:-22,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 8
+  - '$Script$%if%$arg1==east<and>$arg2==8'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/8",posX:-5,posY:-32,posZ:-18,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/unlock_the_doors'
+ 
+  # 9
+  - '$Script$%if%$arg1==east<and>$arg2==9'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/9",posX:-13,posY:-19,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.z+27'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 10
+  - '$Script$%if%$arg1==east<and>$arg2==10'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/10",posX:-13,posY:-17,posZ:14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 11
+  - '$Script$%if%$arg1==east<and>$arg2==11'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/11",posX:-9,posY:-18,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~49 ~1 ~34 {Command:"minecraft:function suboel:factory/lights/bottom/east_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 12
+  - '$Script$%if%$arg1==east<and>$arg2==12'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/12",posX:-7,posY:-17,posZ:9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 13
+  - '$Script$%if%$arg1==east<and>$arg2==13'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/13",posX:-7,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 14
+  - '$Script$%if%$arg1==east<and>$arg2==14'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/14",posX:-8,posY:-17,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 15
+  - '$Script$%if%$arg1==east<and>$arg2==15'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/15",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/lead_the_way'
+ 
+  # 16
+  - '$Script$%if%$arg1==east<and>$arg2==16'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/16",posX:-9,posY:-19,posZ:25,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~56 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~56 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~56 ~12 ~55 ~56 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~56 ~12 ~55 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 17
+  - '$Script$%if%$arg1==east<and>$arg2==17'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/17",posX:-28,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~5 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~5 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~5 ~12 ~55 ~5 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~5 ~12 ~55 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~19 ~12 ~55 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~19 ~13 ~55 minecraft:redstone_block default'
+  - '/minecraft:fill ~19 ~12 ~55 ~19 ~13 ~55 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~19 ~12 ~55 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 18
+  - '$Script$%if%$arg1==east<and>$arg2==18'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/18",posX:-30,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 19
+  - '$Script$%if%$arg1==east<and>$arg2==19'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/19",posX:-30,posY:-20,posZ:30,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_go_higher'
+ 
+  # 20
+  - '$Script$%if%$arg1==east<and>$arg2==20'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/20",posX:0,posY:-17,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~16'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-16'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~42 ~17.5 ~20 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder1"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 21
+  - '$Script$%if%$arg1==east<and>$arg2==21'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/21",posX:-32,posY:-20,posZ:13,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/no_parking_in_handicapped_spots'
+ 
+  # 22
+  - '$Script$%if%$arg1==east<and>$arg2==22'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/22",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 23
+  - '$Script$%if%$arg1==east<and>$arg2==23'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/23",posX:-12,posY:-15,posZ:11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~17 ~13 ~28 {Command:"minecraft:function suboel:factory/lights/top/east_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_on_the_naughty_list'
+ 
+  # 24
+  - '$Script$%if%$arg1==east<and>$arg2==24'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/24",posX:4,posY:-15,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 25
+  - '$Script$%if%$arg1==east<and>$arg2==25'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/25",posX:-15,posY:-19,posZ:7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 26
+  - '$Script$%if%$arg1==east<and>$arg2==26'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_first",posX:-12,posY:-22,posZ:-7,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:-6,posY:-6,posZ:-14,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:-7,posY:-10,posZ:-11,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/too_lazy_to_walk'
+ 
+  # 27
+  - '$Script$%if%$arg1==east<and>$arg2==27'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/27",posX:4,posY:-13,posZ:-9,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~42 ~19 ~20 minecraft:rail shape=east_west'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~36 ~17.5 ~20 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder2"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 28
+  - '$Script$%if%$arg1==east<and>$arg2==28'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/28",posX:-32,posY:-19,posZ:32,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/keep_the_mexicans_out'
+ 
+  # 29
+  - '$Script$%if%$arg1==east<and>$arg2==29'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/29",posX:-15,posY:-13,posZ:-5,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/save_yourself'
+ 
+  # 30
+  - '$Script$%if%$arg1==east<and>$arg2==30'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/30",posX:4,posY:-13,posZ:-3,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 31
+  - '$Script$%if%$arg1==east<and>$arg2==31'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/31",posX:-10,posY:-13,posZ:-2,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_off_the_naughty_list'
+ 
+  # 32
+  - '$Script$%if%$arg1==east<and>$arg2==32'
+  - '/minecraft:setblock ~29 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/32",posX:5,posY:-13,posZ:-1,powered:0b,rotation:"COUNTERCLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~34 ~29 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/they_grow_so_fast'
+  
+  #######################################
+  #                north                #
+  ####################################### 
+  # arg1 = north
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  
+  # 1
+  - '$Script$%if%$arg1==north<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/1",posX:-7,posY:-20,posZ:-20,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # set structure_block with structure
+  - '/minecraft:setblock ~ 0 ~ minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/location_advancement/north",posX:-1,posY:0,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~ 1 ~ minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~ 0 ~ ~ 1 ~ minecraft:bedrock default'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~17 ~3.5 ~10 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
+  # summon area_effect_cloud (item_delay)
+  - '/minecraft:summon minecraft:area_effect_cloud ~17 ~3.5 ~10 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~53 0 ~17 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
+  # check factory count, and grant advancement if necessary
+  - '/mycommand:advancements_factorycount'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/its_a_boy'
+ 
+  # 2
+  - '$Script$%if%$arg1==north<and>$arg2==2'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/2",posX:-10,posY:-17,posZ:-23,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/light_up_my_world'
+  
+  # 3
+  - '$Script$%if%$arg1==north<and>$arg2==3'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/3",posX:-5,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_build_a_wall'
+  
+  # 4
+  - '$Script$%if%$arg1==north<and>$arg2==4'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/4",posX:-16,posY:-16,posZ:-32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/sign_of_greatness'
+  
+  # 5
+  - '$Script$%if%$arg1==north<and>$arg2==5'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/5",posX:13,posY:-19,posZ:-19,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 6
+  - '$Script$%if%$arg1==north<and>$arg2==6'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/6",posX:-18,posY:-20,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 7
+  - '$Script$%if%$arg1==north<and>$arg2==7'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/7",posX:-22,posY:-19,posZ:1,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 8
+  - '$Script$%if%$arg1==north<and>$arg2==8'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/8",posX:-18,posY:-32,posZ:5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/unlock_the_doors'
+ 
+  # 9
+  - '$Script$%if%$arg1==north<and>$arg2==9'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/9",posX:14,posY:-19,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 10
+  - '$Script$%if%$arg1==north<and>$arg2==10'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/10",posX:14,posY:-17,posZ:13,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.x+27'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 11
+  - '$Script$%if%$arg1==north<and>$arg2==11'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/11",posX:7,posY:-18,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~34 ~1 ~14 {Command:"minecraft:function suboel:factory/lights/bottom/north_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 12
+  - '$Script$%if%$arg1==north<and>$arg2==12'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/12",posX:9,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 13
+  - '$Script$%if%$arg1==north<and>$arg2==13'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/13",posX:11,posY:-17,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 14
+  - '$Script$%if%$arg1==north<and>$arg2==14'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/14",posX:11,posY:-17,posZ:8,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 15
+  - '$Script$%if%$arg1==north<and>$arg2==15'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/15",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/lead_the_way'
+ 
+  # 16
+  - '$Script$%if%$arg1==north<and>$arg2==16'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/16",posX:25,posY:-19,posZ:9,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~5 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~5 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~5 ~55 ~13 ~5 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~5 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 17
+  - '$Script$%if%$arg1==north<and>$arg2==17'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/17",posX:30,posY:-20,posZ:28,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~42 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~42 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~42 ~55 ~13 ~42 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~42 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~55 ~12 ~56 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~55 ~13 ~56 minecraft:redstone_block default'
+  - '/minecraft:fill ~55 ~12 ~56 ~55 ~13 ~56 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~55 ~12 ~56 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 18
+  - '$Script$%if%$arg1==north<and>$arg2==18'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/18",posX:30,posY:-20,posZ:30,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air default replace minecraft:redstone_block'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 19
+  - '$Script$%if%$arg1==north<and>$arg2==19'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/19",posX:30,posY:-20,posZ:30,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_go_higher'
+ 
+  # 20
+  - '$Script$%if%$arg1==north<and>$arg2==20'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/20",posX:-9,posY:-17,posZ:0,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~16'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~-16'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~20 ~17.5 ~21 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder1"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 21
+  - '$Script$%if%$arg1==north<and>$arg2==21'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/21",posX:13,posY:-20,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/no_parking_in_handicapped_spots'
+ 
+  # 22
+  - '$Script$%if%$arg1==north<and>$arg2==22'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/22",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 23
+  - '$Script$%if%$arg1==north<and>$arg2==23'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/23",posX:11,posY:-15,posZ:12,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~28 ~13 ~46 {Command:"minecraft:function suboel:factory/lights/top/north_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_on_the_naughty_list'
+ 
+  # 24
+  - '$Script$%if%$arg1==north<and>$arg2==24'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/24",posX:-3,posY:-15,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 25
+  - '$Script$%if%$arg1==north<and>$arg2==25'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/25",posX:7,posY:-19,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 26
+  - '$Script$%if%$arg1==north<and>$arg2==26'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_first",posX:-7,posY:-22,posZ:12,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:-14,posY:-6,posZ:6,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:-11,posY:-10,posZ:7,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/too_lazy_to_walk'
+ 
+  # 27
+  - '$Script$%if%$arg1==north<and>$arg2==27'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/27",posX:-9,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~20 ~19 ~21 minecraft:rail shape=north_south'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~20 ~17.5 ~27 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder2"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 28
+  - '$Script$%if%$arg1==north<and>$arg2==28'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/28",posX:32,posY:-19,posZ:32,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/keep_the_mexicans_out'
+ 
+  # 29
+  - '$Script$%if%$arg1==north<and>$arg2==29'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/29",posX:-5,posY:-13,posZ:15,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/save_yourself'
+ 
+  # 30
+  - '$Script$%if%$arg1==north<and>$arg2==30'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/30",posX:-3,posY:-13,posZ:-4,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 31
+  - '$Script$%if%$arg1==north<and>$arg2==31'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/31",posX:-2,posY:-13,posZ:10,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_off_the_naughty_list'
+ 
+  # 32
+  - '$Script$%if%$arg1==north<and>$arg2==32'
+  - '/minecraft:setblock ~34 ~19 ~34 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/32",posX:-1,posY:-13,posZ:-5,powered:0b,rotation:"CLOCKWISE_180",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~34 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~34 ~34 ~19 ~34 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/they_grow_so_fast'
+  
+  #######################################
+  #                south                #
+  ####################################### 
+  # arg1 = south
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  
+  # 1
+  - '$Script$%if%$arg1==south<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/1",posX:7,posY:-20,posZ:20,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # set structure_block with structure
+  - '/minecraft:setblock ~ 0 ~ minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/location_advancement/south",posX:-1,posY:0,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~ 1 ~ minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~ 0 ~ ~ 1 ~ minecraft:bedrock default'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~48'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-48'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~46 ~3.5 ~53 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
+  # summon area_effect_cloud (item_delay)
+  - '/minecraft:summon minecraft:area_effect_cloud ~46 ~3.5 ~53 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~53 0 ~17 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
+  # check factory count, and grant advancement if necessary
+  - '/mycommand:advancements_factorycount'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/its_a_boy'
+ 
+  # 2
+  - '$Script$%if%$arg1==south<and>$arg2==2'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/2",posX:10,posY:-17,posZ:23,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/light_up_my_world'
+  
+  # 3
+  - '$Script$%if%$arg1==south<and>$arg2==3'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/3",posX:5,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_build_a_wall'
+  
+  # 4
+  - '$Script$%if%$arg1==south<and>$arg2==4'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/4",posX:16,posY:-16,posZ:32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/sign_of_greatness'
+  
+  # 5
+  - '$Script$%if%$arg1==south<and>$arg2==5'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/5",posX:-13,posY:-19,posZ:19,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 6
+  - '$Script$%if%$arg1==south<and>$arg2==6'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/6",posX:18,posY:-20,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 7
+  - '$Script$%if%$arg1==south<and>$arg2==7'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/7",posX:22,posY:-19,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 8
+  - '$Script$%if%$arg1==south<and>$arg2==8'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/8",posX:18,posY:-32,posZ:-5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/unlock_the_doors'
+ 
+  # 9
+  - '$Script$%if%$arg1==south<and>$arg2==9'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/9",posX:-14,posY:-19,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.x-27'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 10
+  - '$Script$%if%$arg1==south<and>$arg2==10'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/10",posX:-14,posY:-17,posZ:-13,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 11
+  - '$Script$%if%$arg1==south<and>$arg2==11'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/11",posX:-7,posY:-18,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~29 ~1 ~49 {Command:"minecraft:function suboel:factory/lights/bottom/south_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 12
+  - '$Script$%if%$arg1==south<and>$arg2==12'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/12",posX:-9,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 13
+  - '$Script$%if%$arg1==south<and>$arg2==13'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/13",posX:-11,posY:-17,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 14
+  - '$Script$%if%$arg1==south<and>$arg2==14'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/14",posX:-11,posY:-17,posZ:-8,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 15
+  - '$Script$%if%$arg1==south<and>$arg2==15'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/15",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/lead_the_way'
+ 
+  # 16
+  - '$Script$%if%$arg1==south<and>$arg2==16'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/16",posX:-25,posY:-19,posZ:-9,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~56 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~56 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~56 ~6 ~13 ~56 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~56 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 17
+  - '$Script$%if%$arg1==south<and>$arg2==17'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/17",posX:-30,posY:-20,posZ:-28,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~5 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~5 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~5 ~6 ~13 ~5 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~5 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~6 ~12 ~19 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~6 ~13 ~19 minecraft:redstone_block default'
+  - '/minecraft:fill ~6 ~12 ~19 ~6 ~13 ~19 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~6 ~12 ~19 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 18
+  - '$Script$%if%$arg1==south<and>$arg2==18'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/18",posX:-30,posY:-20,posZ:-30,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 19
+  - '$Script$%if%$arg1==south<and>$arg2==19'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/19",posX:-30,posY:-20,posZ:-30,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_go_higher'
+ 
+  # 20
+  - '$Script$%if%$arg1==south<and>$arg2==20'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/20",posX:9,posY:-17,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~32 ~ ~32'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-32 ~ ~-32'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~43 ~17.5 ~42 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder1"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 21
+  - '$Script$%if%$arg1==south<and>$arg2==21'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/21",posX:-13,posY:-20,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/no_parking_in_handicapped_spots'
+ 
+  # 22
+  - '$Script$%if%$arg1==south<and>$arg2==22'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/22",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 23
+  - '$Script$%if%$arg1==south<and>$arg2==23'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/23",posX:-11,posY:-15,posZ:-12,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~35 ~13 ~17 {Command:"minecraft:function suboel:factory/lights/top/south_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_on_the_naughty_list'
+ 
+  # 24
+  - '$Script$%if%$arg1==south<and>$arg2==24'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/24",posX:3,posY:-15,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 25
+  - '$Script$%if%$arg1==south<and>$arg2==25'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/25",posX:-7,posY:-19,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 26
+  - '$Script$%if%$arg1==south<and>$arg2==26'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_first",posX:7,posY:-22,posZ:-12,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:14,posY:-6,posZ:-6,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:11,posY:-10,posZ:-7,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/too_lazy_to_walk'
+ 
+  # 27
+  - '$Script$%if%$arg1==south<and>$arg2==27'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/27",posX:9,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~43 ~19 ~42 minecraft:rail shape=north_south'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~43 ~17.5 ~36 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder2"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 28
+  - '$Script$%if%$arg1==south<and>$arg2==28'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/28",posX:-32,posY:-19,posZ:-32,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/keep_the_mexicans_out'
+ 
+  # 29
+  - '$Script$%if%$arg1==south<and>$arg2==29'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/29",posX:5,posY:-13,posZ:-15,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/save_yourself'
+ 
+  # 30
+  - '$Script$%if%$arg1==south<and>$arg2==30'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/30",posX:3,posY:-13,posZ:4,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 31
+  - '$Script$%if%$arg1==south<and>$arg2==31'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/31",posX:2,posY:-13,posZ:-10,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_off_the_naughty_list'
+ 
+  # 32
+  - '$Script$%if%$arg1==south<and>$arg2==32'
+  - '/minecraft:setblock ~29 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/32",posX:1,posY:-13,posZ:5,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~29 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~29 ~18 ~29 ~29 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/they_grow_so_fast'
+  
+  #######################################
+  #                west                 #
+  ####################################### 
+  # arg1 = west
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  
+  # 1
+  - '$Script$%if%$arg1==west<and>$arg2==1'
+  # set structure_block with structure
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/1",posX:-20,posY:-20,posZ:7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # set structure_block with structure
+  - '/minecraft:setblock ~ 0 ~ minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/location_advancement/west",posX:-1,posY:0,posZ:-1,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  # activate structure_block
+  - '/minecraft:setblock ~ 1 ~ minecraft:redstone_block default'
+  # remove structure_block and redstone_block
+  - '/minecraft:fill ~ 0 ~ ~ 1 ~ minecraft:bedrock default'
+  # keep chunk
+  - '/minecraft:tp ~ ~ ~32'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~ ~ ~-32'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~10 ~3.5 ~46 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder0"]}'
+  # summon area_effect_cloud (item_delay)
+  - '/minecraft:summon minecraft:area_effect_cloud ~10 ~3.5 ~46 {Age:-2147483648,CustomName:"sfItemDelay",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sf$uuid"]}'
+  # set command block to summon item
+  - '/minecraft:setblock ~53 0 ~17 minecraft:command_block facing=up replace {auto:0b,Command:"/mycommand:factory_item_spawn $arg6",powered:0b}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully created"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" created"}]'
+  # check factory count, and grant advancement if necessary
+  - '/mycommand:advancements_factorycount'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/its_a_boy'
+ 
+  # 2
+  - '$Script$%if%$arg1==west<and>$arg2==2'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/2",posX:-23,posY:-17,posZ:10,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/light_up_my_world'
+  
+  # 3
+  - '$Script$%if%$arg1==west<and>$arg2==3'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/3",posX:-19,posY:-19,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_build_a_wall'
+  
+  # 4
+  - '$Script$%if%$arg1==west<and>$arg2==4'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/4",posX:-32,posY:-16,posZ:16,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 small'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/sign_of_greatness'
+  
+  # 5
+  - '$Script$%if%$arg1==west<and>$arg2==5'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/5",posX:-19,posY:-19,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 6
+  - '$Script$%if%$arg1==west<and>$arg2==6'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/6",posX:5,posY:-20,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 7
+  - '$Script$%if%$arg1==west<and>$arg2==7'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/7",posX:1,posY:-19,posZ:22,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 8
+  - '$Script$%if%$arg1==west<and>$arg2==8'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/8",posX:5,posY:-32,posZ:18,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/unlock_the_doors'
+ 
+  # 9
+  - '$Script$%if%$arg1==west<and>$arg2==9'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/9",posX:13,posY:-19,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # Set new tp location
+  - '$Script$%Variable%$s.factory.id.$arg6.tp.z-27'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 10
+  - '$Script$%if%$arg1==west<and>$arg2==10'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/10",posX:13,posY:-17,posZ:-14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 11
+  - '$Script$%if%$arg1==west<and>$arg2==11'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/11",posX:9,posY:-18,posZ:-7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~14 ~1 ~29 {Command:"minecraft:function suboel:factory/lights/bottom/west_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 12
+  - '$Script$%if%$arg1==west<and>$arg2==12'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/12",posX:7,posY:-17,posZ:-9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 13
+  - '$Script$%if%$arg1==west<and>$arg2==13'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/13",posX:7,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 14
+  - '$Script$%if%$arg1==west<and>$arg2==14'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/14",posX:8,posY:-17,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 15
+  - '$Script$%if%$arg1==west<and>$arg2==15'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/15",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/lead_the_way'
+ 
+  # 16
+  - '$Script$%if%$arg1==west<and>$arg2==16'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/16",posX:9,posY:-19,posZ:-25,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~5 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~5 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~5 ~12 ~6 ~5 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~5 ~12 ~6 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 17
+  - '$Script$%if%$arg1==west<and>$arg2==17'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/17",posX:28,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~42 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~42 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~42 ~12 ~6 ~42 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~42 ~12 ~6 minecraft:cobblestone_wall default'
+  # oven smoke (replace cobblestone wall because the integrity is 0,5, so the wall would only spawn 50% of the time)
+  - '/minecraft:setblock ~56 ~12 ~6 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:0.5f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/smoke",posX:0,posY:0,posZ:0,powered:0b,rotation:"NONE",showboundingbox:0b}'
+  - '/minecraft:setblock ~56 ~13 ~6 minecraft:redstone_block default'
+  - '/minecraft:fill ~56 ~12 ~6 ~56 ~13 ~6 minecraft:air default replace minecraft:redstone_block'
+  - '/minecraft:setblock ~56 ~12 ~6 minecraft:cobblestone_wall default'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 18
+  - '$Script$%if%$arg1==west<and>$arg2==18'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/18",posX:30,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  # only replace redstone_block
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air default replace minecraft:redstone_block'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  
+  # 19
+  - '$Script$%if%$arg1==west<and>$arg2==19'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/19",posX:30,posY:-20,posZ:-30,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/we_need_to_go_higher'
+ 
+  # 20
+  - '$Script$%if%$arg1==west<and>$arg2==20'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/20",posX:0,posY:-17,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # keep chunk
+  - '/minecraft:tp ~16 ~ ~32'
+  - '$Script$%PlayerData%$s.init.chunk.x=$locX'
+  - '$Script$%PlayerData%$s.init.chunk.x/16'  
+  - '$Script$%PlayerData%$s.init.chunk.z=$locZ'
+  - '$Script$%PlayerData%$s.init.chunk.z/16'
+  - '/mycommand:factory_keepchunk $PlayerData%$s.init.chunk.x% $PlayerData%$s.init.chunk.z% $world'
+  - '/minecraft:tp ~-16 ~ ~-32'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~21 ~17.5 ~43 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder1"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 21
+  - '$Script$%if%$arg1==west<and>$arg2==21'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/21",posX:32,posY:-20,posZ:-13,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/no_parking_in_handicapped_spots'
+ 
+  # 22
+  - '$Script$%if%$arg1==west<and>$arg2==22'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/22",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 23
+  - '$Script$%if%$arg1==west<and>$arg2==23'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/23",posX:12,posY:-15,posZ:-11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # lights
+  - '/minecraft:blockdata ~46 ~13 ~35 {Command:"minecraft:function suboel:factory/lights/top/west_on"}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_on_the_naughty_list'
+ 
+  # 24
+  - '$Script$%if%$arg1==west<and>$arg2==24'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/24",posX:-4,posY:-15,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 25
+  - '$Script$%if%$arg1==west<and>$arg2==25'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/25",posX:15,posY:-19,posZ:-7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 26
+  - '$Script$%if%$arg1==west<and>$arg2==26'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_first",posX:12,posY:-22,posZ:7,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_second",posX:6,posY:-6,posZ:14,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # tp to factory (upgrade) location
+  - '$delay$<20>/multiverse-core:mvtp e:$s.general.world:$arg3.5,$arg4,$arg5.5'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/26_third",posX:7,posY:-10,posZ:11,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/too_lazy_to_walk'
+ 
+  # 27
+  - '$Script$%if%$arg1==west<and>$arg2==27'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/27",posX:-4,posY:-13,posZ:9,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # replace rails
+  - '/minecraft:setblock ~21 ~19 ~43 minecraft:rail shape=east_west'
+  # summon area_effect_cloud
+  - '/minecraft:summon minecraft:area_effect_cloud ~27 ~17.5 ~43 {Age:-2147483648,CustomName:"sfHopperChain",Duration:2147483647,Particle:"take",Radius:0.001f,Tags:["sfID$arg6","sfOrder2"]}'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 28
+  - '$Script$%if%$arg1==west<and>$arg2==28'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/28",posX:32,posY:-19,posZ:-32,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/keep_the_mexicans_out'
+ 
+  # 29
+  - '$Script$%if%$arg1==west<and>$arg2==29'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/29",posX:15,posY:-13,posZ:5,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/save_yourself'
+ 
+  # 30
+  - '$Script$%if%$arg1==west<and>$arg2==30'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/30",posX:-4,posY:-13,posZ:3,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+ 
+  # 31
+  - '$Script$%if%$arg1==west<and>$arg2==31'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/31",posX:10,posY:-13,posZ:2,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/youre_off_the_naughty_list'
+ 
+  # 32
+  - '$Script$%if%$arg1==west<and>$arg2==32'
+  - '/minecraft:setblock ~34 ~19 ~29 minecraft:structure_block mode=load replace {ignoreEntities:1b,integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"suboel:factory/upgrade/32",posX:-5,posY:-13,posZ:1,powered:0b,rotation:"CLOCKWISE_90",showboundingbox:0b}'
+  - '/minecraft:setblock ~34 ~18 ~29 minecraft:redstone_block default'
+  - '/minecraft:fill ~34 ~18 ~29 ~34 ~19 ~29 minecraft:air'
+  # board
+  - '/mycommand:factory_board_create $arg1 big'
+  # calculate item delay
+  - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
+  # "[Factory] The factory was successfully upgraded to level x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory was "},{"bold":"false","color":"dark_aqua","text":"successfully"},{"bold":"false","color":"gray","text":" upgraded to level "},{"bold":"false","color":"dark_aqua","text":"$arg2"}]'
+  # grant advancement
+  - '/minecraft:advancement grant $player only suboel:industry/they_grow_so_fast'
+  
+  #######################################
+  #               always                #
+  ####################################### 
+  # arg1 = east / north / south / west
+  # arg2 = 1 / 2 / 3 / ... / 30 / 31 / 32
+  # arg3 = $s.factory.id.x.location.x
+  # arg4 = $s.factory.id.x.location.y
+  # arg5 = $s.factory.id.x.location.z
+  # arg6 = $PlayerData%$s.factory.factory_id.x.id
+  - '$Script$%if%always==always'
+  - '$Script$%PlayerData%$s.factory.level.$arg2.upgrade=NoData'
+    
+  # remove web
+  - '/minecraft:fill ~ ~ ~ ~ ~1 ~ minecraft:air default replace minecraft:web'
+  
+  # remove resistance effect
+  - '/minecraft:effect $player minecraft:resistance 0'
+  - '/minecraft:effect $player minecraft:resistance 1 255 true'
+  
+  # tp back to origin
+  - '/multiverse-core:mvtp $player e:$PlayerData%$s.init.location.world%:$PlayerData%$s.init.location.x%.5,$PlayerData%$s.init.location.y%.5,$PlayerData%$s.init.location.z%.5:$PlayerData%$s.init.location.rotation.pitch%:$PlayerData%$s.init.location.rotation.yaw%'

@@ -1,0 +1,1367 @@
+##############################################################################
+#                         road intersection create                           #
+##############################################################################
+road_intersection_create:
+  command: /road_intersection_create
+  execute_mode: RUN_AS_OPERATOR
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  #######################################
+  #          east intersection          #
+  #######################################
+  - '$Script$%if%$arg1==east'
+  
+  # choose random intersection type
+  - '/mycommand:road_intersection_check_road east'
+
+  # check if intersection is possible
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type!=impossible'
+  
+  # set stone_slab for the intersection border
+  - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~13 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~12 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~3 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  # load intersection structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+
+  #######################
+  #    east with east   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=east'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~14 ~ ~12 ~15 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~12 ~ ~4 ~13 ~ ~11 minecraft:air default'
+  
+# east road already exists
+#  # load straight road structure
+#  - '/minecraft:clone ~15 ~-17 ~ ~15 ~-16 ~ ~15 247 ~'
+#  - '/minecraft:setblock ~15 ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:1,posY:15,posZ:15,rotation:"COUNTERCLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+#  - '/minecraft:setblock ~15 ~-17 ~ minecraft:redstone_block default'
+#  - '/minecraft:clone ~15 247 ~ ~15 248 ~ ~15 ~-17 ~ replace move'
+#  
+#  # set stone_slab next to straight road
+#  - '/minecraft:fill ~16 ~ ~2 ~93 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  - '/minecraft:fill ~16 ~ ~12 ~93 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  
+#  # set stone_slab at the end
+#  - '/minecraft:fill ~92 ~ ~4 ~93 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #   east with north   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=north'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~ ~13 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~2 ~11 ~ ~3 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:15,posY:15,posZ:-1,rotation:"CLOCKWISE_180",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~-1 ~3 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~-1 ~13 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~-77 ~11 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################
+  #   east with south   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=south'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~14 ~13 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~12 ~11 ~ ~13 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~15 ~15 ~-16 ~15 ~15 247 ~15'
+  - '/minecraft:setblock ~15 ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:-15,posY:15,posZ:1,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~15 ~15 248 ~15 ~15 ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~16 ~3 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~16 ~13 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~92 ~11 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #    east with west   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=west'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~ ~ ~12 ~1 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~2 ~ ~4 ~3 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~15 ~ ~-16 ~15 ~ 247 ~15'
+  - '/minecraft:setblock ~ ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:-1,posY:15,posZ:-15,rotation:"CLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~15 ~ 248 ~15 ~ ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~-1 ~ ~2 ~-78 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~-1 ~ ~12 ~-78 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~-77 ~ ~4 ~-78 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################################
+  #         north intersection          #
+  #######################################
+  - '$Script$%if%$arg1==north'
+  
+  # choose random intersection type
+  - '/mycommand:road_intersection_check_road north'
+
+  # check if intersection is possible
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type!=impossible'
+
+  # set stone_slab for the intersection border
+  - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~13 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~12 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~3 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  # load intersection structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+
+  #######################
+  #   north with east   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=east'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~14 ~ ~12 ~15 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~12 ~ ~4 ~13 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~ ~15 ~-16 ~ ~15 247 ~'
+  - '/minecraft:setblock ~15 ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:1,posY:15,posZ:15,rotation:"COUNTERCLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~ ~15 248 ~ ~15 ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~16 ~ ~2 ~93 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~16 ~ ~12 ~93 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~92 ~ ~4 ~93 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #  north with north   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=north'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~ ~13 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~2 ~11 ~ ~3 minecraft:air default'
+
+# north road already exists  
+#  # load straight road structure
+#  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+#  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:15,posY:15,posZ:-1,rotation:"CLOCKWISE_180",sizeX:16,sizeY:1,sizeZ:32}'
+#  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+#  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+#  
+#  # set stone_slab next to straight road
+#  - '/minecraft:fill ~2 ~ ~-1 ~3 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  - '/minecraft:fill ~12 ~ ~-1 ~13 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  
+#  # set stone_slab at the end
+#  - '/minecraft:fill ~4 ~ ~-77 ~11 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################
+  #  north with south   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=south'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~14 ~13 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~12 ~11 ~ ~13 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~15 ~15 ~-16 ~15 ~15 247 ~15'
+  - '/minecraft:setblock ~15 ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:-15,posY:15,posZ:1,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~15 ~15 248 ~15 ~15 ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~16 ~3 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~16 ~13 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~92 ~11 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #   north with west   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=west'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~ ~ ~12 ~1 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~2 ~ ~4 ~3 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~15 ~ ~-16 ~15 ~ 247 ~15'
+  - '/minecraft:setblock ~ ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:-1,posY:15,posZ:-15,rotation:"CLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~15 ~ 248 ~15 ~ ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~-1 ~ ~2 ~-78 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~-1 ~ ~12 ~-78 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~-77 ~ ~4 ~-78 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################################
+  #         south intersection          #
+  #######################################
+  - '$Script$%if%$arg1==south'
+  
+  # choose random intersection type
+  - '/mycommand:road_intersection_check_road south'
+
+  # check if intersection is possible
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type!=impossible'
+
+  # set stone_slab for the intersection border
+  - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~13 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~12 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~3 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  # load intersection structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+
+  #######################
+  #   south with east   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=east'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~14 ~ ~12 ~15 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~12 ~ ~4 ~13 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~ ~15 ~-16 ~ ~15 247 ~'
+  - '/minecraft:setblock ~15 ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:1,posY:15,posZ:15,rotation:"COUNTERCLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~ ~15 248 ~ ~15 ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~16 ~ ~2 ~93 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~16 ~ ~12 ~93 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~92 ~ ~4 ~93 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #  south with north   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=north'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~ ~13 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~2 ~11 ~ ~3 minecraft:air default'
+
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:15,posY:15,posZ:-1,rotation:"CLOCKWISE_180",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~-1 ~3 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~-1 ~13 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~-77 ~11 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################
+  #  south with south   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=south'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~14 ~13 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~12 ~11 ~ ~13 minecraft:air default'
+  
+# south road already exists
+#  # load straight road structure
+#  - '/minecraft:clone ~15 ~-17 ~15 ~15 ~-16 ~15 ~15 247 ~15'
+#  - '/minecraft:setblock ~15 ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:-15,posY:15,posZ:1,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:32}'
+#  - '/minecraft:setblock ~15 ~-17 ~15 minecraft:redstone_block default'
+#  - '/minecraft:clone ~15 247 ~15 ~15 248 ~15 ~15 ~-17 ~15 replace move'
+#  
+#  # set stone_slab next to straight road
+#  - '/minecraft:fill ~2 ~ ~16 ~3 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  - '/minecraft:fill ~12 ~ ~16 ~13 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  
+#  # set stone_slab at the end
+#  - '/minecraft:fill ~4 ~ ~92 ~11 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #   south with west   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=west'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~ ~ ~12 ~1 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~2 ~ ~4 ~3 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~15 ~ ~-16 ~15 ~ 247 ~15'
+  - '/minecraft:setblock ~ ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:-1,posY:15,posZ:-15,rotation:"CLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~15 ~ 248 ~15 ~ ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~-1 ~ ~2 ~-78 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~-1 ~ ~12 ~-78 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~-77 ~ ~4 ~-78 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################################
+  #          west intersection          #
+  #######################################
+  - '$Script$%if%$arg1==west'
+  
+  # choose random intersection type
+  - '/mycommand:road_intersection_check_road west'
+
+  # check if intersection is possible
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type!=impossible'
+
+  # set stone_slab for the intersection border
+  - '/minecraft:fill ~12 ~ ~2 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~13 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~12 ~13 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~2 ~ ~2 ~3 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  # load intersection structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load relace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/intersection/$s.init.intersection.type",posX:0,posY:15,posZ:0,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:16}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+
+  #######################
+  #    west with east   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=east'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~14 ~ ~2 ~15 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~14 ~ ~12 ~15 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~12 ~ ~4 ~13 ~ ~11 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~ ~15 ~-16 ~ ~15 247 ~'
+  - '/minecraft:setblock ~15 ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:1,posY:15,posZ:15,rotation:"COUNTERCLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~ ~15 248 ~ ~15 ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~16 ~ ~2 ~93 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~16 ~ ~12 ~93 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~92 ~ ~4 ~93 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #   west with north   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=north'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~ ~3 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~ ~13 ~ ~1 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~2 ~11 ~ ~3 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~ ~-17 ~ ~ ~-16 ~ ~ 247 ~'
+  - '/minecraft:setblock ~ ~-16 ~ minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:15,posY:15,posZ:-1,rotation:"CLOCKWISE_180",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~ ~-17 ~ minecraft:redstone_block default'
+  - '/minecraft:clone ~ 247 ~ ~ 248 ~ ~ ~-17 ~ replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~-1 ~3 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~-1 ~13 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~-77 ~11 ~ ~-78 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  #######################
+  #   west with south   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=south'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~2 ~ ~14 ~3 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~14 ~13 ~ ~15 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~4 ~ ~12 ~11 ~ ~13 minecraft:air default'
+  
+  # load straight road structure
+  - '/minecraft:clone ~15 ~-17 ~15 ~15 ~-16 ~15 ~15 247 ~15'
+  - '/minecraft:setblock ~15 ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/positive",posX:-15,posY:15,posZ:1,rotation:"NONE",sizeX:16,sizeY:1,sizeZ:32}'
+  - '/minecraft:setblock ~15 ~-17 ~15 minecraft:redstone_block default'
+  - '/minecraft:clone ~15 247 ~15 ~15 248 ~15 ~15 ~-17 ~15 replace move'
+  
+  # set stone_slab next to straight road
+  - '/minecraft:fill ~2 ~ ~16 ~3 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~12 ~ ~16 ~13 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # set stone_slab at the end
+  - '/minecraft:fill ~4 ~ ~92 ~11 ~ ~93 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################
+  #    west with west   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=west'
+  
+  # set corner stone_slab
+  - '/minecraft:fill ~ ~ ~2 ~1 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  - '/minecraft:fill ~ ~ ~12 ~1 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+  
+  # remove stone_slab to access road
+  - '/minecraft:fill ~2 ~ ~4 ~3 ~ ~11 minecraft:air default'
+  
+# west road already exists
+#  # load straight road structure
+#  - '/minecraft:clone ~ ~-17 ~15 ~ ~-16 ~15 ~ 247 ~15'
+#  - '/minecraft:setblock ~ ~-16 ~15 minecraft:structure_block mode=load replace {integrity:1.0f,mirror:"NONE",mode:"LOAD",name:"factory/road/straight/negative",posX:-1,posY:15,posZ:-15,rotation:"CLOCKWISE_90",sizeX:16,sizeY:1,sizeZ:32}'
+#  - '/minecraft:setblock ~ ~-17 ~15 minecraft:redstone_block default'
+#  - '/minecraft:clone ~ 247 ~15 ~ 248 ~15 ~ ~-17 ~15 replace move'
+#  
+#  # set stone_slab next to straight road
+#  - '/minecraft:fill ~-1 ~ ~2 ~-78 ~ ~3 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  - '/minecraft:fill ~-1 ~ ~12 ~-78 ~ ~13 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+#  
+#  # set stone_slab at the end
+#  - '/minecraft:fill ~-77 ~ ~4 ~-78 ~ ~11 minecraft:stone_slab half=bottom,variant=stone replace minecraft:air'
+
+  #######################################
+  #    save intersection locations      #
+  ####################################### 
+  #######################
+  #       origin        #
+  #######################
+  # always save intersection type (and location and id if necessary)
+  - '$Script$%if%$s.init.intersection.type==impossible<or>$s.init.intersection.type!=impossible'
+  
+  # checks if the intersection has an id (and first initializes the variables)
+  - '/mycommand:road_intersection_check_id $locX $locY $locZ'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  
+  # save origin intersection type
+  - '/mycommand:road_intersection_init type $s.intersection.location.$locX,$locY,$locZ.id $s.init.intersection.type'
+  
+  #######################
+  #        east         #
+  #######################
+  - '$Script$%if%$s.init.intersection.type.contains=east'
+  
+  # tp to intersection
+  - '/minecraft:tp @s ~80 ~ ~'
+  # checks if the intersection has an id (and first initializes the variables)
+  - '/mycommand:road_intersection_check_id $locX $locY $locZ'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # saves direction if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init direction $s.intersection.location.$locX,$locY,$locZ.id west'
+  # tp back to origin
+  - '/minecraft:tp @s ~-80 ~ ~'
+  
+  #######################
+  #        north        #
+  #######################
+  - '$Script$%if%$s.init.intersection.type.contains=north'
+  
+  # tp to intersection
+  - '/minecraft:tp @s ~ ~ ~-80'
+  # checks if the intersection has an id (and first initializes the variables)
+  - '/mycommand:road_intersection_check_id $locX $locY $locZ'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # saves direction if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init direction $s.intersection.location.$locX,$locY,$locZ.id south'
+  # tp back to origin
+  - '/minecraft:tp @s ~ ~ ~80'
+  
+  #######################
+  #        south        #
+  #######################
+  - '$Script$%if%$s.init.intersection.type.contains=south'
+  
+  # tp to intersection
+  - '/minecraft:tp @s ~ ~ ~80'
+  # checks if the intersection has an id (and first initializes the variables)
+  - '/mycommand:road_intersection_check_id $locX $locY $locZ'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # saves direction if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init direction $s.intersection.location.$locX,$locY,$locZ.id north'
+  # tp back to origin
+  - '/minecraft:tp @s ~ ~ ~-80'
+  
+  #######################
+  #        west         #
+  #######################
+  - '$Script$%if%$s.init.intersection.type.contains=west'
+  
+  # tp to intersection
+  - '/minecraft:tp @s ~-80 ~ ~'
+  # checks if the intersection has an id (and first initializes the variables)
+  - '/mycommand:road_intersection_check_id $locX $locY $locZ'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init location $s.intersection.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # saves direction if necessary (and first initialzes the variables)
+  - '/mycommand:road_intersection_init direction $s.intersection.location.$locX,$locY,$locZ.id east'
+  # tp back to origin
+  - '/minecraft:tp @s ~80 ~ ~'
+  
+  #######################################
+  #       save factory locations        #
+  ####################################### 
+  #######################
+  #    east with east   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=east'
+  
+  # tp to pos,pos factory
+  - '/minecraft:tp @s ~16 ~ ~16'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # tp to pos,neg factory
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  # saves location if necessary (and first initializes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~64'
+  
+  #######################
+  #   east with north   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=north'
+ 
+  # neg,neg east
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # pos,neg west
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~64'
+
+  #######################
+  #   east with south   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=south'
+  
+  # pos,pos west
+  - '/minecraft:tp @s ~16 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # neg,pos east
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #    east with west   #
+  #######################
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.type.contains=west'
+  
+  # neg,neg south
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # neg,pos north
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #   north with east   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=east'
+  
+  # tp to pos,pos factory
+  - '/minecraft:tp @s ~16 ~ ~16'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # tp to pos,neg factory
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  # saves location if necessary (and first initializes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~64'
+  
+  #######################
+  #  north with north   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=north'
+ 
+  # neg,neg east
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # pos,neg west
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~64'
+
+  #######################
+  #  north with south   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=south'
+  
+  # pos,pos west
+  - '/minecraft:tp @s ~16 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # neg,pos east
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #   north with west   #
+  #######################
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.type.contains=west'
+  
+  # neg,neg south
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # neg,pos north
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #   south with east   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=east'
+  
+  # tp to pos,pos factory
+  - '/minecraft:tp @s ~16 ~ ~16'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # tp to pos,neg factory
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  # saves location if necessary (and first initializes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~64'
+  
+  #######################
+  #  south with north   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=north'
+ 
+  # neg,neg east
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # pos,neg west
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~64'
+
+  #######################
+  #  south with south   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=south'
+  
+  # pos,pos west
+  - '/minecraft:tp @s ~16 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # neg,pos east
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #   south with west   #
+  #######################
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.type.contains=west'
+  
+  # neg,neg south
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # neg,pos north
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #    west with east   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=east'
+  
+  # tp to pos,pos factory
+  - '/minecraft:tp @s ~16 ~ ~16'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  # saves location if necessary (and first initialzes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # tp to pos,neg factory
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  # checks if the factory has an id (and first initializes the variables)
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  # saves location if necessary (and first initializes the variables)
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  # sets status for direction (and first initializes the variables)
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  # tp back to origin
+  - '/minecraft:tp @s ~-16 ~ ~64'
+  
+  #######################
+  #   west with north   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=north'
+ 
+  # neg,neg east
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # pos,neg west
+  - '/minecraft:tp @s ~16 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~64'
+
+  #######################
+  #   west with south   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=south'
+  
+  # pos,pos west
+  - '/minecraft:tp @s ~16 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ west'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id west'
+  - '/minecraft:tp @s ~-16 ~ ~-16'
+  
+  # neg,pos east
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ east'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id east'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  #######################
+  #    west with west   #
+  #######################
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.type.contains=west'
+  
+  # neg,neg south
+  - '/minecraft:tp @s ~-64 ~ ~-64'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ south'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id south'
+  - '/minecraft:tp @s ~64 ~ ~64'
+  
+  # neg,pos north
+  - '/minecraft:tp @s ~-64 ~ ~16'
+  - '/mycommand:road_factory_check_id $locX $locY $locZ north'
+  - '/mycommand:road_factory_init info $s.factory.location.$locX,$locY,$locZ.id $locX $locY $locZ'
+  - '/mycommand:road_factory_init unused $s.factory.location.$locX,$locY,$locZ.id north'
+  - '/minecraft:tp @s ~64 ~ ~-16'
+  
+  
+  
+  
+  
+##############################################################################
+#                        road intersection check road                        #
+##############################################################################
+road_intersection_check_road:
+  command: /road_intersection_check_road
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  #######################################
+  #                reset                #
+  #######################################
+  # reset option value
+  - '$Script$%Variable%$s.init.intersection.option=0'
+  
+  #######################################
+  #                check                #
+  #######################################
+  #######################
+  #         east        #
+  #######################
+  # prevent double addition to option integer
+  - '$Script$%if%$arg1!=east'
+  
+  # setup stat
+  - '/minecraft:scoreboard players set @s srCheck 0'
+  - '/minecraft:stats entity @s set SuccessCount $player srCheck'
+  
+  # test for concrete
+  - '/minecraft:tp ~84 ~ ~7'
+  - '/minecraft:testforblock ~ ~-1 ~ minecraft:concrete color=gray'
+  - '/minecraft:stats entity @s clear SuccessCount'
+  - '/minecraft:tp ~-84 ~ ~-7'
+  
+  # if test failed (score=!1) add x to option variable
+  - '/minecraft:execute @s[score_srCheck=0,score_srCheck_min=0] ~ ~ ~ /mycommand:road_intersection_option 1'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @s srCheck'
+  
+  #######################
+  #        north        #
+  #######################
+  # prevent double addition to option integer
+  - '$Script$%if%$arg1!=north'
+  
+  # setup stat
+  - '/minecraft:scoreboard players set @s srCheck 0'
+  - '/minecraft:stats entity @s set SuccessCount $player srCheck'
+  
+  # test for concrete
+  - '/minecraft:tp ~7 ~ ~-72'
+  - '/minecraft:testforblock ~ ~-1 ~ minecraft:concrete color=gray'
+  - '/minecraft:stats entity @s clear SuccessCount'
+  - '/minecraft:tp ~-7 ~ ~72'
+  
+  # if test failed (score=!1) add x to option variable
+  - '/minecraft:execute @s[score_srCheck=0,score_srCheck_min=0] ~ ~ ~ /mycommand:road_intersection_option 2'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @s srCheck'
+  
+  #######################
+  #        south        #
+  #######################
+  # prevent double addition to option integer
+  - '$Script$%if%$arg1!=south'
+  
+  # setup stat
+  - '/minecraft:scoreboard players set @s srCheck 0'
+  - '/minecraft:stats entity @s set SuccessCount $player srCheck'
+  
+  # test for concrete
+  - '/minecraft:tp ~7 ~ ~84'
+  - '/minecraft:testforblock ~ ~-1 ~ minecraft:concrete color=gray'
+  - '/minecraft:stats entity @s clear SuccessCount'
+  - '/minecraft:tp ~-7 ~ ~-84'
+  
+  # if test failed (score=!1) add x to option variable
+  - '/minecraft:execute @s[score_srCheck=0,score_srCheck_min=0] ~ ~ ~ /mycommand:road_intersection_option 4'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @s srCheck'
+  
+  #######################
+  #         west        #
+  #######################
+  # prevent double addition to option integer
+  - '$Script$%if%$arg1!=west'
+  
+  # setup stat
+  - '/minecraft:scoreboard players set @s srCheck 0'
+  - '/minecraft:stats entity @s set SuccessCount $player srCheck'
+  
+  # test for concrete
+  - '/minecraft:tp ~-72 ~ ~7'
+  - '/minecraft:testforblock ~ ~-1 ~ minecraft:concrete color=gray'
+  - '/minecraft:stats entity @s clear SuccessCount'
+  - '/minecraft:tp ~72 ~ ~-7'
+  
+  # if test failed (score=!1) add x to option variable
+  - '/minecraft:execute @s[score_srCheck=0,score_srCheck_min=0] ~ ~ ~ /mycommand:road_intersection_option 8'
+  
+  # reset score
+  - '/minecraft:scoreboard players reset @s srCheck'
+  
+  #######################################
+  #               set type              #
+  #######################################
+  #######################
+  #         east        #
+  #######################
+  - '$Script$%if%$arg1==east'
+  - '/mycommand:road_intersection_option 1'
+  
+  # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;east_south;east_south_west;east_west%'
+  
+  # 13
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south;east_south_west;east_west%'
+  
+  # 11
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_west;east_west%'
+  
+  # 9
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==9'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_west%'
+  
+  # 7
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_south%'
+  
+  # 5
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==5'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south%'
+  
+  # 3
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==3'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north%'
+  
+  # 1
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==1'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  # if none of these
+  - '$Script$%if%$arg1==east<and>$s.init.intersection.option==14<or>$arg1==east<and>$s.init.intersection.option==12<or>$arg1==east<and>$s.init.intersection.option==10<or>$arg1==east<and>$s.init.intersection.option==8<or>$arg1==east<and>$s.init.intersection.option==6<or>$arg1==east<and>$s.init.intersection.option==4<or>$arg1==east<and>$s.init.intersection.option==2<or>$arg1==east<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  #######################
+  #        north        #
+  #######################
+  - '$Script$%if%$arg1==north'
+  - '/mycommand:road_intersection_option 2'
+  
+  # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;east_north_south_west;east_north_west;north_south;north_south_west;north_west%'
+  
+  # 14
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south;north_south_west;north_west%'
+  
+  # 11
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_west;north_west%'
+  
+  # 10
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==10'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_west%'
+  
+  # 7
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north;east_north_south;north_south%'
+  
+  # 6
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==6'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south%'
+  
+  # 3
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==3'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north%'
+  
+  # 2
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==2'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  # if none of these
+  - '$Script$%if%$arg1==north<and>$s.init.intersection.option==13<or>$arg1==north<and>$s.init.intersection.option==12<or>$arg1==north<and>$s.init.intersection.option==9<or>$arg1==north<and>$s.init.intersection.option==8<or>$arg1==north<and>$s.init.intersection.option==5<or>$arg1==north<and>$s.init.intersection.option==4<or>$arg1==north<and>$s.init.intersection.option==1<or>$arg1==north<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  #######################
+  #        south        #
+  #######################
+  - '$Script$%if%$arg1==south'
+  - '/mycommand:road_intersection_option 4'
+  
+  # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south;east_north_south_west;east_south;east_south_west;north_south;north_south_west;south_west%'
+  
+  # 14
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south;north_south_west;south_west%'
+  
+  # 13
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south;east_south_west;south_west%'
+  
+  # 12
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==12'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%south_west%'
+  
+  # 7
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==7'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south;east_south;north_south%'
+  
+  # 6
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==6'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south%'
+  
+  # 5
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==5'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south%'
+  
+  # 4
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==4'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  # if none of these
+  - '$Script$%if%$arg1==south<and>$s.init.intersection.option==11<or>$arg1==south<and>$s.init.intersection.option==10<or>$arg1==south<and>$s.init.intersection.option==9<or>$arg1==south<and>$s.init.intersection.option==8<or>$arg1==south<and>$s.init.intersection.option==3<or>$arg1==south<and>$s.init.intersection.option==2<or>$arg1==south<and>$s.init.intersection.option==1<or>$arg1==south<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  #######################
+  #        west         #
+  #######################
+  - '$Script$%if%$arg1==west'
+  - '/mycommand:road_intersection_option 8'
+  
+  # 15 (Z:\My Archive\Documenten\SuBoel\SuBoel-Survival\Seizoen III\Different Intersections.xlsx)
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==15'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_south_west;east_north_west;east_south_west;east_west;north_south_west;north_west;south_west%'
+  
+  # 14
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==14'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_south_west;north_west;south_west%'
+  
+  # 13
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==13'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_south_west;east_west;south_west%'
+  
+  # 12
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==12'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%south_west%'
+  
+  # 11
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==11'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_north_west;east_west;north_west%'
+  
+  # 10
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==10'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%north_west%'
+  
+  # 9
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==9'
+  - '$Script$%Variable%$s.init.intersection.type=$GetRandomStringFromList%east_west%'
+  
+  # 8
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==8'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+  
+  # if none of these
+  - '$Script$%if%$arg1==west<and>$s.init.intersection.option==7<or>$arg1==west<and>$s.init.intersection.option==6<or>$arg1==west<and>$s.init.intersection.option==5<or>$arg1==west<and>$s.init.intersection.option==4<or>$arg1==west<and>$s.init.intersection.option==3<or>$arg1==west<and>$s.init.intersection.option==2<or>$arg1==west<and>$s.init.intersection.option==1<or>$arg1==west<and>$s.init.intersection.option==0'
+  - '$Script$%Variable%$s.init.intersection.type=impossible'
+
+
+  
+  
+  
+##############################################################################
+#                          road intersection option                          #
+##############################################################################
+road_intersection_option:
+  command: /road_intersection_option
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_CONSOLE
+  runcmd:
+  # arg1 = 1 / 2 / 4 / 8
+  
+  # add x to option variable
+  - '$Script$%Variable%$s.init.intersection.option+$arg1'
+
+  
+  
+  
+  
+##############################################################################
+#                        road intersection check id                          #
+##############################################################################
+road_intersection_check_id:
+  command: /road_intersection_check_id
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # arg1 = $locX
+  # arg2 = $locY
+  # arg3 = $locZ
+  
+  # checks if the location has an ID
+  - '$Script$%if%$s.intersection.location.$arg1,$arg2,$arg3.id.contains=.'
+  
+  # adds 1 to total and now
+#  - '$Script$%Variable%$s.intersection.id.total+1'
+  - '$Script$%Variable%$s.init.intersection.id_now+1'
+  
+  # initialize the id and location
+  - '/mycommand:road_intersection_init id $s.init.intersection.id_now $locX $locY $locZ'
+  
+  
+  
+  
+  
+##############################################################################
+#                          road intersection init                            #
+##############################################################################
+road_intersection_init:
+  command: /road_intersection_init
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  #######################################
+  #              location               #
+  ####################################### 
+  # arg1 = location
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = $locX
+  # arg4 = $locY
+  # arg5 = $locZ
+  - '$Script$%if%$arg1==location'
+  
+  # resets factory information if necessary
+  - '/mycommand:road_intersection_info location $arg2 $arg3 $arg4 $arg5'
+  
+  #######################################
+  #                 id                  #
+  ####################################### 
+  # arg1 = id
+  # arg2 = $s.init.intersection.id_now
+  # arg3 = $locX
+  # arg4 = $locY
+  # arg5 = $locZ
+  - '$Script$%if%$arg1==id'
+  
+  # sets factory id
+  - '$Script$%Variable%$s.intersection.location.$arg3,$arg4,$arg5.id=$arg2'
+  
+  #######################################
+  #                type                 #
+  ####################################### 
+  # arg1 = type
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = $s.init.intersection.type
+  - '$Script$%if%$arg1==type'
+  
+  # set origin intersection type
+  - '/mycommand:road_intersection_info type $arg2 $arg3'
+  
+  #######################################
+  #              direction              #
+  ####################################### 
+  # arg1 = direction
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = east / north / south / west
+  - '$Script$%if%$arg1==direction'
+  
+  # set intersection direction
+  - '/mycommand:road_intersection_info direction $arg2 $arg3'
+  
+  
+  
+  
+  
+##############################################################################
+#                          road intersection info                            #
+##############################################################################
+road_intersection_info:
+  command: /road_intersection_info
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  #######################################
+  #              location               #
+  ####################################### 
+  # arg1 = location
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = $locX
+  # arg4 = $locY
+  # arg5 = $locZ
+  - '$Script$%if%$arg1==location'
+  
+  # saves location
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.x=$arg3'
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.y=$arg4'
+  - '$Script$%Variable%$s.intersection.id.$arg2.location.z=$arg5'
+  
+  #######################################
+  #                type                 #
+  ####################################### 
+  # arg1 = type
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = $s.init.intersection.type
+  - '$Script$%if%$arg1==type'
+  
+  # set origin intersection type
+  - '$Script$%Variable%$s.intersection.id.$arg2.type=$arg3'
+  
+  #######################################
+  #              direction              #
+  ####################################### 
+  # arg1 = direction
+  # arg2 = $s.intersection.location.$locX,$locY,$locZ.id
+  # arg3 = east / north / south / west
+  - '$Script$%if%$arg1==direction'
+  
+  # set intersection direction
+  - '$Script$%Variable%$s.intersection.id.$arg2.direction=$arg3'
