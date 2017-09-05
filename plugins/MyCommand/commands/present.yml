@@ -20,7 +20,8 @@ present:
   - '/minecraft:execute $player ~ ~ ~ /minecraft:particle portal ~ ~ ~ 0 0 0 2 1000'
   
   # teleport
-  - '$delay$<50>/multiverse-core:mvtp e:$PlayerData%$s.present.world%:$PlayerData%$s.present.x%.5,$PlayerData%$s.present.y%.5,$PlayerData%$s.present.z%.5:$PlayerData%$s.present.rotation.pitch%:$PlayerData%$s.present.rotation.yaw%'
+  - '$delay$<50>/multiverse-core:mvtp $player $PlayerData%$s.present.world%'
+  - '/minecraft:tp $player $PlayerData%$s.present.x% $PlayerData%$s.present.y% $PlayerData%$s.present.z% $PlayerData%$s.present.rotation.yaw%:$PlayerData%$s.present.rotation.pitch%'
   # "[The Present] Welcome back!"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"The Present"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" Welcome back!"}]'
   

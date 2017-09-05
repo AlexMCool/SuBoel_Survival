@@ -9,37 +9,37 @@ setup:
   type: RUN_AS_OPERATOR
   runcmd:
   # schematic_world
-  - '/multiverse-core:mvtp schematic_world'
+  - '/multiverse-core:mvtp $player $player schematic_world'
   - '/minecraft:function suboel:setup/schematic_world'
   # "[Setup] Successfully setup gamerules for x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # the_future
-  - '/multiverse-core:mvtp the_future'
+  - '/multiverse-core:mvtp $player the_future'
   - '/minecraft:function suboel:setup/the_future'
   # "[Setup] Successfully setup gamerules for x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # world
-  - '/multiverse-core:mvtp world'
+  - '/multiverse-core:mvtp $player world'
   - '/minecraft:function suboel:setup/world'
   # "[Setup] Successfully setup gamerules for x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # world_nether
-  - '/multiverse-core:mvtp world_nether'
+  - '/multiverse-core:mvtp $player world_nether'
   - '/minecraft:function suboel:setup/world_nether'
   # "[Setup] Successfully setup gamerules for x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # world_the_end
-  - '/multiverse-core:mvtp world_the_end'
+  - '/multiverse-core:mvtp $player world_the_end'
   - '/minecraft:function suboel:setup/world_the_end'
   # "[Setup] Successfully setup gamerules for x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Setup"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.mark","text":" Successfully"},{"bold":"false","color":"$s.style.color.normal","text":" setup gamerules for"},{"bold":"false","color":"$s.style.color.mark","text":" $world"}]'
   
   # tp to spawn
-  - '/multiverse-core:mvtp world'
+  - '/multiverse-core:mvtp $player world'
   
   # objectives
   - '/minecraft:function suboel:setup/objectives'
