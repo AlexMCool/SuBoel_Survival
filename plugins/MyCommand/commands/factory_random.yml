@@ -184,7 +184,7 @@ factory_random_direction_choose:
   
   # 12
   - '$Script$%if%$arg2==12'
-  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;west%'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%south;west%'
   
   # 11
   - '$Script$%if%$arg2==11'
@@ -231,8 +231,7 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east%'
   
   # 0
-  - '$Script$%if%$arg2==0'
-  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%none%'
+  # not possible, a factory can't have no directions
   
   # save tp location
   - '$Script$%if%$s.factory.id.$arg1.status==east'
