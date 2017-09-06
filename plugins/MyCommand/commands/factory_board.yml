@@ -59,13 +59,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==east<and>$arg2==small'
   
   # tp to origin of board
-  - '/tp ~66 ~7 ~18'
+  - '/minecraft:tp ~66 ~7 ~18'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-66 ~-7 ~-18'
+  - '/minecraft:tp ~-66 ~-7 ~-18'
   
   #######################
   #         big         #
@@ -73,13 +73,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==east<and>$arg2==big'
   
   # tp to origin of board
-  - '/tp ~52 ~19 ~33'
+  - '/minecraft:tp ~52 ~19 ~33'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-52 ~-19 ~-33'
+  - '/minecraft:tp ~-52 ~-19 ~-33'
   
   #######################################
   #                north                #
@@ -93,13 +93,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==north<and>$arg2==small'
   
   # tp to origin of board
-  - '/tp ~18 ~7 ~-3'
+  - '/minecraft:tp ~18 ~7 ~-3'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-18 ~-7 ~3'
+  - '/minecraft:tp ~-18 ~-7 ~3'
   
   #######################
   #         big         #
@@ -107,13 +107,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==north<and>$arg2==big'
   
   # tp to origin of board
-  - '/tp ~33 ~19 ~11'
+  - '/minecraft:tp ~33 ~19 ~11'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-33 ~-19 ~-11'
+  - '/minecraft:tp ~-33 ~-19 ~-11'
   
   #######################################
   #                south                #
@@ -127,13 +127,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==south<and>$arg2==small'
   
   # tp to origin of board
-  - '/tp ~45 ~7 ~66'
+  - '/minecraft:tp ~45 ~7 ~66'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-45 ~-7 ~-66'
+  - '/minecraft:tp ~-45 ~-7 ~-66'
   
   #######################
   #         big         #
@@ -141,13 +141,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==south<and>$arg2==big'
   
   # tp to origin of board
-  - '/tp ~30 ~19 ~52'
+  - '/minecraft:tp ~30 ~19 ~52'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-30 ~-19 ~-52'
+  - '/minecraft:tp ~-30 ~-19 ~-52'
   
   #######################################
   #                west                 #
@@ -161,13 +161,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==west<and>$arg2==small'
   
   # tp to origin of board
-  - '/tp ~-3 ~7 ~45'
+  - '/minecraft:tp ~-3 ~7 ~45'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~3 ~-7 ~-45'
+  - '/minecraft:tp ~3 ~-7 ~-45'
   
   #######################
   #         big         #
@@ -175,13 +175,13 @@ factory_board_info_select:
   - '$Script$%if%$arg1==west<and>$arg2==big'
   
   # tp to origin of board
-  - '/tp ~11 ~19 ~30'
+  - '/minecraft:tp ~11 ~19 ~30'
   
   # print name and word
   - '/mycommand:factory_board_print_init $arg1 $arg3'
   
   # tp back to factory origin
-  - '/tp ~-11 ~-19 ~-30'
+  - '/minecraft:tp ~-11 ~-19 ~-30'
   
   
   
@@ -232,95 +232,95 @@ factory_board_word:
   # 15
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
   # tp back to origin of board
-  - '/tp ~ ~-2 ~15'
+  - '/minecraft:tp ~ ~-2 ~15'
   
   # 14
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>13'
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
-  - '/tp ~ ~-2 ~14'
+  - '/minecraft:tp ~ ~-2 ~14'
   
   # 13
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>12'
-  - '/tp ~ ~2 ~-1'
+  - '/minecraft:tp ~ ~2 ~-1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
-  - '/tp ~ ~-2 ~14'
+  - '/minecraft:tp ~ ~-2 ~14'
   
   # 12
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>11'
-  - '/tp ~ ~2 ~-1'
+  - '/minecraft:tp ~ ~2 ~-1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
-  - '/tp ~ ~-2 ~13'
+  - '/minecraft:tp ~ ~-2 ~13'
   
   # 11 
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>10'
-  - '/tp ~ ~2 ~-2'
+  - '/minecraft:tp ~ ~2 ~-2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
-  - '/tp ~ ~-2 ~13'
+  - '/minecraft:tp ~ ~-2 ~13'
   
   # 10
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>9'
-  - '/tp ~ ~2 ~-2'
+  - '/minecraft:tp ~ ~2 ~-2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
-  - '/tp ~ ~-2 ~12'
+  - '/minecraft:tp ~ ~-2 ~12'
  
   # 9
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>8'
-  - '/tp ~ ~2 ~-3'
+  - '/minecraft:tp ~ ~2 ~-3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
-  - '/tp ~ ~-2 ~12'
+  - '/minecraft:tp ~ ~-2 ~12'
   
   # 8
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>7'
-  - '/tp ~ ~2 ~-3'
+  - '/minecraft:tp ~ ~2 ~-3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
-  - '/tp ~ ~-2 ~11'
+  - '/minecraft:tp ~ ~-2 ~11'
   
   # 7
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>6'
-  - '/tp ~ ~2 ~-4'
+  - '/minecraft:tp ~ ~2 ~-4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
-  - '/tp ~ ~-2 ~11'
+  - '/minecraft:tp ~ ~-2 ~11'
   
   # 6
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>5'
-  - '/tp ~ ~2 ~-4'
+  - '/minecraft:tp ~ ~2 ~-4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
-  - '/tp ~ ~-2 ~10'
+  - '/minecraft:tp ~ ~-2 ~10'
   
   # 5
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>4'
-  - '/tp ~ ~2 ~-5'
+  - '/minecraft:tp ~ ~2 ~-5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
-  - '/tp ~ ~-2 ~10'
+  - '/minecraft:tp ~ ~-2 ~10'
   
   # 4
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>3'
-  - '/tp ~ ~2 ~-5'
+  - '/minecraft:tp ~ ~2 ~-5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~9'
+  - '/minecraft:tp ~ ~-2 ~9'
   
   # 3
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>2'
-  - '/tp ~ ~2 ~-6'
+  - '/minecraft:tp ~ ~2 ~-6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~9'
+  - '/minecraft:tp ~ ~-2 ~9'
   
   # 2
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>1'
-  - '/tp ~ ~2 ~-6'
+  - '/minecraft:tp ~ ~2 ~-6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~8'
+  - '/minecraft:tp ~ ~-2 ~8'
   
   # 1
   - '$Script$%elseif%$arg1==east<and>$arg4.args.lenght>0'
-  - '/tp ~ ~2 ~-7'
+  - '/minecraft:tp ~ ~2 ~-7'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~8'
+  - '/minecraft:tp ~ ~-2 ~8'
   
   #######################################
   #                north                #
@@ -334,95 +334,95 @@ factory_board_word:
   # 15
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
   # tp back to origin of board
-  - '/tp ~15 ~-2 ~'
+  - '/minecraft:tp ~15 ~-2 ~'
   
   # 14
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>13'
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
-  - '/tp ~14 ~-2 ~'
+  - '/minecraft:tp ~14 ~-2 ~'
   
   # 13
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>12'
-  - '/tp ~-1 ~2 ~'
+  - '/minecraft:tp ~-1 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
-  - '/tp ~14 ~-2 ~'
+  - '/minecraft:tp ~14 ~-2 ~'
   
   # 12
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>11'
-  - '/tp ~-1 ~2 ~'
+  - '/minecraft:tp ~-1 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
-  - '/tp ~13 ~-2 ~'
+  - '/minecraft:tp ~13 ~-2 ~'
   
   # 11 
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>10'
-  - '/tp ~-2 ~2 ~'
+  - '/minecraft:tp ~-2 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
-  - '/tp ~13 ~-2 ~'
+  - '/minecraft:tp ~13 ~-2 ~'
   
   # 10
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>9'
-  - '/tp ~-2 ~2 ~'
+  - '/minecraft:tp ~-2 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
-  - '/tp ~12 ~-2 ~'
+  - '/minecraft:tp ~12 ~-2 ~'
  
   # 9
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>8'
-  - '/tp ~-3 ~2 ~'
+  - '/minecraft:tp ~-3 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
-  - '/tp ~12 ~-2 ~'
+  - '/minecraft:tp ~12 ~-2 ~'
   
   # 8
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>7'
-  - '/tp ~-3 ~2 ~'
+  - '/minecraft:tp ~-3 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
-  - '/tp ~11 ~-2 ~'
+  - '/minecraft:tp ~11 ~-2 ~'
   
   # 7
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>6'
-  - '/tp ~-4 ~2 ~'
+  - '/minecraft:tp ~-4 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
-  - '/tp ~11 ~-2 ~'
+  - '/minecraft:tp ~11 ~-2 ~'
   
   # 6
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>5'
-  - '/tp ~-4 ~2 ~'
+  - '/minecraft:tp ~-4 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
-  - '/tp ~10 ~-2 ~'
+  - '/minecraft:tp ~10 ~-2 ~'
   
   # 5
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>4'
-  - '/tp ~-5 ~2 ~'
+  - '/minecraft:tp ~-5 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
-  - '/tp ~10 ~-2 ~'
+  - '/minecraft:tp ~10 ~-2 ~'
   
   # 4
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>3'
-  - '/tp ~-5 ~2 ~'
+  - '/minecraft:tp ~-5 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
-  - '/tp ~9 ~-2 ~'
+  - '/minecraft:tp ~9 ~-2 ~'
   
   # 3
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>2'
-  - '/tp ~-6 ~2 ~'
+  - '/minecraft:tp ~-6 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
-  - '/tp ~9 ~-2 ~'
+  - '/minecraft:tp ~9 ~-2 ~'
   
   # 2
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>1'
-  - '/tp ~-6 ~2 ~'
+  - '/minecraft:tp ~-6 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
-  - '/tp ~8 ~-2 ~'
+  - '/minecraft:tp ~8 ~-2 ~'
   
   # 1
   - '$Script$%elseif%$arg1==north<and>$arg4.args.lenght>0'
-  - '/tp ~-7 ~2 ~'
+  - '/minecraft:tp ~-7 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
-  - '/tp ~8 ~-2 ~'
+  - '/minecraft:tp ~8 ~-2 ~'
   
   #######################################
   #                south                #
@@ -436,95 +436,95 @@ factory_board_word:
   # 15
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
   # tp back to origin of board
-  - '/tp ~-15 ~-2 ~'
+  - '/minecraft:tp ~-15 ~-2 ~'
   
   # 14
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>13'
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
-  - '/tp ~-14 ~-2 ~'
+  - '/minecraft:tp ~-14 ~-2 ~'
   
   # 13
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>12'
-  - '/tp ~1 ~2 ~'
+  - '/minecraft:tp ~1 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
-  - '/tp ~-14 ~-2 ~'
+  - '/minecraft:tp ~-14 ~-2 ~'
   
   # 12
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>11'
-  - '/tp ~1 ~2 ~'
+  - '/minecraft:tp ~1 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
-  - '/tp ~-13 ~-2 ~'
+  - '/minecraft:tp ~-13 ~-2 ~'
   
   # 11 
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>10'
-  - '/tp ~2 ~2 ~'
+  - '/minecraft:tp ~2 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
-  - '/tp ~-13 ~-2 ~'
+  - '/minecraft:tp ~-13 ~-2 ~'
   
   # 10
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>9'
-  - '/tp ~2 ~2 ~'
+  - '/minecraft:tp ~2 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
-  - '/tp ~-12 ~-2 ~'
+  - '/minecraft:tp ~-12 ~-2 ~'
  
   # 9
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>8'
-  - '/tp ~3 ~2 ~'
+  - '/minecraft:tp ~3 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
-  - '/tp ~-12 ~-2 ~'
+  - '/minecraft:tp ~-12 ~-2 ~'
   
   # 8
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>7'
-  - '/tp ~3 ~2 ~'
+  - '/minecraft:tp ~3 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
-  - '/tp ~-11 ~-2 ~'
+  - '/minecraft:tp ~-11 ~-2 ~'
   
   # 7
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>6'
-  - '/tp ~4 ~2 ~'
+  - '/minecraft:tp ~4 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
-  - '/tp ~-11 ~-2 ~'
+  - '/minecraft:tp ~-11 ~-2 ~'
   
   # 6
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>5'
-  - '/tp ~4 ~2 ~'
+  - '/minecraft:tp ~4 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
-  - '/tp ~-10 ~-2 ~'
+  - '/minecraft:tp ~-10 ~-2 ~'
   
   # 5
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>4'
-  - '/tp ~5 ~2 ~'
+  - '/minecraft:tp ~5 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
-  - '/tp ~-10 ~-2 ~'
+  - '/minecraft:tp ~-10 ~-2 ~'
   
   # 4
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>3'
-  - '/tp ~5 ~2 ~'
+  - '/minecraft:tp ~5 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
-  - '/tp ~-9 ~-2 ~'
+  - '/minecraft:tp ~-9 ~-2 ~'
   
   # 3
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>2'
-  - '/tp ~6 ~2 ~'
+  - '/minecraft:tp ~6 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
-  - '/tp ~-9 ~-2 ~'
+  - '/minecraft:tp ~-9 ~-2 ~'
   
   # 2
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>1'
-  - '/tp ~6 ~2 ~'
+  - '/minecraft:tp ~6 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
-  - '/tp ~-8 ~-2 ~'
+  - '/minecraft:tp ~-8 ~-2 ~'
   
   # 1
   - '$Script$%elseif%$arg1==south<and>$arg4.args.lenght>0'
-  - '/tp ~7 ~2 ~'
+  - '/minecraft:tp ~7 ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
-  - '/tp ~-8 ~-2 ~'
+  - '/minecraft:tp ~-8 ~-2 ~'
   
   #######################################
   #                west                 #
@@ -538,95 +538,95 @@ factory_board_word:
   # 15
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4'
   # tp back to origin of board
-  - '/tp ~ ~-2 ~-15'
+  - '/minecraft:tp ~ ~-2 ~-15'
   
   # 14
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>13'
-  - '/tp ~ ~2 ~'
+  - '/minecraft:tp ~ ~2 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none'
-  - '/tp ~ ~-2 ~-14'
+  - '/minecraft:tp ~ ~-2 ~-14'
   
   # 13
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>12'
-  - '/tp ~ ~2 ~1'
+  - '/minecraft:tp ~ ~2 ~1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none'
-  - '/tp ~ ~-2 ~-14'
+  - '/minecraft:tp ~ ~-2 ~-14'
   
   # 12
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>11'
-  - '/tp ~ ~2 ~1'
+  - '/minecraft:tp ~ ~2 ~1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none'
-  - '/tp ~ ~-2 ~-13'
+  - '/minecraft:tp ~ ~-2 ~-13'
   
   # 11 
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>10'
-  - '/tp ~ ~2 ~2'
+  - '/minecraft:tp ~ ~2 ~2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none'
-  - '/tp ~ ~-2 ~-13'
+  - '/minecraft:tp ~ ~-2 ~-13'
   
   # 10
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>9'
-  - '/tp ~ ~2 ~2'
+  - '/minecraft:tp ~ ~2 ~2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none'
-  - '/tp ~ ~-2 ~-12'
+  - '/minecraft:tp ~ ~-2 ~-12'
  
   # 9
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>8'
-  - '/tp ~ ~2 ~3'
+  - '/minecraft:tp ~ ~2 ~3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none'
-  - '/tp ~ ~-2 ~-12'
+  - '/minecraft:tp ~ ~-2 ~-12'
   
   # 8
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>7'
-  - '/tp ~ ~2 ~3'
+  - '/minecraft:tp ~ ~2 ~3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none'
-  - '/tp ~ ~-2 ~-11'
+  - '/minecraft:tp ~ ~-2 ~-11'
   
   # 7
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>6'
-  - '/tp ~ ~2 ~4'
+  - '/minecraft:tp ~ ~2 ~4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none'
-  - '/tp ~ ~-2 ~-11'
+  - '/minecraft:tp ~ ~-2 ~-11'
   
   # 6
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>5'
-  - '/tp ~ ~2 ~4'
+  - '/minecraft:tp ~ ~2 ~4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none'
-  - '/tp ~ ~-2 ~-10'
+  - '/minecraft:tp ~ ~-2 ~-10'
   
   # 5
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>4'
-  - '/tp ~ ~2 ~5'
+  - '/minecraft:tp ~ ~2 ~5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none'
-  - '/tp ~ ~-2 ~-10'
+  - '/minecraft:tp ~ ~-2 ~-10'
   
   # 4
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>3'
-  - '/tp ~ ~2 ~5'
+  - '/minecraft:tp ~ ~2 ~5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~-9'
+  - '/minecraft:tp ~ ~-2 ~-9'
   
   # 3
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>2'
-  - '/tp ~ ~2 ~6'
+  - '/minecraft:tp ~ ~2 ~6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~-9'
+  - '/minecraft:tp ~ ~-2 ~-9'
   
   # 2
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>1'
-  - '/tp ~ ~2 ~6'
+  - '/minecraft:tp ~ ~2 ~6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~-8'
+  - '/minecraft:tp ~ ~-2 ~-8'
   
   # 1
   - '$Script$%elseif%$arg1==west<and>$arg4.args.lenght>0'
-  - '/tp ~ ~2 ~7'
+  - '/minecraft:tp ~ ~2 ~7'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $arg4 none none none none none none none none none none none none none none'
-  - '/tp ~ ~-2 ~-8'
+  - '/minecraft:tp ~ ~-2 ~-8'
   
   
   
@@ -651,95 +651,95 @@ factory_board_name:
   # 15
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
   # tp back to origin of board
-  - '/tp ~ ~-4 ~15'
+  - '/minecraft:tp ~ ~-4 ~15'
   
   # 14
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>13'
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
-  - '/tp ~ ~-4 ~14'
+  - '/minecraft:tp ~ ~-4 ~14'
   
   # 13
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>12'
-  - '/tp ~ ~4 ~-1'
+  - '/minecraft:tp ~ ~4 ~-1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
-  - '/tp ~ ~-4 ~14'
+  - '/minecraft:tp ~ ~-4 ~14'
   
   # 12
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>11'
-  - '/tp ~ ~4 ~-1'
+  - '/minecraft:tp ~ ~4 ~-1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
-  - '/tp ~ ~-4 ~13'
+  - '/minecraft:tp ~ ~-4 ~13'
   
   # 11 
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>10'
-  - '/tp ~ ~4 ~-2'
+  - '/minecraft:tp ~ ~4 ~-2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
-  - '/tp ~ ~-4 ~13'
+  - '/minecraft:tp ~ ~-4 ~13'
   
   # 10
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>9'
-  - '/tp ~ ~4 ~-2'
+  - '/minecraft:tp ~ ~4 ~-2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
-  - '/tp ~ ~-4 ~12'
+  - '/minecraft:tp ~ ~-4 ~12'
  
   # 9
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>8'
-  - '/tp ~ ~4 ~-3'
+  - '/minecraft:tp ~ ~4 ~-3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
-  - '/tp ~ ~-4 ~12'
+  - '/minecraft:tp ~ ~-4 ~12'
   
   # 8
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>7'
-  - '/tp ~ ~4 ~-3'
+  - '/minecraft:tp ~ ~4 ~-3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
-  - '/tp ~ ~-4 ~11'
+  - '/minecraft:tp ~ ~-4 ~11'
   
   # 7
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>6'
-  - '/tp ~ ~4 ~-4'
+  - '/minecraft:tp ~ ~4 ~-4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
-  - '/tp ~ ~-4 ~11'
+  - '/minecraft:tp ~ ~-4 ~11'
   
   # 6
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>5'
-  - '/tp ~ ~4 ~-4'
+  - '/minecraft:tp ~ ~4 ~-4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
-  - '/tp ~ ~-4 ~10'
+  - '/minecraft:tp ~ ~-4 ~10'
   
   # 5
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>4'
-  - '/tp ~ ~4 ~-5'
+  - '/minecraft:tp ~ ~4 ~-5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
-  - '/tp ~ ~-4 ~10'
+  - '/minecraft:tp ~ ~-4 ~10'
   
   # 4
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>3'
-  - '/tp ~ ~4 ~-5'
+  - '/minecraft:tp ~ ~4 ~-5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~9'
+  - '/minecraft:tp ~ ~-4 ~9'
   
   # 3
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>2'
-  - '/tp ~ ~4 ~-6'
+  - '/minecraft:tp ~ ~4 ~-6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~9'
+  - '/minecraft:tp ~ ~-4 ~9'
   
   # 2
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>1'
-  - '/tp ~ ~4 ~-6'
+  - '/minecraft:tp ~ ~4 ~-6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~8'
+  - '/minecraft:tp ~ ~-4 ~8'
   
   # 1
   - '$Script$%elseif%$arg1==east<and>$PlayerData%$s.board.letters%.args.lenght>0'
-  - '/tp ~ ~4 ~-7'
+  - '/minecraft:tp ~ ~4 ~-7'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~8'
+  - '/minecraft:tp ~ ~-4 ~8'
   
   #######################################
   #                north                #
@@ -752,95 +752,95 @@ factory_board_name:
   # 15
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
   # tp back to origin of board
-  - '/tp ~15 ~-4 ~'
+  - '/minecraft:tp ~15 ~-4 ~'
   
   # 14
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>13'
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
-  - '/tp ~14 ~-4 ~'
+  - '/minecraft:tp ~14 ~-4 ~'
   
   # 13
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>12'
-  - '/tp ~-1 ~4 ~'
+  - '/minecraft:tp ~-1 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
-  - '/tp ~14 ~-4 ~'
+  - '/minecraft:tp ~14 ~-4 ~'
   
   # 12
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>11'
-  - '/tp ~-1 ~4 ~'
+  - '/minecraft:tp ~-1 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
-  - '/tp ~13 ~-4 ~'
+  - '/minecraft:tp ~13 ~-4 ~'
   
   # 11 
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>10'
-  - '/tp ~-2 ~4 ~'
+  - '/minecraft:tp ~-2 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
-  - '/tp ~13 ~-4 ~'
+  - '/minecraft:tp ~13 ~-4 ~'
   
   # 10
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>9'
-  - '/tp ~-2 ~4 ~'
+  - '/minecraft:tp ~-2 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
-  - '/tp ~12 ~-4 ~'
+  - '/minecraft:tp ~12 ~-4 ~'
  
   # 9
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>8'
-  - '/tp ~-3 ~4 ~'
+  - '/minecraft:tp ~-3 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
-  - '/tp ~12 ~-4 ~'
+  - '/minecraft:tp ~12 ~-4 ~'
   
   # 8
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>7'
-  - '/tp ~-3 ~4 ~'
+  - '/minecraft:tp ~-3 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
-  - '/tp ~11 ~-4 ~'
+  - '/minecraft:tp ~11 ~-4 ~'
   
   # 7
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>6'
-  - '/tp ~-4 ~4 ~'
+  - '/minecraft:tp ~-4 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
-  - '/tp ~11 ~-4 ~'
+  - '/minecraft:tp ~11 ~-4 ~'
   
   # 6
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>5'
-  - '/tp ~-4 ~4 ~'
+  - '/minecraft:tp ~-4 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
-  - '/tp ~10 ~-4 ~'
+  - '/minecraft:tp ~10 ~-4 ~'
   
   # 5
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>4'
-  - '/tp ~-5 ~4 ~'
+  - '/minecraft:tp ~-5 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
-  - '/tp ~10 ~-4 ~'
+  - '/minecraft:tp ~10 ~-4 ~'
   
   # 4
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>3'
-  - '/tp ~-5 ~4 ~'
+  - '/minecraft:tp ~-5 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
-  - '/tp ~9 ~-4 ~'
+  - '/minecraft:tp ~9 ~-4 ~'
   
   # 3
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>2'
-  - '/tp ~-6 ~4 ~'
+  - '/minecraft:tp ~-6 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
-  - '/tp ~9 ~-4 ~'
+  - '/minecraft:tp ~9 ~-4 ~'
   
   # 2
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>1'
-  - '/tp ~-6 ~4 ~'
+  - '/minecraft:tp ~-6 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
-  - '/tp ~8 ~-4 ~'
+  - '/minecraft:tp ~8 ~-4 ~'
   
   # 1
   - '$Script$%elseif%$arg1==north<and>$PlayerData%$s.board.letters%.args.lenght>0'
-  - '/tp ~-7 ~4 ~'
+  - '/minecraft:tp ~-7 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
-  - '/tp ~8 ~-4 ~'
+  - '/minecraft:tp ~8 ~-4 ~'
   
   #######################################
   #                south                #
@@ -853,95 +853,95 @@ factory_board_name:
   # 15
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
   # tp back to origin of board
-  - '/tp ~-15 ~-4 ~'
+  - '/minecraft:tp ~-15 ~-4 ~'
   
   # 14
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>13'
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
-  - '/tp ~-14 ~-4 ~'
+  - '/minecraft:tp ~-14 ~-4 ~'
   
   # 13
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>12'
-  - '/tp ~1 ~4 ~'
+  - '/minecraft:tp ~1 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
-  - '/tp ~-14 ~-4 ~'
+  - '/minecraft:tp ~-14 ~-4 ~'
   
   # 12
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>11'
-  - '/tp ~1 ~4 ~'
+  - '/minecraft:tp ~1 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
-  - '/tp ~-13 ~-4 ~'
+  - '/minecraft:tp ~-13 ~-4 ~'
   
   # 11 
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>10'
-  - '/tp ~2 ~4 ~'
+  - '/minecraft:tp ~2 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
-  - '/tp ~-13 ~-4 ~'
+  - '/minecraft:tp ~-13 ~-4 ~'
   
   # 10
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>9'
-  - '/tp ~2 ~4 ~'
+  - '/minecraft:tp ~2 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
-  - '/tp ~-12 ~-4 ~'
+  - '/minecraft:tp ~-12 ~-4 ~'
  
   # 9
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>8'
-  - '/tp ~3 ~4 ~'
+  - '/minecraft:tp ~3 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
-  - '/tp ~-12 ~-4 ~'
+  - '/minecraft:tp ~-12 ~-4 ~'
   
   # 8
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>7'
-  - '/tp ~3 ~4 ~'
+  - '/minecraft:tp ~3 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
-  - '/tp ~-11 ~-4 ~'
+  - '/minecraft:tp ~-11 ~-4 ~'
   
   # 7
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>6'
-  - '/tp ~4 ~4 ~'
+  - '/minecraft:tp ~4 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
-  - '/tp ~-11 ~-4 ~'
+  - '/minecraft:tp ~-11 ~-4 ~'
   
   # 6
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>5'
-  - '/tp ~4 ~4 ~'
+  - '/minecraft:tp ~4 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
-  - '/tp ~-10 ~-4 ~'
+  - '/minecraft:tp ~-10 ~-4 ~'
   
   # 5
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>4'
-  - '/tp ~5 ~4 ~'
+  - '/minecraft:tp ~5 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
-  - '/tp ~-10 ~-4 ~'
+  - '/minecraft:tp ~-10 ~-4 ~'
   
   # 4
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>3'
-  - '/tp ~5 ~4 ~'
+  - '/minecraft:tp ~5 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
-  - '/tp ~-9 ~-4 ~'
+  - '/minecraft:tp ~-9 ~-4 ~'
   
   # 3
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>2'
-  - '/tp ~6 ~4 ~'
+  - '/minecraft:tp ~6 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
-  - '/tp ~-9 ~-4 ~'
+  - '/minecraft:tp ~-9 ~-4 ~'
   
   # 2
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>1'
-  - '/tp ~6 ~4 ~'
+  - '/minecraft:tp ~6 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
-  - '/tp ~-8 ~-4 ~'
+  - '/minecraft:tp ~-8 ~-4 ~'
   
   # 1
   - '$Script$%elseif%$arg1==south<and>$PlayerData%$s.board.letters%.args.lenght>0'
-  - '/tp ~7 ~4 ~'
+  - '/minecraft:tp ~7 ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
-  - '/tp ~-8 ~-4 ~'
+  - '/minecraft:tp ~-8 ~-4 ~'
   
   #######################################
   #                west                 #
@@ -954,95 +954,95 @@ factory_board_name:
   # 15
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>14'
   # tp to begin of text
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   # init text
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters%'
   # tp back to origin of board
-  - '/tp ~ ~-4 ~-15'
+  - '/minecraft:tp ~ ~-4 ~-15'
   
   # 14
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>13'
-  - '/tp ~ ~4 ~'
+  - '/minecraft:tp ~ ~4 ~'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none'
-  - '/tp ~ ~-4 ~-14'
+  - '/minecraft:tp ~ ~-4 ~-14'
   
   # 13
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>12'
-  - '/tp ~ ~4 ~1'
+  - '/minecraft:tp ~ ~4 ~1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none'
-  - '/tp ~ ~-4 ~-14'
+  - '/minecraft:tp ~ ~-4 ~-14'
   
   # 12
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>11'
-  - '/tp ~ ~4 ~1'
+  - '/minecraft:tp ~ ~4 ~1'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none'
-  - '/tp ~ ~-4 ~-13'
+  - '/minecraft:tp ~ ~-4 ~-13'
   
   # 11 
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>10'
-  - '/tp ~ ~4 ~2'
+  - '/minecraft:tp ~ ~4 ~2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none'
-  - '/tp ~ ~-4 ~-13'
+  - '/minecraft:tp ~ ~-4 ~-13'
   
   # 10
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>9'
-  - '/tp ~ ~4 ~2'
+  - '/minecraft:tp ~ ~4 ~2'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none'
-  - '/tp ~ ~-4 ~-12'
+  - '/minecraft:tp ~ ~-4 ~-12'
   
   # 9
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>8'
-  - '/tp ~ ~4 ~3'
+  - '/minecraft:tp ~ ~4 ~3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none'
-  - '/tp ~ ~-4 ~-12'
+  - '/minecraft:tp ~ ~-4 ~-12'
   
   # 8
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>7'
-  - '/tp ~ ~4 ~3'
+  - '/minecraft:tp ~ ~4 ~3'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none'
-  - '/tp ~ ~-4 ~-11'
+  - '/minecraft:tp ~ ~-4 ~-11'
   
   # 7
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>6'
-  - '/tp ~ ~4 ~4'
+  - '/minecraft:tp ~ ~4 ~4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none'
-  - '/tp ~ ~-4 ~-11'
+  - '/minecraft:tp ~ ~-4 ~-11'
   
   # 6
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>5'
-  - '/tp ~ ~4 ~4'
+  - '/minecraft:tp ~ ~4 ~4'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none'
-  - '/tp ~ ~-4 ~-10'
+  - '/minecraft:tp ~ ~-4 ~-10'
   
   # 5
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>4'
-  - '/tp ~ ~4 ~5'
+  - '/minecraft:tp ~ ~4 ~5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none'
-  - '/tp ~ ~-4 ~-10'
+  - '/minecraft:tp ~ ~-4 ~-10'
   
   # 4
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>3'
-  - '/tp ~ ~4 ~5'
+  - '/minecraft:tp ~ ~4 ~5'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~-9'
+  - '/minecraft:tp ~ ~-4 ~-9'
   
   # 3
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>2'
-  - '/tp ~ ~4 ~6'
+  - '/minecraft:tp ~ ~4 ~6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~-9'
+  - '/minecraft:tp ~ ~-4 ~-9'
   
   # 2
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>1'
-  - '/tp ~ ~4 ~6'
+  - '/minecraft:tp ~ ~4 ~6'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~-8'
+  - '/minecraft:tp ~ ~-4 ~-8'
   
   # 1
   - '$Script$%elseif%$arg1==west<and>$PlayerData%$s.board.letters%.args.lenght>0'
-  - '/tp ~ ~4 ~7'
+  - '/minecraft:tp ~ ~4 ~7'
   - '/mycommand:factory_board_text_init $arg1 $arg2 $arg3 $PlayerData%$s.board.letters% none none none none none none none none none none none none none none'
-  - '/tp ~ ~-4 ~-8'
+  - '/minecraft:tp ~ ~-4 ~-8'
   
   
   

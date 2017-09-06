@@ -302,7 +302,7 @@ code_menu:
   # particle
   - '/minecraft:execute $player ~ ~ ~ /minecraft:particle portal ~ ~ ~ 0 0 0 2 1000'
   - '$delay$<50>/multiverse-core:mvtp $player $arg3'
-  - '/minecraft:tp $player $arg4 $arg5 $arg6 $arg7 0'
+  - '/minecraft:tp $player $arg4 $arg5.5 $arg6 $arg7 0'
   # playsound
   - '$delay$<20>/minecraft:execute $player ~ ~ ~ /minecraft:playsound minecraft:block.portal.travel block @a ~ ~ ~ 1'
   # blindness
