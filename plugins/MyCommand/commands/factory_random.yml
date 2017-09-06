@@ -34,7 +34,7 @@ factory_random:
   - '/minecraft:effect $player minecraft:resistance 1 255 true'
   # tp back to origin
   - '/multiverse-core:mvtp $player $PlayerData%$s.init.location.world%'
-  - '/minecraft:tp $player $PlayerData%$s.init.location.x% $PlayerData%$s.init.location.y% $PlayerData%$s.init.location.z% $PlayerData%$s.init.location.rotation.yaw% $PlayerData%$s.init.location.rotation.pitch%'
+  - '/minecraft:tp $player $PlayerData%$s.init.location.x% $PlayerData%$s.init.location.y%.5 $PlayerData%$s.init.location.z% $PlayerData%$s.init.location.rotation.yaw% $PlayerData%$s.init.location.rotation.pitch%'
   # "[Factory] Successfully claimed a new factory plot"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"dark_aqua","text":" Successfully"},{"bold":"false","color":"gray","text":" claimed a new factory plot"}]'
   # grant advancement
@@ -185,7 +185,7 @@ factory_random_direction_choose:
   
   # 12
   - '$Script$%if%$arg2==12'
-  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%south;west%'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;west%'
   
   # 11
   - '$Script$%if%$arg2==11'
@@ -232,7 +232,8 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%east%'
   
   # 0
-  # not possible, a factory can't have no directions
+  - '$Script$%if%$arg2==0'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%none%'
   
   # save tp location
   - '$Script$%if%$s.factory.id.$arg1.status==east'

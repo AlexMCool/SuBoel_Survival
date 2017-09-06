@@ -20,9 +20,6 @@ factory_upgrade:
   - '/multiverse-core:mvtp $player $s.general.world'
   - '/minecraft:tp $player $arg3 $arg4 $arg5'
   
-  # set web to not fall down or move
-  #- '/minecraft:fill ~ ~ ~ ~ ~1 ~ minecraft:web default'
-  
   # restistance for falling down
   - '/minecraft:effect $player minecraft:resistance 1000000 255 true'
   
@@ -1791,4 +1788,4 @@ factory_upgrade:
   
   # tp back to origin
   - '/multiverse-core:mvtp $player $PlayerData%$s.init.location.world%'
-  - '/minecraft:tp $player $PlayerData%$s.init.location.x% $PlayerData%$s.init.location.y% $PlayerData%$s.init.location.z% $PlayerData%$s.init.location.rotation.yaw%:$PlayerData%$s.init.location.rotation.pitch%'
+  - '/minecraft:tp $player $PlayerData%$s.init.location.x% $PlayerData%$s.init.location.y%.5 $PlayerData%$s.init.location.z% $PlayerData%$s.init.location.rotation.yaw% $PlayerData%$s.init.location.rotation.pitch%'
