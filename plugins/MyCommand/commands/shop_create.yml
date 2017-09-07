@@ -35,7 +35,7 @@ shop_create:
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" You need to have the product you want to create a shop for in your hand"}]'
 
   # banned items
-  - '$Script$%elseif%$iteminhand==ENCHANTED_BOOK<or>$iteminhand==LINGERING_POTION<or>$iteminhand==POTION<or>$iteminhand==MONSTER_EGG<or>$iteminhand==SPLASH_POTION<or>$iteminhand==TIPPED_ARROW'
+  - '$Script$%elseif%$iteminhand==ENCHANTED_BOOK<or>$iteminhand==LINGERING_POTION<or>$iteminhand==POTION<or>$iteminhand==MAP<or>$iteminhand==MONSTER_EGG<or>$iteminhand==SPLASH_POTION<or>$iteminhand==TIPPED_ARROW'
   - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Shop"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"false","color":"$s.style.color.normal","text":" The product you''re holding cannot be used for a shop"}]'
 
   #######################################
