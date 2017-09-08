@@ -277,6 +277,11 @@ factory_random_direction_choose:
   - '$Script$%Variable%$s.factory.id.$arg1.product.name=none'
   - '$Script$%Variable%$s.factory.id.$arg1.level.current=0'
   - '$Script$%Variable%$s.factory.id.$arg1.level.next=1'
+  # dynmap marker
+  - '/dynmap:dmarker addset "Factories" hide:false id:factories'
+  - '/minecraft:tp ~32 ~ ~32'
+  - '/dynmap:dmarker add "$player $s.translation.board_word.$s.factory.id.$arg1.board.word" id:factory_$arg1 icon:factory set:factories'
+  - '/minecraft:tp ~-32 ~ ~-32'
   
   
   

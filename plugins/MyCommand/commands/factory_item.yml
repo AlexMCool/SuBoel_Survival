@@ -220,6 +220,10 @@ factory_item_change:
   # manage cooldown
   - '/mycommand:factory_item_change_delay $arg1 $s.general.time'
   
+  # change marker
+  - '/dynmap:dmarker addicon "$arg4_$arg5" file:"plugins/dynmap/uploaded_custom_markers/$arg4_$arg5.png" id:$arg4_$arg5'
+  - '/dynmap:dmarker update id:factory_$arg1 set:factories icon:$arg4_$arg5'
+  
   # "[Factory] The factory will now produce x"
   - '/minecraft:tellraw $player [{"bold":"true","color":"dark_aqua","text":"["},{"bold":"false","color":"white","text":"Factory"},{"bold":"true","color":"dark_aqua","text":"]"},{"bold":"false","color":"gray","text":" The factory will now produce"},{"bold":"false","color":"dark_aqua","text":" $s.translation.$arg4:$arg5"}]'
   
