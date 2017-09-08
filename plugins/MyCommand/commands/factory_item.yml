@@ -465,7 +465,7 @@ factory_item_change:
   
   
 ##############################################################################
-#                            factory item change                             #
+#                         factory item change delay                          #
 ##############################################################################
 factory_item_change_delay:
   command: /factory_item_change_delay

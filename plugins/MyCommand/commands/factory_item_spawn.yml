@@ -3,7 +3,7 @@
 ##############################################################################
 factory_item_spawn:
   command: /factory_item_spawn
-  execute_mode: FROM_ANOTHER_COMMAND
+  execute_mode: CONSOLE_ONLY
   permission-required: false
   register: true
   type: RUN_CONSOLE
