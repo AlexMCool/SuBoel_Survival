@@ -1907,6 +1907,36 @@ variables:
         world: The Present
         world_nether: The Nether
         world_the_end: The End
+      board_word:
+        brands: Brands
+        business: Business
+        companies: Companies
+        corporations: Corporations
+        creative: Creative
+        designs: Designs
+        development: Development
+        digital: Digital
+        dynamics: Dynamics
+        enterprise: Enterprise
+        industrial: Industrial
+        industries: Industries
+        innovations: Innovations
+        international: International
+        labs: Labs
+        logistics: Logistics
+        organisations: Organisations
+        productions: Productions
+        properties: Properties
+        services: Services
+        scientific: Scientific
+        solutions: Solutions
+        studios: Studios
+        systems: Systems
+        tech: Tech
+        technologies: Technologies
+        unlimited: Unlimited
+        worldwide: Worldwide
+        '&co': '& Co'
       word:
         brands: b r a n d s
         business: b u s i n e s s
