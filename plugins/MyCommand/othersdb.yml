@@ -4,7 +4,6 @@ variables:
     shop: ''
     general:
       world: the_future
-      week: 0
       time: 0
       code: f875b]42bÂ³
     char:
@@ -56,10 +55,120 @@ variables:
         name: ShanePoint
       e3415874-f224-4c04-8b1f-234318d427bf:
         name: pollepels
-    intersection: ''
+    intersection:
+      location:
+        0,32,0:
+          id: 1
+        80,32,0:
+          id: 2
+        0,32,-80:
+          id: 3
+        0,32,80:
+          id: 4
+        -80,32,0:
+          id: 5
+      id:
+        '1':
+          location:
+            x: 0
+            y: 32
+            z: 0
+          type: east_north_south_west
+        '2':
+          location:
+            x: 80
+            y: 32
+            z: 0
+          direction: west
+        '3':
+          location:
+            x: 0
+            y: 32
+            z: -80
+          direction: south
+        '4':
+          location:
+            x: 0
+            y: 32
+            z: 80
+          direction: north
+        '5':
+          location:
+            x: -80
+            y: 32
+            z: 0
+          direction: east
     factory:
-      id: ''
-      location: ''
+      id:
+        '1':
+          status: 0
+          board:
+            background: 7
+            text: 15
+            word: brands
+          location:
+            x: 16
+            y: 32
+            z: 16
+          direction:
+            east: unavailable
+            north: unused
+            south: unavailable
+            west: unused
+        '2':
+          status: 0
+          board:
+            background: 8
+            text: 15
+            word: labs
+          location:
+            x: 16
+            y: 32
+            z: -64
+          direction:
+            east: unavailable
+            north: unavailable
+            south: unused
+            west: unused
+        '3':
+          status: 0
+          board:
+            background: 8
+            text: 15
+            word: creative
+          location:
+            x: -64
+            y: 32
+            z: -64
+          direction:
+            east: unused
+            north: unavailable
+            south: unused
+            west: unavailable
+        '4':
+          status: 0
+          board:
+            background: 15
+            text: 7
+            word: systems
+          location:
+            x: -64
+            y: 32
+            z: 16
+          direction:
+            east: unused
+            north: unused
+            south: unavailable
+            west: unavailable
+      location:
+        16,32,16:
+          id: 1
+        16,32,-64:
+          id: 2
+        -64,32,-64:
+          id: 3
+        -64,32,16:
+          id: 4
       level:
         '1':
           upgrade:
