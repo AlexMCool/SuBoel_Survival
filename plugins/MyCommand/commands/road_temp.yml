@@ -81,35 +81,58 @@ temp_upgrade:
   type: RUN_AS_OPERATOR
   register: true
   runcmd:
-  - '$delay$<1>/factory_upgrade $arg1 1 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 2 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 3 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 4 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 5 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 6 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 7 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 8 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 9 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 10 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 11 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 12 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 13 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 14 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 15 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 16 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 17 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 18 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 19 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 20 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 21 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 22 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 23 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 24 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 25 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 26 4112 64 4112 1'
-  - '$delay$<100>/factory_upgrade $arg1 27 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 28 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 29 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 30 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 31 4112 64 4112 1'
-  - '$delay$<1>/factory_upgrade $arg1 32 4112 64 4112 1'
+  - '/temp_upgrade_init $s.factory.id.$arg1.status $s.factory.id.$arg1.location.x $s.factory.id.$arg1.location.y $s.factory.id.$arg1.location.z $arg1'
+  
+  
+temp_upgrade_lvl:
+  command: /temp_upgrade_lvl
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '/temp_upgrade_lvl_init $s.factory.id.$arg1.status $arg2 $s.factory.id.$arg1.location.x $s.factory.id.$arg1.location.y $s.factory.id.$arg1.location.z $arg1'
+  
+temp_upgrade_lvl_init:
+  command: /temp_upgrade_lvl_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '/factory_upgrade $arg1 $arg2 $arg3 $arg4 $arg5 $arg6'  
+  
+  
+temp_upgrade_init:
+  command: /temp_upgrade_init
+  type: RUN_AS_OPERATOR
+  register: true
+  runcmd:
+  - '$delay$<1>/factory_upgrade $arg1 1 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 2 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 3 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 4 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 5 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 6 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 7 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 8 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 9 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 10 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 11 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 12 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 13 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 14 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 15 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 16 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 17 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 18 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 19 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 20 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 21 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 22 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 23 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 24 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 25 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 26 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<100>/factory_upgrade $arg1 27 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 28 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 29 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 30 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 31 $arg2 $arg3 $arg4 $arg5'
+  - '$delay$<1>/factory_upgrade $arg1 32 $arg2 $arg3 $arg4 $arg5'
