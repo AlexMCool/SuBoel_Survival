@@ -1702,7 +1702,7 @@ factory_upgrade:
   - '/minecraft:fill ~2 ~18 ~13 ~2 ~19 ~13 minecraft:air'
   - '/minecraft:tp ~-32 ~ ~-16'
   # set new tp location
-  - '/mycommand:factory_tp_location north $s.factory.id.$arg6.tp.z $arg6'
+  - '/mycommand:factory_tp_location west $s.factory.id.$arg6.tp.z $arg6'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
