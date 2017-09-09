@@ -23,6 +23,8 @@ factory_random:
   - '$Script$%PlayerData%$s.init.location.rotation.yaw=$loc_yaw'
   - '$Script$%PlayerData%$s.init.location.rotation.pitch=$loc_pitch'
   - '$Script$%PlayerData%$s.init.location.world=$world'
+  # teleport to factory world
+  - '/multiverse-core:mvtp $player $s.general.world'
   # restistance for falling down
   - '/minecraft:effect $player minecraft:resistance 1000000 255 true'
   # set calculation to 1
