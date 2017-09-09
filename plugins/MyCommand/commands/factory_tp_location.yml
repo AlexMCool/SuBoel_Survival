@@ -14,7 +14,6 @@ factory_tp_location:
   
   # add objective
   - '/minecraft:scoreboard objectives add sfTpLocation dummy Teleport Location Calculation'
-  - '/minecraft:scoreboard objectives setdisplay sidebar sfTpLocation'
   # set scores
   - '/minecraft:scoreboard players set $player sfTpLocation $arg2'
   - '/minecraft:scoreboard players set -1 sfTpLocation -1'
