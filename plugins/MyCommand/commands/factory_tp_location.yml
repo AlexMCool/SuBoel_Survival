@@ -38,6 +38,11 @@ factory_tp_location:
   # reset value
   - '$Script$%Variable%$s.factory.id.$arg3.tp.z=0'
   # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=65536] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 65536 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32768] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 32768 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16384] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 16384 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8192] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 8192 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4096] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 4096 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 2048 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 1024 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 512 $arg3 z'
@@ -72,6 +77,11 @@ factory_tp_location:
   # reset value
   - '$Script$%Variable%$s.factory.id.$arg3.tp.x=0'
   # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=65536] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 65536 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32768] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 32768 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16384] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 16384 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8192] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 8192 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4096] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 4096 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 2048 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 1024 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 512 $arg3 x'
@@ -106,6 +116,11 @@ factory_tp_location:
   # reset value
   - '$Script$%Variable%$s.factory.id.$arg3.tp.x=0'
   # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=65536] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 65536 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32768] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 32768 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16384] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 16384 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8192] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 8192 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4096] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 4096 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 2048 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 1024 $arg3 x'
   - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 512 $arg3 x'
@@ -140,6 +155,11 @@ factory_tp_location:
   # reset value
   - '$Script$%Variable%$s.factory.id.$arg3.tp.z=0'
   # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=65536] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 65536 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32768] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 32768 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16384] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 16384 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8192] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 8192 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4096] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 4096 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 2048 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 1024 $arg3 z'
   - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 512 $arg3 z'
