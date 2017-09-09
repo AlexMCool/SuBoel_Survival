@@ -1,11 +1,20 @@
 variables:
   $s:
-    init: ''
+    init:
+      factory:
+        calculation: 0
+        player_factory_id: 0
+        id_now: 4
+      intersection:
+        calculation: 0
+        option: 0
+        type: ''
+        id_now: 5
     shop: ''
     general:
       world: the_future
       time: 0
-      code: f875b]42bÂ³
+      code: f875b]42b³
     char:
       colon: ':'
     uuid:
