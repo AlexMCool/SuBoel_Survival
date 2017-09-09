@@ -185,7 +185,7 @@ factory_random_direction_choose:
   
   # 12
   - '$Script$%if%$arg2==12'
-  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%north;west%'
+  - '$Script$%Variable%$s.factory.id.$arg1.status=$GetRandomStringFromList%south;west%'
   
   # 11
   - '$Script$%if%$arg2==11'
