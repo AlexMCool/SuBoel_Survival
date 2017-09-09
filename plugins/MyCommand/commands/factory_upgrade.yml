@@ -177,8 +177,8 @@ factory_upgrade:
   - '/minecraft:setblock ~13 ~18 ~2 minecraft:redstone_block default'
   - '/minecraft:fill ~13 ~18 ~2 ~13 ~19 ~2 minecraft:air'
   - '/minecraft:tp ~-16 ~ ~-32'
-  # Set new tp location
-  - '$Script$%Variable%$s.factory.id.$arg6.tp.z+27'
+  # set new tp location
+  - '/mycommand:factory_tp_location east $s.factory.id.$arg6.tp.z $arg6'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -685,6 +685,8 @@ factory_upgrade:
   - '/minecraft:setblock ~2 ~18 ~2 minecraft:redstone_block default'
   - '/minecraft:fill ~2 ~18 ~2 ~2 ~19 ~2 minecraft:air'
   - '/minecraft:tp ~-32 ~ ~-32'
+  # set new tp location
+  - '/mycommand:factory_tp_location north $s.factory.id.$arg6.tp.x $arg6'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -697,8 +699,6 @@ factory_upgrade:
   - '/minecraft:setblock ~2 ~18 ~2 minecraft:redstone_block default'
   - '/minecraft:fill ~2 ~18 ~2 ~2 ~19 ~2 minecraft:air'
   - '/minecraft:tp ~-32 ~ ~-32'
-  # Set new tp location
-  - '$Script$%Variable%$s.factory.id.$arg6.tp.x+27'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -1193,8 +1193,8 @@ factory_upgrade:
   - '/minecraft:setblock ~13 ~18 ~13 minecraft:redstone_block default'
   - '/minecraft:fill ~13 ~18 ~13 ~13 ~19 ~13 minecraft:air'
   - '/minecraft:tp ~-16 ~ ~-16'
-  # Set new tp location
-  - '$Script$%Variable%$s.factory.id.$arg6.tp.x-27'
+  # set new tp location
+  - '/mycommand:factory_tp_location north $s.factory.id.$arg6.tp.x $arg6'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
@@ -1701,8 +1701,8 @@ factory_upgrade:
   - '/minecraft:setblock ~2 ~18 ~13 minecraft:redstone_block default'
   - '/minecraft:fill ~2 ~18 ~13 ~2 ~19 ~13 minecraft:air'
   - '/minecraft:tp ~-32 ~ ~-16'
-  # Set new tp location
-  - '$Script$%Variable%$s.factory.id.$arg6.tp.z-27'
+  # set new tp location
+  - '/mycommand:factory_tp_location north $s.factory.id.$arg6.tp.z $arg6'
   # calculate item delay
   - '/mycommand:factory_item_delay_init $arg6 $player $arg2 $s.factory.id.$arg6.product.name $s.factory.id.$arg6.product.damage'
   # "[Factory] The factory was successfully upgraded to level x"
