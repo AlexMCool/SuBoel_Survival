@@ -1,0 +1,42 @@
+##############################################################################
+#                              factory marker                                #
+##############################################################################
+factory_marker:
+  command: /factory_marker
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_CONSOLE
+  runcmd:
+  #######################################
+  #                 new                 #
+  ####################################### 
+  # arg1 = new
+  # arg2 = $player
+  # arg3 = $s.translation.board_word.$s.factory.id.$arg1.board.word
+  # arg4 = (factory_id)
+  # arg5 = $locX
+  # arg6 = $locY
+  # arg7 = $locZ
+  - '$Script$%elseif%$arg1==new'
+  
+  # add factory set
+  - '/dynmap:dmarker addset "Factories" hide:false id:factories'
+  
+  # add marker
+  - '/dynmap:dmarker add "$arg2 $arg3" icon:factory id:factory_$arg4 set:factories world:the_future x:$arg5.0 y:$arg6.0 z:$arg7.0'
+  
+  #######################################
+  #               change                #
+  ####################################### 
+  # arg1 = change
+  # arg2 = (factory_id)
+  # arg3 = (item_name)
+  # arg4 = (damage_value)
+  - '$Script$%elseif%$arg1==change'
+  
+  # add icon
+  - '/dynmap:dmarker addicon "$arg3_$arg4" file:"plugins/dynmap/uploaded_custom_markers/$arg3_$arg4.png" id:$arg3_$arg4'
+  
+  # change marker
+  - '/dynmap:dmarker update id:factory_$arg2 set:factories icon:$arg3_$arg4'

@@ -318,10 +318,9 @@ factory_random_direction_choose:
   - '/minecraft:tp ~ ~ ~-16'
   - '/minecraft:tp ~16 ~ ~16'
   # dynmap marker
-  - '/dynmap:dmarker addset "Factories" hide:false id:factories'
-  - '/minecraft:tp ~32 ~ ~32'
-  - '/dynmap:dmarker add "$player $s.translation.board_word.$s.factory.id.$arg1.board.word" id:factory_$arg1 icon:factory set:factories'
-  - '/minecraft:tp ~-32 ~ ~-32'
+  - '/minecraft:tp ~33 ~ ~33'
+  - '/mycommand:factory_marker new $player $s.translation.board_word.$s.factory.id.$arg1.board.word $arg1 $locX $locY $locZ'
+  - '/minecraft:tp ~-33 ~ ~-33'
   
   
   
