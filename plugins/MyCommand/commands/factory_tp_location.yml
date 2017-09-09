@@ -1,0 +1,212 @@
+##############################################################################
+#                            factory tp location                             #
+##############################################################################
+factory_tp_location:
+  command: /factory_tp_location
+  execute_mode: FROM_ANOTHER_COMMAND
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  # arg1 = east / north / south / west
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  
+  # add objective
+  - '/minecraft:scoreboard objectives add sfTpLocation dummy Teleport Location Calculation'
+  - '/minecraft:scoreboard objectives setdisplay sidebar sfTpLocation'
+  # set scores
+  - '/minecraft:scoreboard players set $player sfTpLocation $arg2'
+  - '/minecraft:scoreboard players set -1 sfTpLocation -1'
+  - '/minecraft:scoreboard players set 27 sfTpLocation 27'
+  
+  #######################################
+  #                east                 #
+  #######################################
+  # arg1 = east
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  - '$Script$%if%$arg1==east'
+  
+  # add to score
+  - '/minecraft:scoreboard players operation $player sfTpLocation += 27 sfTpLocation'
+  # add tag
+  - '/minecraft:scoreboard players tag @s[score_sfTpLocation=-1] add sfNegative'
+  # make positive
+  - '/minecraft:scoreboard players operation @s[tag=sfNegative] sfTpLocation *= -1 sfTpLocation'
+  
+  # reset value
+  - '$Script$%Variable%$s.factory.id.$arg3.tp.z=0'
+  # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 2048 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 1024 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 512 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=256] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 256 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=128] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 128 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=64] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 64 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 32 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 16 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 8 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 4 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=2] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 2 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1] ~ ~ ~ /mycommand:factory_tp_location_variable east $player 1 $arg3 z'
+  
+  # make value negative
+  - '/minecraft:execute @s[tag=sfNegative] ~ ~ ~ /mycommand:factory_tp_location_variable negative $s.factory.id.$arg3.tp.z $arg3 z'
+  
+  #######################################
+  #                north                #
+  #######################################
+  # arg1 = north
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  - '$Script$%if%$arg1==north'
+  
+  # add to score
+  - '/minecraft:scoreboard players operation $player sfTpLocation += 27 sfTpLocation'
+  # add tag
+  - '/minecraft:scoreboard players tag @s[score_sfTpLocation=-1] add sfNegative'
+  # make positive
+  - '/minecraft:scoreboard players operation @s[tag=sfNegative] sfTpLocation *= -1 sfTpLocation'
+  
+  # reset value
+  - '$Script$%Variable%$s.factory.id.$arg3.tp.x=0'
+  # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 2048 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 1024 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 512 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=256] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 256 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=128] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 128 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=64] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 64 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 32 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 16 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 8 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 4 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=2] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 2 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1] ~ ~ ~ /mycommand:factory_tp_location_variable north $player 1 $arg3 x'
+  
+  # make value negative
+  - '/minecraft:execute @s[tag=sfNegative] ~ ~ ~ /mycommand:factory_tp_location_variable negative $s.factory.id.$arg3.tp.x $arg3 x'
+  
+  #######################################
+  #                south                #
+  #######################################
+  # arg1 = south
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  - '$Script$%if%$arg1==south'
+  
+  # add to score
+  - '/minecraft:scoreboard players operation $player sfTpLocation -= 27 sfTpLocation'
+  # add tag
+  - '/minecraft:scoreboard players tag @s[score_sfTpLocation=-1] add sfNegative'
+  # make positive
+  - '/minecraft:scoreboard players operation @s[tag=sfNegative] sfTpLocation *= -1 sfTpLocation'
+  
+  # reset value
+  - '$Script$%Variable%$s.factory.id.$arg3.tp.x=0'
+  # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 2048 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 1024 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 512 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=256] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 256 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=128] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 128 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=64] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 64 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 32 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 16 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 8 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 4 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=2] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 2 $arg3 x'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1] ~ ~ ~ /mycommand:factory_tp_location_variable south $player 1 $arg3 x'
+  
+  # make value negative
+  - '/minecraft:execute @s[tag=sfNegative] ~ ~ ~ /mycommand:factory_tp_location_variable negative $s.factory.id.$arg3.tp.x $arg3 x'
+  
+  #######################################
+  #                west                 #
+  #######################################
+  # arg1 = west
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  - '$Script$%if%$arg1==west'
+  
+  # add to score
+  - '/minecraft:scoreboard players operation $player sfTpLocation -= 27 sfTpLocation'
+  # add tag
+  - '/minecraft:scoreboard players tag @s[score_sfTpLocation=-1] add sfNegative'
+  # make positive
+  - '/minecraft:scoreboard players operation @s[tag=sfNegative] sfTpLocation *= -1 sfTpLocation'
+  
+  # reset value
+  - '$Script$%Variable%$s.factory.id.$arg3.tp.z=0'
+  # binary search
+  - '/minecraft:execute @s[score_sfTpLocation_min=2048] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 2048 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1024] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 1024 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=512] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 512 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=256] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 256 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=128] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 128 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=64] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 64 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=32] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 32 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=16] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 16 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=8] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 8 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=4] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 4 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=2] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 2 $arg3 z'
+  - '/minecraft:execute @s[score_sfTpLocation_min=1] ~ ~ ~ /mycommand:factory_tp_location_variable west $player 1 $arg3 z'
+  
+  # make value negative
+  - '/minecraft:execute @s[tag=sfNegative] ~ ~ ~ /mycommand:factory_tp_location_variable negative $s.factory.id.$arg3.tp.z $arg3 z'
+  
+  #######################################
+  #                reset                #
+  #######################################
+  # arg1 = east / north / south / west
+  # arg2 = $s.factory.id.$arg6.tp.x / $s.factory.id.$arg6.tp.z
+  # arg3 = (factory_id)
+  - '$Script$%if%always==always'
+  
+  # remove tag
+  - '/minecraft:scoreboard players tag @s remove sfNegative'
+  # remove objective
+  - '/minecraft:scoreboard objectives remove sfTpLocation'
+  
+  
+  
+  
+  
+##############################################################################
+#                        factory tp location variable                        #
+##############################################################################
+factory_tp_location_variable:
+  command: /factory_tp_location_variable
+  execute_mode: CONSOLE_ONLY
+  permission-required: false
+  register: true
+  type: RUN_CONSOLE
+  runcmd:
+  #######################################
+  #              negative              #
+  ####################################### 
+  # arg1 = negative
+  # arg2 = (new_tp_location)
+  # arg3 = (factory_id)
+  # arg4 = x / z
+  - '$Script$%if%$arg1==negative'
+  
+  # make variable negative
+  - '$Script$%Variable%$s.factory.id.$arg3.tp.$arg4=-$arg2'
+  
+  #######################################
+  #              direction              #
+  ####################################### 
+  # arg1 = east / north / south / west
+  # arg2 = $player
+  # arg3 = 1 / 2 / 4 / ...
+  # arg4 = (factory_id)
+  # arg5 = x / z
+  - '$Script$%else%'
+  
+  # add to value
+  - '$Script$%Variable%$s.factory.id.$arg4.tp.$arg5+$arg3'
+  
+  # remove from score
+  - '/minecraft:scoreboard players remove $arg2 sfTpLocation $arg3'
