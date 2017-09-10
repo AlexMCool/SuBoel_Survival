@@ -8,10 +8,7 @@
 PlayerJoin:
   active: true
   execute:
-  - '/minecraft:advancement grant $player only suboel:business/root'
-  - '/minecraft:advancement grant $player only suboel:industry/root'
-  - '/minecraft:advancement grant $player only suboel:paypal/root'
-  - '/minecraft:advancement grant $player only suboel:suboel/root'
+  - '/mycommand:code advancement_roots $s.general.code'
   - '/mycommand:code paypal_received_check $s.general.code'
   - '/mycommand:code name_change_check $s.general.code $uuid'
 
@@ -36,6 +33,6 @@ PlayerDeath:
   prevent_suicide: true
   ignore_env_or_mobs_deathcause: false
   execute_for_killer:
-  - '/minecraft:execute $killed_player ~ ~ ~ /minecraft:summon minecraft:item ~ ~ ~ {Item:{Count:1b,Damage:3s,id:"minecraft:skull",tag:{SkullOwner:"$killed_player"}},Motion:[0.0d,0.5d,0.0d]}'
+  - '/mycommand:code player_death $s.general.code $killed_player'
   execute_for_defeated:
   - ''
