@@ -1,0 +1,177 @@
+##############################################################################
+#                                    help                                    #
+##############################################################################
+help:
+  command: /help
+  execute_mode: NORMAL
+  permission-required: false
+  register: true
+  type: RUN_AS_OPERATOR
+  runcmd:
+  #######################################
+  #               factory               #
+  ####################################### 
+  - '$Script$%elseif%$arg1.contains=factory'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "Information for /factory:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"Information for "},{"bold":"false","color":"$s.style.color.mark","text":"/factory"},{"bold":"false","color":"$s.style.color.normal","text":":"}]'
+  
+  # "> /factory:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/factory:"}]'
+  # "  > Description: Show a menu with all your factories"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Show a menu with all your factories"}]'
+  # "  > Usage: /factory"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Usage: "},{"bold":"false","color":"$s.style.color.mark","text":"/factory"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  #######################################
+  #                help                 #
+  ####################################### 
+  - '$Script$%elseif%$arg1.contains=help'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "Information for /help:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"Information for "},{"bold":"false","color":"$s.style.color.mark","text":"/help"},{"bold":"false","color":"$s.style.color.normal","text":":"}]'
+  
+  # "> /help:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/help:"}]'
+  # "  > Description: Show a list of all available commands"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Show a list of all available commands"}]'
+  # "  > Usage: /help"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Usage: "},{"bold":"false","color":"$s.style.color.mark","text":"/help"}]'
+  
+  # "> /help [command]:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/help [command]:"}]'
+  # "  > Description: Show information of a specific command"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Show information of a specific command"}]'
+  # "  > Example: /help x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/help $GetRandomStringFromList%factory;help;paypal;present;shop%"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  #######################################
+  #               paypal                #
+  ####################################### 
+  - '$Script$%elseif%$arg1.contains=paypal'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "Information for /paypal:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"Information for "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal"},{"bold":"false","color":"$s.style.color.normal","text":":"}]'
+  
+  # "> /paypal send <receiver> <amount>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/paypal send <receiver> <amount>:"}]'
+  # "  > Description: Send money to another player"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Send money to another player"}]'
+  # "  > Example: /paypal send Dinnerbone x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal send Dinnerbone $randomnumber%1000%"}]'
+  
+  # "> /paypal confirm <tan-code>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/paypal confirm <tan-code>:"}]'
+  # "  > Description: Confirm a transaction"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Confirm a transaction"}]'
+  # "  > Example: /paypal confirm xxxxxx"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal confirm $GetRandomStringFromList%9;8;7;6;5;4;3;2;1%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%$GetRandomStringFromList%5;6;7;8;9;0;1;2;3;4%"}]'
+  
+  # "> /paypal share <amount> <receivers>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/paypal share <amount> <receivers>:"}]'
+  # "  > Description: Share money between multiple players"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Share money between multiple players"}]'
+  # "  > Examples:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Examples: "}]'
+  # "    > /paypal share 100 x Dinnerbone"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"    > "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal share 100 $randomplayer Dinnerbone"}]'
+  # "    > /paypal share 200 x Notch x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"    > "},{"bold":"false","color":"$s.style.color.mark","text":"/paypal share 200 $randomplayer Notch $randomplayer"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  #######################################
+  #               present               #
+  ####################################### 
+  - '$Script$%elseif%$arg1.contains=present'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "Information for /present:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"Information for "},{"bold":"false","color":"$s.style.color.mark","text":"/present"},{"bold":"false","color":"$s.style.color.normal","text":":"}]'
+  
+  # "> /present:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/present:"}]'
+  # "  > Description: Teleport back to the present. This command can only be used in the future"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Teleport back to the present. This command can only be used in the future"}]'
+  # "  > Usage: /present"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Usage: "},{"bold":"false","color":"$s.style.color.mark","text":"/present"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  #######################################
+  #                shop                 #
+  ####################################### 
+  - '$Script$%elseif%$arg1.contains=shop'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "Information for /shop:"
+  - '/minecraft:tellraw $player [{"bold":"false","color":"$s.style.color.normal","text":"Information for "},{"bold":"false","color":"$s.style.color.mark","text":"/shop"},{"bold":"false","color":"$s.style.color.normal","text":":"}]'
+  
+  # "> /shop create normal <amount> <price>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/shop create normal <amount> <price>:"}]'
+  # "  > Description: Create a normal shop of the item you''re holding"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Create a normal shop of the item you''re holding"}]'
+  # "  > Example: /shop create normal x x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/shop create normal $randomnumber%64% $randomnumber%1000%"}]'
+  
+  # "> /shop create xp <amount> <price>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/shop create xp <amount> <price>:"}]'
+  # "  > Description: Create an experience shop"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Create an experience shop"}]'
+  # "  > Example: /shop create xp x x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/shop create xp $randomnumber%63% $randomnumber%999%"}]'
+  
+  # "> /shop create redstone <reward> <price>:"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"> "},{"bold":"false","color":"$s.style.color.normal","text":"/shop create redstone <reward> <price>:"}]'
+  # "  > Description: Create a shop which will activate redstone when something has been bought"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Description: "},{"bold":"false","color":"$s.style.color.mark","text":"Create a shop which will activate redstone when something has been bought"}]'
+  # "  > Example: /shop create redstone x x"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"  > "},{"bold":"false","color":"$s.style.color.normal","text":"Example: "},{"bold":"false","color":"$s.style.color.mark","text":"/shop create redstone $GetRandomStringFromList%Gate_To_Heaven;FunPark;GamblingMachine;Slot-Machine;Shop-Entrance% $rnd100"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  #######################################
+  #                list                 #
+  ####################################### 
+  - '$Script$%else%'
+  # "<-----[Help]----->"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":"["},{"bold":"false","color":"$s.style.color.title","text":"Help"},{"bold":"true","color":"$s.style.color.mark","text":"]"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"-----"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
+  
+  # "These are all the available commands:"
+  - '/minecraft:tellraw @s [{"bold":"false","color":"$s.style.color.normal","text":"These are all the available commands:"}]'
+  
+  # "> /factory"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /factory"}]'
+  #- '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /factory"},{"bold":"false","color":"$s.style.color.mark","text":" hi"}]'
+  
+  # "> /help [command]"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /help [command]"}]'
+  
+  # "> /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /paypal send <receiver> <amount> OR /paypal confirm <tan-code> OR /paypal share <amount> <receivers>"}]'
+  
+  # "> /present"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /present"}]'
+  
+  # "> /shop create normal <amount> <price> OR /shop create xp <amount> <price> OR /shop create redstone <reward> <price>"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":">"},{"bold":"false","color":"$s.style.color.normal","text":" /shop create normal <amount> <price> OR /shop create xp <amount> <price> OR /shop create redstone <reward> <price>"}]'
+  
+  # "---------------"
+  - '/minecraft:tellraw $player [{"bold":"true","color":"$s.style.color.mark","text":"<"},{"bold":"true","color":"$s.style.color.light_mark","strikethrough":"true","text":"---------------"},{"bold":"true","color":"$s.style.color.mark","text":">"}]'
