@@ -48,4 +48,4 @@ root:
   - '/minecraft:execute @e[name=shTimer,tag=shSummon,type=area_effect_cloud] ~ ~ ~ /sudo @r /mycommand:code herobrine $s.general.code'
   
   # random age
-  - '/minecraft:entitydata @e[name=shTimer,tag=shSummon,type=area_effect_cloud] {Age:-$GetRandomStringFromList%1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%1;2;3;4;5;6;7;8;9;0%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%,Tags:[""]}'
+  - '/minecraft:entitydata @e[name=shTimer,tag=shSummon,type=area_effect_cloud] {Age:-$GetRandomStringFromList%1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%0;1;2;3;4;5;6;7;8;9%$GetRandomStringFromList%2;3;4;5;6;7;8;9;0;1%$GetRandomStringFromList%3;4;5;6;7;8;9;0;1;2%$GetRandomStringFromList%4;5;6;7;8;9;0;1;2;3%,Tags:[""]}'
